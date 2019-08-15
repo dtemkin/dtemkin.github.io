@@ -16,7 +16,7 @@ tags:
 - Plotly
 excerpt_separator: <!-- more -->
 comments: true
-project: true
+type: project
 ---
 
 <!-- more -->
