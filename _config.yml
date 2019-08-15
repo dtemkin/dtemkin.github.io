@@ -1,11 +1,11 @@
 # Site
 title:              Dan Temkin
-bio:                'Minimal, one column jekyll theme.'
-description:        "Moon is a minimal, one column jekyll theme for your blog."
+bio:                ''
+description:        ""
 reading_time:       true
 words_per_minute:   200
-logo:               'static/img/logo.png'
-background:         'static/img/placeholder-big.jpg'
+logo:               static/img/logo.png
+background:         static/img/placeholder-big.jpg
 tiled_bg:           false   # Set this true if you want to tile your background image, otherwise it will be covered
 locale:             en_US
 url:                http://www.dtemkin.com
