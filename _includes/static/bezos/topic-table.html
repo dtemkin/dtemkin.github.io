@@ -1,0 +1,21 @@
+<div id="topicsTable"></div>
+<script type="application/javascript">
+    var topics_data = [
+        {"topic_id": 1, "keywords": ["customer", "company", "continue", "business", "terms", "goal", "experience", "store", "service"], "interp": "Corporate Orientation and Goals"},
+        {"topic_id": 2, "keywords": ["customer", "service", "business", "seller", "time", "grow", "decision", "sell", "company", "team"], "interp": "Customer Service"},
+        {"topic_id": 3, "keywords": ["customer", "price", "cost", "decision", "experience", "product", "time", "business", "term", "service"], "interp": "Competitive Advantage"},
+        {"topic_id": 4, "keywords": ["customer", "team", "service", "product", "time", "program", "employee", "fire", "technology", "offer"], "interp": "Employment"},
+        {"topic_id": 5, "keywords": ["cash", "flow", "book", "earnings", "free", "capital", "growth", "read", "value", "operate"], "interp": "Financials"}
+    ];
+    var tab = new Tabulator("#topicsTable", {
+        height: "300px",
+        data: topics_data,
+        layout:"fitDataFill",
+        responsiveLayout:"collapse", 
+        columns: [
+            {title: "Topic Number", field: "topic_id", align: "left"},
+            {title: "Interpretation", field: "interp", align: "left"},
+            {title: "Keywords", field: "keywords", align: "left"}
+        ]
+    });
+</script>

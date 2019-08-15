@@ -13,7 +13,7 @@ Syntax highlighting is a feature that displays source code, in different colors 
 
 ### Highlighted Code Blocks
 
-To modify styling and highlight colors edit `/assets/css/syntax.css`.
+To modify styling and highlight colors edit `/static/css/syntax.css`.
 
 {% highlight css %}
 #container {
@@ -50,7 +50,7 @@ module Jekyll
       tag_title_prefix = site.config['tag_title_prefix'] || 'Tagged: '
       tag_title_suffix = site.config['tag_title_suffix'] || '&#8211;'
       self.data['title'] = "#{tag_title_prefix}#{tag}"
-      self.data['description'] = "An archive of posts tagged #{tag}."
+      self.data['description'] = "An archive of project_assets tagged #{tag}."
     end
   end
 end
@@ -73,7 +73,7 @@ end
 
 ### Fenced Code Blocks
 
-To modify styling and highlight colors edit `/assets/css/syntax.css`. Line numbers and a few other things can be modified in `_config.yml`. Consult [Jekyll's documentation](http://jekyllrb.com/docs/configuration/) for more information.
+To modify styling and highlight colors edit `/static/css/syntax.css`. Line numbers and a few other things can be modified in `_config.yml`. Consult [Jekyll's documentation](http://jekyllrb.com/docs/configuration/) for more information.
 
 ~~~ css
 #container {

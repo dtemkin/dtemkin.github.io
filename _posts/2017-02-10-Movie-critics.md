@@ -24,7 +24,7 @@ project: true
 Code used to develop this analysis can be found on my [Github](github.com/just-dantastic/pyreel2real/rosy_ratings.git)
 ----
 
-<img src="/images/reviews-post/intro.png" alt="xkcd movie review ratings" height="325px" width="325px" class="inline:center">
+<img src="/_includes/static/reviews/reviews-intro.png" alt="xkcd movie review ratings" height="325px" width="325px" class="inline:center">
 
 
 ### Question: 
@@ -117,7 +117,6 @@ Other than that the distributions were as expected apart from two things.
 
 
 <iframe style="width:650px;height:500px;overflow:scroll;" src="//plot.ly/~justdantastic/257.embed"></iframe>
-
 
 
 As the Violin Plot indicates, for every rating assigned by the reviewer the sentiment ratings were consistently distributed with a definitive center. Moreover the center of sentiment rating distributions increased marginally, largely in tandem with the observed ratings. Reaffirming that there is a consistent and arguable associative pattern between the observed number of stars and the sentiment score from AlchemyAPI. This was the pattern confirmed using statistical tests as seen above. However, the violin plot does aleviate a concern I had when performing the analysis that the statistics themselves were otherwise exposed to. That is the possibly of parametric assignment error when creating the normalized groups which "converted" the sentiment score into the infinitly more relatable "Measured Star" groups. Since the violin plot uses the raw sentiment score, before the normalization process, it serves as appropriate affirmation that there is in fact a meaningful relationship between the datasets. Interestingly, it also confirms the effect size result of the Cramers V which was below a meaningful level for the 2.0 and 2.5 observed star groupings. Leading me to conclude that the wide range of sentiment conveyed at these levels reduced the potential effect that the sentiment scores could have on a subsequent observed star rating.

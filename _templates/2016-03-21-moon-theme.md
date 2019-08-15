@@ -19,12 +19,12 @@ comments: true
      
  I'm not a developer or designer. And I don't add footer to show who did this theme. If you like this theme or using it, please give a **star** for motivation, It makes me happy.
 
-<iframe src="https://ghbtns.com/github-btn.html?user=TaylanTatli&repo=Moon&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>    
+<iframe src="https://ghbtns.com/github-btn.html?user=TaylanTatli&repo=Moon&type=star&count=true&size=large" style="width:160px;height:30px;border:0;overflow:hidden;"></iframe>    
       
 ## Installation
 * Fork the [Moon repo](https://github.com/TaylanTatli/Moon/fork)
 * Edit `_config.yml` file.
-* Remove sample posts from `_posts` folder and add yours.
+* Remove sample project_assets from `_posts` folder and add yours.
 * Edit `index.md` file in `about` folder.
 * Change repo name to `YourUserName.github.io`    
      
@@ -71,7 +71,7 @@ The description to use for meta tags and navigation menu.
 
 #### url
 
-Used to generate absolute urls in `sitemap.xml`, `feed.xml`, and for generating canonical URLs in `<head>`. When developing locally either comment this out or use something like `http://localhost:4000` so all assets load properly. *Don't include a trailing `/`*.
+Used to generate absolute urls in `sitemap.xml`, `feed.xml`, and for generating canonical URLs in `<head>`. When developing locally either comment this out or use something like `http://localhost:4000` so all static load properly. *Don't include a trailing `/`*.
 
 Examples:
 
@@ -84,7 +84,7 @@ url:
 
 #### reading_time
 
-Set true to show reading time for posts. And set `words_per_minute`, default is 200.
+Set true to show reading time for project_assets. And set `words_per_minute`, default is 200.
 
 #### logo
 Your site's logo. It will show on homepage and navigation menu. Also used for twitter meta tags.

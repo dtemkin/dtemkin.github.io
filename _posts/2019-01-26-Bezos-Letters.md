@@ -18,7 +18,7 @@ Code used to develop this analysis can be found on my [Github](https://github.co
 <!-- more -->
 ----
 
-<img src="/images/bezos-post/wordcloud.png" alt="word cloud made from amazon shareholder letters in the shape of amazon logo" height="500px" width="600px" class="inline:center">
+<img src="/_includes/static/bezos/bezos-wordcloud.png" alt="word cloud made from amazon shareholder letters in the shape of amazon logo" style="width:600px;height:500px;" class="inline:center">
 
 ### Intro and Data Processing
 Recently, I came across an editorial on Medium.com entitled "[What I learned from Jeff Bezos after reading every Amazon shareholder letter](https://medium.com/parsa-vc/what-i-learned-from-jeff-bezos-after-reading-every-amazon-shareholder-letter-172d92f38a41)". As the title suggests, the editorial is centered around the author's take-aways after reading the statements made by Jeff Bezos at the annual Amazon shareholders meeting from 1997 to 2016 [link](https://cdn.rawgit.com/dtemkin/blog/0b390703/code/bezos-letters/amzn-shareholder-letters-1997-2016.pdf).
@@ -31,7 +31,7 @@ By in large, I used the default tokenization provided by spaCy although I did am
 
 The first step I took after processing the text was constructing a frequency distribution of all the unique words in all the documents.
 
-{% include /post_assets/bezos/bezos-table.html %}
+{% include /static/bezos/bezos-table.html %}
 
 This frequency distribution served two functions. First, was to give me a first look at the subject of the documents also it helped to highlight stopwords that were domain specific.
 While, in some instances it is prudent to remove the words in the top/bottom n percent from each document before running the LDA because they can cause the topics modelled to be unusually similar, in this instance given the integral nature of customers to every facet of the company it seemed organic to allow the topics to share customers in many instances.
@@ -43,18 +43,18 @@ I used the default Coherence measure used with gensim to evaluate several prospe
 
 #### Coherence Measures
 
-{% include /post_assets/bezos/bezos-coherences.html %}
+{% include /static/bezos/bezos-coherences.html %}
 
 The assessment of Coherence measures revealed that the optimal model was one with 5 topics. Then I used pyLDAviz to display the generated topics and below was the result
 
 #### LDA Visualization
 
-{% include /post_assets/bezos/bezos-ldaviz.html %}
+{% include /static/bezos/bezos-ldaviz.html %}
 
 #### LDA Topics & Interpretation
 
 
-{% include /post_assets/bezos/topic-table.html %}
+{% include /static/bezos/topic-table.html %}
 
 
 Finally, what I learned from a topic model of Jeff Bezos' shareholder letters from the last 20 years -
