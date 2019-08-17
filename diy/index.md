@@ -1,6 +1,6 @@
 ---
-layout: curio
-title: All Curios
-excerpt: "A List of Curiosities"
+layout: diy
+title: DIY Projects
+excerpt: "My DIY Projects"
 comments: false
 ---
