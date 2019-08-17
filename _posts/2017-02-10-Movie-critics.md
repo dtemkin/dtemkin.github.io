@@ -17,6 +17,7 @@ tags:
 excerpt_separator: <!-- more -->
 comments: true
 type: project
+featured: true
 ---
 
 <!-- more -->

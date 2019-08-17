@@ -12,6 +12,7 @@ tags:
 excerpt_separator: <!-- more -->
 comments: true
 type: project
+featured: true
 ---
 Code used to develop this analysis can be found on my [Github](https://github.com/dtemkin/blog/blob/master/code/bezos-letters/2017-11-29-Bezos-Letters.py)
 
