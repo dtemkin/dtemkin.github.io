@@ -6,7 +6,8 @@ date: 2019-08-16
 comments: false
 ---
 
-<a class="btn zoombtn" href="/_includes/static/docs/resume.pdf">My Resume</a>
+<a class="btn zoombtn" href="/assets/docs/resume.pdf">My Resume</a>
+
 
 ## Bio
 
