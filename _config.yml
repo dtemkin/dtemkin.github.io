@@ -4,7 +4,7 @@ bio:                "Data Hacker & Prolific DIYer"
 description:        "A tech nerd portfolio"
 reading_time:       true
 words_per_minute:   200
-logo:               /assets/img/logo_md.png
+logo:               /assets/img/favicons/icon_96x96.png
 background:         /assets/img/bg.jpg
 tiled_bg:           false   # Set this true if you want to tile your background image, otherwise it will be covered
 locale:             en_US
