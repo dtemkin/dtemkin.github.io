@@ -2,7 +2,7 @@
 layout: post
 title: My 5 Favorite Algorithms
 author: Dan Temkin
-type: curio
+type: musing
 featured: true
 ---
 

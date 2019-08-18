@@ -11,7 +11,7 @@ tags:
 - messaging 
 - twilio
 - email
-type: curio
+type: musing
 ---
 
 <!-- more -->
