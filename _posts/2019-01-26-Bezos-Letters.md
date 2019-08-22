@@ -10,7 +10,6 @@ tags:
 - Bezos
 - spaCy
 excerpt_separator: <!-- more -->
-comments: true
 type: project
 featured: true
 ---
@@ -32,7 +31,7 @@ By in large, I used the default tokenization provided by spaCy although I did am
 
 The first step I took after processing the text was constructing a frequency distribution of all the unique words in all the documents.
 
-{% includes /static/bezos/bezos-table.html %}
+{% include /static/bezos/bezos-table.html %}
 
 This frequency distribution served two functions. First, was to give me a first look at the subject of the documents also it helped to highlight stopwords that were domain specific.
 While, in some instances it is prudent to remove the words in the top/bottom n percent from each document before running the LDA because they can cause the topics modelled to be unusually similar, in this instance given the integral nature of customers to every facet of the company it seemed organic to allow the topics to share customers in many instances.
@@ -44,18 +43,18 @@ I used the default Coherence measure used with gensim to evaluate several prospe
 
 #### Coherence Measures
 
-{% includes /static/bezos/bezos-coherences.html %}
+{% include /static/bezos/bezos-coherences.html %}
 
 The assessment of Coherence measures revealed that the optimal model was one with 5 topics. Then I used pyLDAviz to display the generated topics and below was the result
 
 #### LDA Visualization
 
-{% includes /static/bezos/bezos-ldaviz.html %}
+{% include /static/bezos/bezos-ldaviz.html %}
 
 #### LDA Topics & Interpretation
 
 
-{% includes /static/bezos/topic-table.html %}
+{% include /static/bezos/topic-table.html %}
 
 
 Finally, what I learned from a topic model of Jeff Bezos' shareholder letters from the last 20 years -
