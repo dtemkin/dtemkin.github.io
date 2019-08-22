@@ -14,11 +14,9 @@ type: project
 featured: true
 ---
 Code used to develop this analysis can be found on my [Github](https://github.com/dtemkin/blog/blob/master/code/bezos-letters/2017-11-29-Bezos-Letters.py)
-
 <!-- more -->
-----
 
-<a href="/_includes/static/bezos/bezos-wordcloud.png" alt="word cloud made from amazon shareholder letters in the shape of amazon logo" style="width:600px;height:500px;" class='inline:center'>
+<img src="../_includes/static/bezos/bezos-wordcloud.png" alt="word cloud made from amazon shareholder letters in the shape of amazon logo" style="width:600px;height:500px;" class='inline:center'>
 
 ### Intro and Data Processing
 Recently, I came across an editorial on Medium.com entitled "[What I learned from Jeff Bezos after reading every Amazon shareholder letter](https://medium.com/parsa-vc/what-i-learned-from-jeff-bezos-after-reading-every-amazon-shareholder-letter-172d92f38a41)". As the title suggests, the editorial is centered around the author's take-aways after reading the statements made by Jeff Bezos at the annual Amazon shareholders meeting from 1997 to 2016 [link](https://cdn.rawgit.com/dtemkin/blog/0b390703/code/bezos-letters/amzn-shareholder-letters-1997-2016.pdf).
@@ -45,7 +43,8 @@ I used the default Coherence measure used with gensim to evaluate several prospe
 
 {% include /static/bezos/bezos-coherences.html %}
 
-The assessment of Coherence measures revealed that the optimal model was one with 5 topics. Then I used pyLDAviz to display the generated topics and below was the result
+The assessment of Coherence measures revealed that the optimal model was one with 5 topics. 
+Then I used pyLDAviz to display the generated topics and below was the result
 
 #### LDA Visualization
 
