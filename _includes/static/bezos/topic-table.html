@@ -1,6 +1,5 @@
 <script type="text/javascript" src="https://unpkg.com/tabulator-tables@4.4.1/dist/js/tabulator.min.js"></script>
 
-<div id="topicsTable"></div>
 <script type="application/javascript">
     var topics_data = [
         {"topic_id": 1, "keywords": ["customer", "company", "continue", "business", "terms", "goal", "experience", "store", "service"], "interp": "Corporate Orientation and Goals"},
@@ -9,10 +8,10 @@
         {"topic_id": 4, "keywords": ["customer", "team", "service", "product", "time", "program", "employee", "fire", "technology", "offer"], "interp": "Employment"},
         {"topic_id": 5, "keywords": ["cash", "flow", "book", "earnings", "free", "capital", "growth", "read", "value", "operate"], "interp": "Financials"}
     ];
-    var tab = new Tabulator("#topicsTable", {
+    new Tabulator("#topicsTable", {
         height: "300px",
         data: topics_data,
-        layout:"fitDataFill",
+        layout:"fitColumns",
         responsiveLayout:"collapse", 
         columns: [
             {title: "Topic Number", field: "topic_id", align: "left"},
