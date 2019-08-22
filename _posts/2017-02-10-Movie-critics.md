@@ -25,7 +25,7 @@ featured: true
 Code used to develop this analysis can be found on my [Github](github.com/just-dantastic/pyreel2real/rosy_ratings.git)
 ----
 
-<img src="/_includes/static/reviews/reviews-intro.png" alt="xkcd movie review ratings" height="325px" width="325px" class="inline:center">
+<a href='/_includes/static/reviews/reviews-intro.png' alt="xkcd movie review ratings" style="height:325px; width:325px; class:inline:center">
 
 
 ### Question: 
@@ -106,7 +106,7 @@ The results are in line with the chi-squared for the most part. The greatest eff
 
 The correlation statistic came out at ~.51 and is statistically significant.
 
-<iframe style="width:750px;height:800px;overflow:visible;" src="//plot.ly/~justdantastic/263.embed"></iframe>
+<iframe style="display:block;width:100%;height:800px;overflow:scroll;" src="//plot.ly/~justdantastic/263.embed"></iframe>
 
 
 One of the most interesting artifacts that can be seen above is the bimodal frequency distribution of observed stars with both the two and three star ratings groups having a discernably greater occurrence than the surrounding groups. This is interesting because I remember watching a video on youtube of a professor showing the class how statistics can be used to determine who cheated (heres a <a href="https://www.youtube.com/watch?v=rbzJTTDO9f4">link</a>). In the video he mentions that whenever there is unaccounted for, external influence applied to a normal distribution the effect is that the distribution becomes bimodal. For example, if you have a computer generate 10 random values and a human 5, then the computer generates 10 more, and so on, the result according to that professor would be the creation of a skewed, bimodal distribution. 
@@ -117,7 +117,7 @@ Other than that the distributions were as expected apart from two things.
    2. I was similarly surprised that there were, in fact, any 0 star ratings assigned by reviewers. I don't think I can remember a review that ever got 0 stars, except maybe <a href="http://www.imdb.com/title/tt0185183/">Battlefield Earth</a> but I guess there must have been more, it is just hard to imagine. 
 
 
-<iframe style="width:650px;height:500px;overflow:scroll;" src="//plot.ly/~justdantastic/257.embed"></iframe>
+<iframe style="display:block;width:100%;height:500px;overflow:scroll;" src="//plot.ly/~justdantastic/257.embed"></iframe>
 
 
 As the Violin Plot indicates, for every rating assigned by the reviewer the sentiment ratings were consistently distributed with a definitive center. Moreover the center of sentiment rating distributions increased marginally, largely in tandem with the observed ratings. Reaffirming that there is a consistent and arguable associative pattern between the observed number of stars and the sentiment score from AlchemyAPI. This was the pattern confirmed using statistical tests as seen above. However, the violin plot does aleviate a concern I had when performing the analysis that the statistics themselves were otherwise exposed to. That is the possibly of parametric assignment error when creating the normalized groups which "converted" the sentiment score into the infinitly more relatable "Measured Star" groups. Since the violin plot uses the raw sentiment score, before the normalization process, it serves as appropriate affirmation that there is in fact a meaningful relationship between the datasets. Interestingly, it also confirms the effect size result of the Cramers V which was below a meaningful level for the 2.0 and 2.5 observed star groupings. Leading me to conclude that the wide range of sentiment conveyed at these levels reduced the potential effect that the sentiment scores could have on a subsequent observed star rating.
