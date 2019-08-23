@@ -583,7 +583,7 @@ var LDAvis = function(to_select, data_or_file_name) {
             .text("(1)");
 
         // barchart axis adapted from http://bl.ocks.org/mbostock/1166403
-        var xAxis = d3.axisTop(x).orient("top").tickSize(-barheight).ticks(6);
+        var xAxis = d3.axisTop(x).tickSize(-barheight).ticks(6);
 
         chart.attr("class", "xaxis")
             .call(xAxis);
@@ -697,7 +697,6 @@ var LDAvis = function(to_select, data_or_file_name) {
 
             // adapted from http://bl.ocks.org/mbostock/1166403
             var sliderAxis = d3.axisBottom(sliderScale)
-                    .orient("bottom")
                     .tickSize(10)
                     .ticks(6);
 
@@ -775,7 +774,6 @@ var LDAvis = function(to_select, data_or_file_name) {
 
             // adapted from http://bl.ocks.org/mbostock/1166403
             var xAxis = d3.axisTop(x)
-                    .orient("top")
                     .tickSize(-barheight)
                     .ticks(6);
 
@@ -1103,7 +1101,6 @@ var LDAvis = function(to_select, data_or_file_name) {
 
             // adapted from http://bl.ocks.org/mbostock/1166403
             var xAxis = d3.axisTop(x)
-                    .orient("top")
                     .tickSize(-barheight)
                     .ticks(6);
 
@@ -1175,7 +1172,6 @@ var LDAvis = function(to_select, data_or_file_name) {
 
             // adapted from http://bl.ocks.org/mbostock/1166403
             var xAxis = d3.axisTop(x)
-                    .orient("top")
                     .tickSize(-barheight)
                     .ticks(6);
 
