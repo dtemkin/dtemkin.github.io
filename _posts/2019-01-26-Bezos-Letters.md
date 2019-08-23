@@ -54,8 +54,6 @@ Then I used pyLDAviz to display the generated topics and below was the result
 
 #### LDA Visualization
 
-<div id="ldavis_bezos"></div>
-
 {% include /static/bezos/bezos-ldaviz.html %}
 
 #### LDA Topics & Interpretation
