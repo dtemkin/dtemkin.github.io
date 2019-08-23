@@ -447,11 +447,11 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
             return d.Category == "Default";
         });
 
-        var y = d3.scaleOrdinal()
+        var y = d3.scaleBand()
                 .domain(barDefault2.map(function(d) {
                     return d.Term;
                 }))
-                .rangeRoundBands([0, barheight], 0.15);
+                .rangeRound([0, barheight]).padding(0.15);
         var x = d3.scaleLinear()
                 .domain([1, d3.max(barDefault2, function(d) {
                     return d.Total;
@@ -738,11 +738,11 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
             // truncate to the top R tokens:
             var dat3 = dat2.slice(0, R);
 
-            var y = d3.scaleOrdinal()
+            var y = d3.scaleBand()
                     .domain(dat3.map(function(d) {
                         return d.Term;
                     }))
-                    .rangeRoundBands([0, barheight], 0.15);
+                    .rangeRound([0, barheight]).padding(0.15);
             var x = d3.scaleLinear()
                     .domain([1, d3.max(dat3, function(d) {
                         return d.Total;
@@ -1037,11 +1037,11 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
             var dat3 = dat2.slice(0, R);
 
             // scale the bars to the top R terms:
-            var y = d3.scaleOrdinal()
+            var y = d3.scaleBand()
                     .domain(dat3.map(function(d) {
                         return d.Term;
                     }))
-                    .rangeRoundBands([0, barheight], 0.15);
+                    .rangeRound([0, barheight]).padding(0.15);
             var x = d3.scaleLinear()
                     .domain([1, d3.max(dat3, function(d) {
                         return d.Total;
@@ -1131,11 +1131,11 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
                 return d.Category == "Default";
             });
 
-            var y = d3.scaleOrdinal()
+            var y = d3.scaleBand()
                     .domain(dat2.map(function(d) {
                         return d.Term;
                     }))
-                    .rangeRoundBands([0, barheight], 0.15);
+                    .rangeRound([0, barheight]).padding(0.15);
             var x = d3.scaleLinear()
                     .domain([1, d3.max(dat2, function(d) {
                         return d.Total;
