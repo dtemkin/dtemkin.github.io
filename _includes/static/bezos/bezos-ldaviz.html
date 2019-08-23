@@ -5,17 +5,16 @@
 
 <div id="ldavis_bezos"></div>
 <script type="text/javascript">
-
-
-
-    function LDAvis_load_lib(url, callback){
-      var s = document.createElement('script');
-      s.src = url;
-      s.async = true;
-      s.onreadystatechange = s.onload = callback;
-      s.onerror = function(){console.warn("failed to load library " + url);};
-      document.getElementsByTagName("head")[0].appendChild(s);
+    function load_lib(url, async, callback){
+        let s = document.createElement('script');
+        s.src = url;
+        s.async = async;
+        s.onreadystatechange = s.onload = callback;
+        s.onerror = function(){console.warn("failed to load library " + url);};
+        document.getElementsByTagName("head")[0].appendChild(s);
     }
+    let d3_path = "{{ site.url }}/assets/js/d3.v5.js";
+    let ldajs_path = "{{ site.url }}/assets/js/ldavis.v1.0.0.js";
 
     if(typeof(LDAvis) !== "undefined"){
        // already loaded: just create the visualization
@@ -24,18 +23,17 @@
        }(LDAvis);
     }else if(typeof define === "function" && define.amd){
        // require.js is available: use it to load d3/LDAvis
-        let d3path = "{{ site.url }}/assets/js/d3.v5.js";
-       require.config({paths: {d3: d3path}});
+       require.config({paths: {d3: d3_path}});
        require(["d3"], function(d3){
           window.d3 = d3;
-          LDAvis_load_lib("{{ site.url }}/assets/js/ldavis.v1.0.0.js", function(){
+          load_lib(ldajs_path, true, function(){
             new LDAvis("#" + "ldavis_bezos", ldadata);
           });
         });
     }else{
         // require.js not available: dynamically load d3 & LDAvis
-        LDAvis_load_lib(d3path, function(){
-             LDAvis_load_lib("{{ site.url }}/assets/js/ldavis.v1.0.0.js", function(){
+        load_lib(d3_path, true, function(){
+             load_lib(ldajs_path, true, function(){
                      new LDAvis("#" + "ldavis_bezos", ldadata);
                 })
              });
