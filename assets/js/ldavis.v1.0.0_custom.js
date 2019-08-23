@@ -526,7 +526,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
             .attr("y", function(d) {
                 return y(d.Term);
             })
-            .attr("height", y.rangeBand())
+            .attr("height", y.bandwidth())
             .attr("width", function(d) {
                 return x(d.Total);
             })
@@ -786,7 +786,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
                     .attr("y", function(d) {
                         return y(d.Term) + barheight + margin.bottom + 2 * rMax;
                     })
-                    .attr("height", y.rangeBand())
+                    .attr("height", y.bandwidth())
                     .style("fill", color1)
                     .attr("opacity", 0.4);
 
@@ -829,7 +829,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
                     .attr("y", function(d) {
                         return y(d.Term) + barheight + margin.bottom + 2 * rMax;
                     })
-                    .attr("height", y.rangeBand())
+                    .attr("height", y.bandwidth())
                     .style("fill", color2)
                     .attr("opacity", 0.8);
 
@@ -1059,7 +1059,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
                 .attr("y", function(d) {
                     return y(d.Term);
                 })
-                .attr("height", y.rangeBand())
+                .attr("height", y.bandwidth())
                 .attr("width", function(d) {
                     return x(d.Total);
                 })
@@ -1091,7 +1091,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
                 .attr("y", function(d) {
                     return y(d.Term);
                 })
-                .attr("height", y.rangeBand())
+                .attr("height", y.bandwidth())
                 .attr("width", function(d) {
                     return x(d.Freq);
                 })
@@ -1150,7 +1150,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
                 .attr("y", function(d) {
                     return y(d.Term);
                 })
-                .attr("height", y.rangeBand())
+                .attr("height", y.bandwidth())
                 .attr("width", function(d) {
                     return x(d.Total);
                 })
