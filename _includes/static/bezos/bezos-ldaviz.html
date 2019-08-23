@@ -22,8 +22,8 @@
         require.config({paths: {d3: d3lib}});
         require(["d3"], function(d3){
           window.d3 = d3;
-          LDAvis_load_lib("https://cdn.rawgit.com/bmabey/pyLDAvis/files/ldavis.v1.0.0.js", function(){
-            new LDAvis("#" + "ldavis", ldavis_data);
+          LDAvis_load_lib("https://cdn.rawgit.com/bmabey/pyLDAvis/files/ldavis.v1.0.0.js", function() {
+              new LDAvis("#" + "ldavis", ldavis_data);
           });
         });
     }else{
