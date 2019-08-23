@@ -448,7 +448,7 @@ var LDAvis = function(to_select, data_or_file_name) {
             return d.Category == "Default";
         });
 
-        var y = d3.scale.ordinal()
+        var y = d3.scaleOrdinal()
                 .domain(barDefault2.map(function(d) {
                     return d.Term;
                 }))
@@ -739,7 +739,7 @@ var LDAvis = function(to_select, data_or_file_name) {
             // truncate to the top R tokens:
             var dat3 = dat2.slice(0, R);
 
-            var y = d3.scale.ordinal()
+            var y = d3.scaleOrdinal()
                     .domain(dat3.map(function(d) {
                         return d.Term;
                     }))
@@ -1038,7 +1038,7 @@ var LDAvis = function(to_select, data_or_file_name) {
             var dat3 = dat2.slice(0, R);
 
             // scale the bars to the top R terms:
-            var y = d3.scale.ordinal()
+            var y = d3.scaleOrdinal()
                     .domain(dat3.map(function(d) {
                         return d.Term;
                     }))
@@ -1132,7 +1132,7 @@ var LDAvis = function(to_select, data_or_file_name) {
                 return d.Category == "Default";
             });
 
-            var y = d3.scale.ordinal()
+            var y = d3.scaleOrdinal()
                     .domain(dat2.map(function(d) {
                         return d.Term;
                     }))
