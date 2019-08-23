@@ -15,6 +15,7 @@ featured: true
 ---
 Code used to develop this analysis can be found on my [Github](https://github.com/dtemkin/blog/blob/master/code/bezos-letters/2017-11-29-Bezos-Letters.py)
 <!-- more -->
+----
 
 <img src="/assets/img/posts/bezos/wordcloud.png" alt="word cloud made from amazon shareholder letters in the shape of amazon logo" style="width:75%%;height:500px;" class='inline:center'>
 
@@ -52,8 +53,6 @@ The assessment of Coherence measures revealed that the optimal model was one wit
 Then I used pyLDAviz to display the generated topics and below was the result
 
 #### LDA Visualization
-
-<div id="ldavis_bezos"></div>
 
 {% include /static/bezos/bezos-ldaviz.html %}
 
