@@ -239,19 +239,19 @@ var LDAvis = function(to_select, data_or_file_name) {
             ypad = 0.05;
 
         if (xdiff > ydiff) {
-            var xScale = d3.scale.linear()
+            var xScale = d3.scaleLinear()
                     .range([0, mdswidth])
                     .domain([xrange[0] - xpad * xdiff, xrange[1] + xpad * xdiff]);
 
-            var yScale = d3.scale.linear()
+            var yScale = d3.scaleLinear()
                     .range([mdsheight, 0])
                     .domain([yrange[0] - 0.5*(xdiff - ydiff) - ypad*xdiff, yrange[1] + 0.5*(xdiff - ydiff) + ypad*xdiff]);
         } else {
-            var xScale = d3.scale.linear()
+            var xScale = d3.scaleLinear()
                     .range([0, mdswidth])
                     .domain([xrange[0] - 0.5*(ydiff - xdiff) - xpad*ydiff, xrange[1] + 0.5*(ydiff - xdiff) + xpad*ydiff]);
 
-            var yScale = d3.scale.linear()
+            var yScale = d3.scaleLinear()
                     .range([mdsheight, 0])
                     .domain([yrange[0] - ypad * ydiff, yrange[1] + ypad * ydiff]);
         }
@@ -453,7 +453,7 @@ var LDAvis = function(to_select, data_or_file_name) {
                     return d.Term;
                 }))
                 .rangeRoundBands([0, barheight], 0.15);
-        var x = d3.scale.linear()
+        var x = d3.scaleLinear()
                 .domain([1, d3.max(barDefault2, function(d) {
                     return d.Total;
                 })])
@@ -695,7 +695,7 @@ var LDAvis = function(to_select, data_or_file_name) {
                     .attr("width", 250)
                     .attr("height", 25);
 
-            var sliderScale = d3.scale.linear()
+            var sliderScale = d3.scaleLinear()
                     .domain([0, 1])
                     .range([7.5, 242.5])  // trimmed by 7.5px on each side to match the input type=range slider:
                     .nice();
@@ -752,7 +752,7 @@ var LDAvis = function(to_select, data_or_file_name) {
                         return d.Term;
                     }))
                     .rangeRoundBands([0, barheight], 0.15);
-            var x = d3.scale.linear()
+            var x = d3.scaleLinear()
                     .domain([1, d3.max(dat3, function(d) {
                         return d.Total;
                     })])
@@ -1053,7 +1053,7 @@ var LDAvis = function(to_select, data_or_file_name) {
                         return d.Term;
                     }))
                     .rangeRoundBands([0, barheight], 0.15);
-            var x = d3.scale.linear()
+            var x = d3.scaleLinear()
                     .domain([1, d3.max(dat3, function(d) {
                         return d.Total;
                     })])
@@ -1149,7 +1149,7 @@ var LDAvis = function(to_select, data_or_file_name) {
                         return d.Term;
                     }))
                     .rangeRoundBands([0, barheight], 0.15);
-            var x = d3.scale.linear()
+            var x = d3.scaleLinear()
                     .domain([1, d3.max(dat2, function(d) {
                         return d.Total;
                     })])
