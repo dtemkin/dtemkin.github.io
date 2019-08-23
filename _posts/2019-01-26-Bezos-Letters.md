@@ -44,12 +44,16 @@ I used the default Coherence measure used with gensim to evaluate several prospe
 
 #### Coherence Measures
 
-// {% include /static/bezos/bezos-coherences.html %}
+<div id="d39c8af6-3dcc-4281-a7f2-0913c11f237f" style="height: 100%; width: 100%;" class="plotly-graph-div"></div>
+
+{% include /static/bezos/bezos-coherences.html %}
 
 The assessment of Coherence measures revealed that the optimal model was one with 5 topics. 
 Then I used pyLDAviz to display the generated topics and below was the result
 
 #### LDA Visualization
+
+<div id="ldavis_el44201404068437233527934635627"></div>
 
 {% include /static/bezos/bezos-ldaviz.html %}
 
