@@ -459,8 +459,7 @@ var LDAvis = function(to_select, data_or_file_name) {
                 })])
                 .range([0, barwidth])
                 .nice();
-        var yAxis = d3.svg.axis()
-                .scale(y);
+        var yAxis = d3.axisLeft(y);
 
         // Add a group for the bar chart
         var chart = svg.append("g")
@@ -584,11 +583,7 @@ var LDAvis = function(to_select, data_or_file_name) {
             .text("(1)");
 
         // barchart axis adapted from http://bl.ocks.org/mbostock/1166403
-        var xAxis = d3.svg.axis().scale(x)
-                .orient("top")
-                .tickSize(-barheight)
-                .tickSubdivide(true)
-                .ticks(6);
+        var xAxis = d3.axisTop(x).orient("top").tickSize(-barheight).ticks(6);
 
         chart.attr("class", "xaxis")
             .call(xAxis);
@@ -701,11 +696,9 @@ var LDAvis = function(to_select, data_or_file_name) {
                     .nice();
 
             // adapted from http://bl.ocks.org/mbostock/1166403
-            var sliderAxis = d3.svg.axis()
-                    .scale(sliderScale)
+            var sliderAxis = d3.axisBottom(sliderScale)
                     .orient("bottom")
                     .tickSize(10)
-                    .tickSubdivide(true)
                     .ticks(6);
 
             // group to contain the elements of the slider axis:
@@ -781,10 +774,9 @@ var LDAvis = function(to_select, data_or_file_name) {
                     });
 
             // adapted from http://bl.ocks.org/mbostock/1166403
-            var xAxis = d3.svg.axis().scale(x)
+            var xAxis = d3.axisTop(x)
                     .orient("top")
                     .tickSize(-barheight)
-                    .tickSubdivide(true)
                     .ticks(6);
 
             // New axis definition:
@@ -1110,10 +1102,9 @@ var LDAvis = function(to_select, data_or_file_name) {
                 .attr("opacity", 0.8);
 
             // adapted from http://bl.ocks.org/mbostock/1166403
-            var xAxis = d3.svg.axis().scale(x)
+            var xAxis = d3.axisTop(x)
                     .orient("top")
                     .tickSize(-barheight)
-                    .tickSubdivide(true)
                     .ticks(6);
 
             // redraw x-axis
@@ -1183,10 +1174,9 @@ var LDAvis = function(to_select, data_or_file_name) {
                 });
 
             // adapted from http://bl.ocks.org/mbostock/1166403
-            var xAxis = d3.svg.axis().scale(x)
+            var xAxis = d3.axisTop(x)
                     .orient("top")
                     .tickSize(-barheight)
-                    .tickSubdivide(true)
                     .ticks(6);
 
             // redraw x-axis
