@@ -55,13 +55,13 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
         barheight = 530,
         termwidth = 90, // width to add between two panels to display terms
         mdsarea = mdsheight * mdswidth;
+    var rMax = 60;
     var plot_size_height = (mdsheight * 2 + 2 * (margin.top + margin.bottom) + 2 * rMax),
         plot_size_width = (mdswidth + margin.left + margin.right);
     var barchart_posx = (margin.left + termwidth),
         barchart_posy = (mdsheight + 2 * (margin.top + margin.bottom + rMax));
     // controls how big the maximum circle can be
     // doesn't depend on data, only on mds width and height:
-    var rMax = 60;
 
     // proportion of area of MDS plot to which the sum of default topic circle areas is set
     var circle_prop = 0.25;
