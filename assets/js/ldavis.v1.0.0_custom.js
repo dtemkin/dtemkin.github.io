@@ -443,11 +443,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
             .attr("y", 30)
             .style("font-size", "16px")
             .style("text-anchor", "middle");
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
+
         // establish layout and vars for bar chart
         var barDefault2 = dat3.filter(function(d) {
             return d.Category == "Default";
@@ -469,7 +465,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
         // Add a group for the bar chart
         var chart = svg.append("g")
                 //.attr("transform", "translate(" + +(mdswidth + margin.left + termwidth) + "," + 2 * margin.top + ")")
-            .attr("transform", "translate(" + + (margin.left*2) + "," + ((margin.top * 3) + mdsheight + (margin.bottom * 2)) + ")")
+            .attr("transform", "translate(" + + (margin.left*4) + "," + ((margin.top * 3) + mdsheight + (margin.bottom * 2)) + ")")
             .attr("id", barFreqsID);
 
         // bar chart legend/guide:
@@ -649,7 +645,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
             var lambdaDiv = document.createElement("div");
             lambdaDiv.setAttribute("id", lambdaInputID);
             //lambdaDiv.setAttribute("style", "padding: 5px; background-color: #e8e8e8; display: inline-block; height: 50px; width: " + lambdaDivWidth + "px; float: right; margin-right: 30px");
-            lambdaDiv.setAttribute("style", "position: relative; top: "+ (mdsheight + margin.bottom)+"; left: 10; z-index: -1; padding: 5px; background-color: #e8e8e8; display: inline-block; height: 50px; width: " + lambdaDivWidth + "px; float: right; margin-right: 30px");
+            lambdaDiv.setAttribute("style", "position: relative; top: "+ (mdsheight + margin.bottom + margin.top + rMax)+"; left: 20; z-index: 0; padding: 5px; background-color: #e8e8e8; display: inline-block; height: 50px; width: " + lambdaDivWidth + "px; float: right; margin-right: 30px");
             inputDiv.appendChild(lambdaDiv);
 
             var lambdaZero = document.createElement("div");
@@ -803,7 +799,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
 
             var labelsEnter = labels.enter()
                     .append("text")
-                    .attr("x", 20)
+                    .attr("x", -5)
                     .attr("class", "terms")
                     .attr("y", function(d) {
                         return y(d.Term) + 12 + barheight + ((margin.top * 3) + mdsheight + (margin.bottom * 2)) ;
