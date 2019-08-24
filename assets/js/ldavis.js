@@ -55,6 +55,10 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
         barheight = 530,
         termwidth = 90, // width to add between two panels to display terms
         mdsarea = mdsheight * mdswidth;
+    var plot_size_height = (mdsheight * 2 + 2 * (margin.top + margin.bottom) + 2 * rMax),
+        plot_size_width = (mdswidth + margin.left + margin.right);
+    var barchart_posx = (margin.left + termwidth),
+        barchart_posy = (mdsheight + 2 * (margin.top + margin.bottom + rMax));
     // controls how big the maximum circle can be
     // doesn't depend on data, only on mds width and height:
     var rMax = 60;
@@ -260,8 +264,8 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
         // Create new svg element (that will contain everything):
         var svg = d3.select(to_select).append("svg")
             //.attr("width", mdswidth + barwidth + margin.left + termwidth + margin.right)
-            .attr("height", mdsheight * 2 + 2 * (margin.top + margin.bottom) + 3 * rMax)
-            .attr("width", mdswidth + margin.left + margin.right);
+            .attr("height", plot_size_height)
+            .attr("width", plot_size_width);
 
 
         // Create a group for the mds plot
@@ -465,8 +469,6 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
         var yAxis = d3.axisLeft(y);
 
         // Add a group for the bar chart
-        var barchart_posx = (margin.left + termwidth),
-            barchart_posy = (mdsheight + 2 * (margin.top + margin.bottom + rMax));
         var chart = svg.append("g")
             //.attr("transform", "translate(" + +(mdswidth + margin.left + termwidth) + "," + 2 * margin.top + ")")
             .attr("transform", "translate(" + + barchart_posx + "," + barchart_posy + ")")
@@ -477,7 +479,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
         d3.select("#" + barFreqsID).append("rect")
             .attr("x", 0)
             //.attr("y", mdsheight + 10)
-            .attr("y", barchart_posy + mdsheight + 10)
+            .attr("y", plot_size_height - 30)
             .attr("height", barguide.height)
             //.attr("width", barguide.width)
             .attr("width", barguide.width/2)
@@ -485,7 +487,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
             .attr("opacity", 0.4);
         d3.select("#" + barFreqsID).append("text")
             .attr("x", barguide.width + 5)
-            .attr("y", barchart_posy + mdsheight + 10 + barguide.height/2)
+            .attr("y", (plot_size_height - 30) + barguide.height/2)
             .style("dominant-baseline", "middle")
             .style('font-size', '12')
             .style("font-color", '#000')
@@ -501,7 +503,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
             .attr("opacity", 0.8);
         d3.select("#" + barFreqsID).append("text")
             .attr("x", barguide.width/2 + 5)
-            .attr("y", barchart_posy + mdsheight + 10 + ((3/2)*barguide.height) + 5)
+            .attr("y", (plot_size_height -30) + ((3/2)*barguide.height) + 5)
             //.attr("y", mdsheight + 10 + (3/2)*barguide.height + 5)
             .style("dominant-baseline", "middle")
             .style('font-size', '12')
@@ -515,7 +517,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
             .attr("target", "_blank")
             .append("text")
             .attr("x", 0)
-            .attr("y", mdsheight + 10 + (6/2)*barguide.height + 5)
+            .attr("y", (plot_size_height - 30 ) + (6/2)*barguide.height + 5)
             .style("dominant-baseline", "middle")
             .text("1. saliency(term w) = frequency(w) * [sum_t p(t | w) * log(p(t | w)/p(t))] for topics t; see Chuang et. al (2012)");
         d3.select("#" + barFreqsID)
@@ -524,7 +526,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
             .attr("target", "_blank")
             .append("text")
             .attr("x", 0)
-            .attr("y", mdsheight + 10 + (8/2)*barguide.height + 5)
+            .attr("y", (plot_size_height -30) + (8/2)*barguide.height + 5)
             .style("dominant-baseline", "middle")
             .text("2. relevance(term w | topic t) = \u03BB * p(w | t) + (1 - \u03BB) * p(w | t)/p(w); see Sievert & Shirley (2014)");
 
