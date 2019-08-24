@@ -260,13 +260,13 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
         var svg = d3.select(to_select).append("svg")
                 //.attr("width", mdswidth + barwidth + margin.left + termwidth + margin.right)
                 .attr("width", mdswidth + margin.left + margin.right + 2 * rMax)
-                .attr("height", 2 * (mdsheight) + margin.top + margin.bottom * 3 + 2 * rMax);
+                .attr("height", 2 * (mdsheight) + margin.top + margin.bottom + 4 * rMax);
 
         // Create a group for the mds plot
         var mdsplot = svg.append("g")
                 .attr("id", leftPanelID)
                 .attr("class", "points")
-                .attr("transform", "translate(" + (margin.left*2) + "," + 2 * margin.top + ")");
+                .attr("transform", "translate(" + (termwidth + margin.left) + "," + 2 * margin.top + ")");
 
         // Clicking on the mdsplot should clear the selection
         mdsplot
@@ -274,7 +274,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
             .attr("x", 0)
             .attr("y", 0)
             .attr("height", mdsheight)
-            .attr("width", mdswidth)
+            .attr("width", mdswidth+termwidth)
             .style("fill", color1)
             .attr("opacity", 0)
             .on("click", function() {
@@ -469,7 +469,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
         // Add a group for the bar chart
         var chart = svg.append("g")
                 //.attr("transform", "translate(" + +(mdswidth + margin.left + termwidth) + "," + 2 * margin.top + ")")
-            .attr("transform", "translate(" + (margin.left*2) + "," + ((margin.top * 4) + mdsheight + (margin.bottom * 2)) + ")")
+            .attr("transform", "translate(" + + (margin.left*2) + "," + ((margin.top * 3) + mdsheight + (margin.bottom * 2)) + ")")
             .attr("id", barFreqsID);
 
         // bar chart legend/guide:
@@ -606,7 +606,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
 
             // topic input container:
             var topicDiv = document.createElement("div");
-            topicDiv.setAttribute("style", "padding: 5px; background-color: #e8e8e8; display: inline-block; width: " + 50 + "px; height: 50px; float: left");
+            topicDiv.setAttribute("style", "padding: 5px; background-color: #e8e8e8; display: inline-block; width: " + mdswidth + "px; height: 50px; float: left");
             inputDiv.appendChild(topicDiv);
 
             var topicLabel = document.createElement("label");
@@ -616,7 +616,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
             topicDiv.appendChild(topicLabel);
 
             var topicInput = document.createElement("input");
-            topicInput.setAttribute("style", "width: 20px");
+            topicInput.setAttribute("style", "width: 50px");
             topicInput.type = "text";
             topicInput.min = "0";
             topicInput.max = K; // assumes the data has already been read in
@@ -649,7 +649,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
             var lambdaDiv = document.createElement("div");
             lambdaDiv.setAttribute("id", lambdaInputID);
             //lambdaDiv.setAttribute("style", "padding: 5px; background-color: #e8e8e8; display: inline-block; height: 50px; width: " + lambdaDivWidth + "px; float: right; margin-right: 30px");
-            lambdaDiv.setAttribute("style", "position: relative; top: "+ (mdsheight + margin.bottom*3)+"; left: 30; z-index: 1; padding: 5px; background-color: #e8e8e8; display: inline-block; height: 50px; width: " + lambdaDivWidth + "px; float: right; margin-right: 30px");
+            lambdaDiv.setAttribute("style", "position: relative; top: "+ (mdsheight + margin.bottom)+"; left: 10; z-index: -1; padding: 5px; background-color: #e8e8e8; display: inline-block; height: 50px; width: " + lambdaDivWidth + "px; float: right; margin-right: 30px");
             inputDiv.appendChild(lambdaDiv);
 
             var lambdaZero = document.createElement("div");
@@ -803,11 +803,10 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
 
             var labelsEnter = labels.enter()
                     .append("text")
-                    //.attr("x", -5)
-                    .attr("x", 0)
+                    .attr("x", 20)
                     .attr("class", "terms")
                     .attr("y", function(d) {
-                        return y(d.Term) + 12 + barheight + ((margin.top * 3) + mdsheight + (margin.bottom * 2));
+                        return y(d.Term) + 12 + barheight + ((margin.top * 3) + mdsheight + (margin.bottom * 2)) ;
                     })
                     .attr("cursor", "pointer")
                     .style("text-anchor", "end")
