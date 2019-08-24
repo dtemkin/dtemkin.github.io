@@ -260,13 +260,13 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
         var svg = d3.select(to_select).append("svg")
                 //.attr("width", mdswidth + barwidth + margin.left + termwidth + margin.right)
                 .attr("width", mdswidth + margin.left + margin.right + 2 * rMax)
-                .attr("height", 2 * (mdsheight) + margin.top + margin.bottom + 2 * rMax);
+                .attr("height", 2 * (mdsheight) + margin.top + margin.bottom * 3 + 2 * rMax);
 
         // Create a group for the mds plot
         var mdsplot = svg.append("g")
                 .attr("id", leftPanelID)
                 .attr("class", "points")
-                .attr("transform", "translate(" + margin.left + "," + 2 * margin.top + ")");
+                .attr("transform", "translate(" + (margin.left*2) + "," + 2 * margin.top + ")");
 
         // Clicking on the mdsplot should clear the selection
         mdsplot
@@ -469,7 +469,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
         // Add a group for the bar chart
         var chart = svg.append("g")
                 //.attr("transform", "translate(" + +(mdswidth + margin.left + termwidth) + "," + 2 * margin.top + ")")
-            .attr("transform", "translate(" + + (margin.left*2) + "," + ((margin.top * 4) + mdsheight + (margin.bottom * 2)) + ")")
+            .attr("transform", "translate(" + (margin.left*2) + "," + ((margin.top * 4) + mdsheight + (margin.bottom * 2)) + ")")
             .attr("id", barFreqsID);
 
         // bar chart legend/guide:
