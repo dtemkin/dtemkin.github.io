@@ -469,7 +469,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
         // Add a group for the bar chart
         var chart = svg.append("g")
                 //.attr("transform", "translate(" + +(mdswidth + margin.left + termwidth) + "," + 2 * margin.top + ")")
-            .attr("transform", "translate(" + + margin.left + "," + (mdsheight + margin.bottom * 2) + ")")
+            .attr("transform", "translate(" + + margin.left + "," + (margin.top + mdsheight + margin.bottom * 2) + ")")
             .attr("id", barFreqsID);
 
         // bar chart legend/guide:
