@@ -478,7 +478,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
             .style("fill", color1)
             .attr("opacity", 0.4);
         d3.select("#" + barFreqsID).append("text")
-            .attr("x", barguide.width + 5)
+            .attr("x", 5)
             .attr("y", mdsheight + 10 + barguide.height/2)
             .style("dominant-baseline", "middle")
             .text("Overall term frequency");
@@ -491,7 +491,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
             .style("fill", color2)
             .attr("opacity", 0.8);
         d3.select("#" + barFreqsID).append("text")
-            .attr("x", barguide.width/2 + 5)
+            .attr("x", 5)
             .attr("y", mdsheight + 10 + (3/2)*barguide.height + 5)
             .style("dominant-baseline", "middle")
             .text("Estimated term frequency within the selected topic");
@@ -539,16 +539,16 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
         // Add word labels to the side of each bar
         basebars
             .append("text")
-            .attr("x", -5)
+            .attr("x", 10)
             .attr("class", "terms")
             .attr("y", function(d) {
-                return y(d.Term) + 12 + margin.left*3;
+                return y(d.Term) + 12;
             })
             .attr("cursor", "pointer")
             .attr("id", function(d) {
                 return (termID + d.Term);
             })
-            .attr("z-index", 1)
+            .attr("z-index", 0)
             .style("text-anchor", "end") // right align text - use 'middle' for center alignment
             .text(function(d) {
                 return d.Term;
