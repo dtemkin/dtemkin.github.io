@@ -473,8 +473,9 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
             //.attr("transform", "translate(" + +(mdswidth + margin.left + termwidth) + "," + 2 * margin.top + ")")
             .attr("height", plot_size_height - (mdsheight + margin.bottom))
             .attr("width", plot_size_width)
-            .attr("transform", "translate(" + + barchart_posx + "," + barchart_posy + ")"+" "+"scale(" + plot_size_width + ", " + (plot_size_height - (mdsheight + margin.bottom)) +")")
-            .attr("id", barFreqsID);
+            .attr("transform", "translate(" + + barchart_posx + "," + barchart_posy + ")")
+            .attr("id", barFreqsID)
+            .attr("class", 'points');
 
         // bar chart legend/guide:
         var barguide = {"width": 50, "height": 15};
@@ -602,10 +603,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
             .text("(1)");
 
         // barchart axis adapted from http://bl.ocks.org/mbostock/1166403
-        var xAxis = d3.axisTop(x).tickSize(-barheight).ticks(6);
-
-        chart.attr("class", "xaxis")
-            .call(xAxis);
+        var xAxis = d3.axisBottom(x).tickSize(-barheight).ticks(6);
 
         // dynamically create the topic and lambda input forms at the top of the page:
         function init_forms(topicID, lambdaID, visID) {
