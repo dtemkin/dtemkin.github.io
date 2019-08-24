@@ -272,8 +272,10 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
             .append("rect")
             .attr("x", 0)
             .attr("y", 0)
-            .attr("height", mdsheight)
-            .attr("width", mdswidth)
+            //.attr("height", mdsheight)
+            //.attr("width", mdswidth)
+            .attr("height", mdsheight*2 + 10)
+            .attr("width", mdswidth/2)
             .style("fill", color1)
             .attr("opacity", 0)
             .on("click", function() {
@@ -283,9 +285,11 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
 
         mdsplot.append("line") // draw x-axis
             .attr("x1", 0)
-            .attr("x2", mdswidth)
+            //.attr("x2", mdswidth)
+            .attr("x2", 0)
             .attr("y1", mdsheight / 2)
-            .attr("y2", mdsheight / 2)
+            //.attr("y2", mdsheight / 2)
+            .attr("y2", mdsheight + 10)
             .attr("stroke", "gray")
             .attr("opacity", 0.3);
         mdsplot.append("text") // label x-axis
@@ -399,7 +403,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
             .style("fill", color1)
             .attr("r", function(d) {
                 //return (rScaleMargin(+d.Freq));
-                return (Math.sqrt((d.Freq/100)*mdswidth*mdsheight*circle_prop/Math.PI));
+                return (Math.sqrt((d.Freq/100) * mdswidth * mdsheight * circle_prop/Math.PI));
             })
             .attr("cx", function(d) {
                 return (xScale(+d.x));
@@ -442,7 +446,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
             .attr("y", 30)
             .style("font-size", "16px")
             .style("text-anchor", "middle");
-        
+
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
@@ -468,7 +472,8 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
 
         // Add a group for the bar chart
         var chart = svg.append("g")
-                .attr("transform", "translate(" + +(mdswidth + margin.left + termwidth) + "," + 2 * margin.top + ")")
+                //.attr("transform", "translate(" +(mdswidth + margin.left + termwidth) + "," + 2 * margin.top + ")")
+                .attr("transform", "translate(" + 0 + "," + (mdsheight + 2 * margin.top) + ")")
                 .attr("id", barFreqsID);
 
         // bar chart legend/guide:
