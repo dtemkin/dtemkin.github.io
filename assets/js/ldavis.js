@@ -466,7 +466,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
 
         // Add a group for the bar chart
         var barchart_posx = (margin.left + termwidth),
-            barchart_posy = (mdsheight + 2 * margin.top + margin.bottom + rMax);
+            barchart_posy = (mdsheight + 2 * (margin.top + margin.bottom + rMax));
         var chart = svg.append("g")
             //.attr("transform", "translate(" + +(mdswidth + margin.left + termwidth) + "," + 2 * margin.top + ")")
             .attr("transform", "translate(" + + barchart_posx + "," + barchart_posy + ")")
@@ -477,7 +477,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
         d3.select("#" + barFreqsID).append("rect")
             .attr("x", 0)
             //.attr("y", mdsheight + 10)
-            .attr("y", mdsheight * 2 +  2 * margin.top + margin.bottom + rMax + 10)
+            .attr("y", barchart_posy + mdsheight + 10)
             .attr("height", barguide.height)
             //.attr("width", barguide.width)
             .attr("width", barguide.width/2)
@@ -485,7 +485,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
             .attr("opacity", 0.4);
         d3.select("#" + barFreqsID).append("text")
             .attr("x", barguide.width + 5)
-            .attr("y", mdsheight + 10 + barguide.height/2)
+            .attr("y", barchart_posy + mdsheight + 10 + barguide.height/2)
             .style("dominant-baseline", "middle")
             .style('font-size', '12')
             .style("font-color", '#000')
@@ -493,7 +493,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
 
         d3.select("#" + barFreqsID).append("rect")
             .attr("x", 0)
-            .attr("y", mdsheight * 2 +  2 * margin.top + margin.bottom + rMax + 10 + barguide.height + 5)
+            .attr("y", barchart_posy + mdsheight + 10 + barguide.height + 5)
             //.attr("y", mdsheight + 10 + barguide.height + 5)
             .attr("height", barguide.height)
             .attr("width", barguide.width/2)
@@ -501,7 +501,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
             .attr("opacity", 0.8);
         d3.select("#" + barFreqsID).append("text")
             .attr("x", barguide.width/2 + 5)
-            .attr("y", mdsheight * 2 +  2 * margin.top + margin.bottom + rMax + 10 + ((3/2)*barguide.height) + 5)
+            .attr("y", barchart_posy + mdsheight + 10 + ((3/2)*barguide.height) + 5)
             //.attr("y", mdsheight + 10 + (3/2)*barguide.height + 5)
             .style("dominant-baseline", "middle")
             .style('font-size', '12')
