@@ -44,7 +44,8 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
     var margin = {
             top: 30,
             right: 30,
-            bottom: 70,
+            // bottom: 70,
+            bottom: 30,
             left: 30
         },
 
@@ -539,6 +540,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
             .append("text")
             .attr("x", -5)
             .attr("class", "terms")
+            .attr("z-index", -1)
             .attr("y", function(d) {
                 return y(d.Term) + 12;
             })
