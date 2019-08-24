@@ -465,7 +465,9 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
         // Add a group for the bar chart
         var chart = svg.append("g")
                 //.attr("transform", "translate(" + +(mdswidth + margin.left + termwidth) + "," + 2 * margin.top + ")")
-            .attr("transform", "translate(" + + (margin.left*4) + "," + ((margin.top * 3) + mdsheight + (margin.bottom * 2)) + ")")
+            .attr("x", margin.left*2)
+            .attr("y", (margin.top * 3) + mdsheight + (margin.bottom * 2))
+            //.attr("transform", "translate(" + + (margin.left*3) + "," + ((margin.top * 3) + mdsheight + (margin.bottom * 2)) + ")")
             .attr("id", barFreqsID);
 
         // bar chart legend/guide:
@@ -548,6 +550,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
             .attr("id", function(d) {
                 return (termID + d.Term);
             })
+            .attr("z-index", -1)
             .style("text-anchor", "end") // right align text - use 'middle' for center alignment
             .text(function(d) {
                 return d.Term;
