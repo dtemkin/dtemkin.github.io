@@ -649,7 +649,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
             var lambdaDiv = document.createElement("div");
             lambdaDiv.setAttribute("id", lambdaInputID);
             //lambdaDiv.setAttribute("style", "padding: 5px; background-color: #e8e8e8; display: inline-block; height: 50px; width: " + lambdaDivWidth + "px; float: right; margin-right: 30px");
-            lambdaDiv.setAttribute("style", "position: relative; top: "+ (mdsheight + margin.bottom)+"; left: 10; z-index: -1; padding: 5px; background-color: #e8e8e8; display: inline-block; height: 50px; width: " + lambdaDivWidth + "px; float: right; margin-right: 30px");
+            lambdaDiv.setAttribute("style", "position: relative; top: "+ (mdsheight + margin.bottom*3)+"; left: 10; z-index: -1; padding: 5px; background-color: #e8e8e8; display: inline-block; height: 50px; width: " + lambdaDivWidth + "px; float: right; margin-right: 30px");
             inputDiv.appendChild(lambdaDiv);
 
             var lambdaZero = document.createElement("div");
@@ -803,10 +803,11 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
 
             var labelsEnter = labels.enter()
                     .append("text")
-                    .attr("x", -5)
+                    //.attr("x", -5)
+                    .attr("x", 0)
                     .attr("class", "terms")
                     .attr("y", function(d) {
-                        return y(d.Term) + 12 + barheight + margin.bottom + 2 * rMax;
+                        return y(d.Term) + 12 + barheight + ((margin.top * 3) + mdsheight + (margin.bottom * 2));
                     })
                     .attr("cursor", "pointer")
                     .style("text-anchor", "end")
