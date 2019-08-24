@@ -259,8 +259,10 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
 
         // Create new svg element (that will contain everything):
         var svg = d3.select(to_select).append("svg")
-            .attr("width", mdswidth + barwidth + margin.left + termwidth + margin.right)
-            .attr("height", mdsheight + 2 * margin.top + margin.bottom + 2 * rMax);
+            //.attr("width", mdswidth + barwidth + margin.left + termwidth + margin.right)
+            .attr("height", mdsheight * 2 + 2 * (margin.top + margin.bottom) + 3 * rMax)
+            .attr("width", mdswidth + margin.left + margin.right);
+
 
         // Create a group for the mds plot
         var mdsplot = svg.append("g")
@@ -464,7 +466,8 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
 
         // Add a group for the bar chart
         var chart = svg.append("g")
-            .attr("transform", "translate(" + +(mdswidth + margin.left + termwidth) + "," + 2 * margin.top + ")")
+            //.attr("transform", "translate(" + +(mdswidth + margin.left + termwidth) + "," + 2 * margin.top + ")")
+            .attr("transform", "translate(" + +(margin.left + termwidth) + "," + (mdsheight + 2 * margin.top) + ")")
             .attr("id", barFreqsID);
 
         // bar chart legend/guide:
