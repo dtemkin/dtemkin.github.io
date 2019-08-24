@@ -471,10 +471,9 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
         // Add a group for the bar chart
         var chart = svg.append("g")
             //.attr("transform", "translate(" + +(mdswidth + margin.left + termwidth) + "," + 2 * margin.top + ")")
-            .attr("transform", "translate(" + + barchart_posx + "," + barchart_posy + ")")
             .attr("height", plot_size_height - (mdsheight + margin.bottom))
             .attr("width", plot_size_width)
-            .scale(plot_size_width, (plot_size_height - (mdsheight + margin.bottom)))
+            .attr("transform", "translate(" + + barchart_posx + "," + barchart_posy + ")"+" "+"scale(" + plot_size_width + ", " + (plot_size_height - (mdsheight + margin.bottom)) +")")
             .attr("id", barFreqsID);
 
         // bar chart legend/guide:
