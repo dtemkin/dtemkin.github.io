@@ -35,6 +35,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
             old: 1,
             current: 1
         },
+
         color1 = typeof color1 !=='undefined' ? color1 : "#1f77b4", // baseline color for default topic circles and overall term frequencies
         color2 = typeof color2 !=='undefined' ? color2: "#d62728"; // 'highlight' color for selected topics and term-topic frequencies
     // Set the duration of each half of the transition:
@@ -45,13 +46,13 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
         top: 30,
         right: 30,
         bottom: 70,
-        left: 30
-    },
+        left: 30},
+
         mdswidth = 530,
         mdsheight = 530,
         barwidth = 530,
         barheight = 530,
-        termwidth = 90, // width to add between two panels to display terms
+        termwidth = 90, // width to add between two panels to display terms,
         mdsarea = mdsheight * mdswidth;
     // controls how big the maximum circle can be
     // doesn't depend on data, only on mds width and height:
@@ -441,7 +442,12 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
             .attr("y", 30)
             .style("font-size", "16px")
             .style("text-anchor", "middle");
-
+        
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
         // establish layout and vars for bar chart
         var barDefault2 = dat3.filter(function(d) {
             return d.Category == "Default";
@@ -466,7 +472,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
                 .attr("id", barFreqsID);
 
         // bar chart legend/guide:
-        var barguide = {"width": 100, "height": 15};
+        var barguide = {"width": 50, "height": 15};
         d3.select("#" + barFreqsID).append("rect")
             .attr("x", 0)
             .attr("y", mdsheight + 10)
