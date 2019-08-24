@@ -469,7 +469,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
         // Add a group for the bar chart
         var chart = svg.append("g")
                 //.attr("transform", "translate(" + +(mdswidth + margin.left + termwidth) + "," + 2 * margin.top + ")")
-            .attr("transform", "translate(" + + margin.left + "," + (margin.top + mdsheight + margin.bottom * 2) + ")")
+            .attr("transform", "translate(" + + margin.left + "," + (margin.top * 2 + mdsheight + margin.bottom * 2) + ")")
             .attr("id", barFreqsID);
 
         // bar chart legend/guide:
@@ -600,7 +600,8 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
             // create container div for topic and lambda input:
             var inputDiv = document.createElement("div");
             inputDiv.setAttribute("id", topID);
-            inputDiv.setAttribute("style", "width: 1210px"); // to match the width of the main svg element
+            // inputDiv.setAttribute("style", "width: 1210px"); // to match the width of the main svg element
+            inputDiv.setAttribute("style", "width: " + mdswidth + ";");
             document.getElementById(visID).appendChild(inputDiv);
 
             // topic input container:
@@ -626,19 +627,19 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
 
             var previous = document.createElement("button");
             previous.setAttribute("id", topicDown);
-            previous.setAttribute("style", "margin-left: 5px");
+            previous.setAttribute("style", "margin-left: 5px;");
             previous.innerHTML = "Previous Topic";
             topicDiv.appendChild(previous);
 
             var next = document.createElement("button");
             next.setAttribute("id", topicUp);
-            next.setAttribute("style", "margin-left: 5px");
+            next.setAttribute("style", "margin-left: 5px;");
             next.innerHTML = "Next Topic";
             topicDiv.appendChild(next);
 
             var clear = document.createElement("button");
             clear.setAttribute("id", topicClear);
-            clear.setAttribute("style", "margin-left: 5px");
+            clear.setAttribute("style", "margin-left: 5px;");
             clear.innerHTML = "Clear Topic";
             topicDiv.appendChild(clear);
 
@@ -648,7 +649,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
             var lambdaDiv = document.createElement("div");
             lambdaDiv.setAttribute("id", lambdaInputID);
             //lambdaDiv.setAttribute("style", "padding: 5px; background-color: #e8e8e8; display: inline-block; height: 50px; width: " + lambdaDivWidth + "px; float: right; margin-right: 30px");
-            lambdaDiv.setAttribute("style", "position: absolute; bottom:"+(mdsheight+10)+";left: "+margin.left+" ;padding: 5px; background-color: #e8e8e8; display: inline-block; height: 50px; width: " + lambdaDivWidth + "px; float: right; margin-right: 30px");
+            lambdaDiv.setAttribute("style", "position: absolute; top: 10; left: 0; z-index: -1; padding: 5px; background-color: #e8e8e8; display: inline-block; height: 50px; width: " + lambdaDivWidth + "px; float: right; margin-right: 30px");
             inputDiv.appendChild(lambdaDiv);
 
             var lambdaZero = document.createElement("div");
