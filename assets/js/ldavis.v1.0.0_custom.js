@@ -802,7 +802,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
                     .attr("x", -5)
                     .attr("class", "terms")
                     .attr("y", function(d) {
-                        return y(d.Term) + 12 + barheight + ((margin.top * 3) + mdsheight + (margin.bottom * 2)) ;
+                        return y(d.Term) + 12 + barheight + mdsheight + (margin.bottom * 2) ;
                     })
                     .attr("cursor", "pointer")
                     .style("text-anchor", "end")
