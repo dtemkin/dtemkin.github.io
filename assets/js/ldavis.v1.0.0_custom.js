@@ -465,9 +465,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
         // Add a group for the bar chart
         var chart = svg.append("g")
                 //.attr("transform", "translate(" + +(mdswidth + margin.left + termwidth) + "," + 2 * margin.top + ")")
-            .attr("x", margin.left*2)
-            .attr("y", (margin.top * 3) + mdsheight + (margin.bottom * 2))
-            //.attr("transform", "translate(" + + (margin.left*3) + "," + ((margin.top * 3) + mdsheight + (margin.bottom * 2)) + ")")
+            .attr("transform", "translate(" + (margin.left*3) + "," + ((margin.top * 3) + mdsheight + (margin.bottom * 2)) + ")")
             .attr("id", barFreqsID);
 
         // bar chart legend/guide:
@@ -504,7 +502,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
             .attr("xlink:href", "http://vis.stanford.edu/files/2012-Termite-AVI.pdf")
             .attr("target", "_blank")
             .append("text")
-            .attr("x", 0)
+            .attr("x", margin.left*2)
             .attr("y", mdsheight + 10 + (6/2)*barguide.height + 5)
             .style("dominant-baseline", "middle")
             .text("1. saliency(term w) = frequency(w) * [sum_t p(t | w) * log(p(t | w)/p(t))] for topics t; see Chuang et. al (2012)");
@@ -550,7 +548,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
             .attr("id", function(d) {
                 return (termID + d.Term);
             })
-            .attr("z-index", -1)
+            .attr("z-index", 1)
             .style("text-anchor", "end") // right align text - use 'middle' for center alignment
             .text(function(d) {
                 return d.Term;
