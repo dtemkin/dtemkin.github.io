@@ -58,7 +58,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
     var rMax = 60;
     var plot_size_height = (mdsheight * 2 + (margin.top + margin.bottom) + rMax),
         plot_size_width = (mdswidth + margin.left + margin.right);
-    var barchart_posx = (margin.left + termwidth),
+    var barchart_posx = (margin.left + margin.right),
         barchart_posy = (mdsheight + 2 * (margin.top + margin.bottom + rMax));
     // controls how big the maximum circle can be
     // doesn't depend on data, only on mds width and height:
@@ -277,7 +277,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
         // Clicking on the mdsplot should clear the selection
         mdsplot
             .append("rect")
-            .attr("x", 0)
+            .attr("x", margin.left + margin.right)
             .attr("y", 0)
             .attr("height", mdsheight)
             .attr("width", mdswidth)
