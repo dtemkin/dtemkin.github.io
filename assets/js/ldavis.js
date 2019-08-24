@@ -58,7 +58,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
     var rMax = 60;
     var plot_size_height = (mdsheight * 2 + (margin.top + margin.bottom) + rMax),
         plot_size_width = (mdswidth + margin.left + margin.right);
-    var barchart_posx = (margin.left + margin.right),
+    var barchart_posx = (termwidth),
         barchart_posy = (mdsheight + 2 * (margin.top + margin.bottom + rMax));
     // controls how big the maximum circle can be
     // doesn't depend on data, only on mds width and height:
@@ -157,7 +157,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
         init_forms(topicID, lambdaID, visID);
 
         // When the value of lambda changes, update the visualization
-        console.log('lambda_select', lambda_select);
+        // console.log('lambda_select', lambda_select);
         d3.select(lambda_select)
             .on("mouseup", function() {
                 console.log('lambda_select mouseup');
@@ -272,7 +272,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
         var mdsplot = svg.append("g")
             .attr("id", leftPanelID)
             .attr("class", "points")
-            .attr("transform", "translate(" + margin.left + "," + 2 * margin.top + ")");
+            .attr("transform", "translate(" + termwidth + "," + 2 * margin.top + ")");
 
         // Clicking on the mdsplot should clear the selection
         mdsplot
