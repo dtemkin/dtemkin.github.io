@@ -542,7 +542,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
             .attr("x", -5)
             .attr("class", "terms")
             .attr("y", function(d) {
-                return y(d.Term) + 12;
+                return y(d.Term) + 12 + margin.left*3;
             })
             .attr("cursor", "pointer")
             .attr("id", function(d) {
