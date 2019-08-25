@@ -8,8 +8,8 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
 
     // This section sets up the logic for event handling
     const content = $("#content");
-    var content_width = content.availWidth,
-        content_height = content.availHeight;
+    var content_width = content.Width,
+        content_height = content.Height;
 
     var current_clicked = {
             what: "nothing",
