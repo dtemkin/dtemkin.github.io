@@ -467,9 +467,6 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
             .range([0, barwidth])
             .nice();
         var yAxis = d3.axisLeft(y);
-        var xAxis = d3.axisTop(x)
-            .tickSize(-barheight)
-            .ticks(6);
 
         // Add a group for the bar chart
         var chart = svg.append("g")
@@ -478,7 +475,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
             .attr("width", plot_size_width)
             .attr("transform", "translate(" + + barchart_posx + "," + barchart_posy + ")")
             .attr("id", barFreqsID)
-            .attr("class", 'bars').call(xAxis);
+            .attr("class", 'points');
 
         // bar chart legend/guide:
         var barguide = {"width": 50, "height": 15};
@@ -593,7 +590,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
 
         var title = chart.append("text")
             .attr("x", barwidth/2)
-            .attr("y", -30)
+            .attr("y", -15)
             .attr("class", "bubble-tool") //  set class so we can remove it when highlight_off is called
             .style("text-anchor", "middle")
             .style("font-size", "16px")
@@ -793,9 +790,9 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
                 });
 
             // adapted from http://bl.ocks.org/mbostock/1166403
-            // var xAxis = d3.axisTop(x)
-            //     .tickSize(-barheight)
-            //     .ticks(6);
+            var xAxis = d3.axisTop(x)
+                .tickSize(-barheight)
+                .ticks(6);
 
             // New axis definition:
             var newaxis = d3.selectAll(to_select + " .bars");
@@ -1125,9 +1122,9 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
                 .ticks(6);
 
             // redraw x-axis
-            d3.selectAll(to_select + " .bars")
-                .attr("class", "bars")
-                .call(xAxis);
+            // d3.selectAll(to_select + " .bars")
+            //     .attr("class", "")
+            //     .call(xAxis);
         }
 
 
@@ -1191,14 +1188,14 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
                 });
 
             // adapted from http://bl.ocks.org/mbostock/1166403
-            var xAxis = d3.axisTop(x)
-                .tickSize(-barheight)
-                .ticks(6);
-
-            // redraw x-axis
-            d3.selectAll(to_select + " .bars")
-                .attr("class", "bars")
-                .call(xAxis);
+            // var xAxis = d3.axisTop(x)
+            //     .tickSize(-barheight)
+            //     .ticks(6);
+            //
+            // // redraw x-axis
+            // d3.selectAll(to_select + " .")
+            //     .attr("class", "points")
+            //     .call(xAxis);
         }
 
         // event definition for mousing over a term
