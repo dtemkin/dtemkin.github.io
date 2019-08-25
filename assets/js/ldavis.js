@@ -610,7 +610,8 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
             // create container div for topic and lambda input:
             var inputDiv = document.createElement("div");
             inputDiv.setAttribute("id", topID);
-            inputDiv.setAttribute("style", "width: 1210px"); // to match the width of the main svg element
+            //inputDiv.setAttribute("style", "width: 1210px"); // to match the width of the main svg element
+            inputDiv.setAttribute("style", "width: " + mdswidth + ";");
             document.getElementById(visID).appendChild(inputDiv);
 
             // topic input container:
