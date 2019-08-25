@@ -475,7 +475,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
             .attr("width", plot_size_width)
             .attr("transform", "translate(" + + barchart_posx + "," + barchart_posy + ")")
             .attr("id", barFreqsID)
-            .attr("class", 'points');
+            .attr("class", 'bars');
 
         // bar chart legend/guide:
         var barguide = {"width": 50, "height": 15};
@@ -795,7 +795,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
                 .ticks(6);
 
             // New axis definition:
-            var newaxis = d3.selectAll(to_select + " .points");
+            var newaxis = d3.selectAll(to_select + " .bars");
 
             // define the new elements to enter:
             var graybarsEnter = graybars.enter().append("rect")
@@ -1122,8 +1122,8 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
                 .ticks(6);
 
             // redraw x-axis
-            d3.selectAll(to_select + " .points")
-                .attr("class", "points")
+            d3.selectAll(to_select + " .bars")
+                .attr("class", "bars")
                 .call(xAxis);
         }
 
@@ -1193,8 +1193,8 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
                 .ticks(6);
 
             // redraw x-axis
-            d3.selectAll(to_select + " .")
-                .attr("class", "points")
+            d3.selectAll(to_select + " .bars")
+                .attr("class", "bars")
                 .call(xAxis);
         }
 
