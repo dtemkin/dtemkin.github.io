@@ -7,7 +7,7 @@
 var LDAvis = function(to_select, data_or_file_name, color1, color2) {
 
     // This section sets up the logic for event handling
-    const content = $("#content");
+    const content = $("#ldavis_bezos.content");
     var content_width = content.width(),
         content_height = content.height();
 
