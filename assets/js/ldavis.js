@@ -471,7 +471,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
         // Add a group for the bar chart
         var chart = svg.append("g")
             //.attr("transform", "translate(" + +(mdswidth + margin.left + termwidth) + "," + 2 * margin.top + ")")
-            .attr("height", plot_size_height - (mdsheight))
+            .attr("height", plot_size_height - (mdsheight - 30))
             .attr("width", plot_size_width)
             .attr("transform", "translate(" + + barchart_posx + "," + barchart_posy + ")")
             .attr("id", barFreqsID)
@@ -590,7 +590,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
 
         var title = chart.append("text")
             .attr("x", barwidth/2)
-            .attr("y", -15)
+            .attr("y", -25)
             .attr("class", "bubble-tool") //  set class so we can remove it when highlight_off is called
             .style("text-anchor", "middle")
             .style("font-size", "16px")
