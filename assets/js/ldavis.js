@@ -59,7 +59,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
     var plot_size_height = (mdsheight * 2 + (margin.top + margin.bottom) + rMax),
         plot_size_width = (mdswidth + margin.left + margin.right);
     var barchart_posx = (termwidth),
-        barchart_posy = (mdsheight + 2 * (margin.top + margin.bottom + rMax));
+        barchart_posy = (mdsheight + 2 * (margin.top + margin.bottom + (2*rMax)));
     // controls how big the maximum circle can be
     // doesn't depend on data, only on mds width and height:
 
@@ -520,7 +520,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
             .attr("target", "_blank")
             .append("text")
             .attr("x", 0)
-            .attr("y", (plot_size_height - 30 ) + (6/2)*barguide.height + 5)
+            .attr("y", (plot_size_height - 120) + (6/2)*barguide.height + 5)
             .style("dominant-baseline", "middle")
             .text("1. saliency(term w) = frequency(w) * [sum_t p(t | w) * log(p(t | w)/p(t))] for topics t; see Chuang et. al (2012)");
         d3.select("#" + barFreqsID)
@@ -529,7 +529,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
             .attr("target", "_blank")
             .append("text")
             .attr("x", 0)
-            .attr("y", (plot_size_height -30) + (8/2)*barguide.height + 5)
+            .attr("y", (plot_size_height - 120) + (8/2)*barguide.height + 5)
             .style("dominant-baseline", "middle")
             .text("2. relevance(term w | topic t) = \u03BB * p(w | t) + (1 - \u03BB) * p(w | t)/p(w); see Sievert & Shirley (2014)");
 
@@ -590,7 +590,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
 
         var title = chart.append("text")
             .attr("x", barwidth/2)
-            .attr("y", -25)
+            .attr("y", -20)
             .attr("class", "bubble-tool") //  set class so we can remove it when highlight_off is called
             .style("text-anchor", "middle")
             .style("font-size", "16px")
@@ -1239,8 +1239,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
                 size[dat2[i].Topic - 1] = 11;
             }
 
-            var rScaleCond = d3.scale.sqrt()
-                .domain([0, 1]).range([0, rMax]);
+            //var rScaleCond = d3.scale.sqrt().domain([0, 1]).range([0, rMax]);
 
             // Change size of bubbles according to the word's distribution over topics
             d3.selectAll(to_select + " .dot")
