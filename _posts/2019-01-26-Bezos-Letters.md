@@ -45,7 +45,7 @@ I used the default Coherence measure used with gensim to evaluate several prospe
 
 #### Coherence Measures
 
-<div id="d39c8af6-3dcc-4281-a7f2-0913c11f237f" style="height: 50%; width: 100%;" class="plotly-graph-div"></div>
+<div id="d39c8af6-3dcc-4281-a7f2-0913c11f237f" style="height: 50%; width: 80%;" class="plotly-graph-div"></div>
 
 {% include /static/bezos/bezos-coherences.html %}
 
