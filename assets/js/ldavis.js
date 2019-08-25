@@ -1031,7 +1031,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
             d3.select("#" + barFreqsID)
                 .append("text")
                 .attr("x", barwidth/2)
-                .attr("y", -30)
+                .attr("y", -10)
                 .attr("class", "bubble-tool") //  set class so we can remove it when highlight_off is called
                 .style("text-anchor", "middle")
                 .style("font-size", "16px")
