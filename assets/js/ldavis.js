@@ -7,9 +7,7 @@
 var LDAvis = function(to_select, data_or_file_name, color1, color2) {
 
     // This section sets up the logic for event handling
-    const content = $("#ldavis_bezos.content");
-    var content_width = content.width(),
-        content_height = content.height();
+
 
     var current_clicked = {
             what: "nothing",
@@ -54,9 +52,9 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
             left: 30
         },
 
-        mdswidth = content_width,
+        mdswidth = 530,
         mdsheight = 530,
-        barwidth = content_width,
+        barwidth = 530,
         barheight = 530,
         termwidth = 90, // width to add between two panels to display terms
         mdsarea = mdsheight * mdswidth;
