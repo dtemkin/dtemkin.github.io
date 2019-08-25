@@ -41,6 +41,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
     var duration = 750;
 
     // Set global margins used for everything
+
     var margin = {
             top: 30,
             right: 30,
@@ -59,7 +60,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
     var plot_size_height = (mdsheight * 2 + (margin.top + margin.bottom) + rMax),
         plot_size_width = (mdswidth + margin.left + margin.right);
     var barchart_posx = (termwidth),
-        barchart_posy = (mdsheight + 2 * (margin.top + margin.bottom + (2*rMax)));
+        barchart_posy = (mdsheight + 2 * (margin.top + margin.bottom + rMax + (rMax/2)));
     // controls how big the maximum circle can be
     // doesn't depend on data, only on mds width and height:
 
@@ -659,7 +660,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
             var lambdaDiv = document.createElement("div");
             lambdaDiv.setAttribute("id", lambdaInputID);
             //lambdaDiv.setAttribute("style", "padding: 5px; background-color: #e8e8e8; display: inline-block; height: 50px; width: " + lambdaDivWidth + "px; float: right; margin-right: 30px");
-            lambdaDiv.setAttribute("style", "position: relative; top: "+ (mdsheight + margin.bottom + margin.top + margin.left+(3*rMax)) +"; left: 0; z-index: 1; padding: 5px; background-color: #e8e8e8; display: inline-block; height: 50px; width: " + lambdaDivWidth + "px; float: right; margin-right: 30px");
+            lambdaDiv.setAttribute("style", "position: relative; top: "+ (mdsheight + margin.bottom + margin.top + margin.left+(3*rMax)) +"; left: 30; z-index: 0; padding: 5px; background-color: #e8e8e8; display: inline-block; height: 50px; width: " + lambdaDivWidth + "px; float: right; margin-right: 30px");
             inputDiv.appendChild(lambdaDiv);
 
             var lambdaZero = document.createElement("div");
