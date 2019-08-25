@@ -7,6 +7,10 @@
 var LDAvis = function(to_select, data_or_file_name, color1, color2) {
 
     // This section sets up the logic for event handling
+    const content = $("#content");
+    var content_width = content.availWidth,
+        content_height = content.availHeight;
+
     var current_clicked = {
             what: "nothing",
             element: undefined
@@ -50,9 +54,9 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
             left: 30
         },
 
-        mdswidth = 530,
+        mdswidth = content_width,
         mdsheight = 530,
-        barwidth = 530,
+        barwidth = content_width,
         barheight = 530,
         termwidth = 90, // width to add between two panels to display terms
         mdsarea = mdsheight * mdswidth;
@@ -660,7 +664,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
             var lambdaDiv = document.createElement("div");
             lambdaDiv.setAttribute("id", lambdaInputID);
             //lambdaDiv.setAttribute("style", "padding: 5px; background-color: #e8e8e8; display: inline-block; height: 50px; width: " + lambdaDivWidth + "px; float: right; margin-right: 30px");
-            lambdaDiv.setAttribute("style", "position: relative; top: "+ (mdsheight + margin.bottom + margin.top + margin.left+ (3*rMax) - 10) +"; left: 30; z-index: 0; padding: 5px; background-color: #e8e8e8; display: inline-block; height: 50px; width: " + lambdaDivWidth + "px; float: right; margin-right: 30px");
+            lambdaDiv.setAttribute("style", "position: relative; top: "+ (mdsheight + margin.bottom + margin.top + margin.left+ (2*rMax)) +"; left: 30; z-index: 0; padding: 5px; background-color: #e8e8e8; display: inline-block; height: 50px; width: " + lambdaDivWidth + "px; float: right; margin-right: 30px");
             inputDiv.appendChild(lambdaDiv);
 
             var lambdaZero = document.createElement("div");
