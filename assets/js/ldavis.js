@@ -796,7 +796,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
                 .ticks(6);
 
             // New axis definition:
-            var newaxis = d3.selectAll(to_select + " .xaxis");
+            var newaxis = d3.selectAll(to_select + " .points");
 
             // define the new elements to enter:
             var graybarsEnter = graybars.enter().append("rect")
@@ -1123,8 +1123,8 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
                 .ticks(6);
 
             // redraw x-axis
-            d3.selectAll(to_select + " .xaxis")
-            //.attr("class", "xaxis")
+            d3.selectAll(to_select + " .points")
+                .attr("class", "points")
                 .call(xAxis);
         }
 
@@ -1194,8 +1194,8 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
                 .ticks(6);
 
             // redraw x-axis
-            d3.selectAll(to_select + " .xaxis")
-                .attr("class", "xaxis")
+            d3.selectAll(to_select + " .")
+                .attr("class", "points")
                 .call(xAxis);
         }
 
