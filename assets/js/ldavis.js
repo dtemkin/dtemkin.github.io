@@ -662,7 +662,7 @@ var LDAvis = function(to_select, data_or_file_name, color1, color2) {
             var lambdaDiv = document.createElement("div");
             lambdaDiv.setAttribute("id", lambdaInputID);
             //lambdaDiv.setAttribute("style", "padding: 5px; background-color: #e8e8e8; display: inline-block; height: 50px; width: " + lambdaDivWidth + "px; float: right; margin-right: 30px");
-            lambdaDiv.setAttribute("style", "position: relative; top: "+ (mdsheight + margin.bottom + margin.top + margin.left+ (2*rMax)) +"; left: 30; z-index: 0; padding: 5px; background-color: #e8e8e8; display: inline-block; height: 50px; width: " + lambdaDivWidth + "px; float: right; margin-right: 30px");
+            lambdaDiv.setAttribute("style", "position: relative; top: "+ (mdsheight + margin.bottom + margin.top + margin.left+ (3*rMax)) +"; left: 30; z-index: 0; padding: 5px; background-color: #e8e8e8; display: inline-block; height: 50px; width: " + lambdaDivWidth + "px; float: right; margin-right: 30px");
             inputDiv.appendChild(lambdaDiv);
 
             var lambdaZero = document.createElement("div");
