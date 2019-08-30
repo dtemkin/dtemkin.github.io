@@ -3,6 +3,11 @@ layout: post
 title: 8 Lessons Learned Building A Magic Mirror
 type: diy
 featured: true
+tags:
+- MagicMirror
+- Smart Mirror
+- Raspberry Pi
+- DIY
 ---
 
 
