@@ -208,3 +208,11 @@ kbd {
     font-weight: 300;
     margin-bottom: 10px;
 }
+
+.rotate-img270 {
+  -webkit-transform:rotate(270deg);
+  -moz-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  -o-transform: rotate(270deg);
+  transform: rotate(270deg);
+}
