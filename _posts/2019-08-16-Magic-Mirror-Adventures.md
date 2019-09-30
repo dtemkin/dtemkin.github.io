@@ -11,7 +11,7 @@ tags:
 ---
 
 
-<img src="{{ site.url }}/assets/img/posts/magic_mirror/magic_mirror.jpg" class="rotate-img270" style="alignment: center">
+<img src="{{ site.url }}/assets/img/posts/magic_mirror/magic_mirror.jpg" class="rotate-img180" style="alignment: center">
 
 
 ### 1) When it is your first time stick with what works
