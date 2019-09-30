@@ -3,6 +3,9 @@ layout: post
 title: Learning from Bezos
 author: Dan Temkin
 excerpt: What to take away from Jeff Bezos in his Amazon annual shareholders letters.
+type: project
+featured: true
+comments: false
 tags:
 - Amazon
 - NLP
@@ -12,10 +15,12 @@ tags:
 excerpt_separator: <!-- more -->
 type: project
 featured: true
+comments: false
+---
 ---
 Code used to develop this analysis can be found on my [Github](https://github.com/dtemkin/blog/blob/master/code/bezos-letters/2017-11-29-Bezos-Letters.py)
 <!-- more -->
-----
+---
 
 <img src="/assets/img/posts/bezos/wordcloud.png" alt="word cloud made from amazon shareholder letters in the shape of amazon logo" style="width:75%%;height:500px;" class='inline:center'>
 
