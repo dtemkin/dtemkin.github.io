@@ -1,6 +1,6 @@
 ---
 layout: post-list
-title: All Curiosities 
-excerpt: "A List of Curiosities and Mini-Projects"
+title: All Musings 
+excerpt: "A List of Musings & Mini-Projects"
 comments: false
 ---
