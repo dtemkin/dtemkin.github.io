@@ -2,7 +2,7 @@
 title: Sending SMS Using SMTP and Python
 excerpt: How to send SMS or MMS from a gmail account, for free, using Python and smtplib.
 excerpt_separator: <!-- more -->
-comments: true
+comments: false
 tags: 
 - sms 
 - mms 
