@@ -15,7 +15,7 @@ tags:
 - CramersV 
 - Plotly
 excerpt_separator: <!-- more -->
-comments: true
+comments: false
 type: project
 featured: true
 ---
