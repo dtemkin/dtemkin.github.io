@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 8 Lessons Learned Building A Magic Mirror
+title: 8 Lessons Learned While Building A Magic Mirror
 type: "diy"
 featured: true
 tags:
