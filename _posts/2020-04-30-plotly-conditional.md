@@ -1,8 +1,9 @@
 ---
 layout: post
-title: How to build a 'conditional' graph with dropdown using plotly 
+title: How To: Make Barchart with Dropdown in Plotly
 author: Dan Temkin
-excerpt:
+excerpt: A more robust example of how to design and structure data for a barchart that changes with a 
+drop down selection using Plotly
 tags: 
 - Plotly
 - NBA
@@ -12,6 +13,8 @@ excerpt_separator: <!-- more -->
 comments: false
 type: tutorial
 featured: true
+---
+<!-- more -->
 ---
 
 
