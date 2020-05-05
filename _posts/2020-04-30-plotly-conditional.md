@@ -12,11 +12,11 @@ tags:
 - barchart
 - basketball
 - python
-type: "tutorial"
+type: tutorial
 featured: true
 ---
 
-
+<!-- more -->
 
 # Overview
 
