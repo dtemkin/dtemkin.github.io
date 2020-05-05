@@ -1,5 +1,6 @@
 ---
 layout: post
+featured: true
 title: Barchart with Dropdown in Plotly
 author: Dan Temkin
 excerpt: A more robust example of how to design and structure data for a barchart that changes with a drop down selection using Plotly
@@ -12,7 +13,6 @@ tags:
 - basketball
 - python
 type: tutorial
-featured: true
 ---
 
 <!-- more -->
@@ -29,7 +29,7 @@ than two or three groups.
 
 For this example I am using data collected a while detailing NBA games scores, winners, etc. for each season dating from 1979 to 2017. However, there is a great number of teams in this data set that have moved, changed names or become defunct which increases the likelihood of survivorship bias being present in the plot. While this is not a totally avaoidable phenomenon in this instance I try to minimize it by only including games played after 2009.
 
-Moreover, the ultimate goal for the plot is to show the win percentage a selected team had against each of their opponents between 2010 and 2017.
+Moreover, the goal for the plot is to show the win/loss percentage a selected team had against each of their opponents between 2010 and 2017.
 
 #### Load Data and Filter
 
@@ -101,10 +101,19 @@ for tm in teams:
     pct_wins = {t: round(wins_dict[t]/tot_games[t], 4) for t in teams}
     
     
-    trace = go.Bar(x=list(pct_wins.keys()), y=list(pct_wins.values()),
-                   name=tm + " wins", visible=False, hoverinfo="text", 
-                   hovertext=[f"Wins: {wins_dict[tm1]}\nTotal:{tot_games[tm1]}" 
-                              for tm1 in teams])
+    pct_winloss = {t: round((wins_dict[t]-losses_dict[t])/tot_games[t], 4) for t in teams}
+    colors = ("#57eb77", "#e6575e")
+    win_loss_colors = [(colors[0] if pct_winloss[t] > 0 else colors[1]) for t in pct_winloss]
+
+    trace = go.Bar(x=list(pct_winloss.keys()), y=list(pct_winloss.values()),
+                   name=team + " win/loss percent", visible=False, hoverinfo="text",
+                   hovertext=[f"{team} VS. {tm1}</br>"
+                              f"</br>Wins: {wins_dict[tm1]}"
+                              f"</br>Losses: {losses_dict[tm1]}"
+                              f"</br>Total:{tot_games[tm1]}"
+                              f"</br>Win/Loss Pct: {pct_winloss[tm1]}"
+                              for tm1 in teams],
+                   marker_color=win_loss_colors)
     
     btnx = {"label": tm, 'method': 'update',
             "args": [{'visible': [True if tm == tmx else False for tmx in teams]}]}

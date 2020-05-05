@@ -1,8 +1,9 @@
 # Site navigation links
-
+- title: Featured
+  url: /featured/
+- title: Latest
+  url: /latest/
 - title: DIY
   url: /diy/
 - title: Tutorials
   url: /tutorials/
-- title: featured
-  url: /featured/
