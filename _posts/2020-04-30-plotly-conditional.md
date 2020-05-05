@@ -5,17 +5,17 @@ author: Dan Temkin
 excerpt: A more robust example of how to design and structure data for a barchart that changes with a 
 drop down selection using Plotly
 tags: 
-- Plotly
-- NBA
-- Sports
-- Basketball
+- plotly
+- nba
+- barchart
+- basketball
+- python
 excerpt_separator: <!-- more -->
 comments: false
 type: tutorial
 featured: true
 ---
-<!-- more -->
----
+
 
 
 # Overview
