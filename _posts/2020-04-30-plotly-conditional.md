@@ -13,7 +13,6 @@ tags:
 - basketball
 - python
 type: tutorial
-featured: true
 ---
 
 <!-- more -->
