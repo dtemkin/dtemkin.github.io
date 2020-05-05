@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How To: Make Barchart with Dropdown in Plotly
+title: Barchart with Dropdown in Plotly
 author: Dan Temkin
 excerpt: A more robust example of how to design and structure data for a barchart that changes with a 
 drop down selection using Plotly
