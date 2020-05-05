@@ -10,7 +10,7 @@ tags:
 - Basketball
 excerpt_separator: <!-- more -->
 comments: false
-type: "tutorial"
+type: tutorial
 featured: true
 ---
 

@@ -3,9 +3,6 @@ layout: post
 title: Learning from Bezos
 author: Dan Temkin
 excerpt: What to take away from Jeff Bezos in his Amazon annual shareholders letters.
-type: project
-featured: true
-comments: false
 tags:
 - Amazon
 - NLP
