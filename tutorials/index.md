@@ -1,6 +1,6 @@
 ---
 layout: tutorial
-title: All Musings 
-excerpt: "A List of Musings & Mini-Projects"
+title: All Tutorials
+excerpt: "A List of Tutorials/Mini-Projects"
 comments: false
 ---
