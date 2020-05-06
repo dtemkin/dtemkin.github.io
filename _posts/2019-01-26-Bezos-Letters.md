@@ -11,7 +11,6 @@ tags:
 - spaCy
 excerpt_separator: <!-- more -->
 type: project
-featured: true
 comments: false
 ---
 ---

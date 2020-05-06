@@ -5,13 +5,11 @@ excerpt: How to send SMS or MMS from a gmail account, for free, using Python and
 excerpt_separator: <!-- more -->
 comments: false
 tags: 
-- sms 
-- mms 
+- SMS
 - smtplib 
-- python 
-- messaging 
-- twilio
-- email
+- Python 
+- Messaging 
+- Twilio
 type: tutorial
 ---
 
