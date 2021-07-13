@@ -1,14 +1,14 @@
 # Site
 title:              Dan Temkin
-bio:                "Data Hacker, Machine Learning Ninja & Prolific DIYer"
+bio:                "Data Hacker & Prolific DIYer"
 description:        "A tech nerd portfolio"
 reading_time:       true
 words_per_minute:   200
 logo:               assets/img/favicons/apple-icon-precomposed.png
 background:         assets/img/bg.jpg
-# tiled_bg:           false   # Set this true if you want to tile your background image, otherwise it will be covered
+tiled_bg:           false   # Set this true if you want to tile your background image, otherwise it will be covered
 locale:             en_US
-url:                https://www.dtemkin.com
+url:                https://dtemkin.com
 
 # Jekyll
 permalink:          /:title/
@@ -24,14 +24,16 @@ mathjax:            true
 sass:
   sass_dir:         _sass
   style:            compressed
+
 # Comments
 disqus_shortname:   dtemkin
+
 # Social
 # if you don't have any of social below, comment the line.
 google:
   #plus:            #username
   analytics:        UA-146808057-1
-  # verify:           TBd8TjZP2OigGmw9UZ4HNvQ3X4e3cHT_JdoLFrooths
+  #verify:
   #ad-client:
   #ad-slot:
 #bing-verify:
@@ -71,4 +73,4 @@ jekyll-mentions:
     base_url: https://github.com
 
 # Exclude list
-exclude: [README.md, Gemfile, Gemfile.lock, node_modules, gulpfile.js, package.json, _site, src, vendor, CNAME, LICENSE, Rakefile, TXT, .idea, assets, robots.txt]
+exclude: [README.md, Gemfile, Gemfile.lock, node_modules, gulpfile.js, package.json, _site, src, vendor, CNAME, LICENSE, Rakefile]
