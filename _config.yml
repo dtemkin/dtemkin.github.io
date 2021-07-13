@@ -24,16 +24,14 @@ mathjax:            true
 sass:
   sass_dir:         _sass
   style:            compressed
-
 # Comments
 disqus_shortname:   dtemkin
-
 # Social
 # if you don't have any of social below, comment the line.
 google:
   #plus:            #username
   analytics:        UA-146808057-1
-  #verify:
+  verify:           TBd8TjZP2OigGmw9UZ4HNvQ3X4e3cHT_JdoLFrooths
   #ad-client:
   #ad-slot:
 #bing-verify:
@@ -73,4 +71,5 @@ jekyll-mentions:
     base_url: https://github.com
 
 # Exclude list
-exclude: [README.md, Gemfile, Gemfile.lock, node_modules, gulpfile.js, package.json, _site, src, vendor, CNAME, LICENSE, Rakefile]
+exclude: [README.md, Gemfile, Gemfile.lock, node_modules, gulpfile.js, package.json, _site, src, vendor, CNAME,
+          LICENSE, Rakefile, TXT, .idea, _includes/static/sports/nhl/plots, _includes/static/sports/nhl/logos, assets, robots.txt]
