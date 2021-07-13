@@ -5,25 +5,26 @@
 <div class="container">
   <ul class="nav nav-tabs">
     <li class='active'><a data-toggle="tab" href="#shots">All Shots (2009-2019)</a></li>
+    <li><a data-toggle="tab" href="#shots">All Shots (2009-2019)</a></li>
     <li><a data-toggle="tab" href="#avsgive">Avs Giveaways (2017-2018)</a></li>
     <li><a data-toggle="tab" href="#avstake">Avs Takeaways (2017-2018)</a></li>
   </ul>
    <div class="tab-content">
     <div id="goals" class="tab-pane fade">
         <script>reloadByID('goals')</script>
-        <iframe width="100%" height="100%" frameborder="0" scrolling="no" src={% include "/static/sports/nhl/NHL Goals.html" %}></iframe>
+        {% include "/nhl/NHL Goals.html" %}
     </div>
     <div id="shots" class="tab-pane fade">
         <script>reloadByID('shots')</script>
-        <iframe width="100%" height="100%" frameborder="0" scrolling="no" src="//plotly.com/~dtemkin/122.embed"></iframe>
+        {% include "/nhl/NHL Shots.html" %}
     </div>
     <div id="avsgive" class="tab-pane fade">
         <script>reloadByID("avsgive")</script>
-       <iframe width="100%" height="100%" frameborder="0" scrolling="no" src={% include "/static/sports/nhl/avs_giveaway_1718.html" %}></iframe>
+        {% include "/nhl/avs_giveaway_1718.html" %}
     </div>
     <div id="avstake" class="tab-pane fade">
         <script>reloadByID("avstake")</script>
-        <iframe width="100%" height="100%" frameborder="0" scrolling="no" src={% include "/static/sports/nhl/avs_takeaway_1718.html" %}></iframe>
+       {% include "/nhl/avs_takeaway_1718.html" %}
     </div>
   </div>
 </div>
