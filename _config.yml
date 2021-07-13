@@ -72,4 +72,4 @@ jekyll-mentions:
 
 # Exclude list
 exclude: [README.md, Gemfile, Gemfile.lock, node_modules, gulpfile.js, package.json, _site, src, vendor, CNAME,
-          LICENSE, Rakefile, TXT, .idea, _includes/static/sports/nhl/plots, _includes/static/sports/nhl/logos, assets, robots.txt]
+          LICENSE, Rakefile, TXT, .idea, assets, robots.txt]
