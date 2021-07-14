@@ -145,13 +145,13 @@ assigned by your ISP is dynamic and this is not something you change. This
 presents a problem because if we use the public IP to SSH into the server we need 
 that IP to remain static.
 
-The solution is to use a DDNS service. There are many alternatives, most of 
+The solution is to use a DDNS (or Dynamic DNS) service. There are many alternatives, most of 
 which have a 'freemium' option. I personally use [No-IP](https://www.noip.com/).
 The service is free for up to 3 hosts and the 'standard' hosts expire in 30 days.
 If you would like to make the host more permanent you can purchase an 'enchanced' 
 service for one of the hosts for ~25 USD per year.
 
-In any case no-ip is very easy to set up. All you need to do is install the 
+In any case, no-ip is very easy to set up. All you need to do is install the 
 software and login.
 
 You can install the software by following these [instructions](https://www.noip.com/support/knowledgebase/installing-the-linux-dynamic-update-client-on-ubuntu/).
