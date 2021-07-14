@@ -3,6 +3,9 @@ layout: post
 title: Creating a personal compute and database server
 author: Dan Temkin
 excerpt: Successes and pitfalls in my attempt to take an old Mac Pro Workstation and convert it into an 'all-in-one' personal server.   
+excerpt_separator: <!-- more -->
+type: project
+comments: false
 tags:
 - Home Server
 - Python
@@ -10,8 +13,6 @@ tags:
 - Ubuntu
 - Hackintosh
 - Tensorflow
-type: project
-comments: false
 ---
 
 ### Motivation
