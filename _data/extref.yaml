@@ -1,0 +1,17 @@
+
+blog:
+  bezos:
+    resrcs: ""
+    figs: {}
+  movie_ratings:
+    resrcs: ""
+    figs: {}
+  nhl_plots:
+    resrcs: ""
+  elder_scrolls:
+projects:
+  smart_mirror:
+    resrc_root: ""
+curios:
+  sms_smtp:
+    resrc_root: ""
