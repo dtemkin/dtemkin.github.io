@@ -1,0 +1,31 @@
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+
+<div class="container">
+  <ul class="nav nav-tabs">
+    <li class='active'><a data-toggle="tab" href="#goals">All Goals (2009-2019)</a></li>
+    <li><a data-toggle="tab" href="#shots">All Shots (2009-2019)</a></li>
+    <li><a data-toggle="tab" href="#avsgive">Avs Giveaways (2017-2018)</a></li>
+    <li><a data-toggle="tab" href="#avstake">Avs Takeaways (2017-2018)</a></li>
+  </ul>
+   <div class="tab-content">
+    <div id="goals" class="tab-pane fade">
+        <script>reloadByID('goals')</script>
+        {% include /static/sports/nhl/plots/NHL_Goals.html %}
+    </div>
+    <div id="shots" class="tab-pane fade">
+        <script>reloadByID('shots')</script>
+        {% include /static/sports/nhl/plots/NHL Shots.html %}
+    </div>
+    <div id="avsgive" class="tab-pane fade">
+        <script>reloadByID("avsgive")</script>
+        {% include /static/sports/nhl/avs_giveaway_1718.html %}
+    </div>
+    <div id="avstake" class="tab-pane fade">
+        <script>reloadByID("avstake")</script>
+       {% include /static/sports/nhl/avs_takeaway_1718.html %}
+    </div>
+  </div>
+</div>
+
