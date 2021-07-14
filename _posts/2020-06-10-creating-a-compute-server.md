@@ -9,7 +9,6 @@ tags:
 - Ubuntu
 - Hackintosh
 - Tensorflow
-excerpt_separator: <!-- more -->
 type: project
 comments: false
 ---
