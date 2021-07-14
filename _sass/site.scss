@@ -89,6 +89,27 @@ body {
 		width: 80%;
 	}
 }
+
+.container_dark {
+	width: 36rem;
+	max-width: 750px;
+	padding-right: 10px;
+	padding-left: 10px;
+	@include center-block();
+	background-color: $comp-color;
+	color: $color_shark;
+	z-index: 1;
+	border-radius: 3px;
+	box-shadow: 0 0 10px 0 rgba($color_shark,0.3);
+	@include transition(.5s);
+	@media #{$small} {
+		width: 100%;
+		box-shadow: none;
+	}
+	@media #{$medium} {
+		width: 80%;
+	}
+}
 .row {
 	margin-top: 15px;
 	text-align: center;
