@@ -1,7 +1,8 @@
 ---
 layout: post
-title: Creating a personal 'compute' server.
+title: Creating a personal compute and database server
 author: Dan Temkin
+excerpt: Successes and pitfalls in my attempt to take an old Mac Pro Workstation and convert it into an 'all-in-one' personal server.   
 tags:
 - Home Server
 - Python
