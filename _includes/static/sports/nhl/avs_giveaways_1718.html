@@ -4,16 +4,16 @@
     (function(){
         window.PLOTLYENV={'BASE_URL': 'https://plotly.com'};
 
-        var gd = document.getElementById('47f5c42a-649f-4ab3-b03c-ec7dba2b2991')
+        var gd = document.getElementById('47f5c42a-649f-4ab3-b03c-ec7dba2b2991');
+        gd.height = tab_height;
+        gd.width = tab_width;
         var resizeDebounce = null;
 
         function resizePlot() {
-            var bb = gd.getBoundingClientRect();
-            Plotly.relayout(gd, {
-                width: tab_width,
-                height: tab_height
-            });
+            gd.height = tab_height;
+            gd.width = tab_width;
         }
+
 
 
         window.addEventListener('resize', function() {
