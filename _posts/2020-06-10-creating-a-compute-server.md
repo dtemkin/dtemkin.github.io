@@ -13,6 +13,10 @@ tags:
 - Ubuntu
 - Hackintosh
 - Tensorflow
+- SQL
+- Database Server
+- DDNS
+- Port Forwarding
 ---
 
 ### Motivation
