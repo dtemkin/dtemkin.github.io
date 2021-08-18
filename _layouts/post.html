@@ -33,11 +33,15 @@ layout: compress
                     <a class="btn zoombtn" href="{{site.url}}/projects/">
                         <i class="fa fa-chevron-left"></i>
                     </a>
-                    {% else %}
-                    <a class="btn zoombtn" href="{{site.url}}/musings/">
-                    {% endif %}
+                    {% elsif page.tutorial %}
+                    <a class="btn zoombtn" href="{{site.url}}/tutorials/">
                         <i class="fa fa-chevron-left"></i>
                     </a>
+                    {% elsif page.diy %}
+                    <a class="btn zoombtn" href="{{site.url}}/diy/">
+                        <i class="fa fa-chevron-left"></i>
+                    </a>
+                    {% endif %}
                 </div>
                 {{ content }}
                 <div class="entry-meta">

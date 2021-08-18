@@ -5,6 +5,7 @@ author: Dan Temkin
 excerpt: A more robust example of how to design and structure data for a barchart that changes with a drop down selection using Plotly
 excerpt_separator: <!-- more -->
 comments: false
+type: "tutorial"
 tags: 
 - Plotly
 - NBA

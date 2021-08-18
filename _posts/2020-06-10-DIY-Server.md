@@ -1,15 +1,15 @@
 ---
 layout: post
-title: Creating a personal compute and database server
+title: Who needs AWS?: Creating a Personal Compute/Database/Media Server 
 author: Dan Temkin
 excerpt: Successes and pitfalls in my attempt to take an old Mac Pro Workstation and convert it into an 'all-in-one' personal server.   
 excerpt_separator: <!-- more -->
-type: project
+type: "diy"
 comments: false
 tags:
 - Home Server
 - Python
-- Jupyter
+- Jupyter Notebooks
 - Ubuntu
 - Hackintosh
 - Tensorflow
@@ -17,15 +17,17 @@ tags:
 - Database Server
 - DDNS
 - Port Forwarding
+- Plex
+- Compute Server
 ---
 
 ### Motivation
-   Recently, I have been exploring tensorflow as a means to 'level-up' my Data Science 
-   knowledge and I found out that my old W520 while definitely suped up in terms of ram and cpu
-   has a GPU that only runs CUDA 3.0 whereas tensorflow requires a minimum of CUDA 3.5.
-   So I decided why not convert this old Mac Pro 3,1 I found next to the dumpster into a
-   'compute' server (or single-node computing cluster) which I could use to train and run more complex 
-   machine learning models and/or perform passive data collection.
+   I found out that my old W520 while definitely upgraded in terms of RAM (32 GB) and 
+   CPU (i7-3720QM) nevertheless, I am always looking for ways to minimize the system resources of my laptop
+   and since AWS has the potential to generate some insane [run-away bills](https://twitter.com/forrestbrazeal/status/1389622850567421952).
+   So I decided why not convert this old Mac Pro 1,1 I found next to the dumpster into a
+   'compute' server (or single-node computing cluster) which I could use to train large machine learning models or 
+   perform passive data collection without bogging down my the resources on my .
             
    There are other reasons to do this DIY like it affords one the opportunity to learn how
    the resources are configured and constructed but more that anything I was simply worried that if I tried to run any tests using EC2 or another cloud service
@@ -35,26 +37,11 @@ tags:
    which provided advice with varying degrees of utility but I thought 
    others may find a more concise guide useful if they are attempting a similar project.
 
-
-### Lessons
-
-#### 1) Selecting the appropriate device for the use-case
-
-
-#### 2) Pay attention to model numbers 
-
-#### 3) 
-
-
-
 ## Steps
 
 ### II. Setup (Hardware)
 
-##### a. <b>Choosing a computer</b> <em>(optional)</em>
-
-
-##### b. <b>Upgrading RAM and CPU</b>
+##### a. <b>Upgrading RAM and CPU</b>
     
 Originally, I had been under the impression that I was using a Mac Pro 1,1 
 this is because I was dumb and went off the model written on the case rather 
@@ -68,7 +55,7 @@ to say no when it is only 12 dollars.
 I also bought a load of (8x) 667 mhz 2 GB FB-DIMM RAM Modules to replace the 4 GB 
 that was in there. I had some issues installing this but more on that below.
 
-##### c. <b>Replace broken components</b>
+##### b. <b>Replace broken components</b>
      
 After installing the new RAM, the 2 'new' CPUs and dressing the wounds I sustained
 while contending with the massive heat sink towers. I booted up the machine and
@@ -81,7 +68,7 @@ After installing the new riser, I still have one light on that I could not fix
 with a different RAM card or SMC/PRAM reset so I gave up and settled with my extra 4 GB
 of RAM and gave up on the last 2.
       
-##### d. <b>Choosing the right GPU</b>
+##### c. <b>Choosing the right GPU</b>
       
 Choosing a GPU was probably the most difficult part of this process. First off let me just
 say that the models and 'makers' of video cards is possibly the most backwards and confusing
@@ -92,20 +79,18 @@ ability to upgrade to newer versions.
 
 Since I wasn't limited by driver availability I tried several searches looking for information
 on which cards were best for ML/DS while also on a budget and most of the recommended cards
-were still in the 500+ dollar range. 
-  
-
+were still in the 500+ dollar range. Ultimately, I went with  
 
 ### III Setup (Host System)
     
 ##### a1. <b> Install Ubuntu Server </b>
-    
-    
-##### a2. Adding additional users <em>(optional)</em>
+This was a little tricky because Apple hides their BIOS extremely well. But I followed a [tutorial](https://askubuntu.com/questions/1001238/booting-64-bit-ubuntu-images-on-a-first-generation-mac-pro-1-1)
+and it worked well interestingly enough I was only able to get Ubuntu 16.04 to boot. I tried following the instructions with Ubuntu 18.04 but couldn't
+get it working. What was interesting about this was that after installing 16.04 I have been able to do system upgrades
+that have kept me up-to-date with the latest Ubuntu Server LTS.
 
 ##### b. Install Software/Reconfigure SSH
-  
-  
+
 ### IV Setup (Router/Networking)
 
 ##### a. <b>Configuring Port Forwarding Rules</b>
@@ -159,17 +144,11 @@ However, I did have an issue with running it from <code>/usr/local/bin/noip2</co
 as the instructions suggest, instead I ran the commands from the 
 <code>/noip-2.1.9-1</code> directory. Not sure if this will cause an issue with
 the automatic updating but I will update this post if I encounter problems.
-        
-### (4) Deploy
-   
-    
-### (5) Test
-
 
 ### (6) Post-Considerations/Final Thoughts
 
-  1) 
-    
+  1) The Mac Pro 1,1 is a power hog. (see [Wakeup-On-LAN addendum]())
+  
 
 
 

@@ -10,7 +10,7 @@ tags:
 - Python 
 - Messaging 
 - Twilio
-type: tutorial
+type: "tutorial"
 ---
 
 <!-- more -->
