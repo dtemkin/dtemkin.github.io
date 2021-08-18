@@ -1,7 +1,8 @@
 ---
 layout: post
 title: 8 Lessons Learned While Building A Magic Mirror
-type: "diy"
+type: diy
+excerpt_separator: <!-- more -->
 tags:
 - MagicMirror
 - Smart Mirror

@@ -12,9 +12,9 @@ tags:
 - Twilio
 type: "tutorial"
 ---
-
+---
 <!-- more -->
-Recently, I was at a Python meetup and I saw a couple projects that involved send text messages to users. Both used <a href="https://www.twilio.com/">Twilio</a> API which is perfectly fine but unfortunately has only a free trial version. I thought a more permanent solution would be to use the builtin <a href="https://docs.python.org/3/library/smtplib.html">smtplib</a> library in Python to send messages to users by using the phone company's SMS or MMS Gateway.
+When I was at a Python meetup a couple weeks ago and I saw a couple projects that involved send text messages to users. Both used <a href="https://www.twilio.com/">Twilio</a> API which is perfectly fine but unfortunately has only a free trial version. I thought a more permanent solution would be to use the builtin <a href="https://docs.python.org/3/library/smtplib.html">smtplib</a> library in Python to send messages to users by using the phone company's SMS or MMS Gateway.
 
 There are only two catches to this method, 1) the person will not be text back and would have to send responses via email and 2) the users would need to provide their cell carriers unless you wanted to pay for another api like <a href="https://www.carrierlookup.com/">https://www.carrierlookup.com/</a> which offers $.01 per lookup when using their API. But, since this does defeat the notion of "free" we will assume the user provides their carrier info.
 

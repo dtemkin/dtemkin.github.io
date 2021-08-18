@@ -3,6 +3,9 @@ layout: post
 title: What do critics really think?
 author: Dan Temkin
 excerpt: Have you ever read a movie review online or in the paper where the star rating that critic gave the movie did not seem to match the review itself? In this article, I perform an analysis on a sample of more than 1800 reviews, comparing their star ratings with the text sentiment from the associated review using AlchemyAPI in Python.
+excerpt_separator: <!-- more -->
+comments: false
+type: project
 tags: 
 - Movies 
 - Critics 
@@ -14,9 +17,6 @@ tags:
 - Text Sentiment 
 - CramersV 
 - Plotly
-excerpt_separator: <!-- more -->
-comments: false
-type: project
 ---
 
 <!-- more -->

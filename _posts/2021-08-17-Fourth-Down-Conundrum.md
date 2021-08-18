@@ -5,7 +5,7 @@ excerpt:
 author: Dan Temkin
 excerpt_separator: <!-- more -->
 comments: false
-type: "project"
+type: project
 tags:
 - NFL
 - Markov Chain
@@ -13,3 +13,6 @@ tags:
 - Python
 - Play by Play
 ---
+---
+Code used to develop this project can be found on my github
+<!-- more -->

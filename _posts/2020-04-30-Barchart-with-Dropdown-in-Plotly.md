@@ -5,22 +5,19 @@ author: Dan Temkin
 excerpt: A more robust example of how to design and structure data for a barchart that changes with a drop down selection using Plotly
 excerpt_separator: <!-- more -->
 comments: false
-type: "tutorial"
+type: tutorial
 tags: 
 - Plotly
 - NBA
 - Barchart
 - Basketball
 - Python
-type: tutorial
 ---
 
-<!-- more -->
 
 # Overview
 
-
-Recently I had been working on a project which required that I make a bar chart 
+I had been working on a project which required that I make a bar chart 
 which changed depending on the value of a dropdown selection. Before this point 
 I had never really explored this functionality in Plotly save for knowing of its 
 existence and I thought it would be useful to detail my steps because the example 
