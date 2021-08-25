@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Who needs AWS?: Creating a Personal Compute/Database/Media Server 
+title: Who needs AWS? Creating a Personal Compute/Database/Media Server 
 author: Dan Temkin
 excerpt: Successes and pitfalls in my attempt to take an old Mac Pro Workstation and convert it into an 'all-in-one' personal server.   
 excerpt_separator: <!-- more -->
