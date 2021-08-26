@@ -14,7 +14,7 @@ html {
 body {
 	@extend %extend1;
 	font-family: $font1;
-	@include font-rem($doc-font-size);
+	@include font-px($doc-font-size);
 	color: $color_tuatara;
 	background-color: $bodycolor;
 	background-position: center center;
@@ -70,7 +70,7 @@ body {
 	align-items: center;
 }
 .container {
-	width: 36rem;
+	width: 576px;
 	max-width: 750px;
 	padding-right: 10px;
 	padding-left: 10px;
@@ -91,7 +91,7 @@ body {
 }
 
 .container_dark {
-	width: 36rem;
+	width: 576px;
 	max-width: 750px;
 	padding-right: 10px;
 	padding-left: 10px;
@@ -155,7 +155,7 @@ body {
 }
 // entry meta
 .entry-meta {
-	@include font-rem(12);
+	@include font-px(12px);
 	text-transform: uppercase;
 	color: lighten($color_tuatara,60);
 	padding-left: 0;

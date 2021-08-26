@@ -71,13 +71,13 @@
 		p {
 			margin: 0;
 			padding: 15px 20px;
-			@include font-rem(14);
+			@include font-px(14px);
 			color: rgba($white,0.8);
 			font-weight: 300;
 			a {
 				display: inline;
 				padding: 0;
-				@include font-rem(14);
+				@include font-px(14px);
 			}
 		}
 		i {
@@ -87,7 +87,7 @@
 			display: block;
 			position: relative;
 			padding: 10px 20px;
-			@include font-rem(14);
+			@include font-px(14px);
 			line-height: 20px;
 			font-weight: 400;
 			color: $white;

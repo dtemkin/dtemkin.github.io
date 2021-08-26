@@ -60,26 +60,30 @@
 // Full-fat vertical rhythm
 // ------------------------
 @mixin font-size($size) {
-  font-size: 0px + $size;
-  font-size: 0rem + $size / $doc-font-size;
-  line-height: 0 + round($doc-line-height / $size*10000) / 10000;
-  margin-bottom: 0px + $doc-line-height;
-  margin-bottom: 0rem + ($doc-line-height / $doc-font-size);
+  font-size: $size * ($size / $doc-font-size);
+  line-height: 1.2;
+  margin-bottom: 0px + ($doc-line-height / $doc-font-size);
 }
 
 // Just the REMs
 // -------------
 @mixin font-rem($size) {
-  font-size: 0px + $size;
-  font-size: 0rem + $size / $doc-font-size;
+  font-size: $size / (16*$doc-font-size-rem);
 }
 
+@mixin font-px($size) {
+  font-size: 0px + $size;
+}
+
+@mixin font-ln-px($size) {
+  font-size: $size * ($size/$doc-font-size);
+  line-height: 1.2;
+}
 // Just font-size and line-height
 // ------------------------------
 @mixin font($size) {
-  font-size: 0px + $size;
-  font-size: 0rem + $size / $doc-font-size;
-  line-height: 0 + round($doc-line-height / $size*10000) / 10000;
+  font-size: 0rem + $size / (16*$doc-font-size-rem);
+  line-height: 0rem + round((16*$doc-line-height-rem) / $size*1000) / 1000;
 }
 
 // GRADIENTS

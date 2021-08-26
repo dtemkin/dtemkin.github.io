@@ -133,6 +133,7 @@ dmypy.json
 ### Jekyll template
 _site/
 .sass-cache/
+.bundle/
 .jekyll-cache/
 .jekyll-metadata
 

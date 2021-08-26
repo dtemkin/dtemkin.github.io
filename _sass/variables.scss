@@ -30,8 +30,10 @@ $info		         : #308cbc;
 $font1               : Fira Sans,sans-serif;
 $font2               : Inconsolata;
 $alt-font            : serif;
-$doc-font-size       : 20px;
-$doc-line-height     : 26;
+$doc-font-size       : 16px;
+$doc-font-size-rem   : 1rem;
+$doc-line-height     : 20px;
+$doc-line-height-rem : 1.25rem;
 
 //media
 $small               : "only screen and (max-width: 30em)";

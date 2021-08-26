@@ -1,6 +1,6 @@
 // content area
 .content {
-	@include font-size($doc-font-size);
+	@include font-ln-px($doc-font-size);
 	padding: 0 2rem;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased !important;
@@ -51,7 +51,7 @@ h3.title a {
 		background: $white;
 		color: $color_shark;
 		a {
-			@include font-rem(20);
+			@include font-px(20px);
 			text-decoration: none;
 			color: $color_shark;
 			font-weight: bolder;
@@ -61,7 +61,8 @@ h3.title a {
 		}
 		p {
 			font-weight: lighter;
-			@include font-rem(16);
+			@include font-px(16px);
+			line-height: 1.2;
 		}
 	}
 }
@@ -83,7 +84,7 @@ blockquote {
 // figcaption
 figcaption {
     padding-top: 10px;
-    @include font(14);
+    @include font-ln-px(18px);
     color: $color_stack;
 }
 
@@ -115,7 +116,7 @@ p code,
 li code,
 p pre,
 li pre {
-    @include font(14);
+    @include font-ln-px(14px);
     background-color: $color_gray;
     border: 1px solid $color_mischka;
     @include rounded(4px);
@@ -138,7 +139,7 @@ table {
     margin-top: 1.5em;
     padding: .5em 1em;
     text-indent: 0;
-    @include font(14);
+    @include font-ln-px(14px);
     background-color: $color_gray;
     border: 1px solid $color_pink_swan;
     @include rounded(3px);
