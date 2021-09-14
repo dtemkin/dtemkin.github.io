@@ -14,5 +14,5 @@ tags:
 - Play by Play
 ---
 ---
-Code used to develop this project can be found on my github
+Coming Soon.
 <!-- more -->
