@@ -62,4 +62,4 @@ the identity of the encoded values was lost.
 While, I still believe that compression algorithms can be used in this fashion I definitely got stuck in the decoding process.
 The main issue was the requirement of padding values because the text strings were not a uniform length.
 
-Similarly, in the process of modifying the algorithm I was forced to short cut it
+Similarly, in the process of modifying the algorithm I was forced to short cut it 
