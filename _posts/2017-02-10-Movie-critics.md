@@ -21,7 +21,7 @@ tags:
 
 <!-- more -->
  A comprehensive visual and statistical analysis of the relationship between the number of stars a reviewer assigns to a movie and the degree of positive/negative sentiment they conveyed in the review itself.
-Code used to develop this analysis can be found on my [Github](github.com/just-dantastic/pyreel2real/rosy_ratings.git)
+Code used to develop this analysis can be found on my [Github](https://www.github.com/dtemkin/pyreel2real/rosy_ratings.git)
 ----
 
 <a href='/_includes/static/reviews/reviews-intro.png' alt="xkcd movie review ratings" style="height:325px; width:325px; class:inline:center"></a>
