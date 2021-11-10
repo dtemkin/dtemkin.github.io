@@ -137,7 +137,7 @@ fig.update_layout(
 fig.show()
 ```
 
-{% includes /static/barchart_plotly/plot.html %}
+{% include /static/barchart_plotly/plot.html %}
 
 #### Conclusion
 

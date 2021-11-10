@@ -239,6 +239,8 @@ fabric.properties
 # IPython
 profile_default/
 ipython_config.py
+Gemfile.lock
+
 
 # Remove previous ipynb_checkpoints
 #   git rm -r .ipynb_checkpoints/
