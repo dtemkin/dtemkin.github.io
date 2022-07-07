@@ -108,7 +108,7 @@ print(tab)
 
 
 ```python
-vendor_charbars(training_df, vendors=[1, 2, 3, 4], chars=8, max_profit=0)
+vendor_charbars(training_df, vendors=[1, 2, 3, 4], chars=8, max_profit=0, ttl='Diamond Characteristics by Vendor (Profit > 0)')
 ```
 
 
@@ -257,7 +257,8 @@ predicted_retail, retail_mod = fit_model(train_x=x_train_retail, train_y=y_train
 
 
 ```python
-actpred_df = pd.DataFrame({"actual_price": [np.exp(_) for _  in y_valid_price],  
+actpred_df = pd.DataFrame({'id': [_ for _ in predicted_price['id']],
+                           "actual_price": [np.exp(_) for _  in y_valid_price],  
                            'actual_retail': [np.exp(_) for _  in y_valid_retail],
                            'predicted_price': [np.exp(_) for _  in predicted_price['LogPrice']],
                            'predicted_retail': [np.exp(_) for _  in predicted_retail['LogRetail']]})
@@ -282,27 +283,27 @@ print(actpred_df['predicted_price'].describe())
 print("\n......................................")
 print("No Price Limit, No Price Adjust")
 print("......................................\n")
-bid_math(actpred_df, 
-         price_limit=False, 
-         price_add=0)
+id0 = bid_math(actpred_df, 
+               price_limit=False, 
+               price_add=0)
 print("\n......................................")
 print("No Price Limit, 8K Price Adjust - Most Profit")
 print("......................................\n")
-bid_math(actpred_df,
-         price_limit=False, 
-         price_add=8000)
+id1 = bid_math(actpred_df,
+               price_limit=False, 
+               price_add=8000)
 print("\n......................................\n")
 print("24K Price Limit, No Price Adjust")
 print("\n......................................\n")
-bid_math(actpred_df,
-         price_limit=True,
-         price_add=0)
+id2 = bid_math(actpred_df,
+               price_limit=True,
+               price_add=0)
 print("\n......................................\n")
 print("24K Price Limit, 1K Price Adjust - Best Model")
 print("\n......................................\n")
-bid_math(actpred_df, 
-         price_limit=True, 
-         price_add=1000)
+id3 = bid_math(actpred_df, 
+               price_limit=True, 
+               price_add=1000)
 
 
 
@@ -414,8 +415,10 @@ The simplest way to reduce the number of under-bids is to add a fixed amount to 
 
 
 ```python
+orig_train.insert(len(orig_train.columns), 'idx', orig_train.index)
 
-vendor_charbars(orig_train.loc[predicted_price['id']], vendors=[1, 2, 3, 4], chars=8, max_profit=0)
+vendor_charbars(orig_train[orig_train['idx'].isin(id3)], vendors=[1, 2], chars=8, max_profit=0, ttl="Bid Diamond Characteristics by Vendor (Profit > 0)")
+
 ```
 
 
@@ -431,7 +434,4 @@ vendor_charbars(orig_train.loc[predicted_price['id']], vendors=[1, 2, 3, 4], cha
     
 
 
-
-```python
-
-```
+Our bids were restricted to Vendor 1 and Vendor 2 due to the profitability of their diamonds. Here are the links to the [code](), [notebook]() and [data]() for this project in case anyone is similarly interested in the project.
