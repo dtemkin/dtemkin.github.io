@@ -111,8 +111,7 @@ print(tab)
 vendor_charbars(training_df, vendors=[1, 2, 3, 4], chars=8, max_profit=0, ttl='Diamond Characteristics by Vendor (Profit > 0)')
 ```
 
-
-<img href="https://www.dtemkin.com/_includes/static/diamonds/output_6_1.png"></img>
+{% include filename="/static/diamonds/output_6_1.png" %}
 
     
 
