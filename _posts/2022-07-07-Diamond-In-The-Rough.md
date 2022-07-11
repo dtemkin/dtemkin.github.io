@@ -110,8 +110,9 @@ print(tab)
 ```python
 vendor_charbars(training_df, vendors=[1, 2, 3, 4], chars=8, max_profit=0, ttl='Diamond Characteristics by Vendor (Profit > 0)')
 ```
-
-{% include /static/diamonds/output_6_1.png %}
+<figure>
+<img src="_includes/static/diamonds/output_6_1.png"></img>
+</figure>
 
     
 
