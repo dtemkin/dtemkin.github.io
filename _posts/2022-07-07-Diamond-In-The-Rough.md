@@ -112,15 +112,8 @@ vendor_charbars(training_df, vendors=[1, 2, 3, 4], chars=8, max_profit=0, ttl='D
 ```
 
 
+[Diamond Characteristics by Vendor (Profit > 0)](_includes/static/diamonds/output_6_1.png)
 
-
-    <module 'matplotlib.pyplot' from '/home/dismas/.local/lib/python3.10/site-packages/matplotlib/pyplot.py'>
-
-
-
-
-    
-![png](output_6_1.png)
     
 
 
