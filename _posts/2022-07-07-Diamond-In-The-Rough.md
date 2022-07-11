@@ -111,7 +111,7 @@ print(tab)
 vendor_charbars(training_df, vendors=[1, 2, 3, 4], chars=8, max_profit=0, ttl='Diamond Characteristics by Vendor (Profit > 0)')
 ```
 <figure>
-<img src="_includes/static/diamonds/output_6_1.png"></img>
+<img src="../_includes/static/diamonds/output_6_1.png"></img>
 </figure>
 
     
@@ -122,9 +122,9 @@ vendor_charbars(training_df, vendors=[1, 2, 3, 4], chars=8, max_profit=0, ttl='D
 vendor1_charbars(training_df)
 ```
 
-
-    
-![png](output_7_0.png)
+<figure>
+<img src="../_includes/static/diamonds/output_7_0.png"></img>
+</figure>
     
 
 
@@ -133,9 +133,10 @@ vendor1_charbars(training_df)
 p=retail_carat_scat(training_df)
 ```
 
-
+<figure>
+<img src="../_includes/static/diamonds/output_8_0.png"></img>
+</figure>
     
-![png](output_8_0.png)
     
 
 
@@ -163,9 +164,10 @@ Two factors that I can think of which would account for some of the asymmetry in
 r = retail_cost_kde(training_df)
 ```
 
-
+<figure>
+<img src="../_includes/static/diamonds/output_10_0.png"></img>
+</figure>
     
-![png](output_10_0.png)
     
 
 
@@ -421,9 +423,10 @@ vendor_charbars(orig_train[orig_train['idx'].isin(id3)], vendors=[1, 2], chars=8
 
 
 
-
+<figure>
+<img src="../_includes/static/diamonds/output_21_1.png"></img>
+</figure>
     
-![png](output_21_1.png)
     
 
 
