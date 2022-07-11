@@ -112,7 +112,7 @@ vendor_charbars(training_df, vendors=[1, 2, 3, 4], chars=8, max_profit=0, ttl='D
 ```
 
 
-<img href="_includes/static/diamonds/output_6_1.png"></img>
+<img href="https://www.dtemkin.com/_includes/static/diamonds/output_6_1.png"></img>
 
     
 
