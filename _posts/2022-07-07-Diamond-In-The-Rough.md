@@ -112,7 +112,7 @@ vendor_charbars(training_df, vendors=[1, 2, 3, 4], chars=8, max_profit=0, ttl='D
 ```
 
 
-[Diamond Characteristics by Vendor (Profit > 0)](_includes/static/diamonds/output_6_1.png)
+<img href="_includes/static/diamonds/output_6_1.png"></img>
 
     
 
