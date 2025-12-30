@@ -14,11 +14,11 @@
       --text:#E7ECFF;
       --muted:#A6B0D6;
 
-      --accent:#7C5CFF;   /* purple */
-      --accent2:#35D0FF;  /* cyan */
-      --good:#2DE2A6;     /* green-teal */
-      --bad:#FF4D6D;      /* pink-red */
-      --neutral:#B9A6FF;  /* lavender */
+      --accent:#7C5CFF;
+      --accent2:#35D0FF;
+      --good:#2DE2A6;
+      --bad:#FF4D6D;
+      --neutral:#B9A6FF;
       --line:#2a2f44;
     }
 
@@ -235,13 +235,10 @@
 <div class="tooltip" id="tooltip"></div>
 
 <script>
-/** Data source */
-const DATA_URL = "data/sp500-change-events.json";
-// const DATA_URL = "https://raw.githubusercontent.com/dtemkin/dtemkin.github.io/refs/heads/master/assets/data/SP500-Changes.normalized.json";
+/** Data source: put SP500-Changes.normalized.json next to this HTML */
+const DATA_URL = "./SP500-Changes.normalized.json";
 
-/** Bounds + window */
-const DEFAULT_START_YEAR = 1959;
-const DEFAULT_END_YEAR = 2025;
+/** Window */
 const WINDOW_MONTHS = 10;
 
 /** Auto-tooltip: automatically show for first 3 EVENT-months, then stop */
@@ -297,6 +294,10 @@ let eventsAll = [];       // for export
 let boundStart = null;
 let boundEnd = null;
 
+// inferred data range (set from file)
+let dataMinMonth = null;
+let dataMaxMonth = null;
+
 // auto-tooltip state
 let autoTooltipRemaining = AUTO_TOOLTIP_EVENT_MONTHS;
 let autoHideTimer = null;
@@ -305,13 +306,10 @@ let autoHideTimer = null;
 let tooltipPinned = false;
 let pinnedMonthKey = null;
 
-/** Convert row -> event */
+/** Convert row -> event (expects normalized schema) */
 function coerceEvent(row){
   const action = (row.action || "").trim();
-
-  // permno can be null/NaN in the source JSON; keep as a string for display/export
   const permno = (row.permno ?? "").toString().trim();
-
   const name = (row.company || "").trim();
 
   const tickersArr = Array.isArray(row.tickers)
@@ -323,7 +321,6 @@ function coerceEvent(row){
   const start = parseDate((row.sp500_start || "").toString().trim());
   const end   = parseDate((row.sp500_end   || "").toString().trim());
 
-  // optional (kept for compatibility with old schema)
   const reason = ((row.reason ?? row.Reason) || "").toString().trim();
 
   if (!action || !tickersArr.length || !start || !end) return null;
@@ -343,7 +340,6 @@ function coerceEvent(row){
   };
 }
 
-
 /** Tooltip text */
 function buildTooltipText(monthDate, events){
   const header = `Month: ${fmtMonth(monthDate)}  •  Events: ${events.length}\n\n`;
@@ -362,9 +358,7 @@ function buildTooltipText(monthDate, events){
   return header + body;
 }
 
-function hideTooltip(){
-  tooltip.style("display","none");
-}
+function hideTooltip(){ tooltip.style("display","none"); }
 
 function showTooltipAt(screenX, screenY, text){
   tooltip
@@ -428,7 +422,6 @@ window.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && tooltipPinned) unpinTooltip();
 });
 
-// click empty space to close pinned tooltip
 chartWrap.addEventListener("click", () => {
   if (tooltipPinned) unpinTooltip();
 });
@@ -452,14 +445,12 @@ function initChart(){
 
   const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
 
-  // subtle guide line
   g.append("line")
     .attr("x1", 0).attr("x2", innerW)
     .attr("y1", innerH/2).attr("y2", innerH/2)
     .attr("stroke", "rgba(255,255,255,0.10)")
     .attr("stroke-width", 1);
 
-  // main timeline line
   lineG = g.append("g");
   lineG.append("line")
     .attr("x1", 0).attr("x2", innerW)
@@ -539,7 +530,6 @@ function render(monthIndex, { allowAutoTooltip=true } = {}){
 
   xScale.domain([fromMonth, toMonthExcl]);
 
-  // Axis ticks
   const ticks = d3.utcMonths(fromMonth, toMonthExcl);
   const axis = d3.axisBottom(xScale)
     .tickValues(ticks)
@@ -553,7 +543,6 @@ function render(monthIndex, { allowAutoTooltip=true } = {}){
   axisG.selectAll("path, line")
     .style("stroke","rgba(0,0,0,0.18)");
 
-  // Markers
   const windowMonths = ticks.map(m => +monthStart(m));
   const markerData = windowMonths
     .map(k => ({ month: new Date(+k), key: k, events: eventsByMonth.get(k) || [] }))
@@ -577,10 +566,7 @@ function render(monthIndex, { allowAutoTooltip=true } = {}){
     .on("click", (event, d) => {
       event.stopPropagation();
       const isSame = tooltipPinned && pinnedMonthKey === d.key;
-      if (isSame){
-        unpinTooltip();
-        return;
-      }
+      if (isSame){ unpinTooltip(); return; }
       pinTooltip(d.key);
       showTooltipForMonth(d.month, { auto:false });
     });
@@ -603,7 +589,6 @@ function render(monthIndex, { allowAutoTooltip=true } = {}){
       return "rgba(185,166,255,0.95)";
     });
 
-  // Progress indicator at window start
   const progX = xScale(fromMonth);
   const prog = lineG.selectAll("line.progress").data([fromMonth]);
   prog.enter().append("line")
@@ -614,7 +599,6 @@ function render(monthIndex, { allowAutoTooltip=true } = {}){
     .merge(prog)
     .attr("x1", progX).attr("x2", progX);
 
-  // Prominent year label (16pt) halfway between bottom and timeline
   const year = fmtYear(fromMonth);
   const yYear = (innerH/2 + innerH) / 2;
 
@@ -634,10 +618,8 @@ function render(monthIndex, { allowAutoTooltip=true } = {}){
     .attr("y", yYear)
     .text(year);
 
-  // Counter update (cumulative through current month)
   updateCounter(monthIndex);
 
-  // Auto-tooltip behavior: first 3 event months only, then hidden unless pinned
   if (allowAutoTooltip) {
     if (autoTooltipRemaining > 0) maybeAutoTooltip(fromMonth);
     else if (!tooltipPinned) hideTooltip();
@@ -722,20 +704,20 @@ window.addEventListener("resize", () => {
 });
 
 // Date range bounds
-function buildMonthRange(startYear,endYear){
-  const start = d3.utcMonth(new Date(Date.UTC(startYear,0,1)));
-  const end = d3.utcMonth(new Date(Date.UTC(endYear,11,1)));
-  return d3.utcMonths(start, d3.utcMonth.offset(end,1));
-}
 function parseInputDateToMonthStart(value){
   if (!value) return null;
   const d = parseDate(value);
   return d ? monthStart(d) : null;
 }
+
 function rebuildMonthsWithBounds(){
-  const defaultMonths = buildMonthRange(DEFAULT_START_YEAR, DEFAULT_END_YEAR);
-  const start = boundStart || defaultMonths[0];
-  const end = boundEnd || defaultMonths[defaultMonths.length-1];
+  if (!dataMinMonth || !dataMaxMonth){
+    windowLabel.textContent = "No data range available.";
+    return;
+  }
+
+  const start = boundStart || dataMinMonth;
+  const end = boundEnd || dataMaxMonth;
 
   const s = monthStart(start), e = monthStart(end);
   const sMs=+s, eMs=+e;
@@ -762,12 +744,9 @@ resetRangeBtn.addEventListener("click", () => {
   stopPlaybackIfNeeded();
   boundStart=null; boundEnd=null;
   startDateInput.value=""; endDateInput.value="";
-  allMonths = buildMonthRange(DEFAULT_START_YEAR, DEFAULT_END_YEAR);
-  monthCount = allMonths.length;
-  scrubber.max = String(Math.max(0, monthCount-1));
   autoTooltipRemaining = AUTO_TOOLTIP_EVENT_MONTHS;
   unpinTooltip();
-  rebuildPrefixes();
+  rebuildMonthsWithBounds();
   setIndex(0, { allowAutoTooltip:true });
 });
 
@@ -780,18 +759,20 @@ function downloadBlob(filename, mime, content){
   document.body.appendChild(a); a.click(); a.remove();
   setTimeout(() => URL.revokeObjectURL(url), 2500);
 }
+
 function toTSV(rows){
-  const cols=["Action","Permno","Security","Ticker","SP500 Start","SP500 End","Reason"];
+  const cols=["Action","Permno","Company","Tickers","SP500 Start","SP500 End","Event Date","Reason"];
   const esc=v=>String(v??"").replace(/\t/g," ").replace(/\r?\n/g," ");
   const header=cols.join("\t");
   const lines=rows.map(r=>cols.map(c=>esc(r[c])).join("\t"));
   return [header,...lines].join("\n");
 }
+
 exportJsonBtn.addEventListener("click", () => {
-  downloadBlob("sp500_timeline_full.json","application/json;charset=utf-8", JSON.stringify(eventsAll,null,2));
+  downloadBlob("SP500-Changes.normalized.export.json","application/json;charset=utf-8", JSON.stringify(eventsAll,null,2));
 });
 exportTsvBtn.addEventListener("click", () => {
-  downloadBlob("sp500_timeline_full.tsv","text/tab-separated-values;charset=utf-8", toTSV(eventsAll));
+  downloadBlob("SP500-Changes.normalized.export.tsv","text/tab-separated-values;charset=utf-8", toTSV(eventsAll));
 });
 
 // Main
@@ -799,7 +780,7 @@ exportTsvBtn.addEventListener("click", () => {
   try{
     const rows = await d3.json(DATA_URL);
 
-    // normalized rows for export (matches SP500-Changes.normalized.json fields)
+    // exports (match your normalized keys)
     eventsAll = rows.map(r => ({
       "Action": r.action ?? "",
       "Permno": (r.permno ?? "").toString(),
@@ -807,13 +788,23 @@ exportTsvBtn.addEventListener("click", () => {
       "Tickers": Array.isArray(r.tickers) ? r.tickers.filter(Boolean).join(", ") : (r.tickers ?? ""),
       "SP500 Start": r.sp500_start ?? "",
       "SP500 End": r.sp500_end ?? "",
-      "Event Date": r.event_date ?? ""
+      "Event Date": r.event_date ?? "",
+      "Reason": (r.reason ?? r.Reason ?? "")
     }));
 
     const events = rows.map(coerceEvent).filter(Boolean);
+
+    // group by month
     eventsByMonth = d3.group(events, d => +d.changeMonth);
 
-    allMonths = buildMonthRange(DEFAULT_START_YEAR, DEFAULT_END_YEAR);
+    // infer min/max month from events
+    const months = events.map(e => e.changeMonth).filter(Boolean);
+    if (!months.length) throw new Error("No events parsed from data.");
+    dataMinMonth = d3.utcMonth.floor(d3.min(months));
+    dataMaxMonth = d3.utcMonth.floor(d3.max(months));
+
+    // build timeline months from inferred range
+    allMonths = d3.utcMonths(dataMinMonth, d3.utcMonth.offset(dataMaxMonth, 1));
     monthCount = allMonths.length;
 
     scrubber.max = String(monthCount - 1);
