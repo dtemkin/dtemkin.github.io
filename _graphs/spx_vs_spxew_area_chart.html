@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SPX vs. SPX Equal Wt. (2012-2025)</title>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+
+  <style>
+    :root{
+      --bg:#000000;
+      --panel:#0E1730;
+      --panel2:#0B1226;
+      --text:#E7ECFF;
+      --muted:#A6B0D6;
+
+      --accent:#7C5CFF;   /* purple */
+      --accent2:#35D0FF;  /* cyan */
+      --good:#2DE2A6;     /* green-teal */
+      --neutral:#B9A6FF;  /* lavender */
+      --line:#2a2f44;
+    }
+
+    body{
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      margin:0;
+      padding:18px 18px 12px;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .wrap{
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    h1{
+      margin: 0 0 10px 0;
+      font-size: 22px;
+      font-weight: 750;
+      letter-spacing: 0.2px;
+    }
+
+    .chart-shell{
+      border-radius:14px;
+      padding:14px 14px 10px;
+      background:linear-gradient(180deg, rgba(14,23,48,.88), rgba(11,18,38,.72));
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:0 18px 40px rgba(0,0,0,.55);
+    }
+
+    .legend{
+      display:flex;
+      gap:18px;
+      align-items:center;
+      margin: 6px 2px 10px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .key{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+    }
+    .swatch{
+      width:20px;
+      height:0px;
+      border-top-width:3px;
+      border-top-style:solid;
+      border-radius:2px;
+    }
+
+    svg{ width: 100%; height: 520px; display:block; }
+
+    .axis text{
+      fill: var(--muted);
+      font-size: 16pt; /* per request */
+    }
+    .axis path, .axis line{
+      stroke: rgba(255,255,255,0.16);
+    }
+
+    .grid line{
+      stroke: rgba(255,255,255,0.08);
+    }
+    .grid path{ display:none; }
+
+    .sources{
+      margin-top: 8px;
+      font-size: 8pt; /* per request */
+      color: var(--muted);
+      line-height: 1.3;
+      white-space: pre-line;
+    }
+    .sources a{
+      color: var(--muted);
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <h1>SPX vs. SPX Equal Wt. (2012-2025)</h1>
+
+    <div class="chart-shell">
+      <div class="legend" aria-label="Legend">
+        <span class="key"><span class="swatch" style="border-top-color:var(--accent)"></span>SPX</span>
+        <span class="key"><span class="swatch" style="border-top-color:var(--accent2)"></span>SPX Equal Wt.</span>
+      </div>
+      <svg id="chart" role="img" aria-label="Line chart of SPX vs SPX Equal Weight with shaded difference"></svg>
+    </div>
+
+    <div class="sources">
+Sources:
+[1] SPX - https://finance.yahoo.com/quote/%5ESPX/history/?period1=1325376000&period2=1767054214 (Yahoo! Finance)
+[2] SPXEW - https://finance.yahoo.com/quote/%5ESPXEW/history/?period1=1325376000&period2=1767054214 (Yahoo! Finance)
+    </div>
+  </div>
+
+<script>
+/** Data sources (JSON hosted on GitHub) */
+const SPX_URL   = "https://raw.githubusercontent.com/dtemkin/dtemkin.github.io/refs/heads/master/assets/data/SPX.json";
+const SPXEW_URL = "https://raw.githubusercontent.com/dtemkin/dtemkin.github.io/refs/heads/master/assets/data/SPXEW.json";
+
+/** Parse */
+const parseDate = d3.utcParse("%Y-%m-%d");
+
+function coerceRow(r){
+  const d = parseDate((r.date ?? r.Date ?? "").trim());
+  const vRaw = (r.value ?? r.Value ?? r["Adj Close"] ?? r["Adj Close "] ?? r["Close"] ?? r["Close "] ?? "").toString().trim();
+  const v = +vRaw;
+  if (!d || !Number.isFinite(v)) return null;
+  return { date: d, value: v };
+}
+
+function cssVar(name){
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+}
+
+function render(data){
+  const svg = d3.select("#chart");
+  svg.selectAll("*").remove();
+
+  const width = svg.node().getBoundingClientRect().width;
+  const height = +svg.style("height").replace("px","") || 520;
+
+  const margin = { top: 18, right: 22, bottom: 58, left: 78 };
+  const innerW = width - margin.left - margin.right;
+  const innerH = height - margin.top - margin.bottom;
+
+  const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+
+  // Scales
+  const x = d3.scaleUtc()
+    .domain(d3.extent(data, d => d.date))
+    .range([0, innerW]);
+
+  const y = d3.scaleLinear()
+    .domain(d3.extent(data.flatMap(d => [d.spx, d.spxew])))
+    .nice()
+    .range([innerH, 0]);
+
+  // Grid
+  g.append("g")
+    .attr("class", "grid")
+    .call(d3.axisLeft(y).ticks(8).tickSize(-innerW).tickFormat(""))
+    .selectAll("line")
+    .attr("shape-rendering","crispEdges");
+
+  // Axes
+  g.append("g")
+    .attr("class","axis")
+    .call(d3.axisLeft(y).ticks(8));
+
+  g.append("g")
+    .attr("class","axis")
+    .attr("transform", `translate(0,${innerH})`)
+    .call(d3.axisBottom(x).ticks(Math.max(6, Math.floor(innerW/140))).tickFormat(d3.utcFormat("%Y")));
+
+  // Clip path
+  svg.append("defs").append("clipPath")
+    .attr("id","clip")
+    .append("rect")
+    .attr("x", margin.left)
+    .attr("y", margin.top)
+    .attr("width", innerW)
+    .attr("height", innerH);
+
+  // Area gradient (palette consistent with previous graph)
+  const defs = svg.select("defs").empty() ? svg.append("defs") : svg.select("defs");
+  const grad = defs.append("linearGradient")
+    .attr("id","areaGrad")
+    .attr("x1","0%").attr("x2","0%")
+    .attr("y1","0%").attr("y2","100%");
+
+  grad.append("stop").attr("offset","0%").attr("stop-color","rgba(124,92,255,0.20)");
+  grad.append("stop").attr("offset","50%").attr("stop-color","rgba(53,208,255,0.16)");
+  grad.append("stop").attr("offset","100%").attr("stop-color","rgba(45,226,166,0.12)");
+
+  const lineSPX = d3.line()
+    .defined(d => Number.isFinite(d.spx))
+    .x(d => x(d.date))
+    .y(d => y(d.spx));
+
+  const lineSPXEW = d3.line()
+    .defined(d => Number.isFinite(d.spxew))
+    .x(d => x(d.date))
+    .y(d => y(d.spxew));
+
+  // Shade between the lines (always between min and max)
+  const areaBetween = d3.area()
+    .defined(d => Number.isFinite(d.spx) && Number.isFinite(d.spxew))
+    .x(d => x(d.date))
+    .y0(d => y(Math.min(d.spx, d.spxew)))
+    .y1(d => y(Math.max(d.spx, d.spxew)));
+
+  const plot = g.append("g").attr("clip-path","url(#clip)");
+
+  plot.append("path")
+    .datum(data)
+    .attr("d", areaBetween)
+    .attr("fill", "url(#areaGrad)")
+    .attr("stroke", "none");
+
+  plot.append("path")
+    .datum(data)
+    .attr("d", lineSPX)
+    .attr("fill","none")
+    .attr("stroke", cssVar("--accent"))
+    .attr("stroke-width", 2.6)
+    .attr("opacity", 0.95);
+
+  plot.append("path")
+    .datum(data)
+    .attr("d", lineSPXEW)
+    .attr("fill","none")
+    .attr("stroke", cssVar("--accent2"))
+    .attr("stroke-width", 2.6)
+    .attr("opacity", 0.95);
+}
+
+(async function main(){
+  const [spxRaw, spxewRaw] = await Promise.all([d3.json(SPX_URL), d3.json(SPXEW_URL)]);
+
+  const spx = (spxRaw || []).map(coerceRow).filter(Boolean);
+  const spxew = (spxewRaw || []).map(coerceRow).filter(Boolean);
+
+  // Index by date (ms)
+  const m1 = new Map(spx.map(d => [+d.date, d.value]));
+  const m2 = new Map(spxew.map(d => [+d.date, d.value]));
+
+  // Intersection of dates (so area is well-defined)
+  const dates = [...m1.keys()].filter(k => m2.has(k)).sort((a,b)=>a-b);
+
+  const merged = dates.map(k => ({
+    date: new Date(k),
+    spx: m1.get(k),
+    spxew: m2.get(k)
+  }));
+
+  render(merged);
+
+  window.addEventListener("resize", () => render(merged));
+})();
+</script>
+</body>
+</html>
