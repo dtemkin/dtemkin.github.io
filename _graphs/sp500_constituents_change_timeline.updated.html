@@ -8,9 +8,9 @@
 
   <style>
     :root{
-      --bg:#000000;
-      --panel:#0E1730;
-      --panel2:#0B1226;
+      --bg:transparent;
+      --panel:transparent;
+      --panel2:transparent;
       --text:#E7ECFF;
       --muted:#A6B0D6;
 
@@ -26,8 +26,8 @@
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       margin:0;
       padding:16px;
-      background: var(--bg);
-      color:var(--text);
+      background: transparent;
+      color: rgba(0,0,0,0.88);
     }
 
     .controls{
@@ -43,7 +43,7 @@
       border-radius:10px;
       border:1px solid rgba(124,92,255,0.35);
       background:linear-gradient(135deg, rgba(124,92,255,0.25), rgba(53,208,255,0.15));
-      color:var(--text);
+      color: rgba(0,0,0,0.88);
       cursor:pointer;
       box-shadow: 0 10px 26px rgba(0,0,0,0.45);
     }
@@ -55,12 +55,12 @@
       padding:6px 10px;
       border-radius:10px;
       border:1px solid rgba(255,255,255,0.15);
-      background:rgba(14,23,48,.75);
-      color:var(--text);
+      background: transparent;
+      color: rgba(0,0,0,0.88);
     }
 
     #windowLabel{
-      color: var(--muted);
+      color: rgba(0,0,0,0.6);
       font-size: 12px;
     }
 
@@ -71,7 +71,7 @@
       gap:10px;
       padding:8px 12px;
       border-radius:12px;
-      background:rgba(14,23,48,.65);
+      background: transparent;
       border:1px solid rgba(255,255,255,.12);
       box-shadow: 0 10px 26px rgba(0,0,0,0.45);
       font-weight:650;
@@ -85,7 +85,7 @@
       padding:6px 10px;
       border-radius:999px;
       border:1px solid rgba(255,255,255,.12);
-      background:rgba(0,0,0,.12);
+      background: transparent;
       font-size:13px;
       color: var(--text);
     }
@@ -116,8 +116,8 @@
       padding:6px 10px;
       border-radius:10px;
       border:1px solid rgba(255,255,255,.15);
-      background:rgba(14,23,48,.75);
-      color:var(--text);
+      background: transparent;
+      color: rgba(0,0,0,0.88);
     }
 
     .filters .hint{ font-size:12px; opacity:0.9; }
@@ -129,9 +129,9 @@
     .chart-wrap{
       border-radius:14px;
       padding:12px;
-      background:linear-gradient(180deg, rgba(14,23,48,.88), rgba(11,18,38,.72));
+      background: transparent;
       border:1px solid rgba(255,255,255,.12);
-      box-shadow:0 18px 40px rgba(0,0,0,.55);
+      box-shadow:none;
       user-select:none;
       outline: none;
     }
@@ -143,9 +143,9 @@
     .tooltip{
       position:fixed;
       pointer-events:none;
-      background:rgba(7,10,18,.94);
+      background: rgba(255,255,255,0.96);
       border:1px solid rgba(124,92,255,.35);
-      color:var(--text);
+      color: rgba(0,0,0,0.88);
       padding:10px 12px;
       border-radius:10px;
       max-width:640px;
@@ -549,9 +549,9 @@ function render(monthIndex, { allowAutoTooltip=true } = {}){
   axisG.call(axis);
   axisG.selectAll("text")
     .style("font-size","14px")
-    .style("fill","rgba(231,236,255,0.90)");
+    .style("fill","rgba(0,0,0,0.7)");
   axisG.selectAll("path, line")
-    .style("stroke","rgba(255,255,255,0.18)");
+    .style("stroke","rgba(0,0,0,0.18)");
 
   // Markers
   const windowMonths = ticks.map(m => +monthStart(m));
