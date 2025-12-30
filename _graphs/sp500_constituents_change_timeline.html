@@ -1,0 +1,833 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>S&P 500 Changes Timeline</title>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+
+  <style>
+    :root{
+      --bg:#000000;
+      --panel:#0E1730;
+      --panel2:#0B1226;
+      --text:#E7ECFF;
+      --muted:#A6B0D6;
+
+      --accent:#7C5CFF;   /* purple */
+      --accent2:#35D0FF;  /* cyan */
+      --good:#2DE2A6;     /* green-teal */
+      --bad:#FF4D6D;      /* pink-red */
+      --neutral:#B9A6FF;  /* lavender */
+      --line:#2a2f44;
+    }
+
+    body{
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      margin:0;
+      padding:16px;
+      background: var(--bg);
+      color:var(--text);
+    }
+
+    .controls{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      flex-wrap:wrap;
+      margin-bottom:10px;
+    }
+
+    .controls button{
+      padding:8px 12px;
+      border-radius:10px;
+      border:1px solid rgba(124,92,255,0.35);
+      background:linear-gradient(135deg, rgba(124,92,255,0.25), rgba(53,208,255,0.15));
+      color:var(--text);
+      cursor:pointer;
+      box-shadow: 0 10px 26px rgba(0,0,0,0.45);
+    }
+    .controls button:disabled{ opacity:.5; cursor:not-allowed; }
+
+    .controls label{ font-size:14px; color:var(--muted); }
+
+    .controls select{
+      padding:6px 10px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,0.15);
+      background:rgba(14,23,48,.75);
+      color:var(--text);
+    }
+
+    #windowLabel{
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .spacer{ flex:1 1 auto; }
+
+    .counter{
+      display:flex;
+      gap:10px;
+      padding:8px 12px;
+      border-radius:12px;
+      background:rgba(14,23,48,.65);
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow: 0 10px 26px rgba(0,0,0,0.45);
+      font-weight:650;
+      letter-spacing: 0.2px;
+    }
+
+    .pill{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(0,0,0,.12);
+      font-size:13px;
+      color: var(--text);
+    }
+
+    .dotLegend{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      display:inline-block;
+    }
+
+    .filters{
+      display:flex;
+      gap:12px;
+      align-items:end;
+      flex-wrap:wrap;
+      margin:8px 0 12px;
+      color:var(--muted);
+    }
+
+    .filters .field{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+    }
+
+    .filters input[type="date"]{
+      padding:6px 10px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,.15);
+      background:rgba(14,23,48,.75);
+      color:var(--text);
+    }
+
+    .filters .hint{ font-size:12px; opacity:0.9; }
+
+    input[type="range"]{
+      width:min(680px,100%);
+    }
+
+    .chart-wrap{
+      border-radius:14px;
+      padding:12px;
+      background:linear-gradient(180deg, rgba(14,23,48,.88), rgba(11,18,38,.72));
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:0 18px 40px rgba(0,0,0,.55);
+      user-select:none;
+      outline: none;
+    }
+    .chart-wrap:focus{
+      outline: 2px solid rgba(124,92,255,0.45);
+      outline-offset: 2px;
+    }
+
+    .tooltip{
+      position:fixed;
+      pointer-events:none;
+      background:rgba(7,10,18,.94);
+      border:1px solid rgba(124,92,255,.35);
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:10px;
+      max-width:640px;
+      font-size:12px;
+      line-height:1.35;
+      display:none;
+      z-index:9999;
+      box-shadow: 0 16px 44px rgba(0,0,0,0.65);
+      white-space:pre-wrap;
+    }
+
+    .sources{
+      margin-top:6px;
+      font-size:8pt;
+      color:var(--muted);
+      line-height:1.3;
+    }
+    .sources a{
+      color:var(--muted);
+      text-decoration:underline;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="controls">
+  <button id="playPause" disabled>Loading…</button>
+
+  <label>Speed:
+    <select id="speed">
+      <option value="1200">0.5×</option>
+      <option value="600" selected>1×</option>
+      <option value="300">2×</option>
+      <option value="150">4×</option>
+    </select>
+  </label>
+
+  <button id="exportJson" disabled>Export JSON</button>
+  <button id="exportTsv" disabled>Export TSV</button>
+
+  <span id="windowLabel"></span>
+
+  <span class="spacer"></span>
+
+  <div class="counter" id="counter">
+    <span class="pill"><span class="dotLegend" style="background:var(--good)"></span>Added: <span id="addedCount">0</span></span>
+    <span class="pill"><span class="dotLegend" style="background:var(--bad)"></span>Removed: <span id="removedCount">0</span></span>
+  </div>
+</div>
+
+<div class="filters">
+  <div class="field">
+    <label for="startDate">Start date (optional)</label>
+    <input id="startDate" type="date" />
+    <div class="hint">Bounds the scroll/play range.</div>
+  </div>
+
+  <div class="field">
+    <label for="endDate">End date (optional)</label>
+    <input id="endDate" type="date" />
+    <div class="hint">Leave blank for latest.</div>
+  </div>
+
+  <div class="field">
+    <button id="applyRange" disabled>Apply</button>
+  </div>
+  <div class="field">
+    <button id="resetRange" disabled>Reset</button>
+  </div>
+
+  <div class="hint">Scroll chart with mouse wheel, or click-drag left/right. Shift+scroll = faster.</div>
+</div>
+
+<input id="scrubber" type="range" min="0" max="0" step="1" value="0" aria-label="Scrub month" disabled />
+
+<div class="chart-wrap" id="chartWrap" tabindex="0" aria-label="Timeline chart (scrollable)">
+  <svg id="svg" width="100%" height="270"></svg>
+</div>
+
+<div class="sources">
+  Sources:<br>
+  [1] https://en.wikipedia.org/wiki/List_of_S%26P_500_companies#Selected_changes_to_the_list_of_S&P_500_components<br>
+  [2] https://wrds-www.wharton.upenn.edu/classroom/sp500-introduction/over-time/
+</div>
+
+<div class="tooltip" id="tooltip"></div>
+
+<script>
+/** Data source */
+const DATA_URL = "../assets/data/sp500_wikipedia_reconciled.json";
+// const DATA_URL = "https://raw.githubusercontent.com/dtemkin/dtemkin.github.io/refs/heads/master/assets/data/sp500_wikipedia_reconciled.json";
+
+/** Bounds + window */
+const DEFAULT_START_YEAR = 1959;
+const DEFAULT_END_YEAR = 2025;
+const WINDOW_MONTHS = 10;
+
+/** Auto-tooltip: automatically show for first 3 EVENT-months, then stop */
+const AUTO_TOOLTIP_EVENT_MONTHS = 3;
+const AUTO_TOOLTIP_MS = 2200;
+
+/** Parsing */
+const parseDate = d3.utcParse("%Y-%m-%d");
+const fmtDate = d3.utcFormat("%Y-%m-%d");
+const fmtMonth = d3.utcFormat("%Y-%m");
+const fmtMonthPretty = d3.utcFormat("%b %Y");
+const fmtYear = d3.utcFormat("%Y");
+
+function monthStart(d){ return d3.utcMonth.floor(d); }
+
+/** UI refs */
+const svg = d3.select("#svg");
+const tooltip = d3.select("#tooltip");
+const chartWrap = document.getElementById("chartWrap");
+const scrubber = document.getElementById("scrubber");
+const windowLabel = document.getElementById("windowLabel");
+const playPauseBtn = document.getElementById("playPause");
+const speedSel = document.getElementById("speed");
+
+const exportJsonBtn = document.getElementById("exportJson");
+const exportTsvBtn = document.getElementById("exportTsv");
+
+const startDateInput = document.getElementById("startDate");
+const endDateInput = document.getElementById("endDate");
+const applyRangeBtn = document.getElementById("applyRange");
+const resetRangeBtn = document.getElementById("resetRange");
+
+const addedCountEl = document.getElementById("addedCount");
+const removedCountEl = document.getElementById("removedCount");
+
+function getSize(){
+  const rect = svg.node().getBoundingClientRect();
+  return { width: rect.width, height: +svg.attr("height") };
+}
+
+const margin = { top: 14, right: 20, bottom: 52, left: 30 };
+let xScale, yScale, axisG, markersG, lineG, yearTextG;
+
+let playing = false;
+let timer = null;
+
+let allMonths = [];
+let monthCount = 0;
+let eventsByMonth = new Map();
+let eventsAll = [];       // for export
+
+// bounds
+let boundStart = null;
+let boundEnd = null;
+
+// auto-tooltip state
+let autoTooltipRemaining = AUTO_TOOLTIP_EVENT_MONTHS;
+let autoHideTimer = null;
+
+// pinned tooltip state
+let tooltipPinned = false;
+let pinnedMonthKey = null;
+
+/** Convert row -> event */
+function coerceEvent(row){
+  const action = (row["Action"] || "").trim();
+  const permno = (row["Permno"] || "").trim();
+  const name = (row["Security"] || "").trim();
+  const ticker = (row["Ticker"] || "").trim();
+  const start = parseDate((row["SP500 Start"] || "").trim());
+  const end = parseDate((row["SP500 End"] || "").trim());
+  const reason = (row["Reason"] || "").trim();
+
+  if (!action || !ticker || !start || !end) return null;
+
+  const changeDate = (action.toLowerCase() === "removed") ? end : start;
+
+  return {
+    action,
+    id: permno,
+    name: name || ticker,
+    tickers: ticker,
+    start, end,
+    reason,
+    changeDate,
+    changeMonth: monthStart(changeDate),
+  };
+}
+
+/** Tooltip text */
+function buildTooltipText(monthDate, events){
+  const header = `Month: ${fmtMonth(monthDate)}  •  Events: ${events.length}\n\n`;
+  const body = events.map(e => {
+    const tick = e.tickers ? ` (${e.tickers})` : "";
+    const when = fmtDate(e.changeDate);
+    const range = `${fmtDate(e.start)} → ${fmtDate(e.end)}`;
+    const id = e.id ? e.id : "—";
+    const reason = e.reason ? e.reason : "—";
+    return `• ${e.action} — ${e.name}${tick}
+  change: ${when}
+  range:  ${range}
+  permno: ${id}
+  reason: ${reason}`;
+  }).join("\n\n");
+  return header + body;
+}
+
+function hideTooltip(){
+  tooltip.style("display","none");
+}
+
+function showTooltipAt(screenX, screenY, text){
+  tooltip
+    .style("display","block")
+    .style("left", (screenX + 14) + "px")
+    .style("top", (screenY + 14) + "px")
+    .text(text);
+}
+
+function clearAutoHideTimer(){
+  if (autoHideTimer) { clearTimeout(autoHideTimer); autoHideTimer = null; }
+}
+
+function showTooltipForMonth(monthDate, { auto=false } = {}){
+  const key = +monthStart(monthDate);
+  const evts = eventsByMonth.get(key) || [];
+  if (!evts.length) { if (!tooltipPinned) hideTooltip(); return; }
+
+  const svgRect = svg.node().getBoundingClientRect();
+  const { height } = getSize();
+  const innerH = height - margin.top - margin.bottom;
+  const x = margin.left + xScale(monthDate);
+  const y = margin.top + (innerH/2);
+
+  showTooltipAt(svgRect.left + x, svgRect.top + y, buildTooltipText(monthDate, evts));
+
+  clearAutoHideTimer();
+  if (auto && !tooltipPinned){
+    autoHideTimer = setTimeout(() => {
+      if (!tooltipPinned) hideTooltip();
+    }, AUTO_TOOLTIP_MS);
+  }
+}
+
+function maybeAutoTooltip(monthDate){
+  if (tooltipPinned) return;
+  if (autoTooltipRemaining <= 0) { hideTooltip(); return; }
+
+  const key = +monthStart(monthDate);
+  const evts = eventsByMonth.get(key) || [];
+  if (!evts.length) { hideTooltip(); return; }
+
+  showTooltipForMonth(monthDate, { auto:true });
+  autoTooltipRemaining -= 1;
+}
+
+function pinTooltip(monthKey){
+  tooltipPinned = true;
+  pinnedMonthKey = monthKey;
+  clearAutoHideTimer();
+}
+
+function unpinTooltip(){
+  tooltipPinned = false;
+  pinnedMonthKey = null;
+  clearAutoHideTimer();
+  hideTooltip();
+}
+
+window.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && tooltipPinned) unpinTooltip();
+});
+
+// click empty space to close pinned tooltip
+chartWrap.addEventListener("click", () => {
+  if (tooltipPinned) unpinTooltip();
+});
+
+/** Chart init / render */
+function initChart(){
+  svg.selectAll("*").remove();
+
+  const { width, height } = getSize();
+  const innerW = width - margin.left - margin.right;
+  const innerH = height - margin.top - margin.bottom;
+
+  const defs = svg.append("defs");
+  const grad = defs.append("linearGradient")
+    .attr("id","gradLine")
+    .attr("x1","0%").attr("x2","100%")
+    .attr("y1","0%").attr("y2","0%");
+  grad.append("stop").attr("offset","0%").attr("stop-color","rgba(124,92,255,0.95)");
+  grad.append("stop").attr("offset","55%").attr("stop-color","rgba(53,208,255,0.90)");
+  grad.append("stop").attr("offset","100%").attr("stop-color","rgba(45,226,166,0.90)");
+
+  const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+
+  // subtle guide line
+  g.append("line")
+    .attr("x1", 0).attr("x2", innerW)
+    .attr("y1", innerH/2).attr("y2", innerH/2)
+    .attr("stroke", "rgba(255,255,255,0.10)")
+    .attr("stroke-width", 1);
+
+  // main timeline line
+  lineG = g.append("g");
+  lineG.append("line")
+    .attr("x1", 0).attr("x2", innerW)
+    .attr("y1", innerH/2).attr("y2", innerH/2)
+    .attr("stroke", "url(#gradLine)")
+    .attr("stroke-width", 3)
+    .attr("opacity", 0.95);
+
+  yearTextG = g.append("g");
+  axisG = g.append("g").attr("transform", `translate(0,${innerH/2 + 28})`);
+  markersG = g.append("g");
+
+  xScale = d3.scaleUtc().range([0, innerW]);
+  yScale = d3.scaleLinear().domain([0, 1]).range([innerH/2 - 42, innerH/2 + 42]);
+}
+
+function formatWindowLabel(fromMonth, toMonth){
+  return `${fmtMonthPretty(fromMonth)} → ${fmtMonthPretty(toMonth)}`;
+}
+
+function clampIndex(i){
+  const maxI = Math.max(0, monthCount - WINDOW_MONTHS);
+  return Math.min(Math.max(0, i), maxI);
+}
+
+/** Counter prefixes */
+let prefixAdded = [];
+let prefixRemoved = [];
+
+function rebuildPrefixes(){
+  const addedPerMonth = new Array(monthCount).fill(0);
+  const removedPerMonth = new Array(monthCount).fill(0);
+
+  const indexByKey = new Map(allMonths.map((m, idx) => [+m, idx]));
+
+  for (const [k, evts] of eventsByMonth.entries()){
+    const idx = indexByKey.get(k);
+    if (idx === undefined) continue;
+    for (const e of evts){
+      const a = (e.action || "").toLowerCase();
+      if (a === "added") addedPerMonth[idx] += 1;
+      else if (a === "removed") removedPerMonth[idx] += 1;
+    }
+  }
+
+  prefixAdded = new Array(monthCount).fill(0);
+  prefixRemoved = new Array(monthCount).fill(0);
+
+  let a = 0, r = 0;
+  for (let i=0;i<monthCount;i++){
+    a += addedPerMonth[i];
+    r += removedPerMonth[i];
+    prefixAdded[i] = a;
+    prefixRemoved[i] = r;
+  }
+}
+
+function updateCounter(monthIndex){
+  if (!monthCount) return;
+  monthIndex = Math.max(0, Math.min(monthCount-1, monthIndex));
+  addedCountEl.textContent = String(prefixAdded[monthIndex] || 0);
+  removedCountEl.textContent = String(prefixRemoved[monthIndex] || 0);
+}
+
+function render(monthIndex, { allowAutoTooltip=true } = {}){
+  monthIndex = clampIndex(monthIndex);
+
+  const { width, height } = getSize();
+  const innerW = width - margin.left - margin.right;
+  const innerH = height - margin.top - margin.bottom;
+
+  const fromMonth = allMonths[monthIndex];
+  const toMonthExcl = d3.utcMonth.offset(fromMonth, WINDOW_MONTHS);
+  const toMonthIncl = d3.utcMonth.offset(toMonthExcl, -1);
+
+  windowLabel.textContent = `Window: ${formatWindowLabel(fromMonth, toMonthIncl)}`;
+
+  xScale.domain([fromMonth, toMonthExcl]);
+
+  // Axis ticks
+  const ticks = d3.utcMonths(fromMonth, toMonthExcl);
+  const axis = d3.axisBottom(xScale)
+    .tickValues(ticks)
+    .tickFormat(d3.utcFormat("%b"))
+    .tickSizeOuter(0);
+
+  axisG.call(axis);
+  axisG.selectAll("text")
+    .style("font-size","14px")
+    .style("fill","rgba(231,236,255,0.90)");
+  axisG.selectAll("path, line")
+    .style("stroke","rgba(255,255,255,0.18)");
+
+  // Markers
+  const windowMonths = ticks.map(m => +monthStart(m));
+  const markerData = windowMonths
+    .map(k => ({ month: new Date(+k), key: k, events: eventsByMonth.get(k) || [] }))
+    .filter(d => d.events.length > 0);
+
+  const dots = markersG.selectAll("circle").data(markerData, d => d.key);
+  dots.exit().remove();
+
+  const dotsEnter = dots.enter().append("circle")
+    .attr("r", 7)
+    .attr("stroke", "rgba(255,255,255,0.88)")
+    .attr("stroke-width", 1.25)
+    .attr("cursor","pointer")
+    .on("mousemove", (event, d) => {
+      if (tooltipPinned) return;
+      showTooltipAt(event.clientX, event.clientY, buildTooltipText(d.month, d.events));
+    })
+    .on("mouseleave", () => {
+      if (!tooltipPinned) hideTooltip();
+    })
+    .on("click", (event, d) => {
+      event.stopPropagation();
+      const isSame = tooltipPinned && pinnedMonthKey === d.key;
+      if (isSame){
+        unpinTooltip();
+        return;
+      }
+      pinTooltip(d.key);
+      showTooltipForMonth(d.month, { auto:false });
+    });
+
+  dotsEnter.merge(dots)
+    .attr("cx", d => xScale(d.month))
+    .attr("cy", (d) => {
+      const t = (Math.abs(d.key) % 5) / 4;
+      return yScale(t);
+    })
+    .attr("fill", (d) => {
+      let add = 0, rem = 0;
+      for (const e of d.events){
+        const a = (e.action || "").toLowerCase();
+        if (a === "added") add++;
+        else if (a === "removed") rem++;
+      }
+      if (add > rem) return "rgba(45,226,166,0.95)";
+      if (rem > add) return "rgba(255,77,109,0.95)";
+      return "rgba(185,166,255,0.95)";
+    });
+
+  // Progress indicator at window start
+  const progX = xScale(fromMonth);
+  const prog = lineG.selectAll("line.progress").data([fromMonth]);
+  prog.enter().append("line")
+    .attr("class","progress")
+    .attr("y1", 0).attr("y2", innerH)
+    .attr("stroke", "rgba(255,255,255,0.20)")
+    .attr("stroke-width", 1)
+    .merge(prog)
+    .attr("x1", progX).attr("x2", progX);
+
+  // Prominent year label (16pt) halfway between bottom and timeline
+  const year = fmtYear(fromMonth);
+  const yYear = (innerH/2 + innerH) / 2;
+
+  const yearSel = yearTextG.selectAll("text.yearLabel").data([year]);
+  yearSel.enter().append("text")
+    .attr("class","yearLabel")
+    .attr("x", innerW/2)
+    .attr("y", yYear)
+    .attr("text-anchor","middle")
+    .style("font-size","16pt")
+    .style("font-weight","800")
+    .style("fill","rgba(231,236,255,0.60)")
+    .style("letter-spacing","0.8px")
+    .text(year)
+    .merge(yearSel)
+    .attr("x", innerW/2)
+    .attr("y", yYear)
+    .text(year);
+
+  // Counter update (cumulative through current month)
+  updateCounter(monthIndex);
+
+  // Auto-tooltip behavior: first 3 event months only, then hidden unless pinned
+  if (allowAutoTooltip) {
+    if (autoTooltipRemaining > 0) maybeAutoTooltip(fromMonth);
+    else if (!tooltipPinned) hideTooltip();
+  }
+
+  scrubber.value = String(monthIndex);
+}
+
+function setIndex(i, opts={}){
+  i = clampIndex(i);
+  scrubber.value = String(i);
+  render(i, opts);
+}
+
+function stopPlaybackIfNeeded(){
+  if (playing) stop();
+}
+
+// Manual scrolling
+chartWrap.addEventListener("wheel", (e) => {
+  e.preventDefault();
+  stopPlaybackIfNeeded();
+  const delta = Math.sign(e.deltaY || e.deltaX);
+  const step = e.shiftKey ? 6 : 1;
+  const next = (+scrubber.value) + (delta > 0 ? step : -step);
+  setIndex(next, { allowAutoTooltip:true });
+}, { passive:false });
+
+// Drag scrub
+let dragging=false, dragStartX=0, dragStartIndex=0;
+chartWrap.addEventListener("pointerdown", (e) => {
+  stopPlaybackIfNeeded();
+  dragging=true;
+  dragStartX=e.clientX;
+  dragStartIndex=+scrubber.value;
+  chartWrap.setPointerCapture(e.pointerId);
+});
+chartWrap.addEventListener("pointermove", (e) => {
+  if (!dragging) return;
+  const dx = e.clientX - dragStartX;
+  const pxPerMonth = 18;
+  const monthsDelta = Math.round(dx / pxPerMonth);
+  setIndex(dragStartIndex + monthsDelta, { allowAutoTooltip:true });
+});
+chartWrap.addEventListener("pointerup", (e) => {
+  dragging=false;
+  try { chartWrap.releasePointerCapture(e.pointerId); } catch {}
+});
+
+// Playback
+function stop(){
+  playing=false;
+  playPauseBtn.textContent="Play";
+  if (timer) { clearInterval(timer); timer=null; }
+  render(+scrubber.value, { allowAutoTooltip:true });
+}
+
+function play(){
+  playing=true;
+  playPauseBtn.textContent="Pause";
+  if (timer) clearInterval(timer);
+
+  const intervalMs = +speedSel.value;
+  timer = setInterval(() => {
+    let i = +scrubber.value + 1;
+    if (i > monthCount - WINDOW_MONTHS) { stop(); return; }
+    setIndex(i, { allowAutoTooltip:true });
+  }, intervalMs);
+}
+
+playPauseBtn.addEventListener("click", () => playing ? stop() : play());
+speedSel.addEventListener("change", () => { if (playing) play(); });
+
+scrubber.addEventListener("input", () => {
+  stopPlaybackIfNeeded();
+  setIndex(+scrubber.value, { allowAutoTooltip:true });
+});
+
+window.addEventListener("resize", () => {
+  initChart();
+  render(+scrubber.value || 0, { allowAutoTooltip:true });
+});
+
+// Date range bounds
+function buildMonthRange(startYear,endYear){
+  const start = d3.utcMonth(new Date(Date.UTC(startYear,0,1)));
+  const end = d3.utcMonth(new Date(Date.UTC(endYear,11,1)));
+  return d3.utcMonths(start, d3.utcMonth.offset(end,1));
+}
+function parseInputDateToMonthStart(value){
+  if (!value) return null;
+  const d = parseDate(value);
+  return d ? monthStart(d) : null;
+}
+function rebuildMonthsWithBounds(){
+  const defaultMonths = buildMonthRange(DEFAULT_START_YEAR, DEFAULT_END_YEAR);
+  const start = boundStart || defaultMonths[0];
+  const end = boundEnd || defaultMonths[defaultMonths.length-1];
+
+  const s = monthStart(start), e = monthStart(end);
+  const sMs=+s, eMs=+e;
+  const finalStart = (sMs<=eMs) ? s : e;
+  const finalEnd = (sMs<=eMs) ? e : s;
+
+  allMonths = d3.utcMonths(finalStart, d3.utcMonth.offset(finalEnd, 1));
+  monthCount = allMonths.length;
+
+  scrubber.max = String(Math.max(0, monthCount-1));
+  rebuildPrefixes();
+
+  setIndex(+scrubber.value || 0, { allowAutoTooltip:true });
+}
+
+applyRangeBtn.addEventListener("click", () => {
+  stopPlaybackIfNeeded();
+  boundStart = parseInputDateToMonthStart(startDateInput.value);
+  boundEnd = parseInputDateToMonthStart(endDateInput.value);
+  rebuildMonthsWithBounds();
+});
+
+resetRangeBtn.addEventListener("click", () => {
+  stopPlaybackIfNeeded();
+  boundStart=null; boundEnd=null;
+  startDateInput.value=""; endDateInput.value="";
+  allMonths = buildMonthRange(DEFAULT_START_YEAR, DEFAULT_END_YEAR);
+  monthCount = allMonths.length;
+  scrubber.max = String(Math.max(0, monthCount-1));
+  autoTooltipRemaining = AUTO_TOOLTIP_EVENT_MONTHS;
+  unpinTooltip();
+  rebuildPrefixes();
+  setIndex(0, { allowAutoTooltip:true });
+});
+
+// Export
+function downloadBlob(filename, mime, content){
+  const blob = new Blob([content], { type: mime });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 2500);
+}
+function toTSV(rows){
+  const cols=["Action","Permno","Security","Ticker","SP500 Start","SP500 End","Reason"];
+  const esc=v=>String(v??"").replace(/\t/g," ").replace(/\r?\n/g," ");
+  const header=cols.join("\t");
+  const lines=rows.map(r=>cols.map(c=>esc(r[c])).join("\t"));
+  return [header,...lines].join("\n");
+}
+exportJsonBtn.addEventListener("click", () => {
+  downloadBlob("sp500_timeline_full.json","application/json;charset=utf-8", JSON.stringify(eventsAll,null,2));
+});
+exportTsvBtn.addEventListener("click", () => {
+  downloadBlob("sp500_timeline_full.tsv","text/tab-separated-values;charset=utf-8", toTSV(eventsAll));
+});
+
+// Main
+(async function main(){
+  try{
+    const rows = await d3.json(DATA_URL);
+
+    // normalized rows for export
+    eventsAll = rows.map(r => ({
+      "Action": r["Action"] ?? "",
+      "Permno": r["Permno"] ?? "",
+      "Security": r["Security"] ?? "",
+      "Ticker": r["Ticker"] ?? "",
+      "SP500 Start": r["SP500 Start"] ?? "",
+      "SP500 End": r["SP500 End"] ?? "",
+      "Reason": r["Reason"] ?? ""
+    }));
+
+    const events = rows.map(coerceEvent).filter(Boolean);
+    eventsByMonth = d3.group(events, d => +d.changeMonth);
+
+    allMonths = buildMonthRange(DEFAULT_START_YEAR, DEFAULT_END_YEAR);
+    monthCount = allMonths.length;
+
+    scrubber.max = String(monthCount - 1);
+    scrubber.value = "0";
+    scrubber.disabled = false;
+
+    initChart();
+    rebuildPrefixes();
+    autoTooltipRemaining = AUTO_TOOLTIP_EVENT_MONTHS;
+
+    render(0, { allowAutoTooltip:true });
+
+    playPauseBtn.disabled = false;
+    playPauseBtn.textContent = "Play";
+
+    applyRangeBtn.disabled = false;
+    resetRangeBtn.disabled = false;
+    exportJsonBtn.disabled = false;
+    exportTsvBtn.disabled = false;
+
+  }catch(err){
+    console.error(err);
+    windowLabel.textContent = "Failed to load data.";
+    playPauseBtn.textContent = "Load failed";
+  }
+})();
+</script>
+
+</body>
+</html>

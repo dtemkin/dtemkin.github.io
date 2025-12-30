@@ -1,0 +1,6635 @@
+[
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "CRH",
+    "Ticker": "CRH",
+    "SP500 Start": "2025-12-22",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization change.[6]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "LKQ Corporation",
+    "Ticker": "LKQ",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2025-12-22",
+    "Reason": "Market capitalization change.[6]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Carvana",
+    "Ticker": "CVNA",
+    "SP500 Start": "2025-12-22",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization change.[6]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Solstice Advanced Materials",
+    "Ticker": "SOLS",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2025-12-22",
+    "Reason": "Market capitalization change.[6]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Comfort Systems USA",
+    "Ticker": "FIX",
+    "SP500 Start": "2025-12-22",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization change.[6]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Mohawk Industries",
+    "Ticker": "MHK",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2025-12-22",
+    "Reason": "Market capitalization change.[6]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Ares Management",
+    "Ticker": "ARES",
+    "SP500 Start": "2025-12-11",
+    "SP500 End": "2025-12-30",
+    "Reason": "Mars Inc. acquired Kellanova.[7]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Kellanova",
+    "Ticker": "K",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2025-12-11",
+    "Reason": "Mars Inc. acquired Kellanova.[7]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Sandisk",
+    "Ticker": "SNDK",
+    "SP500 Start": "2025-11-28",
+    "SP500 End": "2025-12-30",
+    "Reason": "S&P 500 constituent Omnicom Group Inc. acquired (The) Interpublic Group.[8][9]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Interpublic Group",
+    "Ticker": "IPG",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2025-11-28",
+    "Reason": "S&P 500 constituent Omnicom Group Inc. acquired (The) Interpublic Group.[8][9]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Eastman Chemical Co.",
+    "Ticker": "EMN",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2025-11-04",
+    "Reason": "Market capitalization change.[10]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Qnity Electronics",
+    "Ticker": "Q",
+    "SP500 Start": "2025-11-03",
+    "SP500 End": "2025-12-30",
+    "Reason": "S&P 500 constituent Dupont de Nemours, Inc. spun off Qnity Electronics.[10]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "CarMax",
+    "Ticker": "KMX",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2025-10-31",
+    "Reason": "Market capitalization change.[10]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Solstice Advanced Materials",
+    "Ticker": "SOLS",
+    "SP500 Start": "2025-10-30",
+    "SP500 End": "2025-12-30",
+    "Reason": "S&P 500 and S&P 100 constituent Honeywell International Inc. spun off Solstice Advanced Materials.[10]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Emcor",
+    "Ticker": "EME",
+    "SP500 Start": "2025-09-22",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization change.[11]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Enphase Energy",
+    "Ticker": "ENPH",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2025-09-22",
+    "Reason": "Market capitalization change.[11]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Robinhood Markets",
+    "Ticker": "HOOD",
+    "SP500 Start": "2025-09-22",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization change.[11]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Caesars Entertainment",
+    "Ticker": "CZR",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2025-09-22",
+    "Reason": "Market capitalization change.[11]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "AppLovin",
+    "Ticker": "APP",
+    "SP500 Start": "2025-09-22",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization change.[11]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "MarketAxess",
+    "Ticker": "MKTX",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2025-09-22",
+    "Reason": "Market capitalization change.[11]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Interactive Brokers",
+    "Ticker": "IBKR",
+    "SP500 Start": "2025-08-28",
+    "SP500 End": "2025-12-30",
+    "Reason": "Sycamore Partners acquired Walgreen Boots Alliance.[12]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Walgreens Boots Alliance",
+    "Ticker": "WBA",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2025-08-28",
+    "Reason": "Sycamore Partners acquired Walgreen Boots Alliance.[12]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Block, Inc.",
+    "Ticker": "XYZ",
+    "SP500 Start": "2025-07-23",
+    "SP500 End": "2025-12-30",
+    "Reason": "S&P 500 and S&P 100 constituent Chevron Corp. acquired Hess Corporation[13]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Hess Corporation",
+    "Ticker": "HES",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2025-07-23",
+    "Reason": "S&P 500 and S&P 100 constituent Chevron Corp. acquired Hess Corporation[13]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Trade Desk (The)",
+    "Ticker": "TTD",
+    "SP500 Start": "2025-07-18",
+    "SP500 End": "2025-12-30",
+    "Reason": "S&P 500 constituent Synopsys Inc. acquired Ansys.[14]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Ansys",
+    "Ticker": "ANSS",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2025-07-18",
+    "Reason": "S&P 500 constituent Synopsys Inc. acquired Ansys.[14]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Datadog",
+    "Ticker": "DDOG",
+    "SP500 Start": "2025-07-09",
+    "SP500 End": "2025-12-30",
+    "Reason": "S&P 500 constituent Hewlett Packard Enterprise Co. acquired Juniper Networks.[15]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Juniper Networks",
+    "Ticker": "JNPR",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2025-07-09",
+    "Reason": "S&P 500 constituent Hewlett Packard Enterprise Co. acquired Juniper Networks.[15]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Coinbase",
+    "Ticker": "COIN",
+    "SP500 Start": "2025-05-19",
+    "SP500 End": "2025-12-30",
+    "Reason": "S&P 500 constituent Capital One Financial Corp. acquired Discover Financial Services.[16]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Discover Financial",
+    "Ticker": "DFS",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2025-05-19",
+    "Reason": "S&P 500 constituent Capital One Financial Corp. acquired Discover Financial Services.[16]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "DoorDash",
+    "Ticker": "DASH",
+    "SP500 Start": "2025-03-24",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization change.[17]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "BorgWarner",
+    "Ticker": "BWA",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2025-03-24",
+    "Reason": "Market capitalization change.[17]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "TKO Group Holdings",
+    "Ticker": "TKO",
+    "SP500 Start": "2025-03-24",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization change.[17]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Teleflex",
+    "Ticker": "TFX",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2025-03-24",
+    "Reason": "Market capitalization change.[17]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Williams-Sonoma, Inc.",
+    "Ticker": "WSM",
+    "SP500 Start": "2025-03-24",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization change.[17]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Celanese",
+    "Ticker": "CE",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2025-03-24",
+    "Reason": "Market capitalization change.[17]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Expand Energy",
+    "Ticker": "EXE",
+    "SP500 Start": "2025-03-24",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization change.[17]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "FMC Corporation",
+    "Ticker": "FMC",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2025-03-24",
+    "Reason": "Market capitalization change.[17]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Apollo Global Management",
+    "Ticker": "APO",
+    "SP500 Start": "2024-12-23",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization change.[18]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Qorvo",
+    "Ticker": "QRVO",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2024-12-23",
+    "Reason": "Market capitalization change.[18]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Workday, Inc.",
+    "Ticker": "WDAY",
+    "SP500 Start": "2024-12-23",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization change.[18]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Amentum",
+    "Ticker": "AMTM",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2024-12-23",
+    "Reason": "Market capitalization change.[18]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Lennox International",
+    "Ticker": "LII",
+    "SP500 Start": "2024-12-23",
+    "SP500 End": "2025-12-30",
+    "Reason": "Novo Holdings A/S acquired Catalent.[19]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Catalent",
+    "Ticker": "CTLT",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2024-12-23",
+    "Reason": "Novo Holdings A/S acquired Catalent.[19]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Texas Pacific Land Corporation",
+    "Ticker": "TPL",
+    "SP500 Start": "2024-11-26",
+    "SP500 End": "2025-12-30",
+    "Reason": "S&P 500 & 100 constituent ConocoPhillips acquired Marathon Oil.[20]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Marathon Oil",
+    "Ticker": "MRO",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2024-11-26",
+    "Reason": "S&P 500 & 100 constituent ConocoPhillips acquired Marathon Oil.[20]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Bath & Body Works, Inc.",
+    "Ticker": "BBWI",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2024-10-01",
+    "Reason": "Market capitalization change.[21]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Amentum",
+    "Ticker": "AMTM",
+    "SP500 Start": "2024-09-30",
+    "SP500 End": "2025-12-30",
+    "Reason": "S&P 500 constituent Jacobs Solutions spun off its Critical Mission Solutions and Cyber Intelligence business, which merged with private Amentum to create newly publicly traded Amentum Holdings.[21]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Palantir Technologies",
+    "Ticker": "PLTR",
+    "SP500 Start": "2024-09-23",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization change.[22]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "American Airlines Group",
+    "Ticker": "AAL",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2024-09-23",
+    "Reason": "Market capitalization change.[22]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Dell Technologies",
+    "Ticker": "DELL",
+    "SP500 Start": "2024-09-23",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization change.[22]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Etsy",
+    "Ticker": "ETSY",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2024-09-23",
+    "Reason": "Market capitalization change.[22]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Erie Indemnity",
+    "Ticker": "ERIE",
+    "SP500 Start": "2024-09-23",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization change.[22]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Bio-Rad Laboratories",
+    "Ticker": "BIO",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2024-09-23",
+    "Reason": "Market capitalization change.[22]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "KKR",
+    "Ticker": "KKR",
+    "SP500 Start": "2024-06-24",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization change.[23]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Robert Half",
+    "Ticker": "RHI",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2024-06-24",
+    "Reason": "Market capitalization change.[23]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "CrowdStrike",
+    "Ticker": "CRWD",
+    "SP500 Start": "2024-06-24",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization change.[23]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Comerica",
+    "Ticker": "CMA",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2024-06-24",
+    "Reason": "Market capitalization change.[23]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "GoDaddy",
+    "Ticker": "GDDY",
+    "SP500 Start": "2024-06-24",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization change.[23]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Illumina, Inc.",
+    "Ticker": "ILMN",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2024-06-24",
+    "Reason": "Market capitalization change.[23]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Vistra",
+    "Ticker": "VST",
+    "SP500 Start": "2024-05-08",
+    "SP500 End": "2025-12-30",
+    "Reason": "S&P 500 and S&P 100 constituent ExxonMobil acquired Pioneer Natural Resources.[24]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Pioneer Natural Resources",
+    "Ticker": "PXD",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2024-05-08",
+    "Reason": "S&P 500 and S&P 100 constituent ExxonMobil acquired Pioneer Natural Resources.[24]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Dentsply Sirona",
+    "Ticker": "XRAY",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2024-04-03",
+    "Reason": "Market capitalization change.[25]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "VF Corporation",
+    "Ticker": "VFC",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2024-04-03",
+    "Reason": "Market capitalization change.[25]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "GE Vernova",
+    "Ticker": "GEV",
+    "SP500 Start": "2024-04-02",
+    "SP500 End": "2025-12-30",
+    "Reason": "S&P 500 and 100 constituent General Electric Corp. spun off GE Vernova.[25]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Solventum",
+    "Ticker": "SOLV",
+    "SP500 Start": "2024-04-01",
+    "SP500 End": "2025-12-30",
+    "Reason": "S&P 500 and 100 constituent 3M Co. spun off Solventum.[25]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Supermicro",
+    "Ticker": "SMCI",
+    "SP500 Start": "2024-03-18",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization change.[26]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Whirlpool Corporation",
+    "Ticker": "WHR",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2024-03-18",
+    "Reason": "Market capitalization change.[26]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Deckers Brands",
+    "Ticker": "DECK",
+    "SP500 Start": "2024-03-18",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization change.[26]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Zions Bancorporation",
+    "Ticker": "ZION",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2024-03-18",
+    "Reason": "Market capitalization change.[26]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Uber",
+    "Ticker": "UBER",
+    "SP500 Start": "2023-12-18",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization change.[27]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Sealed Air",
+    "Ticker": "SEE",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2023-12-18",
+    "Reason": "Market capitalization change.[27]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Jabil",
+    "Ticker": "JBL",
+    "SP500 Start": "2023-12-18",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization change.[27]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Alaska Air Group",
+    "Ticker": "ALK",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2023-12-18",
+    "Reason": "Market capitalization change.[27]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Builders FirstSource",
+    "Ticker": "BLDR",
+    "SP500 Start": "2023-12-18",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization change.[27]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "SolarEdge",
+    "Ticker": "SEDG",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2023-12-18",
+    "Reason": "Market capitalization change.[27]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Hubbell",
+    "Ticker": "HUBB",
+    "SP500 Start": "2023-10-18",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization change.[28]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Organon & Co.",
+    "Ticker": "OGN",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2023-10-18",
+    "Reason": "Market capitalization change.[28]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Lululemon Athletica",
+    "Ticker": "LULU",
+    "SP500 Start": "2023-10-18",
+    "SP500 End": "2025-12-30",
+    "Reason": "S&P 500 and S&P 100 constituent Microsoft acquired Activision Blizzard.[28]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Activision Blizzard",
+    "Ticker": "ATVI",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2023-10-18",
+    "Reason": "S&P 500 and S&P 100 constituent Microsoft acquired Activision Blizzard.[28]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "DXC Technology",
+    "Ticker": "DXC",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2023-10-03",
+    "Reason": "Market capitalization change.[29]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Veralto",
+    "Ticker": "VLTO",
+    "SP500 Start": "2023-10-02",
+    "SP500 End": "2025-12-30",
+    "Reason": "S&P 500 and S&P 100 constituent Danaher Corporation spun off Veralto.[29]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Blackstone",
+    "Ticker": "BX",
+    "SP500 Start": "2023-09-18",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization change.[30]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Lincoln National Corporation",
+    "Ticker": "LNC",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2023-09-18",
+    "Reason": "Market capitalization change.[30]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Airbnb",
+    "Ticker": "ABNB",
+    "SP500 Start": "2023-09-18",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization change.[30]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Newell Brands",
+    "Ticker": "NWL",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2023-09-18",
+    "Reason": "Market capitalization change.[30]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Kenvue",
+    "Ticker": "KVUE",
+    "SP500 Start": "2023-08-25",
+    "SP500 End": "2025-12-30",
+    "Reason": "S&P 500 and S&P 100 constituent Johnson & Johnson offered to exchange the shares of Kenvue held for shares of Johnson & Johnson in a split-off exchange offer.[31]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Advance Auto Parts",
+    "Ticker": "AAP",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2023-08-25",
+    "Reason": "S&P 500 and S&P 100 constituent Johnson & Johnson offered to exchange the shares of Kenvue held for shares of Johnson & Johnson in a split-off exchange offer.[31]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Palo Alto Networks",
+    "Ticker": "PANW",
+    "SP500 Start": "2023-06-20",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization change.[32]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Dish Network",
+    "Ticker": "DISH",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2023-06-20",
+    "Reason": "Market capitalization change.[32]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Axon Enterprise",
+    "Ticker": "AXON",
+    "SP500 Start": "2023-05-04",
+    "SP500 End": "2025-12-30",
+    "Reason": "The Federal Deposit Insurance Corporation (FDIC) placed First Republic Bank into FDIC Receivership.[33]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "First Republic Bank",
+    "Ticker": "FRC",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2023-05-04",
+    "Reason": "The Federal Deposit Insurance Corporation (FDIC) placed First Republic Bank into FDIC Receivership.[33]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Fair Isaac",
+    "Ticker": "FICO",
+    "SP500 Start": "2023-03-20",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization change.[34]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Lumen Technologies",
+    "Ticker": "LUMN",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2023-03-20",
+    "Reason": "Market capitalization change.[34]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Bunge Global",
+    "Ticker": "BG",
+    "SP500 Start": "2023-03-15",
+    "SP500 End": "2025-12-30",
+    "Reason": "The FDIC placed Signature Bank into FDIC Receivership.[35]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Signature Bank",
+    "Ticker": "SBNY",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2023-03-15",
+    "Reason": "The FDIC placed Signature Bank into FDIC Receivership.[35]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Insulet",
+    "Ticker": "PODD",
+    "SP500 Start": "2023-03-15",
+    "SP500 End": "2025-12-30",
+    "Reason": "The FDIC placed SVB's main subsidiary, Silicon Valley Bank, into receivership.[36]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "SVB Financial Group",
+    "Ticker": "SIVB",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2023-03-15",
+    "Reason": "The FDIC placed SVB's main subsidiary, Silicon Valley Bank, into receivership.[36]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Vornado Realty Trust",
+    "Ticker": "VNO",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2023-01-05",
+    "Reason": "Market capitalization change.[37]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "GE HealthCare",
+    "Ticker": "GEHC",
+    "SP500 Start": "2023-01-04",
+    "SP500 End": "2025-12-30",
+    "Reason": "S&P 500 constituent General Electric spun off GE HealthCare.[37]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "84262",
+    "Security": "STEEL DYNAMICS INC",
+    "Ticker": "STLD",
+    "SP500 Start": "2022-12-22",
+    "SP500 End": "2022-12-30",
+    "Reason": "S&P 500 constituent Johnson & Johnson acquired Abiomed.[38]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Abiomed",
+    "Ticker": "ABMD",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2022-12-22",
+    "Reason": "S&P 500 constituent Johnson & Johnson acquired Abiomed.[38]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "91611",
+    "Security": "FIRST SOLAR INC",
+    "Ticker": "FSLR",
+    "SP500 Start": "2022-12-19",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market capitalization change.[39]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Fortune Brands Home & Security",
+    "Ticker": "FBHS",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2022-12-19",
+    "Reason": "Market capitalization change.[39]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "MasterBrand",
+    "Ticker": "MBC",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2022-12-19",
+    "Reason": "Market capitalization change.[39]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "MasterBrand",
+    "Ticker": "MBC",
+    "SP500 Start": "2022-12-15",
+    "SP500 End": "2025-12-30",
+    "Reason": "S&P 500 constituent Fortune Brands Home & Security spun off MasterBrand.[39]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Arch Capital Group",
+    "Ticker": "ACGL",
+    "SP500 Start": "2022-11-01",
+    "SP500 End": "2025-12-30",
+    "Reason": "Elon Musk acquired Twitter.[40]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Twitter",
+    "Ticker": "TWTR",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2022-11-01",
+    "Reason": "Elon Musk acquired Twitter.[40]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "12476",
+    "Security": "TARGA RESOURCES CORP",
+    "Ticker": "TRGP",
+    "SP500 Start": "2022-10-12",
+    "SP500 End": "2022-12-30",
+    "Reason": "Elliot Management Corp acquired Nielsen Holdings.[41]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Nielsen Holdings",
+    "Ticker": "NLSN",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2022-10-12",
+    "Reason": "Elliot Management Corp acquired Nielsen Holdings.[41]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "13688",
+    "Security": "PACIFIC GAS & ELEC CO; P G & E CORP",
+    "Ticker": "PCG",
+    "SP500 Start": "2022-10-03",
+    "SP500 End": "2022-12-30",
+    "Reason": "Vista Equity Partners acquired Citrix Systems.[42]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Citrix Systems",
+    "Ticker": "CTXS",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2022-10-03",
+    "Reason": "Vista Equity Partners acquired Citrix Systems.[42]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "24328",
+    "Security": "EQUITABLE GAS CO; E Q T CORP; EQUITABLE RESOURCES INC",
+    "Ticker": "EQT",
+    "SP500 Start": "2022-10-03",
+    "SP500 End": "2022-12-30",
+    "Reason": "S&P 500 constituent Prologis Inc. acquired Duke Realty.[42]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "25339",
+    "Security": "DREWRYS LTD USA INC",
+    "Ticker": "DRE",
+    "SP500 Start": "1960-10-26",
+    "SP500 End": "1966-01-05",
+    "Reason": "S&P 500 constituent Prologis Inc. acquired Duke Realty.[42]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "CoStar Group",
+    "Ticker": "CSGP",
+    "SP500 Start": "2022-09-19",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization change.[43]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "PVH",
+    "Ticker": "PVH",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2022-09-19",
+    "Reason": "Market capitalization change.[43]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "16581",
+    "Security": "INVITATION HOMES INC",
+    "Ticker": "INVH",
+    "SP500 Start": "2022-09-19",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market capitalization change.[43]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Penn Entertainment",
+    "Ticker": "PENN",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2022-09-19",
+    "Reason": "Market capitalization change.[43]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Under Armour (Class C)",
+    "Ticker": "UA",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2022-06-21",
+    "Reason": "Market capitalization change.[44]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "17942",
+    "Security": "KEURIG DR PEPPER INC",
+    "Ticker": "KDP",
+    "SP500 Start": "2022-06-21",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market capitalization change.[44]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Under Armour (Class A)",
+    "Ticker": "UAA",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2022-06-21",
+    "Reason": "Market capitalization change.[44]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "ON Semiconductor",
+    "Ticker": "ON",
+    "SP500 Start": "2022-06-21",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization change.[44]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "IPG Photonics",
+    "Ticker": "IPGP",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2022-06-21",
+    "Reason": "Market capitalization change.[44]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "17307",
+    "Security": "VICI PROPERTIES INC",
+    "Ticker": "VICI",
+    "SP500 Start": "2022-06-08",
+    "SP500 End": "2022-12-30",
+    "Reason": "S&P 500 constituent Oracle Corp. acquired Cerner.[44]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Cerner",
+    "Ticker": "CERN",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2022-06-08",
+    "Reason": "S&P 500 constituent Oracle Corp. acquired Cerner.[44]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "22976",
+    "Security": "WARNER BROS DISCOVERY INC",
+    "Ticker": "WBD",
+    "SP500 Start": "2022-04-11",
+    "SP500 End": "2022-12-30",
+    "Reason": "WarnerMedia and Discovery merge to create Warner Bros. Discovery.[45]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Discovery, Inc.",
+    "Ticker": "DISCA",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2022-04-11",
+    "Reason": "WarnerMedia and Discovery merge to create Warner Bros. Discovery.[45]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Discovery, Inc.",
+    "Ticker": "DISCK",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2022-04-11",
+    "Reason": "WarnerMedia and Discovery merge to create Warner Bros. Discovery.[45]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "79452",
+    "Security": "CAMDEN PROPERTY TRUST",
+    "Ticker": "CPT",
+    "SP500 Start": "2022-04-04",
+    "SP500 End": "2022-12-30",
+    "Reason": "S&P 500 constituent M&T Bank Corp. acquired People's United Financial.[46]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "People's United Financial",
+    "Ticker": "PBCT",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2022-04-04",
+    "Reason": "S&P 500 constituent M&T Bank Corp. acquired People's United Financial.[46]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "89781",
+    "Security": "MOLINA HEALTHCARE INC",
+    "Ticker": "MOH",
+    "SP500 Start": "2022-03-02",
+    "SP500 End": "2022-12-30",
+    "Reason": "S&P 500 constituent S&P Global Inc. acquired IHS Markit.[47]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "IHS Markit",
+    "Ticker": "INFO",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2022-03-02",
+    "Reason": "S&P 500 constituent S&P Global Inc. acquired IHS Markit.[47]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "57809",
+    "Security": "NORDSON CORP",
+    "Ticker": "NDSN",
+    "SP500 Start": "2022-02-15",
+    "SP500 End": "2022-12-30",
+    "Reason": "S&P 500 constituent Advanced Micro Devices acquired Xilinx.[48]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Xilinx",
+    "Ticker": "XLNX",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2022-02-15",
+    "Reason": "S&P 500 constituent Advanced Micro Devices acquired Xilinx.[48]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Gap",
+    "Ticker": "GPS",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2022-02-03",
+    "Reason": "Market capitalization change.[49]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "22623",
+    "Security": "CONSTELLATION ENERGY CORP",
+    "Ticker": "CEG",
+    "SP500 Start": "2022-02-02",
+    "SP500 End": "2022-12-30",
+    "Reason": "S&P 500 and 100 constituent Exelon Corp. spun off Constellation Energy.[49]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "90090",
+    "Security": "SIGNATURE BANK NEW YORK N Y",
+    "Ticker": "SBNY",
+    "SP500 Start": "2021-12-20",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market capitalization change.[50]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Leggett & Platt",
+    "Ticker": "LEG",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2021-12-20",
+    "Reason": "Market capitalization change.[50]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "15272",
+    "Security": "SOLAREDGE TECHNOLOGIES INC",
+    "Ticker": "SEDG",
+    "SP500 Start": "2021-12-20",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market capitalization change.[50]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "91416",
+    "Security": "HANESBRANDS INC",
+    "Ticker": "HBI",
+    "SP500 Start": "2015-03-23",
+    "SP500 End": "2021-12-17",
+    "Reason": "Market capitalization change.[50]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "83597",
+    "Security": "FACTSET RESEARCH SYSTEMS INC",
+    "Ticker": "FDS",
+    "SP500 Start": "2021-12-20",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market capitalization change.[50]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "91461",
+    "Security": "WESTERN UNION CO",
+    "Ticker": "WU",
+    "SP500 Start": "2006-10-02",
+    "SP500 End": "2021-12-17",
+    "Reason": "Market capitalization change.[50]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "13210",
+    "Security": "EPAM SYSTEMS INC",
+    "Ticker": "EPAM",
+    "SP500 Start": "2021-12-14",
+    "SP500 End": "2022-12-30",
+    "Reason": "Canadian Pacific acquired Kansas City Southern.[51]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "12650",
+    "Security": "KANSAS CITY SOUTHERN; KANSAS CITY SOUTHERN RY CO; KANSAS CITY SOUTHERN INDS INC",
+    "Ticker": "KSU",
+    "SP500 Start": "2013-05-24",
+    "SP500 End": "2021-12-13",
+    "Reason": "Canadian Pacific acquired Kansas City Southern.[51]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "15850",
+    "Security": "MATCH GROUP INC; MATCH GROUP INC NEW",
+    "Ticker": "MTCH",
+    "SP500 Start": "2021-09-20",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market capitalization change.[52]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "77182",
+    "Security": "PERRIGO CO; PERRIGO CO PLC",
+    "Ticker": "PRGO",
+    "SP500 Start": "2011-12-19",
+    "SP500 End": "2021-09-17",
+    "Reason": "Market capitalization change.[52]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "17700",
+    "Security": "CERIDIAN H C M HOLDING INC",
+    "Ticker": "CDAY",
+    "SP500 Start": "2021-09-20",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market capitalization change.[52]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "71175",
+    "Security": "UNUMPROVIDENT CORP; U N U M CORP; UNUM GROUP",
+    "Ticker": "UNM",
+    "SP500 Start": "1994-03-11",
+    "SP500 End": "2021-09-17",
+    "Reason": "Market capitalization change.[52]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Brown & Brown",
+    "Ticker": "BRO",
+    "SP500 Start": "2021-09-20",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization change.[52]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Nov",
+    "Ticker": "NOV",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2021-09-20",
+    "Reason": "Market capitalization change.[52]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "75694",
+    "Security": "TECHNE CORP; BIO TECHNE CORP",
+    "Ticker": "TECH",
+    "SP500 Start": "2021-08-30",
+    "SP500 End": "2022-12-30",
+    "Reason": "S&P 500 constituent Analog Devices acquired Maxim Integrated Products.[53]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "11896",
+    "Security": "MAXIM INTEGRATED PRODUCTS INC",
+    "Ticker": "MXIM",
+    "SP500 Start": "2018-12-03",
+    "SP500 End": "2021-08-27",
+    "Reason": "S&P 500 constituent Analog Devices acquired Maxim Integrated Products.[53]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "18312",
+    "Security": "MODERNA INC",
+    "Ticker": "MRNA",
+    "SP500 Start": "2021-07-21",
+    "SP500 End": "2022-12-30",
+    "Reason": "AstraZeneca acquired Alexion Pharmaceuticals.[54]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "83111",
+    "Security": "ALEXION PHARMACEUTICALS INC",
+    "Ticker": "ALXN",
+    "SP500 Start": "2012-05-25",
+    "SP500 End": "2021-07-20",
+    "Reason": "AstraZeneca acquired Alexion Pharmaceuticals.[54]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "HollyFrontier",
+    "Ticker": "HFC",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2021-06-04",
+    "Reason": "Market capitalization change.[49]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "21124",
+    "Security": "ORGANON & CO",
+    "Ticker": "OGN",
+    "SP500 Start": "2021-06-03",
+    "SP500 End": "2022-12-30",
+    "Reason": "S&P 500/100 constituent Merck & Co. spun off Organon.[49]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "88281",
+    "Security": "CHARLES RIVER LABS INTL INC",
+    "Ticker": "CRL",
+    "SP500 Start": "2021-05-14",
+    "SP500 End": "2022-12-30",
+    "Reason": "S&P 500 constituent Teledyne Technologies acquired FLIR Systems.[55]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "79265",
+    "Security": "FLIR SYSTEMS INC",
+    "Ticker": "FLIR",
+    "SP500 Start": "2009-01-02",
+    "SP500 End": "2021-05-13",
+    "Reason": "S&P 500 constituent Teledyne Technologies acquired FLIR Systems.[55]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "PTC",
+    "Ticker": "PTC",
+    "SP500 Start": "2021-04-20",
+    "SP500 End": "2025-12-30",
+    "Reason": "Siemens Healthineers acquired Varian Medical Systems.[56]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "27043",
+    "Security": "VARIAN ASSOCIATES INC; VARIAN MEDICAL SYSTEMS INC; VARIAN ASSOCIATES; VARIAN ASSOC",
+    "Ticker": "VAR",
+    "SP500 Start": "2007-02-12",
+    "SP500 End": "2021-04-19",
+    "Reason": "Siemens Healthineers acquired Varian Medical Systems.[56]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "12084",
+    "Security": "N X P SEMICONDUCTORS N V",
+    "Ticker": "NXPI",
+    "SP500 Start": "2021-03-22",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market capitalization change.[57]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Flowserve",
+    "Ticker": "FLS",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2021-03-22",
+    "Reason": "Market capitalization change.[57]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "80563",
+    "Security": "PENN ENTERTAINMENT INC; PENN NATIONAL GAMING INC",
+    "Ticker": "PENN",
+    "SP500 Start": "2021-03-22",
+    "SP500 End": "2022-09-16",
+    "Reason": "Market capitalization change.[57]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "85265",
+    "Security": "S L GREEN REALTY CORP",
+    "Ticker": "SLG",
+    "SP500 Start": "2015-03-23",
+    "SP500 End": "2021-03-19",
+    "Reason": "Market capitalization change.[57]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "93246",
+    "Security": "GENERAC HOLDINGS INC",
+    "Ticker": "GNRC",
+    "SP500 Start": "2021-03-22",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market capitalization change.[57]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "27983",
+    "Security": "XEROX HOLDINGS CORP; XEROX CORP",
+    "Ticker": "XRX",
+    "SP500 Start": "1963-09-05",
+    "SP500 End": "2021-03-19",
+    "Reason": "Market capitalization change.[57]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Caesars Entertainment",
+    "Ticker": "CZR",
+    "SP500 Start": "2021-03-22",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization change.[57]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "19807",
+    "Security": "VONTIER CORP",
+    "Ticker": "VNT",
+    "SP500 Start": "2020-10-09",
+    "SP500 End": "2021-03-19",
+    "Reason": "Market capitalization change.[57]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "90455",
+    "Security": "MONOLITHIC PWR SYS INC",
+    "Ticker": "MPWR",
+    "SP500 Start": "2021-02-12",
+    "SP500 End": "2022-12-30",
+    "Reason": "TechnipFMC was removed from the S&P 500 in anticipation of its announced spin-off of Technip Energies.[58]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "16538",
+    "Security": "TECHNIPFMC PLC",
+    "Ticker": "FTI",
+    "SP500 Start": "2017-01-17",
+    "SP500 End": "2021-02-11",
+    "Reason": "TechnipFMC was removed from the S&P 500 in anticipation of its announced spin-off of Technip Energies.[58]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "76230",
+    "Security": "TRIMBLE NAVIGATION LTD; TRIMBLE INC",
+    "Ticker": "TRMB",
+    "SP500 Start": "2021-01-21",
+    "SP500 End": "2022-12-30",
+    "Reason": "S&P 500/100 constituent ConocoPhillips acquired Concho Resources.[59]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "92239",
+    "Security": "CONCHO RESOURCES INC",
+    "Ticker": "CXO",
+    "SP500 Start": "2016-02-22",
+    "SP500 End": "2021-01-20",
+    "Reason": "S&P 500/100 constituent ConocoPhillips acquired Concho Resources.[59]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "13323",
+    "Security": "ENPHASE ENERGY INC",
+    "Ticker": "ENPH",
+    "SP500 Start": "2021-01-07",
+    "SP500 End": "2022-12-30",
+    "Reason": "LVMH Moet Hennessy-Louis Vuitton SE acquired Tiffany & Co.[60]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "75100",
+    "Security": "TIFFANY & CO NEW",
+    "Ticker": "TIF",
+    "SP500 Start": "2000-06-21",
+    "SP500 End": "2021-01-06",
+    "Reason": "LVMH Moet Hennessy-Louis Vuitton SE acquired Tiffany & Co.[60]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "93436",
+    "Security": "TESLA INC; TESLA MOTORS INC",
+    "Ticker": "TSLA",
+    "SP500 Start": "2020-12-21",
+    "SP500 End": "2022-12-30",
+    "Reason": "Apartment Investment and Management (Aimco) spun off Apartment Income REIT.[61]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "80711",
+    "Security": "APARTMENT INVESTMENT & MGMT CO",
+    "Ticker": "AIV",
+    "SP500 Start": "2003-03-14",
+    "SP500 End": "2020-12-18",
+    "Reason": "Apartment Investment and Management (Aimco) spun off Apartment Income REIT.[61]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Noble Energy",
+    "Ticker": "NBL",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2020-10-12",
+    "Reason": "Chevron acquired Noble Energy.[62]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "19807",
+    "Security": "VONTIER CORP",
+    "Ticker": "VNT",
+    "SP500 Start": "2020-10-09",
+    "SP500 End": "2021-03-19",
+    "Reason": "S&P 500 constituent Fortive spun off Vontier.[62]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "82515",
+    "Security": "S C P POOL CORP; POOL CORP",
+    "Ticker": "POOL",
+    "SP500 Start": "2020-10-07",
+    "SP500 End": "2022-12-30",
+    "Reason": "Morgan Stanley acquired E*Trade.[63]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "E-Trade",
+    "Ticker": "ETFC",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2020-10-07",
+    "Reason": "Morgan Stanley acquired E*Trade.[63]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "15291",
+    "Security": "ETSY INC",
+    "Ticker": "ETSY",
+    "SP500 Start": "2020-09-21",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market capitalization change.[64]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "49373",
+    "Security": "BLOCK H & R INC",
+    "Ticker": "HRB",
+    "SP500 Start": "1986-11-28",
+    "SP500 End": "2020-09-18",
+    "Reason": "Market capitalization change.[64]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Teradyne",
+    "Ticker": "TER",
+    "SP500 Start": "2020-09-21",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization change.[64]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "13983",
+    "Security": "COTY INC",
+    "Ticker": "COTY",
+    "SP500 Start": "2016-10-03",
+    "SP500 End": "2020-09-18",
+    "Reason": "Market capitalization change.[64]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "14763",
+    "Security": "CATALENT INC",
+    "Ticker": "CTLT",
+    "SP500 Start": "2020-09-21",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market capitalization change.[64]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "77606",
+    "Security": "KOHLS CORP",
+    "Ticker": "KSS",
+    "SP500 Start": "1998-08-14",
+    "SP500 End": "2020-09-18",
+    "Reason": "Market capitalization change.[64]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "61516",
+    "Security": "BIO RAD LABORATORIES INC",
+    "Ticker": "BIO",
+    "SP500 Start": "2020-06-22",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market capitalization change.[65]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Alliance Data Systems",
+    "Ticker": "ADS",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2020-06-22",
+    "Reason": "Market capitalization change.[65]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "87445",
+    "Security": "TELEDYNE TECHNOLOGIES",
+    "Ticker": "TDY",
+    "SP500 Start": "2020-06-22",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market capitalization change.[65]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Harley-Davidson",
+    "Ticker": "HOG",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2020-06-22",
+    "Reason": "Market capitalization change.[65]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "76185",
+    "Security": "TYLER TECHNOLOGIES INC; TYLER CORP DE",
+    "Ticker": "TYL",
+    "SP500 Start": "2020-06-22",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market capitalization change.[65]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Nordstrom",
+    "Ticker": "JWN",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2020-06-22",
+    "Reason": "Market capitalization change.[65]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "West Pharmaceutical Services",
+    "Ticker": "WST",
+    "SP500 Start": "2020-05-22",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization change.[66]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "32707",
+    "Security": "HELMERICH & PAYNE INC",
+    "Ticker": "HP",
+    "SP500 Start": "2010-03-01",
+    "SP500 End": "2020-05-21",
+    "Reason": "Market capitalization change.[66]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "90248",
+    "Security": "DOMINOS PIZZA INC",
+    "Ticker": "DPZ",
+    "SP500 Start": "2020-05-12",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market capitalization change.[67]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Capri Holdings",
+    "Ticker": "CPRI",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2020-05-12",
+    "Reason": "Market capitalization change.[67]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "90664",
+    "Security": "DEXCOM INC",
+    "Ticker": "DXCM",
+    "SP500 Start": "2020-05-12",
+    "SP500 End": "2022-12-30",
+    "Reason": "Allergan acquired by AbbVie.[67]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "75646",
+    "Security": "ALLERGAN INC",
+    "Ticker": "AGN",
+    "SP500 Start": "1992-02-10",
+    "SP500 End": "2015-03-20",
+    "Reason": "Allergan acquired by AbbVie.[67]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "13063",
+    "Security": "MONTGOMERY WARD & CO; MARCOR INC",
+    "Ticker": "M",
+    "SP500 Start": "1957-03-01",
+    "SP500 End": "1976-06-30",
+    "Reason": "Market capitalization change.[68]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "24942",
+    "Security": "RAYTHEON MANUFACTURING CO; RAYTHEON CO",
+    "Ticker": "RTN",
+    "SP500 Start": "1957-03-01",
+    "SP500 End": "2020-04-03",
+    "Reason": "United Technologies spun off Otis and Carrier and acquired Raytheon Company.[68]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "19286",
+    "Security": "OTIS WORLDWIDE CORP",
+    "Ticker": "OTIS",
+    "SP500 Start": "2020-04-03",
+    "SP500 End": "2022-12-30",
+    "Reason": "United Technologies spun off Otis and Carrier and acquired Raytheon Company.[68]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "19285",
+    "Security": "CARRIER GLOBAL CORP",
+    "Ticker": "CARR",
+    "SP500 Start": "2020-04-03",
+    "SP500 End": "2022-12-30",
+    "Reason": "United Technologies spun off Otis and Carrier and acquired Raytheon Company.[68]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Howmet Aerospace",
+    "Ticker": "HWM",
+    "SP500 Start": "2020-04-01",
+    "SP500 End": "2025-12-30",
+    "Reason": "Arconic separated into 2 companies - Howmet remained on the index.[69]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Arconic",
+    "Ticker": "ARNC",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2020-04-01",
+    "Reason": "Arconic separated into 2 companies - Howmet remained on the index.[69]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Ingersoll Rand",
+    "Ticker": "IR",
+    "SP500 Start": "2020-03-02",
+    "SP500 End": "2025-12-30",
+    "Reason": "Gardner Denver acquired Ingersoll Rand's industrial businesses then changed its name to the \"new\" Ingersoll Rand Inc.[70][71]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "89509",
+    "Security": "CIMAREX ENERGY CO",
+    "Ticker": "XEC",
+    "SP500 Start": "2014-06-23",
+    "SP500 End": "2020-03-02",
+    "Reason": "Gardner Denver acquired Ingersoll Rand's industrial businesses then changed its name to the \"new\" Ingersoll Rand Inc.[70][71]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "14579",
+    "Security": "PAYCOM SOFTWARE INC",
+    "Ticker": "PAYC",
+    "SP500 Start": "2020-01-28",
+    "SP500 End": "2022-12-30",
+    "Reason": "S&P 500 constituent Centene Corp. (NYSE: CNC) acquired Wellcare Health Plans.[72]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "90272",
+    "Security": "WELLCARE HEALTH PLANS INC; WELLCARE GROUP INC",
+    "Ticker": "WCG",
+    "SP500 Start": "2018-09-17",
+    "SP500 End": "2020-01-27",
+    "Reason": "S&P 500 constituent Centene Corp. (NYSE: CNC) acquired Wellcare Health Plans.[72]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "91041",
+    "Security": "LIVE NATION INC; C C E SPINCO INC; LIVE NATION ENTERTAINMENT INC",
+    "Ticker": "LYV",
+    "SP500 Start": "2019-12-23",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market capitalization change.[73]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "85593",
+    "Security": "AFFILIATED MANAGERS GROUP INC",
+    "Ticker": "AMG",
+    "SP500 Start": "2014-07-01",
+    "SP500 End": "2019-12-20",
+    "Reason": "Market capitalization change.[73]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "76795",
+    "Security": "ZEBRA TECHNOLOGIES CORP",
+    "Ticker": "ZBRA",
+    "SP500 Start": "2019-12-23",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market capitalization change.[73]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "13168",
+    "Security": "TRIPADVISOR INC",
+    "Ticker": "TRIP",
+    "SP500 Start": "2011-12-21",
+    "SP500 End": "2019-12-20",
+    "Reason": "Market capitalization change.[73]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Steris",
+    "Ticker": "STE",
+    "SP500 Start": "2019-12-23",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization change.[73]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "80399",
+    "Security": "MACERICH CO",
+    "Ticker": "MAC",
+    "SP500 Start": "2013-05-09",
+    "SP500 End": "2019-12-20",
+    "Reason": "Market capitalization change.[73]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "77037",
+    "Security": "OLD DOMINION FREIGHT LINE INC",
+    "Ticker": "ODFL",
+    "SP500 Start": "2019-12-09",
+    "SP500 End": "2022-12-30",
+    "Reason": "BB&T acquired SunTrust to form Truist Financial.[74]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "68144",
+    "Security": "SUNTRUST BANKS INC",
+    "Ticker": "STI",
+    "SP500 Start": "1988-05-05",
+    "SP500 End": "2019-12-06",
+    "Reason": "BB&T acquired SunTrust to form Truist Financial.[74]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "W. R. Berkley Corporation",
+    "Ticker": "WRB",
+    "SP500 Start": "2019-12-05",
+    "SP500 End": "2025-12-30",
+    "Reason": "CBS acquired Viacom to form ViacomCBS.[75]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Viacom",
+    "Ticker": "VIAB",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2019-12-05",
+    "Reason": "CBS acquired Viacom to form ViacomCBS.[75]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "13447",
+    "Security": "SERVICENOW INC",
+    "Ticker": "NOW",
+    "SP500 Start": "2019-11-21",
+    "SP500 End": "2022-12-30",
+    "Reason": "Bristol-Myers Squibb (NYSE:BMY) acquired Celgene.[76]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "11552",
+    "Security": "CELGENE CORP",
+    "Ticker": "CELG",
+    "SP500 Start": "2006-11-06",
+    "SP500 End": "2019-11-20",
+    "Reason": "Bristol-Myers Squibb (NYSE:BMY) acquired Celgene.[76]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "90505",
+    "Security": "LAS VEGAS SANDS CORP",
+    "Ticker": "LVS",
+    "SP500 Start": "2019-10-03",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market capitalization change.[77]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Nektar Therapeutics",
+    "Ticker": "NKTR",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2019-10-03",
+    "Reason": "Market capitalization change.[77]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "79785",
+    "Security": "N V R INC",
+    "Ticker": "NVR",
+    "SP500 Start": "2019-09-26",
+    "SP500 End": "2022-12-30",
+    "Reason": "JEF spun off SPB.[78]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "24993",
+    "Security": "JEFFERSON LAKE SULPHUR CO",
+    "Ticker": "JEF",
+    "SP500 Start": "1957-03-01",
+    "SP500 End": "1964-02-26",
+    "Reason": "JEF spun off SPB.[78]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "13949",
+    "Security": "C D W CORP NEW",
+    "Ticker": "CDW",
+    "SP500 Start": "2019-09-23",
+    "SP500 End": "2022-12-30",
+    "Reason": "S&P 500 constituent Global Payments (NYSE: GPN) acquired TSS.[79]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "TSYS",
+    "Ticker": "TSS",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2019-09-23",
+    "Reason": "S&P 500 constituent Global Payments (NYSE: GPN) acquired TSS.[79]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Leidos",
+    "Ticker": "LDOS",
+    "SP500 Start": "2019-08-09",
+    "SP500 End": "2025-12-30",
+    "Reason": "S&P 500 & 100 constituent Occidental Petroleum Corp. (NYSE:OXY) acquired Anadarko Petroleum.[80]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "70332",
+    "Security": "ANADARKO PETROLEUM CORP",
+    "Ticker": "APC",
+    "SP500 Start": "1997-07-28",
+    "SP500 End": "2019-08-08",
+    "Reason": "S&P 500 & 100 constituent Occidental Petroleum Corp. (NYSE:OXY) acquired Anadarko Petroleum.[80]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "75591",
+    "Security": "IDEX CORP",
+    "Ticker": "IEX",
+    "SP500 Start": "2019-08-09",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market capitalization change.[80]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Foot Locker",
+    "Ticker": "FL",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2019-08-09",
+    "Reason": "Market capitalization change.[80]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "T-Mobile US",
+    "Ticker": "TMUS",
+    "SP500 Start": "2019-07-15",
+    "SP500 End": "2025-12-30",
+    "Reason": "S&P 500 & 100 constituent IBM acquired Red Hat.[81]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Red Hat",
+    "Ticker": "RHT",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2019-07-15",
+    "Reason": "S&P 500 & 100 constituent IBM acquired Red Hat.[81]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "90454",
+    "Security": "MARKETAXESS HLDGS INC",
+    "Ticker": "MKTX",
+    "SP500 Start": "2019-07-01",
+    "SP500 End": "2022-12-30",
+    "Reason": "L3 purchased by Harris Corporation[82]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "86021",
+    "Security": "L 3 COMMUNICATIONS HLDGS INC; L 3 TECHNOLOGIES INC",
+    "Ticker": "LLL",
+    "SP500 Start": "2004-12-01",
+    "SP500 End": "2019-06-28",
+    "Reason": "L3 purchased by Harris Corporation[82]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "18724",
+    "Security": "AMCOR PLC",
+    "Ticker": "AMCR",
+    "SP500 Start": "2019-06-11",
+    "SP500 End": "2022-12-30",
+    "Reason": "BMS changed to AMCR post merger with Amcor;[83] subsequently renamed to Amcor[84]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "43772",
+    "Security": "BEMIS CO INC",
+    "Ticker": "BMS",
+    "SP500 Start": "2019-06-07",
+    "SP500 End": "2019-06-10",
+    "Reason": "BMS changed to AMCR post merger with Amcor;[83] subsequently renamed to Amcor[84]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "43772",
+    "Security": "BEMIS CO INC",
+    "Ticker": "BMS",
+    "SP500 Start": "2019-06-07",
+    "SP500 End": "2019-06-10",
+    "Reason": "Pending merger of Bemis and Amcor; Bemis treated as the surviving entity.[84]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "39538",
+    "Security": "MATTEL INC",
+    "Ticker": "MAT",
+    "SP500 Start": "1982-03-11",
+    "SP500 End": "2019-06-06",
+    "Reason": "Pending merger of Bemis and Amcor; Bemis treated as the surviving entity.[84]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "DuPont",
+    "Ticker": "DD",
+    "SP500 Start": "2019-06-03",
+    "SP500 End": "2025-12-30",
+    "Reason": "DWDP changed to DD after spinning off Corteva.[85]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "DuPont",
+    "Ticker": "DWDP",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2019-06-03",
+    "Reason": "DWDP changed to DD after spinning off Corteva.[85]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "18592",
+    "Security": "CORTEVA INC",
+    "Ticker": "CTVA",
+    "SP500 Start": "2019-06-03",
+    "SP500 End": "2022-12-30",
+    "Reason": "CTVA spun off from DWDP (which then changed symbol to DD)[85]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "88853",
+    "Security": "FLUOR CORP NEW",
+    "Ticker": "FLR",
+    "SP500 Start": "2000-12-22",
+    "SP500 End": "2019-06-03",
+    "Reason": "CTVA spun off from DWDP (which then changed symbol to DD)[85]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "18428",
+    "Security": "DOW INC",
+    "Ticker": "DOW",
+    "SP500 Start": "2019-04-02",
+    "SP500 End": "2022-12-30",
+    "Reason": "DOW spun off from DWDP[86]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "16816",
+    "Security": "BRIGHTHOUSE FINANCIAL INC",
+    "Ticker": "BHF",
+    "SP500 Start": "2017-08-07",
+    "SP500 End": "2019-04-02",
+    "Reason": "DOW spun off from DWDP[86]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "18420",
+    "Security": "FOX CORP",
+    "Ticker": "FOXA",
+    "SP500 Start": "2019-03-19",
+    "SP500 End": "2022-12-30",
+    "Reason": "21st Century Fox merged with Disney and some parts spun off as Fox Corporation.[87]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "21st Century Fox",
+    "Ticker": "FOXA",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2019-03-19",
+    "Reason": "21st Century Fox merged with Disney and some parts spun off as Fox Corporation.[87]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "18421",
+    "Security": "FOX CORP",
+    "Ticker": "FOX",
+    "SP500 Start": "2019-03-19",
+    "SP500 End": "2022-12-30",
+    "Reason": "21st Century Fox merged with Disney and some parts spun off as Fox Corporation.[87]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "21st Century Fox",
+    "Ticker": "FOX",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2019-03-19",
+    "Reason": "21st Century Fox merged with Disney and some parts spun off as Fox Corporation.[87]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "81677",
+    "Security": "WESTINGHOUSE AIR BRAKE CO NEW; WABTEC CORP",
+    "Ticker": "WAB",
+    "SP500 Start": "2019-02-27",
+    "SP500 End": "2022-12-30",
+    "Reason": "WAB acquired GE transportation business[88]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "16432",
+    "Security": "GOODYEAR TIRE & RUBBER CO",
+    "Ticker": "GT",
+    "SP500 Start": "1925-12-31",
+    "SP500 End": "2019-02-26",
+    "Reason": "WAB acquired GE transportation business[88]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Atmos Energy",
+    "Ticker": "ATO",
+    "SP500 Start": "2019-02-15",
+    "SP500 End": "2025-12-30",
+    "Reason": "ECA acquired NFX[89]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "79915",
+    "Security": "NEWFIELD EXPLORATION CO",
+    "Ticker": "NFX",
+    "SP500 Start": "2010-12-20",
+    "SP500 End": "2019-02-14",
+    "Reason": "ECA acquired NFX[89]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "44329",
+    "Security": "TELEFLEX INC",
+    "Ticker": "TFX",
+    "SP500 Start": "2019-01-18",
+    "SP500 End": "2022-12-30",
+    "Reason": "PCG filed for bankruptcy[90]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "13688",
+    "Security": "PACIFIC GAS & ELEC CO; P G & E CORP",
+    "Ticker": "PCG",
+    "SP500 Start": "1925-12-31",
+    "SP500 End": "2019-01-17",
+    "Reason": "PCG filed for bankruptcy[90]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "12448",
+    "Security": "FIRST REPUBLIC BANK S F NEW",
+    "Ticker": "FRC",
+    "SP500 Start": "2019-01-02",
+    "SP500 End": "2022-12-30",
+    "Reason": "Dominion Energy acquired SCANA Corporation[91]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "23085",
+    "Security": "SOUTH CAROLINA ELEC & GAS CO; SCANA CORP NEW; SCANA CORP",
+    "Ticker": "SCG",
+    "SP500 Start": "2009-01-02",
+    "SP500 End": "2018-12-31",
+    "Reason": "Dominion Energy acquired SCANA Corporation[91]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "90520",
+    "Security": "CELANESE CORP DEL",
+    "Ticker": "CE",
+    "SP500 Start": "2018-12-24",
+    "SP500 End": "2022-12-30",
+    "Reason": "S&P 500 constituent Cigna (NYSE: CI) acquired ESRX[92]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "77668",
+    "Security": "EXPRESS SCRIPTS HOLDING CO; EXPRESS SCRIPTS INC",
+    "Ticker": "ESRX",
+    "SP500 Start": "2003-09-26",
+    "SP500 End": "2018-12-21",
+    "Reason": "S&P 500 constituent Cigna (NYSE: CI) acquired ESRX[92]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "16431",
+    "Security": "LAMB WESTON HOLDINGS INC",
+    "Ticker": "LW",
+    "SP500 Start": "2018-12-03",
+    "SP500 End": "2022-12-30",
+    "Reason": "UTX acquired COL[93]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "89014",
+    "Security": "ROCKWELL COLLINS INC",
+    "Ticker": "COL",
+    "SP500 Start": "2001-07-02",
+    "SP500 End": "2018-11-30",
+    "Reason": "UTX acquired COL[93]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "11896",
+    "Security": "MAXIM INTEGRATED PRODUCTS INC",
+    "Ticker": "MXIM",
+    "SP500 Start": "2018-12-03",
+    "SP500 End": "2021-08-27",
+    "Reason": "CVS acquired Aetna[93]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "88845",
+    "Security": "AETNA INC NEW",
+    "Ticker": "AET",
+    "SP500 Start": "2000-12-14",
+    "SP500 End": "2018-11-30",
+    "Reason": "CVS acquired Aetna[93]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "13641",
+    "Security": "DIAMONDBACK ENERGY INC",
+    "Ticker": "FANG",
+    "SP500 Start": "2018-12-03",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market Capitalization change[93]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "83906",
+    "Security": "STERICYCLE INC",
+    "Ticker": "SRCL",
+    "SP500 Start": "2008-11-19",
+    "SP500 End": "2018-11-30",
+    "Reason": "Market Capitalization change[93]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "88664",
+    "Security": "HENRY JACK & ASSOC INC",
+    "Ticker": "JKHY",
+    "SP500 Start": "2018-11-13",
+    "SP500 End": "2022-12-30",
+    "Reason": "EQT spun off ETRN[94]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "24328",
+    "Security": "EQUITABLE GAS CO; E Q T CORP; EQUITABLE RESOURCES INC",
+    "Ticker": "EQT",
+    "SP500 Start": "2008-12-19",
+    "SP500 End": "2018-11-12",
+    "Reason": "EQT spun off ETRN[94]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "14939",
+    "Security": "KEYSIGHT TECHNOLOGIES INC",
+    "Ticker": "KEYS",
+    "SP500 Start": "2018-11-06",
+    "SP500 End": "2022-12-30",
+    "Reason": "CA acquired by Broadcom.[95]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "CA Technologies",
+    "Ticker": "CA",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2018-11-06",
+    "Reason": "CA acquired by Broadcom.[95]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "93132",
+    "Security": "FORTINET INC",
+    "Ticker": "FTNT",
+    "SP500 Start": "2018-10-11",
+    "SP500 End": "2022-12-30",
+    "Reason": "EVHC acquired by KKR.[96]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Envision Healthcare",
+    "Ticker": "EVHC",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2018-10-11",
+    "Reason": "EVHC acquired by KKR.[96]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "36003",
+    "Security": "ROLLINS BROADCASTING INC; ROLLINS INC",
+    "Ticker": "ROL",
+    "SP500 Start": "2018-10-01",
+    "SP500 End": "2022-12-30",
+    "Reason": "ANDV acquired by Marathon Petroleum.[97]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Andeavor",
+    "Ticker": "ANDV",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2018-10-01",
+    "Reason": "ANDV acquired by Marathon Petroleum.[97]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "90272",
+    "Security": "WELLCARE HEALTH PLANS INC; WELLCARE GROUP INC",
+    "Ticker": "WCG",
+    "SP500 Start": "2018-09-17",
+    "SP500 End": "2020-01-27",
+    "Reason": "XL acquired by Axa.[98]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "86314",
+    "Security": "X L GROUP PLC; E X E L LTD NEW; X L CAPITAL LTD; X L GROUP LTD",
+    "Ticker": "XL",
+    "SP500 Start": "2001-09-04",
+    "SP500 End": "2018-09-14",
+    "Reason": "XL acquired by Axa.[98]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "14714",
+    "Security": "ARISTA NETWORKS INC",
+    "Ticker": "ANET",
+    "SP500 Start": "2018-08-28",
+    "SP500 End": "2022-12-30",
+    "Reason": "GGP acquired by Brookfield Property Partners.[99]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "GGP",
+    "Ticker": "GGP",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2018-08-28",
+    "Reason": "GGP acquired by Brookfield Property Partners.[99]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "80320",
+    "Security": "COPART INC",
+    "Ticker": "CPRT",
+    "SP500 Start": "2018-07-02",
+    "SP500 End": "2022-12-30",
+    "Reason": "DPS acquired by Keurig Green Mountain.[100]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "92618",
+    "Security": "DR PEPPER SNAPPLE GROUP INC",
+    "Ticker": "DPS",
+    "SP500 Start": "2008-10-07",
+    "SP500 End": "2018-06-29",
+    "Reason": "DPS acquired by Keurig Green Mountain.[100]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "12449",
+    "Security": "FLEETCOR TECHNOLOGIES INC",
+    "Ticker": "FLT",
+    "SP500 Start": "2018-06-20",
+    "SP500 End": "2022-12-30",
+    "Reason": "AT&T acquired Time Warner.[101]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Time Warner",
+    "Ticker": "TWX",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2018-06-20",
+    "Reason": "AT&T acquired Time Warner.[101]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "91849",
+    "Security": "BROADRIDGE FINANCIAL SOLUTNS INC",
+    "Ticker": "BR",
+    "SP500 Start": "2018-06-18",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market capitalization change.[102]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Range Resources",
+    "Ticker": "RRC",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2018-06-18",
+    "Reason": "Market capitalization change.[102]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "HollyFrontier",
+    "Ticker": "HFC",
+    "SP500 Start": "2018-06-18",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization change.[102]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "89216",
+    "Security": "ACUITY BRANDS INC",
+    "Ticker": "AYI",
+    "SP500 Start": "2016-05-03",
+    "SP500 End": "2018-06-15",
+    "Reason": "Market capitalization change.[102]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "14295",
+    "Security": "TWITTER INC",
+    "Ticker": "TWTR",
+    "SP500 Start": "2018-06-07",
+    "SP500 End": "2022-10-31",
+    "Reason": "Bayer acquired Monsanto.[103]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "88668",
+    "Security": "MONSANTO CO NEW",
+    "Ticker": "MON",
+    "SP500 Start": "2002-08-14",
+    "SP500 End": "2018-06-06",
+    "Reason": "Bayer acquired Monsanto.[103]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Evergy",
+    "Ticker": "EVRG",
+    "SP500 Start": "2018-06-05",
+    "SP500 End": "2025-12-30",
+    "Reason": "Westar Energy (NYSE: WR) acquired Great Plains Energy (NYSE: GXP) and changed name to Evergy.[104]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "14601",
+    "Security": "NAVIENT CORP",
+    "Ticker": "NAVI",
+    "SP500 Start": "2014-05-01",
+    "SP500 End": "2018-06-04",
+    "Reason": "Westar Energy (NYSE: WR) acquired Great Plains Energy (NYSE: GXP) and changed name to Evergy.[104]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Abiomed",
+    "Ticker": "ABMD",
+    "SP500 Start": "2018-05-31",
+    "SP500 End": "2025-12-30",
+    "Reason": "Wyndham Worldwide spun off Wyndham Hotels & Resorts (NYSE:WH).[105]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Wyndham Worldwide",
+    "Ticker": "WYN",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2018-05-31",
+    "Reason": "Wyndham Worldwide spun off Wyndham Hotels & Resorts (NYSE:WH).[105]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "MSCI",
+    "Ticker": "MSCI",
+    "SP500 Start": "2018-04-04",
+    "SP500 End": "2025-12-30",
+    "Reason": "S&P 500 constituent General Dynamics (NYSE: GD) acquired CSRA.[106]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "15797",
+    "Security": "C S R A INC",
+    "Ticker": "CSRA",
+    "SP500 Start": "2015-11-30",
+    "SP500 End": "2018-04-03",
+    "Reason": "S&P 500 constituent General Dynamics (NYSE: GD) acquired CSRA.[106]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "84761",
+    "Security": "TAKE TWO INTERACTIVE SOFTWR INC",
+    "Ticker": "TTWO",
+    "SP500 Start": "2018-03-19",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market capitalization change.[107]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "12076",
+    "Security": "SIGNET JEWELERS LTD",
+    "Ticker": "SIG",
+    "SP500 Start": "2015-07-29",
+    "SP500 End": "2018-03-16",
+    "Reason": "Market capitalization change.[107]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "11786",
+    "Security": "S V B FINANCIAL GROUP; SILICON VALLEY BANCSHARES",
+    "Ticker": "SIVB",
+    "SP500 Start": "2018-03-19",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market capitalization change.[107]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "78034",
+    "Security": "PATTERSON DENTAL CO; PATTERSON COMPANIES INC",
+    "Ticker": "PDCO",
+    "SP500 Start": "2005-10-11",
+    "SP500 End": "2018-03-16",
+    "Reason": "Market capitalization change.[107]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Nektar Therapeutics",
+    "Ticker": "NKTR",
+    "SP500 Start": "2018-03-19",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization change.[107]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Chesapeake Energy",
+    "Ticker": "CHK",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2018-03-19",
+    "Reason": "Market capitalization change.[107]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "91668",
+    "Security": "I P G PHOTONICS CORP",
+    "Ticker": "IPGP",
+    "SP500 Start": "2018-03-07",
+    "SP500 End": "2022-06-17",
+    "Reason": "Discovery Communications acquired SNI.[108]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "92709",
+    "Security": "SCRIPPS NETWORKS INTERACTIVE INC",
+    "Ticker": "SNI",
+    "SP500 Start": "2008-07-01",
+    "SP500 End": "2018-03-06",
+    "Reason": "Discovery Communications acquired SNI.[108]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "12623",
+    "Security": "HUNTINGTON INGALLS INDS INC",
+    "Ticker": "HII",
+    "SP500 Start": "2018-01-03",
+    "SP500 End": "2022-12-30",
+    "Reason": "Becton Dickinson acquired BCR.[109]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "46877",
+    "Security": "BARD C R INC",
+    "Ticker": "BCR",
+    "SP500 Start": "1975-06-12",
+    "SP500 End": "2018-01-02",
+    "Reason": "Becton Dickinson acquired BCR.[109]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "13760",
+    "Security": "NORWEGIAN CRUISE LINE HLDGS LTD",
+    "Ticker": "NCLH",
+    "SP500 Start": "2017-10-13",
+    "SP500 End": "2022-12-30",
+    "Reason": "CenturyLink acquired LVLT.[110]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "85991",
+    "Security": "LEVEL 3 COMMUNICATIONS INC",
+    "Ticker": "LVLT",
+    "SP500 Start": "2014-11-05",
+    "SP500 End": "2017-10-12",
+    "Reason": "CenturyLink acquired LVLT.[110]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Cadence Design Systems",
+    "Ticker": "CDNS",
+    "SP500 Start": "2017-09-18",
+    "SP500 End": "2025-12-30",
+    "Reason": "Sycamore Partners acquired Staples.[111]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "75489",
+    "Security": "STAPLES INC",
+    "Ticker": "SPLS",
+    "SP500 Start": "1998-10-07",
+    "SP500 End": "2017-09-15",
+    "Reason": "Sycamore Partners acquired Staples.[111]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "DuPont",
+    "Ticker": "DWDP",
+    "SP500 Start": "2017-09-01",
+    "SP500 End": "2025-12-30",
+    "Reason": "The Dow Chemical Company renamed to DowDuPont Inc. and ticker changed from DOW to DWDP after acquiring DuPont.[112]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "20626",
+    "Security": "DOW CHEMICAL CO",
+    "Ticker": "DOW",
+    "SP500 Start": "1954-04-20",
+    "SP500 End": "2017-08-31",
+    "Reason": "The Dow Chemical Company renamed to DowDuPont Inc. and ticker changed from DOW to DWDP after acquiring DuPont.[112]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "86996",
+    "Security": "S B A COMMUNICATIONS CORP; S B A COMMUNICATIONS CORP NEW",
+    "Ticker": "SBAC",
+    "SP500 Start": "2017-09-01",
+    "SP500 End": "2022-12-30",
+    "Reason": "The Dow Chemical Company acquired DuPont.[112]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "11703",
+    "Security": "DU PONT E I DE NEMOURS & CO",
+    "Ticker": "DD",
+    "SP500 Start": "1957-03-01",
+    "SP500 End": "2017-08-31",
+    "Reason": "The Dow Chemical Company acquired DuPont.[112]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Qnity Electronics",
+    "Ticker": "Q",
+    "SP500 Start": "2025-11-03",
+    "SP500 End": "2025-12-30",
+    "Reason": "Amazon acquired Whole Foods Market.[112]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Whole Foods Market",
+    "Ticker": "WFM",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2017-08-29",
+    "Reason": "Amazon acquired Whole Foods Market.[112]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "16816",
+    "Security": "BRIGHTHOUSE FINANCIAL INC",
+    "Ticker": "BHF",
+    "SP500 Start": "2017-08-07",
+    "SP500 End": "2019-04-02",
+    "Reason": "BHF replaced AN,[113] MET spun off BHF[113]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "10102",
+    "Security": "AIR REDUCTION INC; AIRCO INC",
+    "Ticker": "AN",
+    "SP500 Start": "1957-03-01",
+    "SP500 End": "1975-02-05",
+    "Reason": "BHF replaced AN,[113] MET spun off BHF[113]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "75341",
+    "Security": "DUKE WEEKS REALTY CORP; DUKE REALTY INVESTMENTS INC; DUKE REALTY CORP",
+    "Ticker": "DRE",
+    "SP500 Start": "2017-07-26",
+    "SP500 End": "2022-09-30",
+    "Reason": "Market capitalization change.[114]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "79237",
+    "Security": "SONAT OFFSHORE DRILLING INC; TRANSOCEAN SEDCO FOREX INC; TRANSOCEAN LTD; TRANSOCEAN INC NEW; TRANSOCEAN OFFSHORE INC; TRANSOCEAN INC",
+    "Ticker": "RIG",
+    "SP500 Start": "2013-10-29",
+    "SP500 End": "2017-07-25",
+    "Reason": "Market capitalization change.[114]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "A. O. Smith",
+    "Ticker": "AOS",
+    "SP500 Start": "2017-07-26",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization change.[114]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "77659",
+    "Security": "BED BATH & BEYOND INC",
+    "Ticker": "BBBY",
+    "SP500 Start": "1999-10-01",
+    "SP500 End": "2017-07-25",
+    "Reason": "Market capitalization change.[114]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "87541",
+    "Security": "PACKAGING CORP AMERICA",
+    "Ticker": "PKG",
+    "SP500 Start": "2017-07-26",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market capitalization change.[114]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "28345",
+    "Security": "MURPHY OIL CORP; MURPHY CORP",
+    "Ticker": "MUR",
+    "SP500 Start": "2005-08-15",
+    "SP500 End": "2017-07-25",
+    "Reason": "Market capitalization change.[114]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "ResMed",
+    "Ticker": "RMD",
+    "SP500 Start": "2017-07-26",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization change.[114]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "14011",
+    "Security": "MALLINCKRODT PLC",
+    "Ticker": "MNK",
+    "SP500 Start": "2014-08-19",
+    "SP500 End": "2017-07-25",
+    "Reason": "Market capitalization change.[114]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "61794",
+    "Security": "M G M U A ENTERTAINMENT CO; METRO GOLDWYN MAYER FILM CO",
+    "Ticker": "MGM",
+    "SP500 Start": "1980-06-17",
+    "SP500 End": "1986-04-02",
+    "Reason": "British American Tobacco (NYSE MKT:BTI) acquired Reynolds American.[114]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Reynolds American",
+    "Ticker": "RAI",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2017-07-26",
+    "Reason": "British American Tobacco (NYSE MKT:BTI) acquired Reynolds American.[114]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Baker Hughes",
+    "Ticker": "BKR",
+    "SP500 Start": "2017-07-07",
+    "SP500 End": "2025-12-30",
+    "Reason": "Baker Hughes merged with GE Oil & Gas to form new company.[115]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Baker Hughes",
+    "Ticker": "BHI",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2017-07-07",
+    "Reason": "Baker Hughes merged with GE Oil & Gas to form new company.[115]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "14338",
+    "Security": "HILTON WORLDWIDE HOLDINGS INC",
+    "Ticker": "HLT",
+    "SP500 Start": "2017-06-19",
+    "SP500 End": "2022-12-30",
+    "Reason": "VZ acquired YHOO operations; remainder of YHOO converted to closed-end company known as Altaba.[116]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "83435",
+    "Security": "YAHOO INC",
+    "Ticker": "YHOO",
+    "SP500 Start": "1999-12-08",
+    "SP500 End": "2017-06-16",
+    "Reason": "VZ acquired YHOO operations; remainder of YHOO converted to closed-end company known as Altaba.[116]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "88860",
+    "Security": "ALIGN TECHNOLOGY INC",
+    "Ticker": "ALGN",
+    "SP500 Start": "2017-06-19",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market capitalization changes.[116]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "92293",
+    "Security": "TERADATA CORP DE",
+    "Ticker": "TDC",
+    "SP500 Start": "2007-10-01",
+    "SP500 End": "2017-06-16",
+    "Reason": "Market capitalization changes.[116]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "83621",
+    "Security": "ANSYS INC",
+    "Ticker": "ANSS",
+    "SP500 Start": "2017-06-19",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market capitalization changes.[116]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "14912",
+    "Security": "UNIROYAL INC; UNITED STATES RUBBER CO",
+    "Ticker": "R",
+    "SP500 Start": "1925-12-31",
+    "SP500 End": "1985-09-25",
+    "Reason": "Market capitalization changes.[116]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "82303",
+    "Security": "PRUDENTIAL REINSURANCE HOLD INC; EVEREST REINSURANCE HOLDINGS INC; EVEREST RE GROUP LTD",
+    "Ticker": "RE",
+    "SP500 Start": "2017-06-19",
+    "SP500 End": "2022-12-30",
+    "Reason": "Reckitt Benckiser acquired Mead Johnson Nutrition.[117]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "92890",
+    "Security": "MEAD JOHNSON NUTRITION CO",
+    "Ticker": "MJN",
+    "SP500 Start": "2009-12-21",
+    "SP500 End": "2017-06-16",
+    "Reason": "Reckitt Benckiser acquired Mead Johnson Nutrition.[117]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "IHS Markit",
+    "Ticker": "INFO",
+    "SP500 Start": "2017-06-02",
+    "SP500 End": "2025-12-30",
+    "Reason": "TGNA spins off Cars.com[118]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Tegna",
+    "Ticker": "TGNA",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2017-06-02",
+    "Reason": "TGNA spins off Cars.com[118]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Gartner",
+    "Ticker": "IT",
+    "SP500 Start": "2017-04-05",
+    "SP500 End": "2025-12-30",
+    "Reason": "IT acquiring CEB[119]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "88590",
+    "Security": "DUN & BRADSTREET CORP DEL NEW",
+    "Ticker": "DNB",
+    "SP500 Start": "2008-12-02",
+    "SP500 End": "2017-04-04",
+    "Reason": "IT acquiring CEB[119]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "DXC Technology",
+    "Ticker": "DXC",
+    "SP500 Start": "2017-04-04",
+    "SP500 End": "2025-12-30",
+    "Reason": "HPE spins off Everett, merged with CSC to form DXC[120][121]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Southwestern Energy",
+    "Ticker": "SWN",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2017-04-04",
+    "Reason": "HPE spins off Everett, merged with CSC to form DXC[120][121]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Advanced Micro Devices",
+    "Ticker": "AMD",
+    "SP500 Start": "2017-03-20",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization change.[122]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "79881",
+    "Security": "URBAN OUTFITTERS INC",
+    "Ticker": "URBN",
+    "SP500 Start": "2010-02-08",
+    "SP500 End": "2017-03-17",
+    "Reason": "Market capitalization change.[122]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Raymond James Financial",
+    "Ticker": "RJF",
+    "SP500 Start": "2017-03-20",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization change.[122]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "21522",
+    "Security": "FRUEHAUF TRAILER CO; FRUEHAUF CORP",
+    "Ticker": "FTR",
+    "SP500 Start": "1957-03-01",
+    "SP500 End": "1986-10-22",
+    "Reason": "Market capitalization change.[122]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "84767",
+    "Security": "ALEXANDRIA REAL EST EQUITIES INC",
+    "Ticker": "ARE",
+    "SP500 Start": "2017-03-20",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market capitalization change.[122]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "91611",
+    "Security": "FIRST SOLAR INC",
+    "Ticker": "FSLR",
+    "SP500 Start": "2009-10-16",
+    "SP500 End": "2017-03-17",
+    "Reason": "Market capitalization change.[122]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "77357",
+    "Security": "SYNOPSYS INC",
+    "Ticker": "SNPS",
+    "SP500 Start": "2017-03-16",
+    "SP500 End": "2022-12-30",
+    "Reason": "Samsung Electronics acquired Harman International Industries.[123]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Harman International",
+    "Ticker": "HAR",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2017-03-16",
+    "Reason": "Samsung Electronics acquired Harman International Industries.[123]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "81696",
+    "Security": "ECHOSTAR COMMUNICATIONS CORP NEW; DISH NETWORK CORP",
+    "Ticker": "DISH",
+    "SP500 Start": "2017-03-13",
+    "SP500 End": "2022-12-30",
+    "Reason": "S&P 500 constituent Analog Devices (NASD:ADI) acquired Linear Technology.[124]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "10299",
+    "Security": "LINEAR TECHNOLOGY CORP",
+    "Ticker": "LLTC",
+    "SP500 Start": "2000-04-03",
+    "SP500 End": "2017-03-10",
+    "Reason": "S&P 500 constituent Analog Devices (NASD:ADI) acquired Linear Technology.[124]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "79782",
+    "Security": "REGENCY REALTY CORP; REGENCY CENTERS CORP",
+    "Ticker": "REG",
+    "SP500 Start": "2017-03-02",
+    "SP500 End": "2022-12-30",
+    "Reason": "REG acquires EQY[125]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "88436",
+    "Security": "ENDO INTERNATIONAL PLC; ENDO HEALTH SOLUTIONS INC; ENDO PHARMACEUTICALS HLDGS INC",
+    "Ticker": "ENDP",
+    "SP500 Start": "2015-01-27",
+    "SP500 End": "2017-03-01",
+    "Reason": "REG acquires EQY[125]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "93429",
+    "Security": "C B O E GLOBAL MARKETS INC; C B O E HOLDINGS INC",
+    "Ticker": "CBOE",
+    "SP500 Start": "2017-03-01",
+    "SP500 End": "2022-12-30",
+    "Reason": "CBOE acquires BATS[125]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "24459",
+    "Security": "PITNEY BOWES INC",
+    "Ticker": "PBI",
+    "SP500 Start": "1957-03-01",
+    "SP500 End": "2017-02-28",
+    "Reason": "CBOE acquires BATS[125]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Incyte",
+    "Ticker": "INCY",
+    "SP500 Start": "2017-02-28",
+    "SP500 End": "2025-12-30",
+    "Reason": "SE acquired by ENB[125]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "91650",
+    "Security": "SPECTRA ENERGY CORP",
+    "Ticker": "SE",
+    "SP500 Start": "2007-01-03",
+    "SP500 End": "2017-02-27",
+    "Reason": "SE acquired by ENB[125]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "76709",
+    "Security": "I D E X X LABORATORIES INC",
+    "Ticker": "IDXX",
+    "SP500 Start": "2017-01-05",
+    "SP500 End": "2022-12-30",
+    "Reason": "S&P 100 & 500 constituent Abbott Laboratories (NYSE:ABT) acquired St. Jude Medical.[126]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "St Jude Medical",
+    "Ticker": "STJ",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2017-01-05",
+    "Reason": "S&P 100 & 500 constituent Abbott Laboratories (NYSE:ABT) acquired St. Jude Medical.[126]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "80183",
+    "Security": "MID AMERICA APT COMMUNITIES INC",
+    "Ticker": "MAA",
+    "SP500 Start": "2016-12-02",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market capitalization change.[127]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "77157",
+    "Security": "O I GLASS INC; OWENS ILL INC",
+    "Ticker": "OI",
+    "SP500 Start": "2009-01-02",
+    "SP500 End": "2016-12-01",
+    "Reason": "Market capitalization change.[127]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Envision Healthcare",
+    "Ticker": "EVHC",
+    "SP500 Start": "2016-12-02",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization change.[127]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "65330",
+    "Security": "LEGG MASON INC",
+    "Ticker": "LM",
+    "SP500 Start": "2006-04-24",
+    "SP500 End": "2016-12-01",
+    "Reason": "Market capitalization change.[127]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Arconic",
+    "Ticker": "ARNC",
+    "SP500 Start": "2016-11-01",
+    "SP500 End": "2025-12-30",
+    "Reason": "AA spins off ARNC"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "16347",
+    "Security": "ALCOA CORP",
+    "Ticker": "AA",
+    "SP500 Start": "2016-11-01",
+    "SP500 End": "2016-11-01",
+    "Reason": "AA spins off ARNC"
+  },
+  {
+    "Action": "Added",
+    "Permno": "13983",
+    "Security": "COTY INC",
+    "Ticker": "COTY",
+    "SP500 Start": "2016-10-03",
+    "SP500 End": "2020-09-18",
+    "Reason": "COTY replaces DO[128]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "82298",
+    "Security": "DIAMOND OFFSHORE DRILLING INC",
+    "Ticker": "DO",
+    "SP500 Start": "2009-02-26",
+    "SP500 End": "2016-09-30",
+    "Reason": "COTY replaces DO[128]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "The Cooper Companies",
+    "Ticker": "COO",
+    "SP500 Start": "2016-09-22",
+    "SP500 End": "2025-12-30",
+    "Reason": "MAR acquires HOT[129]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "91207",
+    "Security": "STARWOOD HOTELS & REST WLDWD INC",
+    "Ticker": "HOT",
+    "SP500 Start": "2006-04-10",
+    "SP500 End": "2016-09-22",
+    "Reason": "MAR acquires HOT[129]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "12308",
+    "Security": "CHARTER COMMUNICATIONS INC; CHARTER COMMUNICATIONS INC NEW",
+    "Ticker": "CHTR",
+    "SP500 Start": "2016-09-08",
+    "SP500 End": "2022-12-30",
+    "Reason": "Dell acquires EMC[130]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "EMC Corporation",
+    "Ticker": "EMC",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2016-09-08",
+    "Reason": "Dell acquires EMC[130]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "85621",
+    "Security": "METTLER TOLEDO INTERNATIONAL INC",
+    "Ticker": "MTD",
+    "SP500 Start": "2016-09-06",
+    "SP500 End": "2022-12-30",
+    "Reason": "TYC acquires JCI (and retains JCI ticker).[131]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Tyco International",
+    "Ticker": "TYC",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2016-09-06",
+    "Reason": "TYC acquires JCI (and retains JCI ticker).[131]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "16087",
+    "Security": "FORTIVE CORP",
+    "Ticker": "FTV",
+    "SP500 Start": "2016-07-05",
+    "SP500 End": "2022-12-30",
+    "Reason": "CPGX acquired by TRP[132]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "15404",
+    "Security": "COLUMBIA PIPELINE GROUP INC",
+    "Ticker": "CPGX",
+    "SP500 Start": "2015-07-02",
+    "SP500 End": "2016-07-05",
+    "Reason": "CPGX acquired by TRP[132]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Alliant Energy Corp",
+    "Ticker": "LNT",
+    "SP500 Start": "2016-07-01",
+    "SP500 End": "2025-12-30",
+    "Reason": "GAS acquired by SO[133]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "48274",
+    "Security": "NORTHERN ILL GAS CO; NICOR INC",
+    "Ticker": "GAS",
+    "SP500 Start": "1989-08-03",
+    "SP500 End": "2011-12-12",
+    "Reason": "GAS acquired by SO[133]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "80191",
+    "Security": "ALBEMARLE CORP",
+    "Ticker": "ALB",
+    "SP500 Start": "2016-07-01",
+    "SP500 End": "2022-12-30",
+    "Reason": "TE acquired by EMA[132]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "37161",
+    "Security": "T E C O ENERGY INC; TAMPA ELECTRIC CO",
+    "Ticker": "TE",
+    "SP500 Start": "2001-10-10",
+    "SP500 End": "2016-06-30",
+    "Reason": "TE acquired by EMA[132]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Fortune Brands Home & Security",
+    "Ticker": "FBHS",
+    "SP500 Start": "2016-06-22",
+    "SP500 End": "2025-12-30",
+    "Reason": "CVC acquired by Altice NV[134]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "68857",
+    "Security": "CABLEVISION SYSTEMS CORP",
+    "Ticker": "CVC",
+    "SP500 Start": "2010-12-20",
+    "SP500 End": "2016-06-23",
+    "Reason": "CVC acquired by Altice NV[134]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "91152",
+    "Security": "TRANSDIGM GROUP INC",
+    "Ticker": "TDG",
+    "SP500 Start": "2016-06-03",
+    "SP500 End": "2022-12-30",
+    "Reason": "SHPG acquiring BXLT[135]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "15401",
+    "Security": "BAXALTA INC",
+    "Ticker": "BXLT",
+    "SP500 Start": "2015-07-01",
+    "SP500 End": "2016-06-02",
+    "Reason": "SHPG acquiring BXLT[135]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Arthur J. Gallagher & Co.",
+    "Ticker": "AJG",
+    "SP500 Start": "2016-05-31",
+    "SP500 End": "2025-12-30",
+    "Reason": "CCE merging with European bottlers[136]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "70500",
+    "Security": "COCA COLA ENTERPRISES INC; COCA COLA ENTERPRISES INC NEW",
+    "Ticker": "CCE",
+    "SP500 Start": "1998-10-08",
+    "SP500 End": "2016-05-27",
+    "Reason": "CCE merging with European bottlers[136]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "LKQ Corporation",
+    "Ticker": "LKQ",
+    "SP500 Start": "2016-05-23",
+    "SP500 End": "2025-12-30",
+    "Reason": "ARG acquired by Air Liquide[137]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Airgas",
+    "Ticker": "ARG",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2016-05-23",
+    "Reason": "ARG acquired by Air Liquide[137]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "90373",
+    "Security": "DIGITAL REALTY TRUST INC",
+    "Ticker": "DLR",
+    "SP500 Start": "2016-05-18",
+    "SP500 End": "2022-12-30",
+    "Reason": "TWC acquired by CHTR[138]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "91883",
+    "Security": "TIME WARNER CABLE INC",
+    "Ticker": "TWC",
+    "SP500 Start": "2009-03-30",
+    "SP500 End": "2016-05-17",
+    "Reason": "TWC acquired by CHTR[138]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "28804",
+    "Security": "ALASKA AIRLS INC; ALASKA AIRGROUP INC",
+    "Ticker": "ALK",
+    "SP500 Start": "2016-05-13",
+    "SP500 End": "2022-12-30",
+    "Reason": "SNDK acquired by WDC[139]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "82618",
+    "Security": "SANDISK CORP",
+    "Ticker": "SNDK",
+    "SP500 Start": "2006-04-20",
+    "SP500 End": "2016-05-12",
+    "Reason": "SNDK acquired by WDC[139]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "89216",
+    "Security": "ACUITY BRANDS INC",
+    "Ticker": "AYI",
+    "SP500 Start": "2016-05-03",
+    "SP500 End": "2018-06-15",
+    "Reason": "ADT acquired by APO[140]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "13567",
+    "Security": "A D T CORP",
+    "Ticker": "ADT",
+    "SP500 Start": "2012-10-01",
+    "SP500 End": "2016-05-02",
+    "Reason": "ADT acquired by APO[140]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "88873",
+    "Security": "GLOBAL PAYMENTS INC",
+    "Ticker": "GPN",
+    "SP500 Start": "2016-04-25",
+    "SP500 End": "2022-12-30",
+    "Reason": "Global Payments is acquiring Heartland Payment Systems[141]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "89301",
+    "Security": "GAMESTOP CORP; GAMESTOP CORP NEW",
+    "Ticker": "GME",
+    "SP500 Start": "2007-12-14",
+    "SP500 End": "2016-04-22",
+    "Reason": "Global Payments is acquiring Heartland Payment Systems[141]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "92322",
+    "Security": "ULTA BEAUTY INC; ULTA SALON COSMETICS & FRAG INC",
+    "Ticker": "ULTA",
+    "SP500 Start": "2016-04-18",
+    "SP500 End": "2022-12-30",
+    "Reason": "Ulta replaces Tenet[142]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Tenet Healthcare",
+    "Ticker": "THC",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2016-04-18",
+    "Reason": "Ulta replaces Tenet[142]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "15980",
+    "Security": "UNDER ARMOUR INC",
+    "Ticker": "UA",
+    "SP500 Start": "2016-04-08",
+    "SP500 End": "2022-06-17",
+    "Reason": "Under Armour distribution of second class of stock"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Foot Locker",
+    "Ticker": "FL",
+    "SP500 Start": "2016-04-04",
+    "SP500 End": "2025-12-30",
+    "Reason": "Schlumberger acquired Cameron[143]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Cameron International",
+    "Ticker": "CAM",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2016-04-04",
+    "Reason": "Schlumberger acquired Cameron[143]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "76095",
+    "Security": "HOLOGIC INC",
+    "Ticker": "HOLX",
+    "SP500 Start": "2016-03-30",
+    "SP500 End": "2022-12-30",
+    "Reason": "Exelon acquired Pepco.[144]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "23501",
+    "Security": "PEPCO HOLDINGS INC; POTOMAC ELECTRIC POWER CO",
+    "Ticker": "POM",
+    "SP500 Start": "2007-11-09",
+    "SP500 End": "2016-03-29",
+    "Reason": "Exelon acquired Pepco.[144]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Centene Corporation",
+    "Ticker": "CNC",
+    "SP500 Start": "2016-03-30",
+    "SP500 End": "2025-12-30",
+    "Reason": "Centene acquired Health Net.[144]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Ensco",
+    "Ticker": "ESV",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2016-03-30",
+    "Reason": "Centene acquired Health Net.[144]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "UDR",
+    "Ticker": "UDR",
+    "SP500 Start": "2016-03-07",
+    "SP500 End": "2025-12-30",
+    "Reason": "JAB Holding Company acquired Keurig Green Mountain[145]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "79588",
+    "Security": "GREEN MOUNTAIN COFFEE ROASTERS I; GREEN MOUNTAIN COFFEE INC; KEURIG GREEN MOUNTAIN INC",
+    "Ticker": "GMCR",
+    "SP500 Start": "2014-03-24",
+    "SP500 End": "2016-03-04",
+    "Reason": "JAB Holding Company acquired Keurig Green Mountain[145]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "92614",
+    "Security": "AMERICAN WATER WORKS CO INC",
+    "Ticker": "AWK",
+    "SP500 Start": "2016-03-04",
+    "SP500 End": "2022-12-30",
+    "Reason": "AWK replaces CNX[146]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "86799",
+    "Security": "CONSOL ENERGY INC; C N X RESOURCES CORP",
+    "Ticker": "CNX",
+    "SP500 Start": "2006-06-28",
+    "SP500 End": "2016-03-03",
+    "Reason": "AWK replaces CNX[146]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "92239",
+    "Security": "CONCHO RESOURCES INC",
+    "Ticker": "CXO",
+    "SP500 Start": "2016-02-22",
+    "SP500 End": "2021-01-20",
+    "Reason": "PCL taken over by WY[147]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "75592",
+    "Security": "PLUM CREEK TIMBER CO INC; PLUM CREEK TIMBER CO L P",
+    "Ticker": "PCL",
+    "SP500 Start": "2002-01-17",
+    "SP500 End": "2016-02-19",
+    "Reason": "PCL taken over by WY[147]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "14889",
+    "Security": "CITIZENS FINANCIAL GROUP INC",
+    "Ticker": "CFG",
+    "SP500 Start": "2016-02-01",
+    "SP500 End": "2022-12-30",
+    "Reason": "CFG replaces PCP[148]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Precision Castparts Corporation",
+    "Ticker": "PCP",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2016-02-01",
+    "Reason": "CFG replaces PCP[148]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "58413",
+    "Security": "FEDERAL REALTY INVESTMENT TRUST; FEDERAL REALTY INVESTMENT TR NEW",
+    "Ticker": "FRT",
+    "SP500 Start": "2016-02-01",
+    "SP500 End": "2022-12-30",
+    "Reason": "FRT replaces BRCM[149]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "85963",
+    "Security": "BROADCOM CORP",
+    "Ticker": "BRCM",
+    "SP500 Start": "2000-07-03",
+    "SP500 End": "2016-01-29",
+    "Reason": "FRT replaces BRCM[149]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "90305",
+    "Security": "EXTRA SPACE STORAGE INC",
+    "Ticker": "EXR",
+    "SP500 Start": "2016-01-19",
+    "SP500 End": "2022-12-30",
+    "Reason": "EXR replaces ACE as ACE Ltd acquires Chubb and retains the CB ticker, giving up ACE[150]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Chubb",
+    "Ticker": "ACE",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2016-01-19",
+    "Reason": "EXR replaces ACE as ACE Ltd acquires Chubb and retains the CB ticker, giving up ACE[150]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Willis Towers Watson",
+    "Ticker": "WLTW",
+    "SP500 Start": "2016-01-05",
+    "SP500 End": "2025-12-30",
+    "Reason": "WSH merges with TW (and renames to WLTW)[151]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "79089",
+    "Security": "FOSSIL INC; FOSSIL GROUP INC",
+    "Ticker": "FOSL",
+    "SP500 Start": "2012-04-04",
+    "SP500 End": "2016-01-04",
+    "Reason": "WSH merges with TW (and renames to WLTW)[151]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Church & Dwight",
+    "Ticker": "CHD",
+    "SP500 Start": "2015-12-29",
+    "SP500 End": "2025-12-30",
+    "Reason": "ALTR taken over by INTC[152]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "75577",
+    "Security": "ALTERA CORP",
+    "Ticker": "ALTR",
+    "SP500 Start": "2000-04-18",
+    "SP500 End": "2015-12-28",
+    "Reason": "ALTR taken over by INTC[152]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "89565",
+    "Security": "COMCAST CORP NEW",
+    "Ticker": "CMCSK",
+    "SP500 Start": "2015-09-21",
+    "SP500 End": "2015-12-11",
+    "Reason": "CMCSK shares no longer listed[153]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "15797",
+    "Security": "C S R A INC",
+    "Ticker": "CSRA",
+    "SP500 Start": "2015-11-30",
+    "SP500 End": "2018-04-03",
+    "Reason": "CSC spins off CSRA[154]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "11439",
+    "Security": "PITTSBURGH COAL CO; PITTSBURGH CONSLDTN COAL CO; CONSOLIDATION COAL INC PA",
+    "Ticker": "CSC",
+    "SP500 Start": "1957-03-01",
+    "SP500 End": "1966-09-28",
+    "Reason": "CSC spins off CSRA[154]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "88446",
+    "Security": "ILLUMINA INC",
+    "Ticker": "ILMN",
+    "SP500 Start": "2015-11-19",
+    "SP500 End": "2022-12-30",
+    "Reason": "Sigma-Aldrich acquired by Merck KGaA (MKGAY)[155]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "70536",
+    "Security": "SIGMA ALDRICH CORP",
+    "Ticker": "SIAL",
+    "SP500 Start": "1994-09-21",
+    "SP500 End": "2015-11-18",
+    "Reason": "Sigma-Aldrich acquired by Merck KGaA (MKGAY)[155]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "14776",
+    "Security": "SYNCHRONY FINANCIAL",
+    "Ticker": "SYF",
+    "SP500 Start": "2015-11-18",
+    "SP500 End": "2022-12-30",
+    "Reason": "GE spinning off Synchrony Financial[156]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "90162",
+    "Security": "GENWORTH FINANCIAL INC",
+    "Ticker": "GNW",
+    "SP500 Start": "2005-12-02",
+    "SP500 End": "2015-11-17",
+    "Reason": "GE spinning off Synchrony Financial[156]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "15707",
+    "Security": "HEWLETT PACKARD ENTERPRISE CO",
+    "Ticker": "HPE",
+    "SP500 Start": "2015-11-02",
+    "SP500 End": "2022-12-30",
+    "Reason": "HPQ spins off HPE[157]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "87070",
+    "Security": "HUDSON CITY BANCORP INC",
+    "Ticker": "HCBK",
+    "SP500 Start": "2007-02-15",
+    "SP500 End": "2015-11-02",
+    "Reason": "HPQ spins off HPE[157]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "93089",
+    "Security": "VERISK ANALYTICS INC",
+    "Ticker": "VRSK",
+    "SP500 Start": "2015-10-08",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market capitalization change.[158]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "21557",
+    "Security": "JOY MANUFACTURING CO",
+    "Ticker": "JOY",
+    "SP500 Start": "1957-03-01",
+    "SP500 End": "1987-06-24",
+    "Reason": "Market capitalization change.[158]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "89565",
+    "Security": "COMCAST CORP NEW",
+    "Ticker": "CMCSK",
+    "SP500 Start": "2015-09-21",
+    "SP500 End": "2015-12-11",
+    "Reason": "Share class methodology change[2]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "18421",
+    "Security": "FOX CORP",
+    "Ticker": "FOX",
+    "SP500 Start": "2019-03-19",
+    "SP500 End": "2022-12-30",
+    "Reason": "Share class methodology change"
+  },
+  {
+    "Action": "Added",
+    "Permno": "13964",
+    "Security": "NEWS CORP NEW",
+    "Ticker": "NWS",
+    "SP500 Start": "2015-09-21",
+    "SP500 End": "2022-12-30",
+    "Reason": "Share class methodology change"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "United Continental Holdings",
+    "Ticker": "UAL",
+    "SP500 Start": "2015-09-02",
+    "SP500 End": "2025-12-30",
+    "Reason": "Hospira taken over[159]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "90110",
+    "Security": "HOSPIRA INC",
+    "Ticker": "HSP",
+    "SP500 Start": "2004-05-03",
+    "SP500 End": "2015-09-02",
+    "Reason": "Hospira taken over[159]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "79678",
+    "Security": "ACTIVISION BLIZZARD INC; ACTIVISION INC NEW",
+    "Ticker": "ATVI",
+    "SP500 Start": "2015-08-31",
+    "SP500 End": "2022-12-30",
+    "Reason": "Pall taken over[159]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Pall Corporation",
+    "Ticker": "PLL",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2015-08-28",
+    "Reason": "Pall taken over[159]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "12076",
+    "Security": "SIGNET JEWELERS LTD",
+    "Ticker": "SIG",
+    "SP500 Start": "2015-07-29",
+    "SP500 End": "2018-03-16",
+    "Reason": "DirecTV acquired by AT&T.[160]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "DirecTV",
+    "Ticker": "DTV",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2015-07-29",
+    "Reason": "DirecTV acquired by AT&T.[160]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "15488",
+    "Security": "PAYPAL HOLDINGS INC",
+    "Ticker": "PYPL",
+    "SP500 Start": "2015-07-20",
+    "SP500 End": "2022-12-30",
+    "Reason": "PayPal Spun off by eBay[161]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Noble Corporation",
+    "Ticker": "NE",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2015-07-20",
+    "Reason": "PayPal Spun off by eBay[161]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "89217",
+    "Security": "ADVANCE AUTO PARTS INC",
+    "Ticker": "AAP",
+    "SP500 Start": "2015-07-09",
+    "SP500 End": "2022-12-30",
+    "Reason": "Family Dollar acquired.[162]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "53866",
+    "Security": "FAMILY DOLLAR STORES INC",
+    "Ticker": "FDO",
+    "SP500 Start": "2001-08-06",
+    "SP500 End": "2015-07-08",
+    "Reason": "Family Dollar acquired.[162]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "15408",
+    "Security": "KRAFT HEINZ CO",
+    "Ticker": "KHC",
+    "SP500 Start": "2015-07-06",
+    "SP500 End": "2022-12-30",
+    "Reason": "Kraft merger with Heinz.[163]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "13598",
+    "Security": "KRAFT FOODS GROUP INC",
+    "Ticker": "KRFT",
+    "SP500 Start": "2012-10-02",
+    "SP500 End": "2015-07-02",
+    "Reason": "Kraft merger with Heinz.[163]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "15404",
+    "Security": "COLUMBIA PIPELINE GROUP INC",
+    "Ticker": "CPGX",
+    "SP500 Start": "2015-07-02",
+    "SP500 End": "2016-07-05",
+    "Reason": "Spin off of Columbia Pipeline.[164]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Allegheny Technologies",
+    "Ticker": "ATI",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2015-07-02",
+    "Reason": "Spin off of Columbia Pipeline.[164]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "42877",
+    "Security": "HUNT J B TRANSPORT SERVICES INC",
+    "Ticker": "JBHT",
+    "SP500 Start": "2015-07-01",
+    "SP500 End": "2022-12-30",
+    "Reason": "Integrys taken over.[165]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Integrys Energy Group",
+    "Ticker": "TEG",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2015-07-01",
+    "Reason": "Integrys taken over.[165]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "15401",
+    "Security": "BAXALTA INC",
+    "Ticker": "BXLT",
+    "SP500 Start": "2015-07-01",
+    "SP500 End": "2016-06-02",
+    "Reason": "Baxalta spun off by Baxter.[166]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "93422",
+    "Security": "Q E P RESOURCES INC",
+    "Ticker": "QEP",
+    "SP500 Start": "2010-07-01",
+    "SP500 End": "2015-06-30",
+    "Reason": "Baxalta spun off by Baxter.[166]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Qorvo",
+    "Ticker": "QRVO",
+    "SP500 Start": "2015-06-11",
+    "SP500 End": "2025-12-30",
+    "Reason": "Lorillard gets acquired.[167]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "17279",
+    "Security": "LORILLARD INC",
+    "Ticker": "LO",
+    "SP500 Start": "2008-06-11",
+    "SP500 End": "2015-06-11",
+    "Reason": "Lorillard gets acquired.[167]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "81045",
+    "Security": "REALTY INCOME CORP",
+    "Ticker": "O",
+    "SP500 Start": "2015-04-07",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market capitalization change.[168]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "91391",
+    "Security": "WINDSTREAM CORP; WINDSTREAM HOLDINGS INC",
+    "Ticker": "WIN",
+    "SP500 Start": "2006-07-18",
+    "SP500 End": "2015-04-06",
+    "Reason": "Market capitalization change.[168]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "American Airlines Group",
+    "Ticker": "AAL",
+    "SP500 Start": "2015-03-23",
+    "SP500 End": "2025-12-30",
+    "Reason": "Allergan acquired by Actavis (and changed name to Allergan).[169]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "75646",
+    "Security": "ALLERGAN INC",
+    "Ticker": "AGN",
+    "SP500 Start": "1992-02-10",
+    "SP500 End": "2015-03-20",
+    "Reason": "Allergan acquired by Actavis (and changed name to Allergan).[169]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "89617",
+    "Security": "EQUINIX INC",
+    "Ticker": "EQIX",
+    "SP500 Start": "2015-03-23",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market Capitalization Changes.[170]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Denbury Resources",
+    "Ticker": "DNR",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2015-03-23",
+    "Reason": "Market Capitalization Changes.[170]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "85265",
+    "Security": "S L GREEN REALTY CORP",
+    "Ticker": "SLG",
+    "SP500 Start": "2015-03-23",
+    "SP500 End": "2021-03-19",
+    "Reason": "Market Capitalization Changes."
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Nabors Industries",
+    "Ticker": "NBR",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2015-03-23",
+    "Reason": "Market Capitalization Changes."
+  },
+  {
+    "Action": "Added",
+    "Permno": "91416",
+    "Security": "HANESBRANDS INC",
+    "Ticker": "HBI",
+    "SP500 Start": "2015-03-23",
+    "SP500 End": "2021-12-17",
+    "Reason": "Market Capitalization Changes."
+  },
+  {
+    "Action": "Removed",
+    "Permno": "40416",
+    "Security": "AVON PRODUCTS INC",
+    "Ticker": "AVP",
+    "SP500 Start": "1967-05-18",
+    "SP500 End": "2015-03-20",
+    "Reason": "Market Capitalization Changes."
+  },
+  {
+    "Action": "Added",
+    "Permno": "82581",
+    "Security": "SCHEIN HENRY INC",
+    "Ticker": "HSIC",
+    "SP500 Start": "2015-03-18",
+    "SP500 End": "2022-12-30",
+    "Reason": "Carefusion acquired by Becton Dickinson[170]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "92988",
+    "Security": "CAREFUSION CORP",
+    "Ticker": "CFN",
+    "SP500 Start": "2009-09-01",
+    "SP500 End": "2015-03-17",
+    "Reason": "Carefusion acquired by Becton Dickinson[170]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Skyworks",
+    "Ticker": "SWKS",
+    "SP500 Start": "2015-03-12",
+    "SP500 End": "2025-12-30",
+    "Reason": "PetSmart acquired by private equity consortium[171]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "79411",
+    "Security": "PETSMART INC",
+    "Ticker": "PETM",
+    "SP500 Start": "2012-10-05",
+    "SP500 End": "2015-03-11",
+    "Reason": "PetSmart acquired by private equity consortium[171]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "12622",
+    "Security": "H C A HOLDINGS INC; H C A HEALTHCARE INC",
+    "Ticker": "HCA",
+    "SP500 Start": "2015-01-27",
+    "SP500 End": "2022-12-30",
+    "Reason": "Safeway acquired by private equity consortium[172]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "76149",
+    "Security": "SAFEWAY INC",
+    "Ticker": "SWY",
+    "SP500 Start": "1998-11-13",
+    "SP500 End": "2015-01-26",
+    "Reason": "Safeway acquired by private equity consortium[172]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "88436",
+    "Security": "ENDO INTERNATIONAL PLC; ENDO HEALTH SOLUTIONS INC; ENDO PHARMACEUTICALS HLDGS INC",
+    "Ticker": "ENDP",
+    "SP500 Start": "2015-01-27",
+    "SP500 End": "2017-03-01",
+    "Reason": "Covidien acquired by Medtronic[173]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "92156",
+    "Security": "COVIDIEN LTD; COVIDIEN PLC",
+    "Ticker": "COV",
+    "SP500 Start": "2011-03-01",
+    "SP500 End": "2015-01-26",
+    "Reason": "Covidien acquired by Medtronic[173]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "79145",
+    "Security": "ROYAL CARIBBEAN CRUISES LTD",
+    "Ticker": "RCL",
+    "SP500 Start": "2014-12-05",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market cap changes[174]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "43772",
+    "Security": "BEMIS CO INC",
+    "Ticker": "BMS",
+    "SP500 Start": "1978-07-20",
+    "SP500 End": "2014-12-04",
+    "Reason": "Market cap changes[174]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "85991",
+    "Security": "LEVEL 3 COMMUNICATIONS INC",
+    "Ticker": "LVLT",
+    "SP500 Start": "2014-11-05",
+    "SP500 End": "2017-10-12",
+    "Reason": "Market cap changes[175]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Jabil Circuit",
+    "Ticker": "JBL",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2014-11-05",
+    "Reason": "Market cap changes[175]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "85663",
+    "Security": "UNITED RENTALS INC",
+    "Ticker": "URI",
+    "SP500 Start": "2014-09-22",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market cap changes[176]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "88991",
+    "Security": "PEABODY ENERGY CORP",
+    "Ticker": "BTU",
+    "SP500 Start": "2006-11-20",
+    "SP500 End": "2014-09-19",
+    "Reason": "Market cap changes[176]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Universal Health Services",
+    "Ticker": "UHS",
+    "SP500 Start": "2014-09-20",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market cap changes"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "79041",
+    "Security": "GALEN HEALTH CARE INC",
+    "Ticker": "GHC",
+    "SP500 Start": "1993-03-08",
+    "SP500 End": "1993-08-31",
+    "Reason": "Market cap changes"
+  },
+  {
+    "Action": "Added",
+    "Permno": "14011",
+    "Security": "MALLINCKRODT PLC",
+    "Ticker": "MNK",
+    "SP500 Start": "2014-08-19",
+    "SP500 End": "2017-07-25",
+    "Reason": "Market cap changes[177]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "45495",
+    "Security": "ROWAN DRILLING CO; ROWAN COMPANIES INC; ROWAN COMPANIES PLC",
+    "Ticker": "RDC",
+    "SP500 Start": "1985-01-10",
+    "SP500 End": "2014-08-18",
+    "Reason": "Market cap changes[177]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "80204",
+    "Security": "MARTIN MARIETTA MATERIALS INC",
+    "Ticker": "MLM",
+    "SP500 Start": "2014-07-02",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market capitalization changes[179]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "76644",
+    "Security": "UNITED STATES STEEL CORP NEW; U S X US STEEL GROUP INC",
+    "Ticker": "X",
+    "SP500 Start": "1991-05-07",
+    "SP500 End": "2014-07-01",
+    "Reason": "Market capitalization changes[179]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "85593",
+    "Security": "AFFILIATED MANAGERS GROUP INC",
+    "Ticker": "AMG",
+    "SP500 Start": "2014-07-01",
+    "SP500 End": "2019-12-20",
+    "Reason": "Actavis acquires Forest Laboratories[180]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "45241",
+    "Security": "FOREST LABS INC",
+    "Ticker": "FRX",
+    "SP500 Start": "2000-11-22",
+    "SP500 End": "2014-06-30",
+    "Reason": "Actavis acquires Forest Laboratories[180]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "89509",
+    "Security": "CIMAREX ENERGY CO",
+    "Ticker": "XEC",
+    "SP500 Start": "2014-06-23",
+    "SP500 End": "2020-03-02",
+    "Reason": "Market capitalization changes[181]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "International Game Technology",
+    "Ticker": "IGT",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2014-06-20",
+    "Reason": "Market capitalization changes[181]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "93002",
+    "Security": "AVAGO TECHNOLOGIES LTD; BROADCOM LTD; BROADCOM INC",
+    "Ticker": "AVGO",
+    "SP500 Start": "2014-05-08",
+    "SP500 End": "2022-12-30",
+    "Reason": "Avago acquires LSI[182]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "LSI Corporation",
+    "Ticker": "LSI",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2014-05-08",
+    "Reason": "Avago acquires LSI[182]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "15980",
+    "Security": "UNDER ARMOUR INC",
+    "Ticker": "UA",
+    "SP500 Start": "2016-04-08",
+    "SP500 End": "2022-06-17",
+    "Reason": "Beam acquired by Suntory[183]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Suntory Global Spirits",
+    "Ticker": "BEAM",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2014-05-01",
+    "Reason": "Beam acquired by Suntory[183]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "14601",
+    "Security": "NAVIENT CORP",
+    "Ticker": "NAVI",
+    "SP500 Start": "2014-05-01",
+    "SP500 End": "2018-06-04",
+    "Reason": "Navient Spun off from SLM[183]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "SLM Corporation",
+    "Ticker": "SLM",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2014-05-01",
+    "Reason": "Navient Spun off from SLM[183]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Google",
+    "Ticker": "GOOGL",
+    "SP500 Start": "2014-04-03",
+    "SP500 End": "2025-12-30",
+    "Reason": "Google Class C share distribution[184]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "80681",
+    "Security": "ESSEX PROPERTY TRUST INC",
+    "Ticker": "ESS",
+    "SP500 Start": "2014-04-02",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market capitalization changes[185]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "27422",
+    "Security": "CLEVELAND CLIFFS INC; CLEVELAND CLIFFS IRON CO; CLIFFS NATURAL RESOURCES INC; CLEVELAND CLIFFS INC NEW",
+    "Ticker": "CLF",
+    "SP500 Start": "2009-12-21",
+    "SP500 End": "2014-04-01",
+    "Reason": "Market capitalization changes[185]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "79588",
+    "Security": "GREEN MOUNTAIN COFFEE ROASTERS I; GREEN MOUNTAIN COFFEE INC; KEURIG GREEN MOUNTAIN INC",
+    "Ticker": "GMCR",
+    "SP500 Start": "2014-03-24",
+    "SP500 End": "2016-03-04",
+    "Reason": "Market capitalization changes[186]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "13141",
+    "Security": "W P X ENERGY INC",
+    "Ticker": "WPX",
+    "SP500 Start": "2012-01-03",
+    "SP500 End": "2014-03-21",
+    "Reason": "Market capitalization changes[186]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "80286",
+    "Security": "TRACTOR SUPPLY CO NEW",
+    "Ticker": "TSCO",
+    "SP500 Start": "2014-01-24",
+    "SP500 End": "2022-12-30",
+    "Reason": "Life Technologies acquired by Thermo Fisher Scientific Inc[187]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Life Technologies",
+    "Ticker": "LIFE",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2014-01-24",
+    "Reason": "Life Technologies acquired by Thermo Fisher Scientific Inc[187]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Alliance Data Systems",
+    "Ticker": "ADS",
+    "SP500 Start": "2013-12-23",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization changes.[188]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "83976",
+    "Security": "ABERCROMBIE & FITCH CO",
+    "Ticker": "ANF",
+    "SP500 Start": "2007-03-29",
+    "SP500 End": "2013-12-20",
+    "Reason": "Market capitalization changes.[188]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Mohawk Industries",
+    "Ticker": "MHK",
+    "SP500 Start": "2013-12-23",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization changes.[188]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "JDS Uniphase",
+    "Ticker": "JDSU",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2013-12-23",
+    "Reason": "Market capitalization changes.[188]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Facebook",
+    "Ticker": "FB",
+    "SP500 Start": "2013-12-23",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization changes.[188]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Teradyne",
+    "Ticker": "TER",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2013-12-23",
+    "Reason": "Market capitalization changes.[188]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "General Growth Properties",
+    "Ticker": "GGP",
+    "SP500 Start": "2013-12-10",
+    "SP500 End": "2025-12-30",
+    "Reason": "MOLX acquired by Koch Industries.[189]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "54827",
+    "Security": "MOLEX INC",
+    "Ticker": "MOLX",
+    "SP500 Start": "1999-12-01",
+    "SP500 End": "2013-12-09",
+    "Reason": "MOLX acquired by Koch Industries.[189]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "14297",
+    "Security": "ALLEGION PLC",
+    "Ticker": "ALLE",
+    "SP500 Start": "2013-12-02",
+    "SP500 End": "2022-12-30",
+    "Reason": "Allegion spun off by Ingersoll Rand.[190]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "18403",
+    "Security": "PENNEY J C CO INC; PENNEY J C INC",
+    "Ticker": "JCP",
+    "SP500 Start": "1957-03-01",
+    "SP500 End": "2013-11-29",
+    "Reason": "Allegion spun off by Ingersoll Rand.[190]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Michael Kors",
+    "Ticker": "KORS",
+    "SP500 Start": "2013-11-13",
+    "SP500 End": "2025-12-30",
+    "Reason": "ICE Exchange acquired NYSE Euronext.[191]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "91143",
+    "Security": "N Y S E GROUP INC; N Y S E EURONEXT",
+    "Ticker": "NYX",
+    "SP500 Start": "2007-10-25",
+    "SP500 End": "2013-11-12",
+    "Reason": "ICE Exchange acquired NYSE Euronext.[191]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "79237",
+    "Security": "SONAT OFFSHORE DRILLING INC; TRANSOCEAN SEDCO FOREX INC; TRANSOCEAN LTD; TRANSOCEAN INC NEW; TRANSOCEAN OFFSHORE INC; TRANSOCEAN INC",
+    "Ticker": "RIG",
+    "SP500 Start": "2013-10-29",
+    "SP500 End": "2017-07-25",
+    "Reason": "Founder Michael Dell and Silver Lake Partners acquired Dell.[192]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "11081",
+    "Security": "DELL COMPUTER CORP; DELL INC",
+    "Ticker": "DELL",
+    "SP500 Start": "1996-09-06",
+    "SP500 End": "2013-10-28",
+    "Reason": "Founder Michael Dell and Silver Lake Partners acquired Dell.[192]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "76744",
+    "Security": "VERTEX PHARMACEUTICALS INC",
+    "Ticker": "VRTX",
+    "SP500 Start": "2013-09-23",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market capitalization change.[193]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Advanced Micro Devices",
+    "Ticker": "AMD",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2013-09-20",
+    "Reason": "Market capitalization change.[193]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "85257",
+    "Security": "AMETEK INC NEW",
+    "Ticker": "AME",
+    "SP500 Start": "2013-09-23",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market capitalization change.[193]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "SAIC",
+    "Ticker": "SAI",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2013-09-20",
+    "Reason": "Market capitalization change.[193]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "91926",
+    "Security": "DELTA AIR LINES INC",
+    "Ticker": "DAL",
+    "SP500 Start": "2013-09-11",
+    "SP500 End": "2022-12-30",
+    "Reason": "BMC taken private by consortium[194]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "BMC Software",
+    "Ticker": "BMC",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2013-09-10",
+    "Reason": "BMC taken private by consortium[194]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "12542",
+    "Security": "NIELSEN HOLDINGS PLC; NIELSEN HOLDINGS N V; NIELSEN N V",
+    "Ticker": "NLSN",
+    "SP500 Start": "2013-07-09",
+    "SP500 End": "2022-10-11",
+    "Reason": "Softbank consortium purchase results in public float below 50%[195]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "14322",
+    "Security": "SEARS ROEBUCK & CO",
+    "Ticker": "S",
+    "SP500 Start": "1925-12-31",
+    "SP500 End": "2005-03-24",
+    "Reason": "Softbank consortium purchase results in public float below 50%[195]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "13963",
+    "Security": "NEWS CORP NEW",
+    "Ticker": "NWSA",
+    "SP500 Start": "2013-07-01",
+    "SP500 End": "2022-12-30",
+    "Reason": "Apollo Group's market cap more representative of a mid-cap[196]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Apollo Education Group",
+    "Ticker": "APOL",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2013-07-01",
+    "Reason": "Apollo Group's market cap more representative of a mid-cap[196]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "13788",
+    "Security": "ZOETIS INC",
+    "Ticker": "ZTS",
+    "SP500 Start": "2013-06-24",
+    "SP500 End": "2022-12-30",
+    "Reason": "Zoetis spun off by Pfizer[197]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "First Horizon",
+    "Ticker": "FHN",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2013-06-21",
+    "Reason": "Zoetis spun off by Pfizer[197]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "12369",
+    "Security": "GENERAL MOTORS CO",
+    "Ticker": "GM",
+    "SP500 Start": "2013-06-07",
+    "SP500 End": "2022-12-30",
+    "Reason": "HNZ acquired by consortium[198]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "23077",
+    "Security": "HEINZ H J CO",
+    "Ticker": "HNZ",
+    "SP500 Start": "1957-03-01",
+    "SP500 End": "2013-06-06",
+    "Reason": "HNZ acquired by consortium[198]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "12650",
+    "Security": "KANSAS CITY SOUTHERN; KANSAS CITY SOUTHERN RY CO; KANSAS CITY SOUTHERN INDS INC",
+    "Ticker": "KSU",
+    "SP500 Start": "2013-05-24",
+    "SP500 End": "2021-12-13",
+    "Reason": "DF too small after spinoff of White Wave Foods[199]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Dean Foods",
+    "Ticker": "DF",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2013-05-23",
+    "Reason": "DF too small after spinoff of White Wave Foods[199]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "80399",
+    "Security": "MACERICH CO",
+    "Ticker": "MAC",
+    "SP500 Start": "2013-05-09",
+    "SP500 End": "2019-12-20",
+    "Reason": "Acquired by Aetna (AET)[200]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Coventry Health Care",
+    "Ticker": "CVH",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2013-05-08",
+    "Reason": "Acquired by Aetna (AET)[200]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "76614",
+    "Security": "REGENERON PHARMACEUTICALS INC",
+    "Ticker": "REGN",
+    "SP500 Start": "2013-05-01",
+    "SP500 End": "2022-12-30",
+    "Reason": "A majority of MetroPCS was acquired by T-Mobile[201]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "86414",
+    "Security": "SPRINT CORP",
+    "Ticker": "PCS",
+    "SP500 Start": "1998-11-24",
+    "SP500 End": "2004-04-22",
+    "Reason": "A majority of MetroPCS was acquired by T-Mobile[201]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "13936",
+    "Security": "PHILLIPS JONES CORP; PHILLIPS VAN HEUSEN CORP; P V H CORP",
+    "Ticker": "PVH",
+    "SP500 Start": "2013-02-14",
+    "SP500 End": "2022-09-16",
+    "Reason": "Market capitalization changes[202]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Big Lots",
+    "Ticker": "BIG",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2013-02-15",
+    "Reason": "Market capitalization changes[202]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "13721",
+    "Security": "ABBVIE INC",
+    "Ticker": "ABBV",
+    "SP500 Start": "2013-01-02",
+    "SP500 End": "2022-12-30",
+    "Reason": "ABBV spun off from Abbott Labs (ABT)[203]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Federated Investors",
+    "Ticker": "FII",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2013-01-02",
+    "Reason": "ABBV spun off from Abbott Labs (ABT)[203]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Delphi Automotive",
+    "Ticker": "DLPH",
+    "SP500 Start": "2012-12-21",
+    "SP500 End": "2025-12-30",
+    "Reason": "TIE acquired by Precision Cast Parts (PCP)[204]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Titanium Metals",
+    "Ticker": "TIE",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2012-12-21",
+    "Reason": "TIE acquired by Precision Cast Parts (PCP)[204]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "88837",
+    "Security": "GARMIN LTD",
+    "Ticker": "GRMN",
+    "SP500 Start": "2012-12-12",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market capitalization changes[205]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "RR Donnelley",
+    "Ticker": "RRD",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2012-12-11",
+    "Reason": "Market capitalization changes[205]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "93096",
+    "Security": "DOLLAR GENERAL CORP NEW",
+    "Ticker": "DG",
+    "SP500 Start": "2012-12-03",
+    "SP500 End": "2022-12-30",
+    "Reason": "Acquired by Eaton Corp. (ETN)[206]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "21979",
+    "Security": "COOPER INDUSTRIES LTD; COOPER INDUSTRIES PLC; COOPER INDUSTRIES INC; COOPER BESSEMER CORP",
+    "Ticker": "CBE",
+    "SP500 Start": "2011-11-23",
+    "SP500 End": "2012-11-30",
+    "Reason": "Acquired by Eaton Corp. (ETN)[206]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "79411",
+    "Security": "PETSMART INC",
+    "Ticker": "PETM",
+    "SP500 Start": "2012-10-05",
+    "SP500 End": "2015-03-11",
+    "Reason": "Acquired by Energy Transfer Partners (ETP)[207]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "14656",
+    "Security": "SUNOCO INC; SUN INC; SUN OIL CO",
+    "Ticker": "SUN",
+    "SP500 Start": "1969-03-06",
+    "SP500 End": "2012-10-04",
+    "Reason": "Acquired by Energy Transfer Partners (ETP)[207]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "13598",
+    "Security": "KRAFT FOODS GROUP INC",
+    "Ticker": "KRFT",
+    "SP500 Start": "2012-10-02",
+    "SP500 End": "2015-07-02",
+    "Reason": "Kraft split into two companies[208]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "90547",
+    "Security": "ALPHA NATURAL RESOURCES INC",
+    "Ticker": "ANR",
+    "SP500 Start": "2011-06-02",
+    "SP500 End": "2012-10-01",
+    "Reason": "Kraft split into two companies[208]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Mondelez",
+    "Ticker": "MDLZ",
+    "SP500 Start": "2012-10-02",
+    "SP500 End": "2025-12-30",
+    "Reason": "Old Kraft Foods renamed Mondelez[209]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Kraft Foods",
+    "Ticker": "KFT",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2012-10-02",
+    "Reason": "Old Kraft Foods renamed Mondelez[209]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "13567",
+    "Security": "A D T CORP",
+    "Ticker": "ADT",
+    "SP500 Start": "2012-10-01",
+    "SP500 End": "2016-05-02",
+    "Reason": "Tyco spun off ADT"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "82643",
+    "Security": "LEXMARK INTERNATIONAL GROUP INC; LEXMARK INTERNATIONAL INC NEW",
+    "Ticker": "LXK",
+    "SP500 Start": "1999-08-13",
+    "SP500 End": "2012-09-28",
+    "Reason": "Tyco spun off ADT"
+  },
+  {
+    "Action": "Added",
+    "Permno": "13586",
+    "Security": "PENTAIR PLC; PENTAIR LTD",
+    "Ticker": "PNR",
+    "SP500 Start": "2012-10-01",
+    "SP500 End": "2022-12-30",
+    "Reason": "Tyco spin-off merged w/Pentair"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "DeVry",
+    "Ticker": "DV",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2012-10-01",
+    "Reason": "Tyco spin-off merged w/Pentair"
+  },
+  {
+    "Action": "Added",
+    "Permno": "12345",
+    "Security": "LYONDELLBASELL INDUSTRIES N V",
+    "Ticker": "LYB",
+    "SP500 Start": "2012-09-05",
+    "SP500 End": "2022-12-30",
+    "Reason": "SHLD below public float threshold"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Sears Holdings",
+    "Ticker": "SHLD",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2012-09-05",
+    "Reason": "SHLD below public float threshold"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Ensco",
+    "Ticker": "ESV",
+    "SP500 Start": "2012-07-31",
+    "SP500 End": "2025-12-30",
+    "Reason": "Goodrich acquired by United Technologies (UTX).[210]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "12140",
+    "Security": "GOODRICH CORP; GOODRICH B F CO",
+    "Ticker": "GR",
+    "SP500 Start": "1957-03-01",
+    "SP500 End": "2012-07-30",
+    "Reason": "Goodrich acquired by United Technologies (UTX).[210]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "89641",
+    "Security": "SEAGATE TECHNOLOGY HOLDINGS PLC; SEAGATE TECHNOLOGY HOLDINGS; SEAGATE TECHNOLOGY; SEAGATE TECHNOLOGY PLC",
+    "Ticker": "STX",
+    "SP500 Start": "2012-07-02",
+    "SP500 End": "2022-12-30",
+    "Reason": "Acquired by Duke Energy (DUK)[211]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Progress Energy",
+    "Ticker": "PGN",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2012-07-02",
+    "Reason": "Acquired by Duke Energy (DUK)[211]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Monster Beverage",
+    "Ticker": "MNST",
+    "SP500 Start": "2012-06-29",
+    "SP500 End": "2025-12-30",
+    "Reason": "Split up of Sara Lee[212]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Sara Lee Corporation",
+    "Ticker": "SLE",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2012-06-29",
+    "Reason": "Split up of Sara Lee[212]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "48486",
+    "Security": "LAM RESH CORP",
+    "Ticker": "LRCX",
+    "SP500 Start": "2012-06-05",
+    "SP500 End": "2022-12-30",
+    "Reason": "Acquired by Lam Research (LRCX)[213]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "12067",
+    "Security": "NOVELLUS SYSTEMS INC",
+    "Ticker": "NVLS",
+    "SP500 Start": "2000-06-19",
+    "SP500 End": "2012-06-04",
+    "Reason": "Acquired by Lam Research (LRCX)[213]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "83111",
+    "Security": "ALEXION PHARMACEUTICALS INC",
+    "Ticker": "ALXN",
+    "SP500 Start": "2012-05-25",
+    "SP500 End": "2021-07-20",
+    "Reason": "Acquired by Google (GOOG)[214]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "12456",
+    "Security": "MOTOROLA MOBILITY HOLDINGS INC",
+    "Ticker": "MMI",
+    "SP500 Start": "2011-01-04",
+    "SP500 End": "2012-05-24",
+    "Reason": "Acquired by Google (GOOG)[214]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "12558",
+    "Security": "KINDER MORGAN INC",
+    "Ticker": "KMI",
+    "SP500 Start": "2012-05-25",
+    "SP500 End": "2022-12-30",
+    "Reason": "Acquired by Kinder Morgan (KMI)[215]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "El Paso Corporation",
+    "Ticker": "EP",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2012-05-17",
+    "Reason": "Acquired by Kinder Morgan (KMI)[215]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "13356",
+    "Security": "PHILLIPS 66",
+    "Ticker": "PSX",
+    "SP500 Start": "2012-05-01",
+    "SP500 End": "2022-12-30",
+    "Reason": "ConocoPhillips spun off Phillips 66[216]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "44951",
+    "Security": "SUPERVALU INC; SUPER VALU STORES INC",
+    "Ticker": "SVU",
+    "SP500 Start": "1985-01-31",
+    "SP500 End": "2012-04-30",
+    "Reason": "ConocoPhillips spun off Phillips 66[216]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "79089",
+    "Security": "FOSSIL INC; FOSSIL GROUP INC",
+    "Ticker": "FOSL",
+    "SP500 Start": "2012-04-04",
+    "SP500 End": "2016-01-04",
+    "Reason": "Acquired by Express Scripts (ESRX)[217]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "89813",
+    "Security": "MEDCO HEALTH SOLUTIONS INC",
+    "Ticker": "MHS",
+    "SP500 Start": "2003-08-20",
+    "SP500 End": "2012-04-03",
+    "Reason": "Acquired by Express Scripts (ESRX)[217]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Crown Castle",
+    "Ticker": "CCI",
+    "SP500 Start": "2012-03-13",
+    "SP500 End": "2025-12-30",
+    "Reason": "Acquired by Exelon Corp. (EXC)[218]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Constellation Energy Group",
+    "Ticker": "CEG",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2012-03-13",
+    "Reason": "Acquired by Exelon Corp. (EXC)[218]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "13141",
+    "Security": "W P X ENERGY INC",
+    "Ticker": "WPX",
+    "SP500 Start": "2012-01-03",
+    "SP500 End": "2014-03-21",
+    "Reason": "Market capitalization changes[219]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "78139",
+    "Security": "COMPUWARE CORP",
+    "Ticker": "CPWR",
+    "SP500 Start": "1999-01-04",
+    "SP500 End": "2011-12-30",
+    "Reason": "Market capitalization changes[219]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "13168",
+    "Security": "TRIPADVISOR INC",
+    "Ticker": "TRIP",
+    "SP500 Start": "2011-12-21",
+    "SP500 End": "2019-12-20",
+    "Reason": "Expedia spun off TripAdvisor.[220]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "75257",
+    "Security": "TELLABS INC",
+    "Ticker": "TLAB",
+    "SP500 Start": "1995-07-03",
+    "SP500 End": "2011-12-20",
+    "Reason": "Expedia spun off TripAdvisor.[220]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "79545",
+    "Security": "BORGWARNER INC; BORG WARNER AUTOMOTIVE INC",
+    "Ticker": "BWA",
+    "SP500 Start": "2011-12-19",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market capitalization changes[221]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "AK Steel",
+    "Ticker": "AKS",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2011-12-16",
+    "Reason": "Market capitalization changes[221]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "77182",
+    "Security": "PERRIGO CO; PERRIGO CO PLC",
+    "Ticker": "PRGO",
+    "SP500 Start": "2011-12-19",
+    "SP500 End": "2021-09-17",
+    "Reason": "Market capitalization changes"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Monster Worldwide",
+    "Ticker": "MWW",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2011-12-16",
+    "Reason": "Market capitalization changes"
+  },
+  {
+    "Action": "Added",
+    "Permno": "81481",
+    "Security": "DOLLAR TREE INC; DOLLAR TREE STORES INC",
+    "Ticker": "DLTR",
+    "SP500 Start": "2011-12-19",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market capitalization changes"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "MEMC Electronic Materials",
+    "Ticker": "WFR",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2011-12-16",
+    "Reason": "Market capitalization changes"
+  },
+  {
+    "Action": "Added",
+    "Permno": "48274",
+    "Security": "NORTHERN ILL GAS CO; NICOR INC",
+    "Ticker": "GAS",
+    "SP500 Start": "1989-08-03",
+    "SP500 End": "2011-12-12",
+    "Reason": "Nicor acquired by AGL, which retained the GAS ticker.[222]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "48274",
+    "Security": "NORTHERN ILL GAS CO; NICOR INC",
+    "Ticker": "GAS",
+    "SP500 Start": "1989-08-03",
+    "SP500 End": "2011-12-12",
+    "Reason": "Nicor acquired by AGL, which retained the GAS ticker.[222]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "21979",
+    "Security": "COOPER INDUSTRIES LTD; COOPER INDUSTRIES PLC; COOPER INDUSTRIES INC; COOPER BESSEMER CORP",
+    "Ticker": "CBE",
+    "SP500 Start": "2011-11-23",
+    "SP500 End": "2012-11-30",
+    "Reason": "Janus Capital Group's market capitalization is less than $1.2 billion and is no longer representative of the large cap market space.[223]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Janus Capital Group",
+    "Ticker": "JNS",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2011-11-18",
+    "Reason": "Janus Capital Group's market capitalization is less than $1.2 billion and is no longer representative of the large cap market space.[223]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "13035",
+    "Security": "XYLEM INC",
+    "Ticker": "XYL",
+    "SP500 Start": "2011-11-01",
+    "SP500 End": "2022-12-30",
+    "Reason": "Spun off from ITT Corp.[224]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "82776",
+    "Security": "I T T CORP NEV",
+    "Ticker": "ITT",
+    "SP500 Start": "1995-12-20",
+    "SP500 End": "1998-02-20",
+    "Reason": "Spun off from ITT Corp.[224]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "92157",
+    "Security": "T E CONNECTIVITY LTD; TYCO ELECTRONICS LTD; TYCO ELECTRONICS LTD NEW",
+    "Ticker": "TEL",
+    "SP500 Start": "2011-10-17",
+    "SP500 End": "2022-12-30",
+    "Reason": "Acquired by Teva Pharmaceutical Industries (TEVA).[225]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "76625",
+    "Security": "CEPHALON INC",
+    "Ticker": "CEPH",
+    "SP500 Start": "2008-11-17",
+    "SP500 End": "2011-10-14",
+    "Reason": "Acquired by Teva Pharmaceutical Industries (TEVA).[225]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "90386",
+    "Security": "MOSAIC CO; MOSAIC CO NEW",
+    "Ticker": "MOS",
+    "SP500 Start": "2011-09-26",
+    "SP500 End": "2022-12-30",
+    "Reason": "Acquired by Texas Instruments (TXN).[226]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "51377",
+    "Security": "NATIONAL SEMICONDUCTOR CORP",
+    "Ticker": "NSM",
+    "SP500 Start": "1976-12-09",
+    "SP500 End": "2011-09-23",
+    "Reason": "Acquired by Texas Instruments (TXN).[226]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "89071",
+    "Security": "ACCENTURE LTD BERMUDA; ACCENTURE PLC IRELAND",
+    "Ticker": "ACN",
+    "SP500 Start": "2011-07-06",
+    "SP500 End": "2022-12-30",
+    "Reason": "Marshall & Iisley is being bought by Bank of Montreal[227]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Marshall & Ilsley",
+    "Ticker": "MI",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2011-07-05",
+    "Reason": "Marshall & Iisley is being bought by Bank of Montreal[227]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "12872",
+    "Security": "MARATHON PETROLEUM CORP",
+    "Ticker": "MPC",
+    "SP500 Start": "2011-07-01",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market capitalization adjustments.[228]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "RadioShack",
+    "Ticker": "RSH",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2011-06-30",
+    "Reason": "Market capitalization adjustments.[228]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "90547",
+    "Security": "ALPHA NATURAL RESOURCES INC",
+    "Ticker": "ANR",
+    "SP500 Start": "2011-06-02",
+    "SP500 End": "2012-10-01",
+    "Reason": "Alpha Natural Resources acquired Massey Energy.[229]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Massey Energy",
+    "Ticker": "MEE",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2011-06-01",
+    "Reason": "Alpha Natural Resources acquired Massey Energy.[229]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "91068",
+    "Security": "CHIPOTLE MEXICAN GRILL INC",
+    "Ticker": "CMG",
+    "SP500 Start": "2011-04-28",
+    "SP500 End": "2022-12-30",
+    "Reason": "Acquired by private equity firms.[230]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "90609",
+    "Security": "NOVELL INC",
+    "Ticker": "NOVL",
+    "SP500 Start": "1991-11-01",
+    "SP500 End": "2011-04-27",
+    "Reason": "Acquired by private equity firms.[230]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "87267",
+    "Security": "BLACKROCK INC",
+    "Ticker": "BLK",
+    "SP500 Start": "2011-04-04",
+    "SP500 End": "2022-12-30",
+    "Reason": "Acquired by Sanofi Aventis (SNY)[231]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "10324",
+    "Security": "GENZYME CORP",
+    "Ticker": "GENZ",
+    "SP500 Start": "2001-12-14",
+    "SP500 End": "2011-04-01",
+    "Reason": "Acquired by Sanofi Aventis (SNY)[231]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "87657",
+    "Security": "EDWARDS LIFESCIENCES CORP",
+    "Ticker": "EW",
+    "SP500 Start": "2011-04-01",
+    "SP500 End": "2022-12-30",
+    "Reason": "Acquired by CenturyLink[232]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Qwest Communications",
+    "Ticker": "Q",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2011-03-31",
+    "Reason": "Acquired by CenturyLink[232]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "92156",
+    "Security": "COVIDIEN LTD; COVIDIEN PLC",
+    "Ticker": "COV",
+    "SP500 Start": "2011-03-01",
+    "SP500 End": "2015-01-26",
+    "Reason": "Acquired by Intel[233]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "McAfee",
+    "Ticker": "MFE",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2011-02-28",
+    "Reason": "Acquired by Intel[233]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Joy Global",
+    "Ticker": "JOYG",
+    "SP500 Start": "2011-02-25",
+    "SP500 End": "2025-12-30",
+    "Reason": "Acquired by First Energy (FE).[234]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Allegheny Energy",
+    "Ticker": "AYE",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2011-02-25",
+    "Reason": "Acquired by First Energy (FE).[234]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "12456",
+    "Security": "MOTOROLA MOBILITY HOLDINGS INC",
+    "Ticker": "MMI",
+    "SP500 Start": "2011-01-04",
+    "SP500 End": "2012-05-24",
+    "Reason": "S&P constituent Motorola spun off Motorola Mobility.[235]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "42796",
+    "Security": "MEREDITH CORP",
+    "Ticker": "MDP",
+    "SP500 Start": "1968-05-23",
+    "SP500 End": "2011-01-03",
+    "Reason": "S&P constituent Motorola spun off Motorola Mobility.[235]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "68857",
+    "Security": "CABLEVISION SYSTEMS CORP",
+    "Ticker": "CVC",
+    "SP500 Start": "2010-12-20",
+    "SP500 End": "2016-06-23",
+    "Reason": "Acquired by Pfizer.[236]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "King Pharmaceuticals",
+    "Ticker": "KG",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2010-12-17",
+    "Reason": "Acquired by Pfizer.[236]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "86964",
+    "Security": "F 5 NETWORKS INC; F 5 INC",
+    "Ticker": "FFIV",
+    "SP500 Start": "2010-12-20",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market Cap changes.[236]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "11754",
+    "Security": "EASTMAN KODAK CO",
+    "Ticker": "EK",
+    "SP500 Start": "1925-12-31",
+    "SP500 End": "2010-12-17",
+    "Reason": "Market Cap changes.[236]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "89393",
+    "Security": "NETFLIX INC",
+    "Ticker": "NFLX",
+    "SP500 Start": "2010-12-20",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market Cap changes."
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Office Depot",
+    "Ticker": "ODP",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2010-12-17",
+    "Reason": "Market Cap changes."
+  },
+  {
+    "Action": "Added",
+    "Permno": "79915",
+    "Security": "NEWFIELD EXPLORATION CO",
+    "Ticker": "NFX",
+    "SP500 Start": "2010-12-20",
+    "SP500 End": "2019-02-14",
+    "Reason": "Market Cap changes."
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "The New York Times Company",
+    "Ticker": "NYT",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2010-12-17",
+    "Reason": "Market Cap changes."
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Ingersoll-Rand",
+    "Ticker": "IR",
+    "SP500 Start": "2010-11-17",
+    "SP500 End": "2025-12-30",
+    "Reason": "Reynolds Group Holdings acquired Pactiv.[237]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "87292",
+    "Security": "PACTIV CORP",
+    "Ticker": "PTV",
+    "SP500 Start": "1999-11-05",
+    "SP500 End": "2010-11-16",
+    "Reason": "Reynolds Group Holdings acquired Pactiv.[237]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Tyco International",
+    "Ticker": "TYC",
+    "SP500 Start": "2010-08-26",
+    "SP500 End": "2025-12-30",
+    "Reason": "Acquired by Schlumberger (SLB)[238]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "45794",
+    "Security": "SMITH INTERNATIONAL INC; SMITH INDUSTRIES INTL INC",
+    "Ticker": "SII",
+    "SP500 Start": "2006-10-02",
+    "SP500 End": "2010-08-26",
+    "Reason": "Acquired by Schlumberger (SLB)[238]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Chubb",
+    "Ticker": "CB",
+    "SP500 Start": "2010-07-14",
+    "SP500 End": "2025-12-30",
+    "Reason": "Acquired by Merck KGaA (MKGAY)[239]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Millipore",
+    "Ticker": "MIL",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2010-07-14",
+    "Reason": "Acquired by Merck KGaA (MKGAY)[239]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "93422",
+    "Security": "Q E P RESOURCES INC",
+    "Ticker": "QEP",
+    "SP500 Start": "2010-07-01",
+    "SP500 End": "2015-06-30",
+    "Reason": "Company split. QEP retained, but ticker changed.[240]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Questar",
+    "Ticker": "STR",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2010-06-30",
+    "Reason": "Company split. QEP retained, but ticker changed.[240]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "89508",
+    "Security": "CARMAX INC",
+    "Ticker": "KMX",
+    "SP500 Start": "2010-06-28",
+    "SP500 End": "2022-12-30",
+    "Reason": "Acquired by ExxonMobil[241]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "79212",
+    "Security": "X T O ENERGY INC; CROSS TIMBERS OIL CO",
+    "Ticker": "XTO",
+    "SP500 Start": "2004-12-29",
+    "SP500 End": "2010-06-25",
+    "Reason": "Acquired by ExxonMobil[241]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "10909",
+    "Security": "CERNER CORP",
+    "Ticker": "CERN",
+    "SP500 Start": "2010-04-30",
+    "SP500 End": "2022-06-07",
+    "Reason": "Acquired by Baker Hughes[242]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "76240",
+    "Security": "B J SERVICES CO",
+    "Ticker": "BJS",
+    "SP500 Start": "2002-05-15",
+    "SP500 End": "2010-04-29",
+    "Reason": "Acquired by Baker Hughes[242]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "32707",
+    "Security": "HELMERICH & PAYNE INC",
+    "Ticker": "HP",
+    "SP500 Start": "2010-03-01",
+    "SP500 End": "2020-05-21",
+    "Reason": "Taken private"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "IMS Health",
+    "Ticker": "RX",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2010-02-26",
+    "Reason": "Taken private"
+  },
+  {
+    "Action": "Added",
+    "Permno": "92611",
+    "Security": "VISA INC",
+    "Ticker": "V",
+    "SP500 Start": "2009-12-21",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market capitalization change.[citation needed]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "84519",
+    "Security": "CIENA CORP",
+    "Ticker": "CIEN",
+    "SP500 Start": "2001-08-30",
+    "SP500 End": "2009-12-18",
+    "Reason": "Market capitalization change.[citation needed]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "92890",
+    "Security": "MEAD JOHNSON NUTRITION CO",
+    "Ticker": "MJN",
+    "SP500 Start": "2009-12-21",
+    "SP500 End": "2017-06-16",
+    "Reason": "Market capitalization change.[citation needed]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "90352",
+    "Security": "DYNEGY INC NEW DEL; DYNEGY INC NEW; DYNEGY INC DEL",
+    "Ticker": "DYN",
+    "SP500 Start": "2000-10-03",
+    "SP500 End": "2009-12-18",
+    "Reason": "Market capitalization change.[citation needed]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "27422",
+    "Security": "CLEVELAND CLIFFS INC; CLEVELAND CLIFFS IRON CO; CLIFFS NATURAL RESOURCES INC; CLEVELAND CLIFFS INC NEW",
+    "Ticker": "CLF",
+    "SP500 Start": "2009-12-21",
+    "SP500 End": "2014-04-01",
+    "Reason": "Market capitalization change.[citation needed]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "70092",
+    "Security": "KAUFMAN & BROAD HOME CORP; K B HOME",
+    "Ticker": "KBH",
+    "SP500 Start": "1989-03-08",
+    "SP500 End": "2009-12-18",
+    "Reason": "Market capitalization change.[citation needed]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "SAIC",
+    "Ticker": "SAI",
+    "SP500 Start": "2009-12-18",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization change.[citation needed]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "86305",
+    "Security": "CONVERGYS CORP",
+    "Ticker": "CVG",
+    "SP500 Start": "2000-06-13",
+    "SP500 End": "2009-12-18",
+    "Reason": "Market capitalization change.[citation needed]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "91556",
+    "Security": "ROSS STORES INC",
+    "Ticker": "ROST",
+    "SP500 Start": "2009-12-21",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market capitalization change.[citation needed]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "75175",
+    "Security": "M B I A INC",
+    "Ticker": "MBI",
+    "SP500 Start": "1996-12-03",
+    "SP500 End": "2009-12-18",
+    "Reason": "Market capitalization change.[citation needed]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Priceline.com",
+    "Ticker": "PCLN",
+    "SP500 Start": "2009-11-03",
+    "SP500 End": "2025-12-30",
+    "Reason": "Acquired by Merck & Co. (MRK)[243]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Schering-Plough",
+    "Ticker": "SGP",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2009-11-03",
+    "Reason": "Acquired by Merck & Co. (MRK)[243]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Airgas",
+    "Ticker": "ARG",
+    "SP500 Start": "2009-09-28",
+    "SP500 End": "2025-12-30",
+    "Reason": "Redomesticated to Ireland[244]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "21979",
+    "Security": "COOPER INDUSTRIES LTD; COOPER INDUSTRIES PLC; COOPER INDUSTRIES INC; COOPER BESSEMER CORP",
+    "Ticker": "CBE",
+    "SP500 Start": "1957-03-01",
+    "SP500 End": "2009-09-08",
+    "Reason": "Redomesticated to Ireland[244]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "19166",
+    "Security": "FOOD MACHY CORP; F M C CORP; FOOD MACHY & CHEM CORP",
+    "Ticker": "FMC",
+    "SP500 Start": "2009-08-19",
+    "SP500 End": "2022-12-30",
+    "Reason": "Centex acquired by Pulte Homes.[245]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "53831",
+    "Security": "CENTEX CORP",
+    "Ticker": "CTX",
+    "SP500 Start": "1977-03-31",
+    "SP500 End": "2009-08-18",
+    "Reason": "Centex acquired by Pulte Homes.[245]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "86414",
+    "Security": "SPRINT CORP",
+    "Ticker": "PCS",
+    "SP500 Start": "1998-11-24",
+    "SP500 End": "2004-04-22",
+    "Reason": "PCS replaced TEL.[246]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "92157",
+    "Security": "T E CONNECTIVITY LTD; TYCO ELECTRONICS LTD; TYCO ELECTRONICS LTD NEW",
+    "Ticker": "TEL",
+    "SP500 Start": "2007-07-02",
+    "SP500 End": "2009-06-25",
+    "Reason": "Tyco Electronics left the index because it was reincorporating in Switzerland, making it ineligible for inclusion.[246]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "89004",
+    "Security": "F M C TECHNOLOGIES INC",
+    "Ticker": "FTI",
+    "SP500 Start": "2009-06-05",
+    "SP500 End": "2017-01-13",
+    "Reason": "Covidien moved its place of incorporation to Ireland, making it ineligible for inclusion in the index.[247]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "92156",
+    "Security": "COVIDIEN LTD; COVIDIEN PLC",
+    "Ticker": "COV",
+    "SP500 Start": "2007-07-02",
+    "SP500 End": "2009-06-04",
+    "Reason": "Covidien moved its place of incorporation to Ireland, making it ineligible for inclusion in the index.[247]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "32870",
+    "Security": "HORMEL FOODS CORP; HORMEL GEORGE A & CO",
+    "Ticker": "HRL",
+    "SP500 Start": "2009-03-04",
+    "SP500 End": "2022-12-30",
+    "Reason": "Capitalization rebalance.[248]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "85271",
+    "Security": "AMERICAN CAPITAL LTD; AMERICAN CAPITAL STRATEGIES LTD",
+    "Ticker": "ACAS",
+    "SP500 Start": "2007-07-09",
+    "SP500 End": "2009-03-03",
+    "Reason": "Capitalization rebalance.[248]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Ventas",
+    "Ticker": "VTR",
+    "SP500 Start": "2009-03-03",
+    "SP500 End": "2025-12-30",
+    "Reason": "Capitalization rebalance."
+  },
+  {
+    "Action": "Removed",
+    "Permno": "76638",
+    "Security": "JONES APPAREL GROUP INC; JONES GROUP INC",
+    "Ticker": "JNY",
+    "SP500 Start": "2001-12-17",
+    "SP500 End": "2009-03-03",
+    "Reason": "Capitalization rebalance."
+  },
+  {
+    "Action": "Added",
+    "Permno": "77157",
+    "Security": "O I GLASS INC; OWENS ILL INC",
+    "Ticker": "OI",
+    "SP500 Start": "2009-01-02",
+    "SP500 End": "2016-12-01",
+    "Reason": "Wachovia Bank acquired by Wells Fargo.[249]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "17048",
+    "Security": "WARNER BROS PICTURES INC",
+    "Ticker": "WB",
+    "SP500 Start": "1957-03-01",
+    "SP500 End": "1967-07-12",
+    "Reason": "Wachovia Bank acquired by Wells Fargo.[249]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Harris Corporation",
+    "Ticker": "HRS",
+    "SP500 Start": "2008-09-16",
+    "SP500 End": "2025-12-30",
+    "Reason": "Lehman Brothers filed for bankruptcy.[250]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "80599",
+    "Security": "LEHMAN BROTHERS HOLDINGS INC",
+    "Ticker": "LEH",
+    "SP500 Start": "1998-01-12",
+    "SP500 End": "2008-09-16",
+    "Reason": "Lehman Brothers filed for bankruptcy.[250]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "90215",
+    "Security": "SALESFORCE COM INC; SALESFORCE INC",
+    "Ticker": "CRM",
+    "SP500 Start": "2008-09-15",
+    "SP500 End": "2022-12-30",
+    "Reason": "Capitalization rebalance.[251]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "75789",
+    "Security": "FEDERAL HOME LOAN MORTGAGE CORP",
+    "Ticker": "FRE",
+    "SP500 Start": "1992-01-02",
+    "SP500 End": "2008-09-10",
+    "Reason": "Capitalization rebalance.[251]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "11618",
+    "Security": "FASTENAL CO",
+    "Ticker": "FAST",
+    "SP500 Start": "2008-09-15",
+    "SP500 End": "2022-12-30",
+    "Reason": "Capitalization rebalance.[251]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "51043",
+    "Security": "FEDERAL NATIONAL MORTGAGE ASSN",
+    "Ticker": "FNM",
+    "SP500 Start": "1988-08-11",
+    "SP500 End": "2008-09-10",
+    "Reason": "Capitalization rebalance.[251]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "AK Steel",
+    "Ticker": "AKS",
+    "SP500 Start": "2008-07-01",
+    "SP500 End": "2025-12-30",
+    "Reason": "Ak Steel replaced Countrywide Financial.[252]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Countrywide Financial Corp",
+    "Ticker": "CFC",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2008-07-01",
+    "Reason": "Ak Steel replaced Countrywide Financial.[252]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "11375",
+    "Security": "CONGOLEUM NAIRN INC",
+    "Ticker": "COG",
+    "SP500 Start": "1963-03-14",
+    "SP500 End": "1968-07-16",
+    "Reason": "Market capitalization change.[253]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "10874",
+    "Security": "BRUNSWICK CORP; BRUNSWICK BALKE COLLENDER CO",
+    "Ticker": "BC",
+    "SP500 Start": "1973-03-01",
+    "SP500 End": "2008-06-20",
+    "Reason": "Market capitalization change.[253]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Massey Energy",
+    "Ticker": "MEE",
+    "SP500 Start": "2008-06-23",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market capitalization change.[253]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "OfficeMax",
+    "Ticker": "OMX",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2008-06-23",
+    "Reason": "Market capitalization change.[253]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "17279",
+    "Security": "LORILLARD INC",
+    "Ticker": "LO",
+    "SP500 Start": "2008-06-11",
+    "SP500 End": "2015-06-11",
+    "Reason": "Market Value Decline[254]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "76757",
+    "Security": "AMBAC INC; AMBAC FINANCIAL GROUP INC",
+    "Ticker": "ABK",
+    "SP500 Start": "2000-12-11",
+    "SP500 End": "2008-06-10",
+    "Reason": "Market Value Decline[254]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Range Resources",
+    "Ticker": "RRC",
+    "SP500 Start": "2007-12-20",
+    "SP500 End": "2025-12-30",
+    "Reason": "Taken private[255]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "65787",
+    "Security": "TRIBUNE COMPANY NEW",
+    "Ticker": "TRB",
+    "SP500 Start": "1986-01-30",
+    "SP500 End": "2007-12-20",
+    "Reason": "Taken private[255]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "89301",
+    "Security": "GAMESTOP CORP; GAMESTOP CORP NEW",
+    "Ticker": "GME",
+    "SP500 Start": "2007-12-14",
+    "SP500 End": "2016-04-22",
+    "Reason": "Acquired by News Corporation"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Dow Jones",
+    "Ticker": "DJ",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2007-12-13",
+    "Reason": "Acquired by News Corporation"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Jacobs Engineering Group",
+    "Ticker": "JEC",
+    "SP500 Start": "2007-10-26",
+    "SP500 End": "2025-12-30",
+    "Reason": "Taken private[256]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "88587",
+    "Security": "AVAYA INC",
+    "Ticker": "AV",
+    "SP500 Start": "2000-10-02",
+    "SP500 End": "2007-10-25",
+    "Reason": "Taken private[256]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "90808",
+    "Security": "EXPEDIA GROUP INC; EXPEDIA INC DE",
+    "Ticker": "EXPE",
+    "SP500 Start": "2007-10-02",
+    "SP500 End": "2022-12-30",
+    "Reason": "Solectron acquired by Flextronics.[257]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Solectron",
+    "Ticker": "SLR",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2007-10-02",
+    "Reason": "Solectron acquired by Flextronics.[257]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "92293",
+    "Security": "TERADATA CORP DE",
+    "Ticker": "TDC",
+    "SP500 Start": "2007-10-01",
+    "SP500 End": "2017-06-16",
+    "Reason": "Teradata spun off by NCR Corporation.[257]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "84372",
+    "Security": "N C R CORP NEW",
+    "Ticker": "NCR",
+    "SP500 Start": "2000-01-03",
+    "SP500 End": "2007-09-28",
+    "Reason": "Teradata spun off by NCR Corporation.[257]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Tesoro Corporation",
+    "Ticker": "TSO",
+    "SP500 Start": "2007-09-27",
+    "SP500 End": "2025-12-30",
+    "Reason": "MXIM delisted from NASDAQ exchange.[257]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "11896",
+    "Security": "MAXIM INTEGRATED PRODUCTS INC",
+    "Ticker": "MXIM",
+    "SP500 Start": "2000-05-10",
+    "SP500 End": "2007-09-26",
+    "Reason": "MXIM delisted from NASDAQ exchange.[257]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "90993",
+    "Security": "INTERCONTINENTALEXCHANGE INC; INTERCONTINENTALEXCHANGE GRP INC",
+    "Ticker": "ICE",
+    "SP500 Start": "2007-09-26",
+    "SP500 End": "2022-12-30",
+    "Reason": "FDC acquired by KKR.[257]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "77546",
+    "Security": "FIRST DATA CORP",
+    "Ticker": "FDC",
+    "SP500 Start": "1994-09-27",
+    "SP500 End": "2007-09-24",
+    "Reason": "FDC acquired by KKR.[257]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Leucadia National",
+    "Ticker": "LUK",
+    "SP500 Start": "2007-08-24",
+    "SP500 End": "2025-12-30",
+    "Reason": "Acquired by National Grid plc[258]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "KeySpan",
+    "Ticker": "KSE",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2007-08-24",
+    "Reason": "Acquired by National Grid plc[258]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "92121",
+    "Security": "DISCOVER FINANCIAL SERVICES",
+    "Ticker": "DFS",
+    "SP500 Start": "2007-07-02",
+    "SP500 End": "2022-12-30",
+    "Reason": "Discover Financial Services debuts on New York Stock Exchange.[259]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "ADC Telecommunications",
+    "Ticker": "ADCT",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2007-07-02",
+    "Reason": "Discover Financial Services debuts on New York Stock Exchange.[259]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Kraft Foods",
+    "Ticker": "KFT",
+    "SP500 Start": "2007-03-30",
+    "SP500 End": "2025-12-30",
+    "Reason": "Taken Private[260]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "84036",
+    "Security": "SABRE HOLDINGS CORP; SABRE GROUP HOLDINGS INC",
+    "Ticker": "TSG",
+    "SP500 Start": "2000-03-16",
+    "SP500 End": "2007-03-30",
+    "Reason": "Taken Private[260]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "AvalonBay Communities",
+    "Ticker": "AVB",
+    "SP500 Start": "2007-01-10",
+    "SP500 End": "2025-12-30",
+    "Reason": "Acquired by Motorola[261]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Symbol Technologies",
+    "Ticker": "SBL",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2007-01-10",
+    "Reason": "Acquired by Motorola[261]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "86979",
+    "Security": "JUNIPER NETWORKS INC",
+    "Ticker": "JNPR",
+    "SP500 Start": "2006-06-02",
+    "SP500 End": "2022-12-30",
+    "Reason": "Albertsons acquired by SuperValu and CVS Corp.[262]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "50032",
+    "Security": "ALBERTSONS INC",
+    "Ticker": "ABS",
+    "SP500 Start": "1984-11-23",
+    "SP500 End": "2006-06-01",
+    "Reason": "Albertsons acquired by SuperValu and CVS Corp.[262]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "84788",
+    "Security": "AMAZON COM INC",
+    "Ticker": "AMZN",
+    "SP500 Start": "2005-11-21",
+    "SP500 End": "2022-12-30",
+    "Reason": "AT&T Corp. acquired by SBC Communications[263]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "10401",
+    "Security": "AMERICAN TELEPHONE & TELEG CO; A T & T CORP",
+    "Ticker": "T",
+    "SP500 Start": "1957-03-01",
+    "SP500 End": "2005-11-18",
+    "Reason": "AT&T Corp. acquired by SBC Communications[263]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Constellation Brands",
+    "Ticker": "STZ",
+    "SP500 Start": "2005-07-01",
+    "SP500 End": "2025-12-30",
+    "Reason": "Acquired by Crompton Corp."
+  },
+  {
+    "Action": "Removed",
+    "Permno": "32379",
+    "Security": "GREAT LAKES CHEM CORP",
+    "Ticker": "GLK",
+    "SP500 Start": "1991-11-25",
+    "SP500 End": "2005-07-01",
+    "Reason": "Acquired by Crompton Corp."
+  },
+  {
+    "Action": "Added",
+    "Permno": "77668",
+    "Security": "EXPRESS SCRIPTS HOLDING CO; EXPRESS SCRIPTS INC",
+    "Ticker": "ESRX",
+    "SP500 Start": "2003-09-26",
+    "SP500 End": "2018-12-21",
+    "Reason": "Taken private"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "80470",
+    "Security": "QUINTILES TRANSNATIONAL CORP",
+    "Ticker": "QTRN",
+    "SP500 Start": "1999-11-16",
+    "SP500 End": "2003-09-25",
+    "Reason": "Taken private"
+  },
+  {
+    "Action": "Added",
+    "Permno": "78975",
+    "Security": "INTUIT INC",
+    "Ticker": "INTU",
+    "SP500 Start": "2000-12-11",
+    "SP500 End": "2022-12-30",
+    "Reason": "Market Cap changes.[264]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "10786",
+    "Security": "BETHLEHEM STEEL CORP",
+    "Ticker": "BS",
+    "SP500 Start": "1925-12-31",
+    "SP500 End": "2000-12-08",
+    "Reason": "Market Cap changes.[264]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Symbol Technologies",
+    "Ticker": "SBL",
+    "SP500 Start": "2000-12-05",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market Cap changes."
+  },
+  {
+    "Action": "Removed",
+    "Permno": "77157",
+    "Security": "O I GLASS INC; OWENS ILL INC",
+    "Ticker": "OI",
+    "SP500 Start": "1997-08-01",
+    "SP500 End": "2000-12-08",
+    "Reason": "Market Cap changes."
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Allegheny Energy",
+    "Ticker": "AYE",
+    "SP500 Start": "2000-12-05",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market Cap changes."
+  },
+  {
+    "Action": "Removed",
+    "Permno": "85908",
+    "Security": "GRACE W R & CO DEL NEW",
+    "Ticker": "GRA",
+    "SP500 Start": "1998-04-01",
+    "SP500 End": "2000-12-08",
+    "Reason": "Market Cap changes."
+  },
+  {
+    "Action": "Added",
+    "Permno": "76757",
+    "Security": "AMBAC INC; AMBAC FINANCIAL GROUP INC",
+    "Ticker": "ABK",
+    "SP500 Start": "2000-12-11",
+    "SP500 End": "2008-06-10",
+    "Reason": "Market Cap changes."
+  },
+  {
+    "Action": "Removed",
+    "Permno": "17726",
+    "Security": "CROWN CORK & SEAL CO INC; CROWN CORK & SEAL INC; CROWN HOLDINGS INC",
+    "Ticker": "CCK",
+    "SP500 Start": "1957-03-01",
+    "SP500 End": "2000-12-08",
+    "Reason": "Market Cap changes."
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "JDS Uniphase",
+    "Ticker": "JDSU",
+    "SP500 Start": "2000-07-27",
+    "SP500 End": "2025-12-30",
+    "Reason": "Market Cap change.[265]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "46922",
+    "Security": "RITE AID CORP",
+    "Ticker": "RAD",
+    "SP500 Start": "1975-12-11",
+    "SP500 End": "2000-07-26",
+    "Reason": "Market Cap change.[265]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "86305",
+    "Security": "CONVERGYS CORP",
+    "Ticker": "CVG",
+    "SP500 Start": "2000-06-13",
+    "SP500 End": "2009-12-18",
+    "Reason": "Tribune Co. acquired Times Mirror.[266]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "81193",
+    "Security": "TIMES MIRROR CO NEW",
+    "Ticker": "TMC",
+    "SP500 Start": "1995-02-01",
+    "SP500 End": "2000-06-12",
+    "Reason": "Tribune Co. acquired Times Mirror.[266]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "77702",
+    "Security": "STARBUCKS CORP",
+    "Ticker": "SBUX",
+    "SP500 Start": "2000-06-08",
+    "SP500 End": "2022-12-30",
+    "Reason": "Siemens AG acquired Shared Medical Systems.[266]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Shared Medical Systems",
+    "Ticker": "SMS",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "2000-06-07",
+    "Reason": "Siemens AG acquired Shared Medical Systems.[266]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "83435",
+    "Security": "YAHOO INC",
+    "Ticker": "YHOO",
+    "SP500 Start": "1999-12-08",
+    "SP500 End": "2017-06-16",
+    "Reason": "Market capitalization change.[267]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Laidlaw",
+    "Ticker": "LDW",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "1999-12-08",
+    "Reason": "Market capitalization change.[267]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "83583",
+    "Security": "WELLPOINT HEALTH NETWRKS INC NEW",
+    "Ticker": "WLP",
+    "SP500 Start": "1999-06-09",
+    "SP500 End": "2004-11-30",
+    "Reason": "Harnischfeger filed for bankruptcy.[268]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Harnischfeger Industries",
+    "Ticker": "HPH",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "1999-06-09",
+    "Reason": "Harnischfeger filed for bankruptcy.[268]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Actavis",
+    "Ticker": "ACT",
+    "SP500 Start": "1999-04-12",
+    "SP500 End": "2025-12-30",
+    "Reason": "Actavis plc (NYSE:ACT) added to S&P 500"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Firstar",
+    "Ticker": "FSR",
+    "SP500 Start": "1998-12-11",
+    "SP500 End": "2025-12-30",
+    "Reason": "BP purchased Amoco.[269]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "10102",
+    "Security": "AIR REDUCTION INC; AIRCO INC",
+    "Ticker": "AN",
+    "SP500 Start": "1957-03-01",
+    "SP500 End": "1975-02-05",
+    "Reason": "BP purchased Amoco.[269]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "75154",
+    "Security": "CARNIVAL CORP; CARNIVAL CRUISE LINES INC",
+    "Ticker": "CCL",
+    "SP500 Start": "1998-12-22",
+    "SP500 End": "2022-12-30",
+    "Reason": "Berkshire Hathaway purchased General Re.[269]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "62252",
+    "Security": "GENERAL RE CORP; GENERAL REINSURANCE CORP; GENERAL REINSURANCE CORP NY",
+    "Ticker": "GRN",
+    "SP500 Start": "1988-04-14",
+    "SP500 End": "1998-12-21",
+    "Reason": "Berkshire Hathaway purchased General Re.[269]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "78139",
+    "Security": "COMPUWARE CORP",
+    "Ticker": "CPWR",
+    "SP500 Start": "1999-01-04",
+    "SP500 End": "2011-12-30",
+    "Reason": "AIG purchased SunAmerica.[269]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "14656",
+    "Security": "SUNOCO INC; SUN INC; SUN OIL CO",
+    "Ticker": "SUN",
+    "SP500 Start": "1969-03-06",
+    "SP500 End": "2012-10-04",
+    "Reason": "AIG purchased SunAmerica.[269]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Countrywide Credit Industries",
+    "Ticker": "CCR",
+    "SP500 Start": "1997-06-17",
+    "SP500 End": "2025-12-30",
+    "Reason": "AIG acquired USLife.[270]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "15042",
+    "Security": "UNITED STS LINES CO N V; INTERNATIONAL MERCANTILE MARINE",
+    "Ticker": "USL",
+    "SP500 Start": "1957-03-01",
+    "SP500 End": "1969-02-12",
+    "Reason": "AIG acquired USLife.[270]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "National City",
+    "Ticker": "NCC",
+    "SP500 Start": "1994-09-30",
+    "SP500 End": "2025-12-30",
+    "Reason": "McKesson sold PCS Health Services to Eli Lilly.[271]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "21266",
+    "Security": "MC KESSON & ROBBINS INC",
+    "Ticker": "MCK",
+    "SP500 Start": "1958-04-09",
+    "SP500 End": "1967-07-19",
+    "Reason": "McKesson sold PCS Health Services to Eli Lilly.[271]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "",
+    "Security": "Anheuser Busch",
+    "Ticker": "BUD",
+    "SP500 Start": "1976-07-01",
+    "SP500 End": "2025-12-30",
+    "Reason": "Major restructuring of S&P 500 to have fewer industrials and utilities, and more financial companies to add \"new strength and breadth\"[272]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "46391",
+    "Security": "HOUSTON NATURAL GAS CORP",
+    "Ticker": "HNG",
+    "SP500 Start": "1972-09-28",
+    "SP500 End": "1976-06-30",
+    "Reason": "Major restructuring of S&P 500 to have fewer industrials and utilities, and more financial companies to add \"new strength and breadth\"[272]"
+  },
+  {
+    "Action": "Added",
+    "Permno": "26403",
+    "Security": "DISNEY WALT CO; DISNEY WALT PRODUCTIONS",
+    "Ticker": "DIS",
+    "SP500 Start": "1976-07-01",
+    "SP500 End": "2022-12-30",
+    "Reason": "Major restructuring of S&P 500 to have fewer industrials and utilities, and more financial companies to add \"new strength and breadth\"[272]"
+  },
+  {
+    "Action": "Removed",
+    "Permno": "",
+    "Security": "Allegheny Energy",
+    "Ticker": "AYE",
+    "SP500 Start": "1959-01-01",
+    "SP500 End": "1976-07-01",
+    "Reason": "Major restructuring of S&P 500 to have fewer industrials and utilities, and more financial companies to add \"new strength and breadth\"[272]"
+  }
+]
