@@ -1,4 +1,3 @@
-
 [
   {
     "action": "Added",
@@ -32710,7 +32709,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "CRH",
     "tickers": [
       "CRH"
@@ -32721,7 +32720,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "LKQ Corporation",
     "tickers": [
       "LKQ"
@@ -32732,7 +32731,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "Carvana",
     "tickers": [
       "CVNA"
@@ -32743,7 +32742,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "Solstice Advanced Materials",
     "tickers": [
       "SOLS"
@@ -32754,7 +32753,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "Comfort Systems USA",
     "tickers": [
       "FIX"
@@ -32765,7 +32764,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "Mohawk Industries",
     "tickers": [
       "MHK"
@@ -32776,7 +32775,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "Ares Management",
     "tickers": [
       "ARES"
@@ -32787,7 +32786,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "Kellanova",
     "tickers": [
       "K"
@@ -32798,7 +32797,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "Sandisk",
     "tickers": [
       "SNDK"
@@ -32809,7 +32808,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "Interpublic Group",
     "tickers": [
       "IPG"
@@ -32820,7 +32819,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "Eastman Chemical Co.",
     "tickers": [
       "EMN"
@@ -32831,7 +32830,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "Qnity Electronics",
     "tickers": [
       "Q"
@@ -32842,7 +32841,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "CarMax",
     "tickers": [
       "KMX"
@@ -32853,7 +32852,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "Solstice Advanced Materials",
     "tickers": [
       "SOLS"
@@ -32864,7 +32863,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "Emcor",
     "tickers": [
       "EME"
@@ -32875,7 +32874,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "Enphase Energy",
     "tickers": [
       "ENPH"
@@ -32886,7 +32885,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "Robinhood Markets",
     "tickers": [
       "HOOD"
@@ -32897,7 +32896,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "Caesars Entertainment",
     "tickers": [
       "CZR"
@@ -32908,7 +32907,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "AppLovin",
     "tickers": [
       "APP"
@@ -32919,7 +32918,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "MarketAxess",
     "tickers": [
       "MKTX"
@@ -32930,7 +32929,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "Interactive Brokers",
     "tickers": [
       "IBKR"
@@ -32941,7 +32940,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "Walgreens Boots Alliance",
     "tickers": [
       "WBA"
@@ -32952,7 +32951,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "Block, Inc.",
     "tickers": [
       "XYZ"
@@ -32963,7 +32962,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "Hess Corporation",
     "tickers": [
       "HES"
@@ -32974,7 +32973,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "Trade Desk (The)",
     "tickers": [
       "TTD"
@@ -32985,7 +32984,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "Ansys",
     "tickers": [
       "ANSS"
@@ -32996,7 +32995,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "Datadog",
     "tickers": [
       "DDOG"
@@ -33007,7 +33006,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "Juniper Networks",
     "tickers": [
       "JNPR"
@@ -33018,7 +33017,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "Coinbase",
     "tickers": [
       "COIN"
@@ -33029,7 +33028,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "Discover Financial",
     "tickers": [
       "DFS"
@@ -33040,7 +33039,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "DoorDash",
     "tickers": [
       "DASH"
@@ -33051,7 +33050,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "BorgWarner",
     "tickers": [
       "BWA"
@@ -33062,7 +33061,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "TKO Group Holdings",
     "tickers": [
       "TKO"
@@ -33073,7 +33072,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "Teleflex",
     "tickers": [
       "TFX"
@@ -33084,7 +33083,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "Williams-Sonoma, Inc.",
     "tickers": [
       "WSM"
@@ -33095,7 +33094,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "Celanese",
     "tickers": [
       "CE"
@@ -33106,7 +33105,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "Expand Energy",
     "tickers": [
       "EXE"
@@ -33117,7 +33116,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "FMC Corporation",
     "tickers": [
       "FMC"
@@ -33128,7 +33127,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "Apollo Global Management",
     "tickers": [
       "APO"
@@ -33139,7 +33138,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "Qorvo",
     "tickers": [
       "QRVO"
@@ -33150,7 +33149,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "Workday, Inc.",
     "tickers": [
       "WDAY"
@@ -33161,7 +33160,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "Amentum",
     "tickers": [
       "AMTM"
@@ -33172,7 +33171,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "Lennox International",
     "tickers": [
       "LII"
@@ -33183,7 +33182,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "Catalent",
     "tickers": [
       "CTLT"
@@ -33194,7 +33193,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "Texas Pacific Land Corporation",
     "tickers": [
       "TPL"
@@ -33205,7 +33204,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "Marathon Oil",
     "tickers": [
       "MRO"
@@ -33216,7 +33215,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "Amentum",
     "tickers": [
       "AMTM"
@@ -33227,7 +33226,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "Palantir Technologies",
     "tickers": [
       "PLTR"
@@ -33238,7 +33237,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "American Airlines Group",
     "tickers": [
       "AAL"
@@ -33249,7 +33248,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "Dell Technologies",
     "tickers": [
       "DELL"
@@ -33260,7 +33259,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "Etsy",
     "tickers": [
       "ETSY"
@@ -33271,7 +33270,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "Erie Indemnity",
     "tickers": [
       "ERIE"
@@ -33282,7 +33281,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "Bio-Rad Laboratories",
     "tickers": [
       "BIO"
@@ -33293,7 +33292,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "KKR",
     "tickers": [
       "KKR"
@@ -33304,7 +33303,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "Robert Half",
     "tickers": [
       "RHI"
@@ -33315,7 +33314,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "CrowdStrike",
     "tickers": [
       "CRWD"
@@ -33326,7 +33325,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "Comerica",
     "tickers": [
       "CMA"
@@ -33337,7 +33336,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "GoDaddy",
     "tickers": [
       "GDDY"
@@ -33348,7 +33347,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "Illumina, Inc.",
     "tickers": [
       "ILMN"
@@ -33359,7 +33358,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "Vistra",
     "tickers": [
       "VST"
@@ -33370,7 +33369,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "Pioneer Natural Resources",
     "tickers": [
       "PXD"
@@ -33381,7 +33380,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "GE Vernova",
     "tickers": [
       "GEV"
@@ -33392,7 +33391,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "Solventum",
     "tickers": [
       "SOLV"
@@ -33403,7 +33402,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "Supermicro",
     "tickers": [
       "SMCI"
@@ -33414,7 +33413,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "Whirlpool Corporation",
     "tickers": [
       "WHR"
@@ -33425,7 +33424,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "Deckers Brands",
     "tickers": [
       "DECK"
@@ -33436,7 +33435,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "Zions Bancorporation",
     "tickers": [
       "ZION"
@@ -33447,7 +33446,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "Uber",
     "tickers": [
       "UBER"
@@ -33458,7 +33457,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "Sealed Air",
     "tickers": [
       "SEE"
@@ -33469,7 +33468,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "Jabil",
     "tickers": [
       "JBL"
@@ -33480,7 +33479,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "Alaska Air Group",
     "tickers": [
       "ALK"
@@ -33491,7 +33490,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "Builders FirstSource",
     "tickers": [
       "BLDR"
@@ -33502,7 +33501,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "SolarEdge",
     "tickers": [
       "SEDG"
@@ -33513,7 +33512,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "Hubbell",
     "tickers": [
       "HUBB"
@@ -33524,7 +33523,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "Organon & Co.",
     "tickers": [
       "OGN"
@@ -33535,7 +33534,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "Lululemon Athletica",
     "tickers": [
       "LULU"
@@ -33546,7 +33545,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "Activision Blizzard",
     "tickers": [
       "ATVI"
@@ -33557,7 +33556,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "Veralto",
     "tickers": [
       "VLTO"
@@ -33568,7 +33567,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "Blackstone",
     "tickers": [
       "BX"
@@ -33579,7 +33578,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "Lincoln National Corporation",
     "tickers": [
       "LNC"
@@ -33590,7 +33589,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "Airbnb",
     "tickers": [
       "ABNB"
@@ -33601,7 +33600,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "Newell Brands",
     "tickers": [
       "NWL"
@@ -33612,7 +33611,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "Kenvue",
     "tickers": [
       "KVUE"
@@ -33623,7 +33622,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "Advance Auto Parts",
     "tickers": [
       "AAP"
@@ -33634,7 +33633,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "Palo Alto Networks",
     "tickers": [
       "PANW"
@@ -33645,7 +33644,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "Dish Network",
     "tickers": [
       "DISH"
@@ -33656,7 +33655,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "Axon Enterprise",
     "tickers": [
       "AXON"
@@ -33667,7 +33666,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "First Republic Bank",
     "tickers": [
       "FRC"
@@ -33678,7 +33677,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "Fair Isaac",
     "tickers": [
       "FICO"
@@ -33689,7 +33688,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "Lumen Technologies",
     "tickers": [
       "LUMN"
@@ -33700,7 +33699,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "Bunge Global",
     "tickers": [
       "BG"
@@ -33711,7 +33710,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "Signature Bank",
     "tickers": [
       "SBNY"
@@ -33722,7 +33721,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "Insulet",
     "tickers": [
       "PODD"
@@ -33733,7 +33732,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "SVB Financial Group",
     "tickers": [
       "SIVB"
@@ -33744,7 +33743,7 @@
   },
   {
     "action": "Added",
-    "permno": NaN,
+    "permno": null,
     "company": "GE HealthCare",
     "tickers": [
       "GEHC"
@@ -33755,7 +33754,7 @@
   },
   {
     "action": "Removed",
-    "permno": NaN,
+    "permno": null,
     "company": "Vornado Realty Trust",
     "tickers": [
       "VNO"
