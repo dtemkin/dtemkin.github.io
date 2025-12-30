@@ -1,29 +1,35 @@
+(function(){
+
 function reloadByID(element_id){
     var container = document.getElementById(element_id);
-    var container_content = container.innerHTML;
-    container.innerHTML = container_content;
+    if (!container) return;
+    // re-assign innerHTML to force a reflow/repaint if needed
+    container.innerHTML = container.innerHTML;
 }
 
 function reloadByClass(element_class) {
-    var container = document.getElementsByClassName(element_class);
-    var container_content = container.innerHTML;
-    container.innerHTML = container_content;
+    var containers = document.getElementsByClassName(element_class);
+    if (!containers || containers.length === 0) return;
+    for (var i = 0; i < containers.length; i++) {
+        containers[i].innerHTML = containers[i].innerHTML;
+    }
 }
 
 function reloadByTagName(element_tagname) {
-    var container = document.getElementsByName(element_tagname);
-    var container_content = container.innerHTML;
-    container.innerHTML = container_content;
+    var containers = document.getElementsByTagName(element_tagname);
+    if (!containers || containers.length === 0) return;
+    for (var i = 0; i < containers.length; i++) {
+        containers[i].innerHTML = containers[i].innerHTML;
+    }
 }
 
-
-
-
-
-function plotlyMakeHeatmapTrace(games){
+// Helper to build a Plotly heatmap trace. Accepts the heatmap z-data as "data", an index "x",
+// and an optional name. If x is provided as a number, the first trace (x === 0) will be visible by default.
+function plotlyMakeHeatmapTrace(data, x, name){
+        name = typeof name !== 'undefined' ? name : x;
         return {
-            "opacity": 1.0,
-            "colorscale": [
+            opacity: 1.0,
+            colorscale: [
                 [0.0, "rgb(255,255,255)"], [0.04, "rgb(0,255,0)"],
                 [0.08, "rgb(51,255,0)"], [0.12, "rgb(102,255,0)"],
                 [0.16, "rgb(153,255,0)"], [0.2, "rgb(178,255,0)"],
@@ -40,7 +46,15 @@ function plotlyMakeHeatmapTrace(games){
             ],
             z: data,
             type: "heatmap",
-            visible: x === 0,
-            name: x
+            visible: (typeof x === 'number') ? (x === 0) : true,
+            name: name
         };
 }
+
+// expose functions in global scope (if needed)
+window.reloadByID = reloadByID;
+window.reloadByClass = reloadByClass;
+window.reloadByTagName = reloadByTagName;
+window.plotlyMakeHeatmapTrace = plotlyMakeHeatmapTrace;
+
+})();
