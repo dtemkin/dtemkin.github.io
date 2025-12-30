@@ -8,27 +8,22 @@
 
   <style>
     :root{
-      /* surfaces */
+      /* White-background friendly palette */
       --bg: transparent;
       --panel: #ffffff;
       --panel2: #f6f7fb;
-    
-      /* text */
+
       --text: #1f2937;     /* slate-800 */
       --muted: #6b7280;    /* gray-500 */
-    
-      /* accents */
+
       --accent: #4f46e5;   /* indigo-600 */
       --accent2: #0ea5e9;  /* sky-500 */
-    
-      /* semantics */
+
       --good: #16a34a;     /* green-600 */
       --bad: #dc2626;      /* red-600 */
       --neutral: #7c3aed;  /* violet-600 */
-    
-      /* lines */
+
       --line: #d1d5db;     /* gray-300 */
-    }
     }
 
     body{
@@ -50,11 +45,11 @@
     .controls button{
       padding:8px 12px;
       border-radius:10px;
-      border:1px solid rgba(124,92,255,0.35);
-      background:linear-gradient(135deg, rgba(124,92,255,0.25), rgba(53,208,255,0.15));
+      border:1px solid rgba(79,70,229,0.25);
+      background:linear-gradient(135deg, rgba(79,70,229,0.12), rgba(14,165,233,0.08));
       color: rgba(0,0,0,0.88);
       cursor:pointer;
-      box-shadow: 0 10px 26px rgba(0,0,0,0.45);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
     }
     .controls button:disabled{ opacity:.5; cursor:not-allowed; }
 
@@ -63,7 +58,7 @@
     .controls select{
       padding:6px 10px;
       border-radius:10px;
-      border:1px solid rgba(255,255,255,0.15);
+      border:1px solid rgba(0,0,0,0.12);
       background: transparent;
       color: rgba(0,0,0,0.88);
     }
@@ -81,8 +76,8 @@
       padding:8px 12px;
       border-radius:12px;
       background: transparent;
-      border:1px solid rgba(255,255,255,.12);
-      box-shadow: 0 10px 26px rgba(0,0,0,0.45);
+      border:1px solid rgba(0,0,0,.10);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
       font-weight:650;
       letter-spacing: 0.2px;
     }
@@ -93,10 +88,10 @@
       align-items:center;
       padding:6px 10px;
       border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: transparent;
+      border:1px solid rgba(0,0,0,.10);
+      background: rgba(255,255,255,0.6);
       font-size:13px;
-      color: var(--text);
+      color: rgba(0,0,0,0.85);
     }
 
     .dotLegend{
@@ -124,7 +119,7 @@
     .filters input[type="date"]{
       padding:6px 10px;
       border-radius:10px;
-      border:1px solid rgba(255,255,255,.15);
+      border:1px solid rgba(0,0,0,.12);
       background: transparent;
       color: rgba(0,0,0,0.88);
     }
@@ -139,21 +134,21 @@
       border-radius:14px;
       padding:12px;
       background: transparent;
-      border:1px solid rgba(255,255,255,.12);
+      border:1px solid rgba(0,0,0,.10);
       box-shadow:none;
       user-select:none;
       outline: none;
     }
     .chart-wrap:focus{
-      outline: 2px solid rgba(124,92,255,0.45);
+      outline: 2px solid rgba(79,70,229,0.35);
       outline-offset: 2px;
     }
 
     .tooltip{
       position:fixed;
       pointer-events:none;
-      background: rgba(255,255,255,0.96);
-      border:1px solid rgba(124,92,255,.35);
+      background: #ffffff;
+      border: 1px solid rgba(0,0,0,0.12);
       color: rgba(0,0,0,0.88);
       padding:10px 12px;
       border-radius:10px;
@@ -162,9 +157,55 @@
       line-height:1.35;
       display:none;
       z-index:9999;
-      box-shadow: 0 16px 44px rgba(0,0,0,0.65);
-      white-space:pre-wrap;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+      white-space:normal;
     }
+
+    /* Color-coded tooltip states */
+    .tooltip.tip-added{
+      background: rgba(22,163,74,0.10);
+      border: 2px solid rgba(22,163,74,0.55);
+    }
+
+    .tooltip.tip-removed{
+      background: rgba(220,38,38,0.10);
+      border: 2px solid rgba(220,38,38,0.55);
+    }
+
+    .tooltip.tip-mixed{
+      background: rgba(124,58,237,0.10);
+      border: 2px solid rgba(124,58,237,0.55);
+    }
+
+    .tooltip .tip-header{
+      font-weight: 750;
+      margin-bottom: 6px;
+      color: rgba(0,0,0,0.85);
+    }
+
+    .tooltip .tip-list{
+      margin: 0;
+      padding-left: 16px;
+    }
+
+    .tooltip .tip-list li{
+      margin: 2px 0;
+      color: rgba(0,0,0,0.85);
+    }
+
+    .tooltip .badge{
+      display:inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 999px;
+      margin-right: 6px;
+      border: 1px solid rgba(0,0,0,0.10);
+      background: rgba(255,255,255,0.70);
+    }
+
+    .tooltip .badge.added{ border-color: rgba(22,163,74,0.45); }
+    .tooltip .badge.removed{ border-color: rgba(220,38,38,0.45); }
 
     .sources{
       margin-top:6px;
@@ -244,8 +285,8 @@
 <div class="tooltip" id="tooltip"></div>
 
 <script>
-/** Data source: put SP500-Changes.normalized.json next to this HTML */
-const DATA_URL = "data/sp500-change-events.json";
+/** Data source (use your cleaned JSON) */
+const DATA_URL = "./SP500-Changes.normalized.clean.json";
 
 /** Window */
 const WINDOW_MONTHS = 10;
@@ -349,36 +390,78 @@ function coerceEvent(row){
   };
 }
 
-/** Tooltip text */
-function buildTooltipText(monthDate, events){
-  const header = `Month: ${fmtMonth(monthDate)}  •  Events: ${events.length}\n\n`;
-  const body = events.map(e => {
-    const tick = e.tickers ? ` (${e.tickers})` : "";
-    const when = fmtDate(e.changeDate);
-    const range = `${fmtDate(e.start)} → ${fmtDate(e.end)}`;
-    const id = e.id ? e.id : "—";
-    const reason = e.reason ? e.reason : "—";
-    return `• ${e.action} — ${e.name}${tick}
-  change: ${when}
-  range:  ${range}
-  permno: ${id}
-  reason: ${reason}`;
-  }).join("\n\n");
-  return header + body;
+/** Tooltip helpers: show only "Name (TICKER)" */
+function firstTicker(e){
+  if (!e) return "";
+  if (typeof e.tickers === "string" && e.tickers.trim()){
+    return e.tickers.split(",")[0].trim();
+  }
+  return "";
+}
+function escapeHtml(s){
+  return String(s ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+function summarizeMonth(events){
+  let add = 0, rem = 0;
+  for (const e of events){
+    const a = (e.action || "").toLowerCase();
+    if (a === "added") add++;
+    else if (a === "removed") rem++;
+  }
+  if (add && !rem) return "added";
+  if (rem && !add) return "removed";
+  return "mixed";
+}
+function buildTooltipHTML(monthDate, events){
+  const monthLabel = fmtMonthPretty(monthDate);
+
+  const items = events.map(e => {
+    const action = (e.action || "").toLowerCase();
+    const badge = action === "added"
+      ? `<span class="badge added">Added</span>`
+      : action === "removed"
+        ? `<span class="badge removed">Removed</span>`
+        : `<span class="badge">Event</span>`;
+
+    const name = (e.name || "").trim();
+    const t = firstTicker(e);
+    const title = t ? `${name} (${t})` : name;
+
+    return `<li>${badge}${escapeHtml(title)}</li>`;
+  }).join("");
+
+  return `
+    <div class="tip-header">${escapeHtml(monthLabel)} • ${events.length} event${events.length===1?"":"s"}</div>
+    <ul class="tip-list">${items}</ul>
+  `;
 }
 
-function hideTooltip(){ tooltip.style("display","none"); }
+function hideTooltip(){
+  tooltip.style("display","none");
+}
 
-function showTooltipAt(screenX, screenY, text){
+function showTooltipAt(screenX, screenY, html){
   tooltip
     .style("display","block")
     .style("left", (screenX + 14) + "px")
     .style("top", (screenY + 14) + "px")
-    .text(text);
+    .html(html);
 }
 
 function clearAutoHideTimer(){
   if (autoHideTimer) { clearTimeout(autoHideTimer); autoHideTimer = null; }
+}
+
+function setTooltipStateClass(state){
+  tooltip
+    .classed("tip-added", state === "added")
+    .classed("tip-removed", state === "removed")
+    .classed("tip-mixed", state === "mixed");
 }
 
 function showTooltipForMonth(monthDate, { auto=false } = {}){
@@ -386,13 +469,16 @@ function showTooltipForMonth(monthDate, { auto=false } = {}){
   const evts = eventsByMonth.get(key) || [];
   if (!evts.length) { if (!tooltipPinned) hideTooltip(); return; }
 
+  const state = summarizeMonth(evts);
+  setTooltipStateClass(state);
+
   const svgRect = svg.node().getBoundingClientRect();
   const { height } = getSize();
   const innerH = height - margin.top - margin.bottom;
   const x = margin.left + xScale(monthDate);
   const y = margin.top + (innerH/2);
 
-  showTooltipAt(svgRect.left + x, svgRect.top + y, buildTooltipText(monthDate, evts));
+  showTooltipAt(svgRect.left + x, svgRect.top + y, buildTooltipHTML(monthDate, evts));
 
   clearAutoHideTimer();
   if (auto && !tooltipPinned){
@@ -431,6 +517,7 @@ window.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && tooltipPinned) unpinTooltip();
 });
 
+// click empty space to close pinned tooltip
 chartWrap.addEventListener("click", () => {
   if (tooltipPinned) unpinTooltip();
 });
@@ -448,18 +535,22 @@ function initChart(){
     .attr("id","gradLine")
     .attr("x1","0%").attr("x2","100%")
     .attr("y1","0%").attr("y2","0%");
-  grad.append("stop").attr("offset","0%").attr("stop-color","rgba(124,92,255,0.95)");
-  grad.append("stop").attr("offset","55%").attr("stop-color","rgba(53,208,255,0.90)");
-  grad.append("stop").attr("offset","100%").attr("stop-color","rgba(45,226,166,0.90)");
+
+  // White-safe gradient
+  grad.append("stop").attr("offset","0%").attr("stop-color", "#4f46e5");
+  grad.append("stop").attr("offset","55%").attr("stop-color", "#0ea5e9");
+  grad.append("stop").attr("offset","100%").attr("stop-color", "#16a34a");
 
   const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
 
+  // subtle guide line
   g.append("line")
     .attr("x1", 0).attr("x2", innerW)
     .attr("y1", innerH/2).attr("y2", innerH/2)
-    .attr("stroke", "rgba(255,255,255,0.10)")
+    .attr("stroke", "#e5e7eb")
     .attr("stroke-width", 1);
 
+  // main timeline line
   lineG = g.append("g");
   lineG.append("line")
     .attr("x1", 0).attr("x2", innerW)
@@ -539,6 +630,7 @@ function render(monthIndex, { allowAutoTooltip=true } = {}){
 
   xScale.domain([fromMonth, toMonthExcl]);
 
+  // Axis ticks
   const ticks = d3.utcMonths(fromMonth, toMonthExcl);
   const axis = d3.axisBottom(xScale)
     .tickValues(ticks)
@@ -548,10 +640,11 @@ function render(monthIndex, { allowAutoTooltip=true } = {}){
   axisG.call(axis);
   axisG.selectAll("text")
     .style("font-size","14px")
-    .style("fill","rgba(0,0,0,0.7)");
+    .style("fill","#374151");   // gray-700
   axisG.selectAll("path, line")
-    .style("stroke","rgba(0,0,0,0.18)");
+    .style("stroke","#d1d5db"); // gray-300
 
+  // Markers
   const windowMonths = ticks.map(m => +monthStart(m));
   const markerData = windowMonths
     .map(k => ({ month: new Date(+k), key: k, events: eventsByMonth.get(k) || [] }))
@@ -562,12 +655,14 @@ function render(monthIndex, { allowAutoTooltip=true } = {}){
 
   const dotsEnter = dots.enter().append("circle")
     .attr("r", 7)
-    .attr("stroke", "rgba(255,255,255,0.88)")
-    .attr("stroke-width", 1.25)
+    .attr("stroke", "#ffffff")
+    .attr("stroke-width", 1.5)
     .attr("cursor","pointer")
     .on("mousemove", (event, d) => {
       if (tooltipPinned) return;
-      showTooltipAt(event.clientX, event.clientY, buildTooltipText(d.month, d.events));
+      const state = summarizeMonth(d.events);
+      setTooltipStateClass(state);
+      showTooltipAt(event.clientX, event.clientY, buildTooltipHTML(d.month, d.events));
     })
     .on("mouseleave", () => {
       if (!tooltipPinned) hideTooltip();
@@ -575,7 +670,10 @@ function render(monthIndex, { allowAutoTooltip=true } = {}){
     .on("click", (event, d) => {
       event.stopPropagation();
       const isSame = tooltipPinned && pinnedMonthKey === d.key;
-      if (isSame){ unpinTooltip(); return; }
+      if (isSame){
+        unpinTooltip();
+        return;
+      }
       pinTooltip(d.key);
       showTooltipForMonth(d.month, { auto:false });
     });
@@ -593,21 +691,23 @@ function render(monthIndex, { allowAutoTooltip=true } = {}){
         if (a === "added") add++;
         else if (a === "removed") rem++;
       }
-      if (add > rem) return "rgba(45,226,166,0.95)";
-      if (rem > add) return "rgba(255,77,109,0.95)";
-      return "rgba(185,166,255,0.95)";
+      if (add > rem) return "#16a34a";     // green
+      if (rem > add) return "#dc2626";     // red
+      return "#7c3aed";                    // violet
     });
 
+  // Progress indicator at window start
   const progX = xScale(fromMonth);
   const prog = lineG.selectAll("line.progress").data([fromMonth]);
   prog.enter().append("line")
     .attr("class","progress")
     .attr("y1", 0).attr("y2", innerH)
-    .attr("stroke", "rgba(255,255,255,0.20)")
+    .attr("stroke", "rgba(0,0,0,0.10)")
     .attr("stroke-width", 1)
     .merge(prog)
     .attr("x1", progX).attr("x2", progX);
 
+  // Prominent year label
   const year = fmtYear(fromMonth);
   const yYear = (innerH/2 + innerH) / 2;
 
@@ -619,7 +719,7 @@ function render(monthIndex, { allowAutoTooltip=true } = {}){
     .attr("text-anchor","middle")
     .style("font-size","16pt")
     .style("font-weight","800")
-    .style("fill","rgba(231,236,255,0.60)")
+    .style("fill","rgba(0,0,0,0.25)")
     .style("letter-spacing","0.8px")
     .text(year)
     .merge(yearSel)
@@ -627,8 +727,10 @@ function render(monthIndex, { allowAutoTooltip=true } = {}){
     .attr("y", yYear)
     .text(year);
 
+  // Counter update (cumulative through current month)
   updateCounter(monthIndex);
 
+  // Auto-tooltip behavior
   if (allowAutoTooltip) {
     if (autoTooltipRemaining > 0) maybeAutoTooltip(fromMonth);
     else if (!tooltipPinned) hideTooltip();
@@ -778,10 +880,10 @@ function toTSV(rows){
 }
 
 exportJsonBtn.addEventListener("click", () => {
-  downloadBlob("SP500-Changes.normalized.export.json","application/json;charset=utf-8", JSON.stringify(eventsAll,null,2));
+  downloadBlob("SP500-Changes.export.json","application/json;charset=utf-8", JSON.stringify(eventsAll,null,2));
 });
 exportTsvBtn.addEventListener("click", () => {
-  downloadBlob("SP500-Changes.normalized.export.tsv","text/tab-separated-values;charset=utf-8", toTSV(eventsAll));
+  downloadBlob("SP500-Changes.export.tsv","text/tab-separated-values;charset=utf-8", toTSV(eventsAll));
 });
 
 // Main
@@ -789,7 +891,7 @@ exportTsvBtn.addEventListener("click", () => {
   try{
     const rows = await d3.json(DATA_URL);
 
-    // exports (match your normalized keys)
+    // exports (match normalized keys)
     eventsAll = rows.map(r => ({
       "Action": r.action ?? "",
       "Permno": (r.permno ?? "").toString(),
