@@ -236,8 +236,8 @@
 
 <script>
 /** Data source */
-const DATA_URL = "../assets/data/sp500_wikipedia_reconciled.json";
-// const DATA_URL = "https://raw.githubusercontent.com/dtemkin/dtemkin.github.io/refs/heads/master/assets/data/sp500_wikipedia_reconciled.json";
+const DATA_URL = "https://raw.githubusercontent.com/dtemkin/dtemkin.github.io/refs/heads/master/assets/data/SP500-Changes.normalized.json";
+// const DATA_URL = "https://raw.githubusercontent.com/dtemkin/dtemkin.github.io/refs/heads/master/assets/data/SP500-Changes.normalized.json";
 
 /** Bounds + window */
 const DEFAULT_START_YEAR = 1959;
@@ -307,29 +307,42 @@ let pinnedMonthKey = null;
 
 /** Convert row -> event */
 function coerceEvent(row){
-  const action = (row["Action"] || "").trim();
-  const permno = (row["Permno"] || "").trim();
-  const name = (row["Security"] || "").trim();
-  const ticker = (row["Ticker"] || "").trim();
-  const start = parseDate((row["SP500 Start"] || "").trim());
-  const end = parseDate((row["SP500 End"] || "").trim());
-  const reason = (row["Reason"] || "").trim();
+  const action = (row.action || "").trim();
 
-  if (!action || !ticker || !start || !end) return null;
+  // permno can be null/NaN in the source JSON; keep as a string for display/export
+  const permno = (row.permno ?? "").toString().trim();
 
+  const name = (row.company || "").trim();
+
+  const tickersArr = Array.isArray(row.tickers)
+    ? row.tickers.map(t => (t ?? "").toString().trim()).filter(Boolean)
+    : (row.tickers ? String(row.tickers).split(/[,\s]+/).map(s => s.trim()).filter(Boolean) : []);
+
+  const tickers = tickersArr.join(", ");
+
+  const start = parseDate((row.sp500_start || "").toString().trim());
+  const end   = parseDate((row.sp500_end   || "").toString().trim());
+
+  // optional (kept for compatibility with old schema)
+  const reason = ((row.reason ?? row.Reason) || "").toString().trim();
+
+  if (!action || !tickersArr.length || !start || !end) return null;
+
+  // If stock is added, relevant date = start; if removed, relevant date = end
   const changeDate = (action.toLowerCase() === "removed") ? end : start;
 
   return {
     action,
     id: permno,
-    name: name || ticker,
-    tickers: ticker,
+    name: name || tickersArr[0],
+    tickers,
     start, end,
     reason,
     changeDate,
     changeMonth: monthStart(changeDate),
   };
 }
+
 
 /** Tooltip text */
 function buildTooltipText(monthDate, events){
@@ -786,15 +799,15 @@ exportTsvBtn.addEventListener("click", () => {
   try{
     const rows = await d3.json(DATA_URL);
 
-    // normalized rows for export
+    // normalized rows for export (matches SP500-Changes.normalized.json fields)
     eventsAll = rows.map(r => ({
-      "Action": r["Action"] ?? "",
-      "Permno": r["Permno"] ?? "",
-      "Security": r["Security"] ?? "",
-      "Ticker": r["Ticker"] ?? "",
-      "SP500 Start": r["SP500 Start"] ?? "",
-      "SP500 End": r["SP500 End"] ?? "",
-      "Reason": r["Reason"] ?? ""
+      "Action": r.action ?? "",
+      "Permno": (r.permno ?? "").toString(),
+      "Company": r.company ?? "",
+      "Tickers": Array.isArray(r.tickers) ? r.tickers.filter(Boolean).join(", ") : (r.tickers ?? ""),
+      "SP500 Start": r.sp500_start ?? "",
+      "SP500 End": r.sp500_end ?? "",
+      "Event Date": r.event_date ?? ""
     }));
 
     const events = rows.map(coerceEvent).filter(Boolean);
