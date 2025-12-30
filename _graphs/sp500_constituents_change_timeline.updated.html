@@ -24,6 +24,8 @@
       --neutral: #7c3aed;  /* violet-600 */
 
       --line: #d1d5db;     /* gray-300 */
+      --dot: #4f46e5;      /* all dots same color */
+      --tooltipBg: #f3f4f6;/* solid gray tooltip background */
     }
 
     body{
@@ -144,11 +146,11 @@
       outline-offset: 2px;
     }
 
+    /* SOLID, non-transparent tooltip background */
     .tooltip{
       position:fixed;
       pointer-events:none;
-      background: #ffffff;
-      border: 1px solid rgba(0,0,0,0.12);
+      background: var(--tooltipBg);
       color: rgba(0,0,0,0.88);
       padding:10px 12px;
       border-radius:10px;
@@ -157,30 +159,20 @@
       line-height:1.35;
       display:none;
       z-index:9999;
-      box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+      border: 2px solid #d1d5db;         /* default gray border */
+      box-shadow: 0 12px 28px rgba(0,0,0,0.18);
       white-space:normal;
     }
 
-    /* Color-coded tooltip states */
-    .tooltip.tip-added{
-      background: rgba(22,163,74,0.10);
-      border: 2px solid rgba(22,163,74,0.55);
-    }
-
-    .tooltip.tip-removed{
-      background: rgba(220,38,38,0.10);
-      border: 2px solid rgba(220,38,38,0.55);
-    }
-
-    .tooltip.tip-mixed{
-      background: rgba(124,58,237,0.10);
-      border: 2px solid rgba(124,58,237,0.55);
-    }
+    /* Border color by state (background stays solid gray) */
+    .tooltip.tip-added{ border-color: var(--good); }
+    .tooltip.tip-removed{ border-color: var(--bad); }
+    .tooltip.tip-mixed{ border-color: var(--neutral); }
 
     .tooltip .tip-header{
-      font-weight: 750;
+      font-weight: 800;
       margin-bottom: 6px;
-      color: rgba(0,0,0,0.85);
+      color: #111827;
     }
 
     .tooltip .tip-list{
@@ -190,22 +182,21 @@
 
     .tooltip .tip-list li{
       margin: 2px 0;
-      color: rgba(0,0,0,0.85);
+      color: rgba(0,0,0,0.88);
     }
 
     .tooltip .badge{
       display:inline-block;
       font-size: 10px;
-      font-weight: 700;
+      font-weight: 800;
       padding: 2px 6px;
       border-radius: 999px;
       margin-right: 6px;
-      border: 1px solid rgba(0,0,0,0.10);
-      background: rgba(255,255,255,0.70);
+      border: 1px solid rgba(0,0,0,0.18);
+      background: rgba(255,255,255,0.85);
     }
-
-    .tooltip .badge.added{ border-color: rgba(22,163,74,0.45); }
-    .tooltip .badge.removed{ border-color: rgba(220,38,38,0.45); }
+    .tooltip .badge.added{ border-color: rgba(22,163,74,0.55); }
+    .tooltip .badge.removed{ border-color: rgba(220,38,38,0.55); }
 
     .sources{
       margin-top:6px;
@@ -227,10 +218,11 @@
 
   <label>Speed:
     <select id="speed">
-      <option value="1200">0.5×</option>
-      <option value="600" selected>1×</option>
-      <option value="300">2×</option>
-      <option value="150">4×</option>
+      <!-- Slower defaults -->
+      <option value="3000">0.5×</option>
+      <option value="2000" selected>1×</option>
+      <option value="1200">2×</option>
+      <option value="700">4×</option>
     </select>
   </label>
 
@@ -291,14 +283,8 @@ const DATA_URL = "data/sp500-change-events.json";
 /** Window */
 const WINDOW_MONTHS = 10;
 
-/** Auto-tooltip: automatically show for first 3 EVENT-months, then stop */
-const AUTO_TOOLTIP_EVENT_MONTHS = 3;
-const AUTO_TOOLTIP_MS = 2200;
-
 /** Parsing */
 const parseDate = d3.utcParse("%Y-%m-%d");
-const fmtDate = d3.utcFormat("%Y-%m-%d");
-const fmtMonth = d3.utcFormat("%Y-%m");
 const fmtMonthPretty = d3.utcFormat("%b %Y");
 const fmtYear = d3.utcFormat("%Y");
 
@@ -344,17 +330,25 @@ let eventsAll = [];       // for export
 let boundStart = null;
 let boundEnd = null;
 
-// inferred data range (set from file)
+// inferred data range
 let dataMinMonth = null;
 let dataMaxMonth = null;
 
-// auto-tooltip state
-let autoTooltipRemaining = AUTO_TOOLTIP_EVENT_MONTHS;
+// auto-hide state
 let autoHideTimer = null;
 
 // pinned tooltip state
 let tooltipPinned = false;
 let pinnedMonthKey = null;
+
+function getPlaybackIntervalMs(){
+  return Math.max(200, +speedSel.value || 2000);
+}
+
+/* Popup timer = 2/3 of the current speed interval */
+function getAutoTooltipMs(){
+  return Math.max(250, Math.floor(getPlaybackIntervalMs() * 2 / 3));
+}
 
 /** Convert row -> event (expects normalized schema) */
 function coerceEvent(row){
@@ -371,11 +365,8 @@ function coerceEvent(row){
   const start = parseDate((row.sp500_start || "").toString().trim());
   const end   = parseDate((row.sp500_end   || "").toString().trim());
 
-  const reason = ((row.reason ?? row.Reason) || "").toString().trim();
-
   if (!action || !tickersArr.length || !start || !end) return null;
 
-  // If stock is added, relevant date = start; if removed, relevant date = end
   const changeDate = (action.toLowerCase() === "removed") ? end : start;
 
   return {
@@ -384,7 +375,6 @@ function coerceEvent(row){
     name: name || tickersArr[0],
     tickers,
     start, end,
-    reason,
     changeDate,
     changeMonth: monthStart(changeDate),
   };
@@ -424,9 +414,7 @@ function buildTooltipHTML(monthDate, events){
     const action = (e.action || "").toLowerCase();
     const badge = action === "added"
       ? `<span class="badge added">Added</span>`
-      : action === "removed"
-        ? `<span class="badge removed">Removed</span>`
-        : `<span class="badge">Event</span>`;
+      : `<span class="badge removed">Removed</span>`;
 
     const name = (e.name || "").trim();
     const t = firstTicker(e);
@@ -484,20 +472,19 @@ function showTooltipForMonth(monthDate, { auto=false } = {}){
   if (auto && !tooltipPinned){
     autoHideTimer = setTimeout(() => {
       if (!tooltipPinned) hideTooltip();
-    }, AUTO_TOOLTIP_MS);
+    }, getAutoTooltipMs());  // <-- 2/3 of current speed
   }
 }
 
+/* Auto popup should NOT stop after a few points */
 function maybeAutoTooltip(monthDate){
   if (tooltipPinned) return;
-  if (autoTooltipRemaining <= 0) { hideTooltip(); return; }
 
   const key = +monthStart(monthDate);
   const evts = eventsByMonth.get(key) || [];
   if (!evts.length) { hideTooltip(); return; }
 
   showTooltipForMonth(monthDate, { auto:true });
-  autoTooltipRemaining -= 1;
 }
 
 function pinTooltip(monthKey){
@@ -536,21 +523,18 @@ function initChart(){
     .attr("x1","0%").attr("x2","100%")
     .attr("y1","0%").attr("y2","0%");
 
-  // White-safe gradient
   grad.append("stop").attr("offset","0%").attr("stop-color", "#4f46e5");
   grad.append("stop").attr("offset","55%").attr("stop-color", "#0ea5e9");
   grad.append("stop").attr("offset","100%").attr("stop-color", "#16a34a");
 
   const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
 
-  // subtle guide line
   g.append("line")
     .attr("x1", 0).attr("x2", innerW)
     .attr("y1", innerH/2).attr("y2", innerH/2)
     .attr("stroke", "#e5e7eb")
     .attr("stroke-width", 1);
 
-  // main timeline line
   lineG = g.append("g");
   lineG.append("line")
     .attr("x1", 0).attr("x2", innerW)
@@ -630,7 +614,6 @@ function render(monthIndex, { allowAutoTooltip=true } = {}){
 
   xScale.domain([fromMonth, toMonthExcl]);
 
-  // Axis ticks
   const ticks = d3.utcMonths(fromMonth, toMonthExcl);
   const axis = d3.axisBottom(xScale)
     .tickValues(ticks)
@@ -640,9 +623,9 @@ function render(monthIndex, { allowAutoTooltip=true } = {}){
   axisG.call(axis);
   axisG.selectAll("text")
     .style("font-size","14px")
-    .style("fill","#374151");   // gray-700
+    .style("fill","#374151");
   axisG.selectAll("path, line")
-    .style("stroke","#d1d5db"); // gray-300
+    .style("stroke","#d1d5db");
 
   // Markers
   const windowMonths = ticks.map(m => +monthStart(m));
@@ -678,23 +661,14 @@ function render(monthIndex, { allowAutoTooltip=true } = {}){
       showTooltipForMonth(d.month, { auto:false });
     });
 
+  /* Dots all the same color */
   dotsEnter.merge(dots)
     .attr("cx", d => xScale(d.month))
     .attr("cy", (d) => {
       const t = (Math.abs(d.key) % 5) / 4;
       return yScale(t);
     })
-    .attr("fill", (d) => {
-      let add = 0, rem = 0;
-      for (const e of d.events){
-        const a = (e.action || "").toLowerCase();
-        if (a === "added") add++;
-        else if (a === "removed") rem++;
-      }
-      if (add > rem) return "#16a34a";     // green
-      if (rem > add) return "#dc2626";     // red
-      return "#7c3aed";                    // violet
-    });
+    .attr("fill", "var(--dot)");
 
   // Progress indicator at window start
   const progX = xScale(fromMonth);
@@ -707,7 +681,7 @@ function render(monthIndex, { allowAutoTooltip=true } = {}){
     .merge(prog)
     .attr("x1", progX).attr("x2", progX);
 
-  // Prominent year label
+  // Year label
   const year = fmtYear(fromMonth);
   const yYear = (innerH/2 + innerH) / 2;
 
@@ -727,14 +701,10 @@ function render(monthIndex, { allowAutoTooltip=true } = {}){
     .attr("y", yYear)
     .text(year);
 
-  // Counter update (cumulative through current month)
   updateCounter(monthIndex);
 
-  // Auto-tooltip behavior
-  if (allowAutoTooltip) {
-    if (autoTooltipRemaining > 0) maybeAutoTooltip(fromMonth);
-    else if (!tooltipPinned) hideTooltip();
-  }
+  // Auto tooltip should keep working throughout
+  if (allowAutoTooltip) maybeAutoTooltip(fromMonth);
 
   scrubber.value = String(monthIndex);
 }
@@ -793,7 +763,7 @@ function play(){
   playPauseBtn.textContent="Pause";
   if (timer) clearInterval(timer);
 
-  const intervalMs = +speedSel.value;
+  const intervalMs = getPlaybackIntervalMs();
   timer = setInterval(() => {
     let i = +scrubber.value + 1;
     if (i > monthCount - WINDOW_MONTHS) { stop(); return; }
@@ -840,7 +810,6 @@ function rebuildMonthsWithBounds(){
 
   scrubber.max = String(Math.max(0, monthCount-1));
   rebuildPrefixes();
-
   setIndex(+scrubber.value || 0, { allowAutoTooltip:true });
 }
 
@@ -855,7 +824,6 @@ resetRangeBtn.addEventListener("click", () => {
   stopPlaybackIfNeeded();
   boundStart=null; boundEnd=null;
   startDateInput.value=""; endDateInput.value="";
-  autoTooltipRemaining = AUTO_TOOLTIP_EVENT_MONTHS;
   unpinTooltip();
   rebuildMonthsWithBounds();
   setIndex(0, { allowAutoTooltip:true });
@@ -905,7 +873,6 @@ exportTsvBtn.addEventListener("click", () => {
 
     const events = rows.map(coerceEvent).filter(Boolean);
 
-    // group by month
     eventsByMonth = d3.group(events, d => +d.changeMonth);
 
     // infer min/max month from events
@@ -914,7 +881,6 @@ exportTsvBtn.addEventListener("click", () => {
     dataMinMonth = d3.utcMonth.floor(d3.min(months));
     dataMaxMonth = d3.utcMonth.floor(d3.max(months));
 
-    // build timeline months from inferred range
     allMonths = d3.utcMonths(dataMinMonth, d3.utcMonth.offset(dataMaxMonth, 1));
     monthCount = allMonths.length;
 
@@ -924,7 +890,6 @@ exportTsvBtn.addEventListener("click", () => {
 
     initChart();
     rebuildPrefixes();
-    autoTooltipRemaining = AUTO_TOOLTIP_EVENT_MONTHS;
 
     render(0, { allowAutoTooltip:true });
 
