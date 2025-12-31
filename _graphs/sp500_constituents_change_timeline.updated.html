@@ -3,29 +3,25 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>S&P 500 Changes Timeline</title>
+  <title>S&P 500 Changes Timeline (Quarterly)</title>
   <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 
   <style>
     :root{
-      /* White-background friendly palette */
-      --bg: transparent;
-      --panel: #ffffff;
-      --panel2: #f6f7fb;
+      --text: #1f2937;
+      --muted: #6b7280;
 
-      --text: #1f2937;     /* slate-800 */
-      --muted: #6b7280;    /* gray-500 */
+      --accent: #4f46e5;     /* indigo */
+      --accent2: #0ea5e9;    /* sky */
 
-      --accent: #4f46e5;   /* indigo-600 */
-      --accent2: #0ea5e9;  /* sky-500 */
+      --good: #16a34a;       /* green */
+      --bad: #dc2626;        /* red */
+      --neutral: #7c3aed;    /* violet */
 
-      --good: #16a34a;     /* green-600 */
-      --bad: #dc2626;      /* red-600 */
-      --neutral: #7c3aed;  /* violet-600 */
+      --line: #d1d5db;       /* gray-300 */
+      --dot: #4f46e5;        /* all dots same color */
 
-      --line: #d1d5db;     /* gray-300 */
-      --dot: #4f46e5;      /* all dots same color */
-      --tooltipBg: #f3f4f6;/* solid gray tooltip background */
+      --tooltipBg: #f3f4f6;  /* solid gray tooltip bg */
     }
 
     body{
@@ -128,9 +124,7 @@
 
     .filters .hint{ font-size:12px; opacity:0.9; }
 
-    input[type="range"]{
-      width:min(680px,100%);
-    }
+    input[type="range"]{ width:min(680px,100%); }
 
     .chart-wrap{
       border-radius:14px;
@@ -146,7 +140,7 @@
       outline-offset: 2px;
     }
 
-    /* SOLID, non-transparent tooltip background */
+    /* SOLID, non-transparent tooltip bg */
     .tooltip{
       position:fixed;
       pointer-events:none;
@@ -159,12 +153,11 @@
       line-height:1.35;
       display:none;
       z-index:9999;
-      border: 2px solid #d1d5db;         /* default gray border */
+      border: 2px solid #d1d5db;
       box-shadow: 0 12px 28px rgba(0,0,0,0.18);
       white-space:normal;
     }
 
-    /* Border color by state (background stays solid gray) */
     .tooltip.tip-added{ border-color: var(--good); }
     .tooltip.tip-removed{ border-color: var(--bad); }
     .tooltip.tip-mixed{ border-color: var(--neutral); }
@@ -194,6 +187,7 @@
       margin-right: 6px;
       border: 1px solid rgba(0,0,0,0.18);
       background: rgba(255,255,255,0.85);
+      vertical-align: baseline;
     }
     .tooltip .badge.added{ border-color: rgba(22,163,74,0.55); }
     .tooltip .badge.removed{ border-color: rgba(220,38,38,0.55); }
@@ -203,10 +197,6 @@
       font-size:8pt;
       color:var(--muted);
       line-height:1.3;
-    }
-    .sources a{
-      color:var(--muted);
-      text-decoration:underline;
     }
   </style>
 </head>
@@ -218,11 +208,11 @@
 
   <label>Speed:
     <select id="speed">
-      <!-- Slower defaults -->
-      <option value="3000">0.5×</option>
-      <option value="2000" selected>1×</option>
-      <option value="1200">2×</option>
-      <option value="700">4×</option>
+      <!-- Slower playback -->
+      <option value="3500">0.5×</option>
+      <option value="2500" selected>1×</option>
+      <option value="1600">2×</option>
+      <option value="1000">4×</option>
     </select>
   </label>
 
@@ -262,7 +252,7 @@
   <div class="hint">Scroll chart with mouse wheel, or click-drag left/right. Shift+scroll = faster.</div>
 </div>
 
-<input id="scrubber" type="range" min="0" max="0" step="1" value="0" aria-label="Scrub month" disabled />
+<input id="scrubber" type="range" min="0" max="0" step="1" value="0" aria-label="Scrub quarter" disabled />
 
 <div class="chart-wrap" id="chartWrap" tabindex="0" aria-label="Timeline chart (scrollable)">
   <svg id="svg" width="100%" height="270"></svg>
@@ -277,18 +267,27 @@
 <div class="tooltip" id="tooltip"></div>
 
 <script>
-/** Data source (use your cleaned JSON) */
+/** Data source (your cleaned JSON) */
 const DATA_URL = "data/sp500-change-events.json";
 
-/** Window */
-const WINDOW_MONTHS = 10;
+/** Quarterly stepping */
+const QUARTER = d3.utcMonth.every(3);
+const WINDOW_QUARTERS = 10; // visible window length (10 quarters = 2.5 years)
 
-/** Parsing */
+/** Parsing/formatting */
 const parseDate = d3.utcParse("%Y-%m-%d");
-const fmtMonthPretty = d3.utcFormat("%b %Y");
+const fmtMonthYear = d3.utcFormat("%b %Y");
 const fmtYear = d3.utcFormat("%Y");
 
-function monthStart(d){ return d3.utcMonth.floor(d); }
+/** Helpers */
+function quarterStart(d){ return QUARTER.floor(d); }
+function quarterLabel(d){
+  const q = Math.floor(d.getUTCMonth()/3) + 1;
+  return `Q${q}`;
+}
+function quarterLabelWithYear(d){
+  return `${quarterLabel(d)} ${fmtYear(d)}`;
+}
 
 /** UI refs */
 const svg = d3.select("#svg");
@@ -321,66 +320,65 @@ let xScale, yScale, axisG, markersG, lineG, yearTextG;
 let playing = false;
 let timer = null;
 
-let allMonths = [];
-let monthCount = 0;
-let eventsByMonth = new Map();
-let eventsAll = [];       // for export
+let allQuarters = [];
+let quarterCount = 0;
+let eventsByQuarter = new Map();
+let eventsAll = []; // export-friendly objects
 
 // bounds
 let boundStart = null;
 let boundEnd = null;
 
 // inferred data range
-let dataMinMonth = null;
-let dataMaxMonth = null;
+let dataMinQuarter = null;
+let dataMaxQuarter = null;
 
-// auto-hide state
+// auto-hide timer
 let autoHideTimer = null;
 
 // pinned tooltip state
 let tooltipPinned = false;
-let pinnedMonthKey = null;
+let pinnedQuarterKey = null;
 
 function getPlaybackIntervalMs(){
-  return Math.max(200, +speedSel.value || 2000);
+  return Math.max(250, +speedSel.value || 2500);
 }
 
-/* Popup timer = 2/3 of the current speed interval */
+/* popup timer = 2/3 of current speed interval */
 function getAutoTooltipMs(){
   return Math.max(250, Math.floor(getPlaybackIntervalMs() * 2 / 3));
 }
 
 /** Convert row -> event (expects normalized schema) */
 function coerceEvent(row){
-  const action = (row.action || "").trim();
+  const action = (row.action || "").trim().toLowerCase();
   const permno = (row.permno ?? "").toString().trim();
   const name = (row.company || "").trim();
 
   const tickersArr = Array.isArray(row.tickers)
     ? row.tickers.map(t => (t ?? "").toString().trim()).filter(Boolean)
     : (row.tickers ? String(row.tickers).split(/[,\s]+/).map(s => s.trim()).filter(Boolean) : []);
-
   const tickers = tickersArr.join(", ");
 
   const start = parseDate((row.sp500_start || "").toString().trim());
   const end   = parseDate((row.sp500_end   || "").toString().trim());
-
   if (!action || !tickersArr.length || !start || !end) return null;
 
-  const changeDate = (action.toLowerCase() === "removed") ? end : start;
+  // Use start for added, end for removed
+  const relevantDate = (action === "removed") ? end : start;
 
   return {
-    action,
+    action,                 // "added" | "removed"
     id: permno,
     name: name || tickersArr[0],
     tickers,
     start, end,
-    changeDate,
-    changeMonth: monthStart(changeDate),
+    relevantDate,           // start for added, end for removed
+    relevantQuarter: quarterStart(relevantDate),
   };
 }
 
-/** Tooltip helpers: show only "Name (TICKER)" */
+/** Tooltip helpers */
 function firstTicker(e){
   if (!e) return "";
   if (typeof e.tickers === "string" && e.tickers.trim()){
@@ -396,23 +394,21 @@ function escapeHtml(s){
     .replaceAll('"',"&quot;")
     .replaceAll("'","&#039;");
 }
-function summarizeMonth(events){
+function summarizeQuarter(events){
   let add = 0, rem = 0;
   for (const e of events){
-    const a = (e.action || "").toLowerCase();
-    if (a === "added") add++;
-    else if (a === "removed") rem++;
+    if (e.action === "added") add++;
+    else if (e.action === "removed") rem++;
   }
   if (add && !rem) return "added";
   if (rem && !add) return "removed";
   return "mixed";
 }
-function buildTooltipHTML(monthDate, events){
-  const monthLabel = fmtMonthPretty(monthDate);
+function buildTooltipHTML(qStartDate, events){
+  const header = `${quarterLabelWithYear(qStartDate)} • ${events.length} event${events.length===1?"":"s"}`;
 
   const items = events.map(e => {
-    const action = (e.action || "").toLowerCase();
-    const badge = action === "added"
+    const badge = e.action === "added"
       ? `<span class="badge added">Added</span>`
       : `<span class="badge removed">Removed</span>`;
 
@@ -420,18 +416,19 @@ function buildTooltipHTML(monthDate, events){
     const t = firstTicker(e);
     const title = t ? `${name} (${t})` : name;
 
-    return `<li>${badge}${escapeHtml(title)}</li>`;
+    // month/year: start for added, end for removed (already in relevantDate)
+    const when = fmtMonthYear(e.relevantDate);
+
+    return `<li>${badge}${escapeHtml(title)} — <span style="color:rgba(0,0,0,0.65)">${escapeHtml(when)}</span></li>`;
   }).join("");
 
   return `
-    <div class="tip-header">${escapeHtml(monthLabel)} • ${events.length} event${events.length===1?"":"s"}</div>
+    <div class="tip-header">${escapeHtml(header)}</div>
     <ul class="tip-list">${items}</ul>
   `;
 }
 
-function hideTooltip(){
-  tooltip.style("display","none");
-}
+function hideTooltip(){ tooltip.style("display","none"); }
 
 function showTooltipAt(screenX, screenY, html){
   tooltip
@@ -452,50 +449,48 @@ function setTooltipStateClass(state){
     .classed("tip-mixed", state === "mixed");
 }
 
-function showTooltipForMonth(monthDate, { auto=false } = {}){
-  const key = +monthStart(monthDate);
-  const evts = eventsByMonth.get(key) || [];
+function showTooltipForQuarter(qStartDate, { auto=false } = {}){
+  const key = +quarterStart(qStartDate);
+  const evts = eventsByQuarter.get(key) || [];
   if (!evts.length) { if (!tooltipPinned) hideTooltip(); return; }
 
-  const state = summarizeMonth(evts);
+  const state = summarizeQuarter(evts);
   setTooltipStateClass(state);
 
   const svgRect = svg.node().getBoundingClientRect();
   const { height } = getSize();
   const innerH = height - margin.top - margin.bottom;
-  const x = margin.left + xScale(monthDate);
+  const x = margin.left + xScale(qStartDate);
   const y = margin.top + (innerH/2);
 
-  showTooltipAt(svgRect.left + x, svgRect.top + y, buildTooltipHTML(monthDate, evts));
+  showTooltipAt(svgRect.left + x, svgRect.top + y, buildTooltipHTML(qStartDate, evts));
 
   clearAutoHideTimer();
   if (auto && !tooltipPinned){
     autoHideTimer = setTimeout(() => {
       if (!tooltipPinned) hideTooltip();
-    }, getAutoTooltipMs());  // <-- 2/3 of current speed
+    }, getAutoTooltipMs());
   }
 }
 
-/* Auto popup should NOT stop after a few points */
-function maybeAutoTooltip(monthDate){
+/* Auto popup should keep working throughout */
+function maybeAutoTooltip(qStartDate){
   if (tooltipPinned) return;
-
-  const key = +monthStart(monthDate);
-  const evts = eventsByMonth.get(key) || [];
+  const key = +quarterStart(qStartDate);
+  const evts = eventsByQuarter.get(key) || [];
   if (!evts.length) { hideTooltip(); return; }
-
-  showTooltipForMonth(monthDate, { auto:true });
+  showTooltipForQuarter(qStartDate, { auto:true });
 }
 
-function pinTooltip(monthKey){
+function pinTooltip(qKey){
   tooltipPinned = true;
-  pinnedMonthKey = monthKey;
+  pinnedQuarterKey = qKey;
   clearAutoHideTimer();
 }
 
 function unpinTooltip(){
   tooltipPinned = false;
-  pinnedMonthKey = null;
+  pinnedQuarterKey = null;
   clearAutoHideTimer();
   hideTooltip();
 }
@@ -503,13 +498,11 @@ function unpinTooltip(){
 window.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && tooltipPinned) unpinTooltip();
 });
-
-// click empty space to close pinned tooltip
 chartWrap.addEventListener("click", () => {
   if (tooltipPinned) unpinTooltip();
 });
 
-/** Chart init / render */
+/** Chart init */
 function initChart(){
   svg.selectAll("*").remove();
 
@@ -551,73 +544,73 @@ function initChart(){
   yScale = d3.scaleLinear().domain([0, 1]).range([innerH/2 - 42, innerH/2 + 42]);
 }
 
-function formatWindowLabel(fromMonth, toMonth){
-  return `${fmtMonthPretty(fromMonth)} → ${fmtMonthPretty(toMonth)}`;
-}
-
 function clampIndex(i){
-  const maxI = Math.max(0, monthCount - WINDOW_MONTHS);
+  const maxI = Math.max(0, quarterCount - WINDOW_QUARTERS);
   return Math.min(Math.max(0, i), maxI);
 }
 
-/** Counter prefixes */
+function formatWindowLabel(fromQ, toQ){
+  return `${quarterLabelWithYear(fromQ)} → ${quarterLabelWithYear(toQ)}`;
+}
+
+/** Counter prefixes (cumulative by quarter index) */
 let prefixAdded = [];
 let prefixRemoved = [];
 
 function rebuildPrefixes(){
-  const addedPerMonth = new Array(monthCount).fill(0);
-  const removedPerMonth = new Array(monthCount).fill(0);
+  const addedPer = new Array(quarterCount).fill(0);
+  const removedPer = new Array(quarterCount).fill(0);
 
-  const indexByKey = new Map(allMonths.map((m, idx) => [+m, idx]));
+  const indexByKey = new Map(allQuarters.map((q, idx) => [+q, idx]));
 
-  for (const [k, evts] of eventsByMonth.entries()){
+  for (const [k, evts] of eventsByQuarter.entries()){
     const idx = indexByKey.get(k);
     if (idx === undefined) continue;
     for (const e of evts){
-      const a = (e.action || "").toLowerCase();
-      if (a === "added") addedPerMonth[idx] += 1;
-      else if (a === "removed") removedPerMonth[idx] += 1;
+      if (e.action === "added") addedPer[idx] += 1;
+      else if (e.action === "removed") removedPer[idx] += 1;
     }
   }
 
-  prefixAdded = new Array(monthCount).fill(0);
-  prefixRemoved = new Array(monthCount).fill(0);
+  prefixAdded = new Array(quarterCount).fill(0);
+  prefixRemoved = new Array(quarterCount).fill(0);
 
   let a = 0, r = 0;
-  for (let i=0;i<monthCount;i++){
-    a += addedPerMonth[i];
-    r += removedPerMonth[i];
+  for (let i=0;i<quarterCount;i++){
+    a += addedPer[i];
+    r += removedPer[i];
     prefixAdded[i] = a;
     prefixRemoved[i] = r;
   }
 }
 
-function updateCounter(monthIndex){
-  if (!monthCount) return;
-  monthIndex = Math.max(0, Math.min(monthCount-1, monthIndex));
-  addedCountEl.textContent = String(prefixAdded[monthIndex] || 0);
-  removedCountEl.textContent = String(prefixRemoved[monthIndex] || 0);
+function updateCounter(qIndex){
+  if (!quarterCount) return;
+  qIndex = Math.max(0, Math.min(quarterCount-1, qIndex));
+  addedCountEl.textContent = String(prefixAdded[qIndex] || 0);
+  removedCountEl.textContent = String(prefixRemoved[qIndex] || 0);
 }
 
-function render(monthIndex, { allowAutoTooltip=true } = {}){
-  monthIndex = clampIndex(monthIndex);
+function render(qIndex, { allowAutoTooltip=true } = {}){
+  qIndex = clampIndex(qIndex);
 
   const { width, height } = getSize();
   const innerW = width - margin.left - margin.right;
   const innerH = height - margin.top - margin.bottom;
 
-  const fromMonth = allMonths[monthIndex];
-  const toMonthExcl = d3.utcMonth.offset(fromMonth, WINDOW_MONTHS);
-  const toMonthIncl = d3.utcMonth.offset(toMonthExcl, -1);
+  const fromQ = allQuarters[qIndex];
+  const toQExcl = QUARTER.offset(fromQ, WINDOW_QUARTERS);
+  const toQIncl = QUARTER.offset(toQExcl, -1);
 
-  windowLabel.textContent = `Window: ${formatWindowLabel(fromMonth, toMonthIncl)}`;
+  windowLabel.textContent = `Window: ${formatWindowLabel(fromQ, toQIncl)}`;
 
-  xScale.domain([fromMonth, toMonthExcl]);
+  xScale.domain([fromQ, toQExcl]);
 
-  const ticks = d3.utcMonths(fromMonth, toMonthExcl);
+  // Axis ticks: quarterly
+  const ticks = QUARTER.range(fromQ, toQExcl);
   const axis = d3.axisBottom(xScale)
     .tickValues(ticks)
-    .tickFormat(d3.utcFormat("%b"))
+    .tickFormat(d => quarterLabel(d))
     .tickSizeOuter(0);
 
   axisG.call(axis);
@@ -627,10 +620,10 @@ function render(monthIndex, { allowAutoTooltip=true } = {}){
   axisG.selectAll("path, line")
     .style("stroke","#d1d5db");
 
-  // Markers
-  const windowMonths = ticks.map(m => +monthStart(m));
-  const markerData = windowMonths
-    .map(k => ({ month: new Date(+k), key: k, events: eventsByMonth.get(k) || [] }))
+  // Markers: one per quarter with events
+  const windowKeys = ticks.map(d => +quarterStart(d));
+  const markerData = windowKeys
+    .map(k => ({ q: new Date(+k), key: k, events: eventsByQuarter.get(k) || [] }))
     .filter(d => d.events.length > 0);
 
   const dots = markersG.selectAll("circle").data(markerData, d => d.key);
@@ -643,27 +636,24 @@ function render(monthIndex, { allowAutoTooltip=true } = {}){
     .attr("cursor","pointer")
     .on("mousemove", (event, d) => {
       if (tooltipPinned) return;
-      const state = summarizeMonth(d.events);
+      const state = summarizeQuarter(d.events);
       setTooltipStateClass(state);
-      showTooltipAt(event.clientX, event.clientY, buildTooltipHTML(d.month, d.events));
+      showTooltipAt(event.clientX, event.clientY, buildTooltipHTML(d.q, d.events));
     })
     .on("mouseleave", () => {
       if (!tooltipPinned) hideTooltip();
     })
     .on("click", (event, d) => {
       event.stopPropagation();
-      const isSame = tooltipPinned && pinnedMonthKey === d.key;
-      if (isSame){
-        unpinTooltip();
-        return;
-      }
+      const isSame = tooltipPinned && pinnedQuarterKey === d.key;
+      if (isSame){ unpinTooltip(); return; }
       pinTooltip(d.key);
-      showTooltipForMonth(d.month, { auto:false });
+      showTooltipForQuarter(d.q, { auto:false });
     });
 
-  /* Dots all the same color */
+  // dots all same color
   dotsEnter.merge(dots)
-    .attr("cx", d => xScale(d.month))
+    .attr("cx", d => xScale(d.q))
     .attr("cy", (d) => {
       const t = (Math.abs(d.key) % 5) / 4;
       return yScale(t);
@@ -671,8 +661,8 @@ function render(monthIndex, { allowAutoTooltip=true } = {}){
     .attr("fill", "var(--dot)");
 
   // Progress indicator at window start
-  const progX = xScale(fromMonth);
-  const prog = lineG.selectAll("line.progress").data([fromMonth]);
+  const progX = xScale(fromQ);
+  const prog = lineG.selectAll("line.progress").data([fromQ]);
   prog.enter().append("line")
     .attr("class","progress")
     .attr("y1", 0).attr("y2", innerH)
@@ -682,9 +672,8 @@ function render(monthIndex, { allowAutoTooltip=true } = {}){
     .attr("x1", progX).attr("x2", progX);
 
   // Year label
-  const year = fmtYear(fromMonth);
+  const year = fmtYear(fromQ);
   const yYear = (innerH/2 + innerH) / 2;
-
   const yearSel = yearTextG.selectAll("text.yearLabel").data([year]);
   yearSel.enter().append("text")
     .attr("class","yearLabel")
@@ -701,12 +690,13 @@ function render(monthIndex, { allowAutoTooltip=true } = {}){
     .attr("y", yYear)
     .text(year);
 
-  updateCounter(monthIndex);
+  // Counter update (cumulative through current quarter index)
+  updateCounter(qIndex);
 
-  // Auto tooltip should keep working throughout
-  if (allowAutoTooltip) maybeAutoTooltip(fromMonth);
+  // Auto tooltip stays active (if quarter has events)
+  if (allowAutoTooltip) maybeAutoTooltip(fromQ);
 
-  scrubber.value = String(monthIndex);
+  scrubber.value = String(qIndex);
 }
 
 function setIndex(i, opts={}){
@@ -719,17 +709,17 @@ function stopPlaybackIfNeeded(){
   if (playing) stop();
 }
 
-// Manual scrolling
+// Manual scrolling: each step == 1 quarter (3 months)
 chartWrap.addEventListener("wheel", (e) => {
   e.preventDefault();
   stopPlaybackIfNeeded();
   const delta = Math.sign(e.deltaY || e.deltaX);
-  const step = e.shiftKey ? 6 : 1;
+  const step = e.shiftKey ? 2 : 1; // Shift = faster (2 quarters)
   const next = (+scrubber.value) + (delta > 0 ? step : -step);
   setIndex(next, { allowAutoTooltip:true });
 }, { passive:false });
 
-// Drag scrub
+// Drag scrub: horizontal drag moves by quarters
 let dragging=false, dragStartX=0, dragStartIndex=0;
 chartWrap.addEventListener("pointerdown", (e) => {
   stopPlaybackIfNeeded();
@@ -741,9 +731,9 @@ chartWrap.addEventListener("pointerdown", (e) => {
 chartWrap.addEventListener("pointermove", (e) => {
   if (!dragging) return;
   const dx = e.clientX - dragStartX;
-  const pxPerMonth = 18;
-  const monthsDelta = Math.round(dx / pxPerMonth);
-  setIndex(dragStartIndex + monthsDelta, { allowAutoTooltip:true });
+  const pxPerQuarter = 28;
+  const qDelta = Math.round(dx / pxPerQuarter);
+  setIndex(dragStartIndex + qDelta, { allowAutoTooltip:true });
 });
 chartWrap.addEventListener("pointerup", (e) => {
   dragging=false;
@@ -765,8 +755,8 @@ function play(){
 
   const intervalMs = getPlaybackIntervalMs();
   timer = setInterval(() => {
-    let i = +scrubber.value + 1;
-    if (i > monthCount - WINDOW_MONTHS) { stop(); return; }
+    let i = +scrubber.value + 1; // move 1 quarter per tick
+    if (i > quarterCount - WINDOW_QUARTERS) { stop(); return; }
     setIndex(i, { allowAutoTooltip:true });
   }, intervalMs);
 }
@@ -785,39 +775,39 @@ window.addEventListener("resize", () => {
 });
 
 // Date range bounds
-function parseInputDateToMonthStart(value){
+function parseInputDateToQuarterStart(value){
   if (!value) return null;
   const d = parseDate(value);
-  return d ? monthStart(d) : null;
+  return d ? quarterStart(d) : null;
 }
 
-function rebuildMonthsWithBounds(){
-  if (!dataMinMonth || !dataMaxMonth){
+function rebuildQuartersWithBounds(){
+  if (!dataMinQuarter || !dataMaxQuarter){
     windowLabel.textContent = "No data range available.";
     return;
   }
 
-  const start = boundStart || dataMinMonth;
-  const end = boundEnd || dataMaxMonth;
+  const start = boundStart || dataMinQuarter;
+  const end = boundEnd || dataMaxQuarter;
 
-  const s = monthStart(start), e = monthStart(end);
+  const s = quarterStart(start), e = quarterStart(end);
   const sMs=+s, eMs=+e;
   const finalStart = (sMs<=eMs) ? s : e;
   const finalEnd = (sMs<=eMs) ? e : s;
 
-  allMonths = d3.utcMonths(finalStart, d3.utcMonth.offset(finalEnd, 1));
-  monthCount = allMonths.length;
+  allQuarters = QUARTER.range(finalStart, QUARTER.offset(finalEnd, 1));
+  quarterCount = allQuarters.length;
 
-  scrubber.max = String(Math.max(0, monthCount-1));
+  scrubber.max = String(Math.max(0, quarterCount-1));
   rebuildPrefixes();
   setIndex(+scrubber.value || 0, { allowAutoTooltip:true });
 }
 
 applyRangeBtn.addEventListener("click", () => {
   stopPlaybackIfNeeded();
-  boundStart = parseInputDateToMonthStart(startDateInput.value);
-  boundEnd = parseInputDateToMonthStart(endDateInput.value);
-  rebuildMonthsWithBounds();
+  boundStart = parseInputDateToQuarterStart(startDateInput.value);
+  boundEnd = parseInputDateToQuarterStart(endDateInput.value);
+  rebuildQuartersWithBounds();
 });
 
 resetRangeBtn.addEventListener("click", () => {
@@ -825,7 +815,7 @@ resetRangeBtn.addEventListener("click", () => {
   boundStart=null; boundEnd=null;
   startDateInput.value=""; endDateInput.value="";
   unpinTooltip();
-  rebuildMonthsWithBounds();
+  rebuildQuartersWithBounds();
   setIndex(0, { allowAutoTooltip:true });
 });
 
@@ -838,7 +828,6 @@ function downloadBlob(filename, mime, content){
   document.body.appendChild(a); a.click(); a.remove();
   setTimeout(() => URL.revokeObjectURL(url), 2500);
 }
-
 function toTSV(rows){
   const cols=["Action","Permno","Company","Tickers","SP500 Start","SP500 End","Event Date","Reason"];
   const esc=v=>String(v??"").replace(/\t/g," ").replace(/\r?\n/g," ");
@@ -859,7 +848,7 @@ exportTsvBtn.addEventListener("click", () => {
   try{
     const rows = await d3.json(DATA_URL);
 
-    // exports (match normalized keys)
+    // export rows (schema friendly)
     eventsAll = rows.map(r => ({
       "Action": r.action ?? "",
       "Permno": (r.permno ?? "").toString(),
@@ -873,24 +862,25 @@ exportTsvBtn.addEventListener("click", () => {
 
     const events = rows.map(coerceEvent).filter(Boolean);
 
-    eventsByMonth = d3.group(events, d => +d.changeMonth);
+    // group by quarter of relevantDate (start for added, end for removed)
+    eventsByQuarter = d3.group(events, d => +d.relevantQuarter);
 
-    // infer min/max month from events
-    const months = events.map(e => e.changeMonth).filter(Boolean);
-    if (!months.length) throw new Error("No events parsed from data.");
-    dataMinMonth = d3.utcMonth.floor(d3.min(months));
-    dataMaxMonth = d3.utcMonth.floor(d3.max(months));
+    // infer min/max quarter from events
+    const q = events.map(e => e.relevantQuarter).filter(Boolean);
+    if (!q.length) throw new Error("No events parsed from data.");
+    dataMinQuarter = quarterStart(d3.min(q));
+    dataMaxQuarter = quarterStart(d3.max(q));
 
-    allMonths = d3.utcMonths(dataMinMonth, d3.utcMonth.offset(dataMaxMonth, 1));
-    monthCount = allMonths.length;
+    // build quarters range
+    allQuarters = QUARTER.range(dataMinQuarter, QUARTER.offset(dataMaxQuarter, 1));
+    quarterCount = allQuarters.length;
 
-    scrubber.max = String(monthCount - 1);
+    scrubber.max = String(quarterCount - 1);
     scrubber.value = "0";
     scrubber.disabled = false;
 
     initChart();
     rebuildPrefixes();
-
     render(0, { allowAutoTooltip:true });
 
     playPauseBtn.disabled = false;
