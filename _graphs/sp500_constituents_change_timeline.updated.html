@@ -3,12 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>S&P 500 Quarterly Changes Timeline (1959-2025)</title>
+  <title>S&P 500 Changes Timeline (Monthly, Static Above-Line Callouts)</title>
   <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 
   <style>
     :root{
-      --bg: transparent;
       --text:#111827;
       --muted:#6b7280;
 
@@ -18,6 +17,7 @@
 
       --dot:#4f46e5;
 
+      /* tooltip look you liked */
       --tooltipBg:#f3f4f6;
     }
 
@@ -197,10 +197,11 @@
 
   <label>Speed:
     <select id="speed">
-      <option value="3500">0.5×</option>
-      <option value="2500" selected>1×</option>
-      <option value="1600">2×</option>
-      <option value="1000">4×</option>
+      <!-- 1 step = 1 month -->
+      <option value="4200">0.5×</option>
+      <option value="3000" selected>1×</option>
+      <option value="1900">2×</option>
+      <option value="1200">4×</option>
     </select>
   </label>
 
@@ -240,10 +241,10 @@
   <div class="hint">Scroll chart with mouse wheel, or click-drag left/right. Shift+scroll = faster.</div>
 </div>
 
-<input id="scrubber" type="range" min="0" max="0" step="1" value="0" aria-label="Scrub quarter" disabled />
+<input id="scrubber" type="range" min="0" max="0" step="1" value="0" aria-label="Scrub month" disabled />
 
 <div class="chart-wrap" id="chartWrap" tabindex="0" aria-label="Timeline chart (scrollable)">
-  <svg id="svg" width="100%" height="380"></svg>
+  <svg id="svg" width="100%" height="520"></svg>
 </div>
 
 <div class="sources">
@@ -256,30 +257,32 @@
 /** Data source */
 const DATA_URL = "data/sp500-change-events.json";
 
-/** Timeline stepping */
-const QUARTER = d3.utcMonth.every(3);
-const WINDOW_QUARTERS = 10;              // visible window
-const PRE_ROLL_QUARTERS = 3;             // slider starts 3 quarters before first data
+/** Monthly stepping */
+const MONTH = d3.utcMonth;
+const WINDOW_MONTHS = 24;         // visible window
+const PRE_ROLL_MONTHS = 9;        // "3 quarters before data" == 9 months
 const MAX_ITEMS_PER_BOX = 10;
 
-/** Callout show/hide rule:
- *  - show once dot enters visible area (x in [0, innerW])
- *  - hide when dot is in the last 25% of the visible area (x > 0.75 * innerW)
+/** Callout show/hide:
+ *  show once dot enters visible area (x >= 0)
+ *  hide when dot is in the last 25% of the visible area (x > 0.75*innerW)
  */
 const HIDE_AFTER_FRACTION = 0.75;
 
 /** Callout layout */
-const BOX_W = 340;
-const STEM_LEN = 84;
-const BOX_PAD_Y = 16;
+const BOX_W = 360;
+const STEM_LEN = 96;
+const BOX_PAD_Y = 14;
+
+/** Baseline placement (lower so callouts fit above) */
+const BASELINE_FRAC = 0.72;
 
 /** Parsing/formatting */
 const parseDate = d3.utcParse("%Y-%m-%d");
 const fmtMonth = d3.utcFormat("%b");
 const fmtMonthYear = d3.utcFormat("%b %Y");
 const fmtYear = d3.utcFormat("%Y");
-function quarterStart(d){ return QUARTER.floor(d); }
-function monthStart(d){ return d3.utcMonth.floor(d); }
+function monthStart(d){ return MONTH.floor(d); }
 
 /** UI refs */
 const svg = d3.select("#svg");
@@ -305,35 +308,35 @@ function getSize(){
   return { width: rect.width, height: +svg.attr("height") };
 }
 
-const margin = { top: 14, right: 20, bottom: 96, left: 30 };
+const margin = { top: 16, right: 22, bottom: 100, left: 30 };
 let xScale, axisG, lineG, yearG, eventsG;
 
 let playing = false;
 let timer = null;
 
-let allQuarters = [];
-let quarterCount = 0;
+let allMonths = [];
+let monthCount = 0;
 
-let eventsByQuarter = new Map();
+let eventsByMonth = new Map();
 let eventsAll = [];
 
-// bounds (optional)
 let boundStart = null;
 let boundEnd = null;
 
-// inferred data range
-let dataMinQuarter = null;
-let dataMaxQuarter = null;
+let dataMinMonth = null;
+let dataMaxMonth = null;
 
-// IMPORTANT: counters remain 0,0 until user presses Play the first time
+/** counters remain 0,0 until Play is pressed first time */
 let started = false;
 
 function getPlaybackIntervalMs(){
-  return Math.max(250, +speedSel.value || 2500);
+  return Math.max(250, +speedSel.value || 3000);
 }
 
 /** Convert row -> event.
- *  For added use start date; for removed use end date.
+ *  Dates are aligned by using the actual relevant month for x-position:
+ *   - Added: start date month
+ *   - Removed: end date month
  */
 function coerceEvent(row){
   const action = (row.action || "").trim().toLowerCase();
@@ -349,9 +352,9 @@ function coerceEvent(row){
   if (!action || !tickersArr.length || !start || !end) return null;
 
   const relevantDate = (action === "removed") ? end : start;
-  const q = quarterStart(relevantDate);
+  const m = monthStart(relevantDate);
 
-  return { action, name: name || tickersArr[0], tickers, start, end, relevantDate, quarter: q };
+  return { action, name: name || tickersArr[0], tickers, start, end, relevantDate, month: m };
 }
 
 function firstTicker(e){
@@ -382,9 +385,8 @@ function summarizeBucket(events){
   return "mixed";
 }
 
-function buildTooltipHTML(qStartDate, events){
-  const qNum = Math.floor(qStartDate.getUTCMonth()/3) + 1;
-  const header = `Q${qNum} ${fmtYear(qStartDate)} • ${events.length} event${events.length===1?"":"s"}`;
+function buildTooltipHTML(monthDate, events){
+  const header = `${fmtMonthYear(monthDate)} • ${events.length} event${events.length===1?"":"s"}`;
 
   const sorted = events.slice().sort((a,b)=> (+a.relevantDate)-(+b.relevantDate));
   const shown = sorted.slice(0, MAX_ITEMS_PER_BOX);
@@ -427,6 +429,7 @@ function initChart(){
   const { width, height } = getSize();
   const innerW = width - margin.left - margin.right;
   const innerH = height - margin.top - margin.bottom;
+  const baseY = innerH * BASELINE_FRAC;
 
   const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
 
@@ -434,36 +437,36 @@ function initChart(){
   lineG = g.append("g");
   lineG.append("line")
     .attr("x1", 0).attr("x2", innerW)
-    .attr("y1", innerH/2).attr("y2", innerH/2)
+    .attr("y1", baseY).attr("y2", baseY)
     .attr("stroke", "#e5e7eb")
     .attr("stroke-width", 2);
 
   eventsG = g.append("g").attr("class","events");
 
-  // months axis
-  axisG = g.append("g").attr("transform", `translate(0,${innerH/2 + 32})`);
+  // months axis sits BELOW baseline
+  axisG = g.append("g").attr("transform", `translate(0,${baseY + 32})`);
 
-  // YEAR label moved LOWER so it won't overlap month labels
-  yearG = g.append("g").attr("transform", `translate(0,${innerH/2 + 86})`);
+  // year label further below so it never obscures months
+  yearG = g.append("g").attr("transform", `translate(0,${baseY + 86})`);
 
   xScale = d3.scaleUtc().range([0, innerW]);
 }
 
 function clampIndex(i){
-  const maxI = Math.max(0, quarterCount - WINDOW_QUARTERS);
+  const maxI = Math.max(0, monthCount - WINDOW_MONTHS);
   return Math.min(Math.max(0, i), maxI);
 }
 
-/** Prefix counters */
+/** Prefix counters (monthly cumulative), but displayed only after Play */
 let prefixAdded = [];
 let prefixRemoved = [];
 
 function rebuildPrefixes(){
-  const addedPer = new Array(quarterCount).fill(0);
-  const removedPer = new Array(quarterCount).fill(0);
-  const indexByKey = new Map(allQuarters.map((q, idx) => [+q, idx]));
+  const addedPer = new Array(monthCount).fill(0);
+  const removedPer = new Array(monthCount).fill(0);
+  const indexByKey = new Map(allMonths.map((m, idx) => [+m, idx]));
 
-  for (const [k, evts] of eventsByQuarter.entries()){
+  for (const [k, evts] of eventsByMonth.entries()){
     const idx = indexByKey.get(k);
     if (idx === undefined) continue;
     for (const e of evts){
@@ -472,11 +475,11 @@ function rebuildPrefixes(){
     }
   }
 
-  prefixAdded = new Array(quarterCount).fill(0);
-  prefixRemoved = new Array(quarterCount).fill(0);
+  prefixAdded = new Array(monthCount).fill(0);
+  prefixRemoved = new Array(monthCount).fill(0);
 
   let a=0, r=0;
-  for (let i=0;i<quarterCount;i++){
+  for (let i=0;i<monthCount;i++){
     a += addedPer[i];
     r += removedPer[i];
     prefixAdded[i] = a;
@@ -484,50 +487,50 @@ function rebuildPrefixes(){
   }
 }
 
-function updateCounter(qIndex){
+function updateCounter(mIndex){
   if (!started){
     addedCountEl.textContent = "0";
     removedCountEl.textContent = "0";
     return;
   }
-  qIndex = Math.max(0, Math.min(quarterCount-1, qIndex));
-  addedCountEl.textContent = String(prefixAdded[qIndex] || 0);
-  removedCountEl.textContent = String(prefixRemoved[qIndex] || 0);
+  mIndex = Math.max(0, Math.min(monthCount-1, mIndex));
+  addedCountEl.textContent = String(prefixAdded[mIndex] || 0);
+  removedCountEl.textContent = String(prefixRemoved[mIndex] || 0);
 }
 
-function render(qIndex){
-  qIndex = clampIndex(qIndex);
+function render(mIndex){
+  mIndex = clampIndex(mIndex);
 
   const { width, height } = getSize();
   const innerW = width - margin.left - margin.right;
   const innerH = height - margin.top - margin.bottom;
-  const baseY = innerH/2;
+  const baseY = innerH * BASELINE_FRAC;
 
-  const fromQ = allQuarters[qIndex];
-  const toQExcl = QUARTER.offset(fromQ, WINDOW_QUARTERS);
+  const fromM = allMonths[mIndex];
+  const toMExcl = MONTH.offset(fromM, WINDOW_MONTHS);
 
-  const fromMonth = monthStart(fromQ);
-  const toMonthIncl = d3.utcMonth.offset(monthStart(toQExcl), -1);
-  windowLabel.textContent = `Window: ${fmtMonthYear(fromMonth)} → ${fmtMonthYear(toMonthIncl)}`;
+  const toMIncl = MONTH.offset(toMExcl, -1);
+  windowLabel.textContent = `Window: ${fmtMonthYear(fromM)} → ${fmtMonthYear(toMIncl)}`;
 
-  xScale.domain([fromQ, toQExcl]);
+  xScale.domain([fromM, toMExcl]);
 
-  // months axis (+2pt)
-  const monthTicks = d3.utcMonths(fromQ, toQExcl);
+  // month axis (bigger months)
+  const ticks = d3.utcMonths(fromM, toMExcl);
   const axis = d3.axisBottom(xScale)
-    .tickValues(monthTicks)
+    .tickValues(ticks)
     .tickFormat(d => fmtMonth(d))
     .tickSizeOuter(0);
 
-  axisG.call(axis);
+  axisG.attr("transform", `translate(0,${baseY + 32})`).call(axis);
   axisG.selectAll("text")
     .style("font-size","16px")
     .style("fill","#374151");
   axisG.selectAll("path, line")
     .style("stroke","#d1d5db");
 
-  // year label: black, bottom, but lower so it doesn't cover month labels
-  const yearText = fmtYear(fromQ);
+  // year label (black, +2pt) far below months
+  const yearText = fmtYear(fromM);
+  yearG.attr("transform", `translate(0,${baseY + 86})`);
   const ySel = yearG.selectAll("text.yearLabel").data([yearText]);
   ySel.enter().append("text")
     .attr("class","yearLabel")
@@ -543,13 +546,18 @@ function render(qIndex){
     .attr("x", innerW/2)
     .text(yearText);
 
-  // quarters in window that have events
-  const windowQuarters = QUARTER.range(fromQ, toQExcl);
-  const markerData = windowQuarters
-    .map((q, i) => {
-      const key = +q;
-      const evts = eventsByQuarter.get(key) || [];
-      return { q, key, evts, i };
+  // baseline y update (in case resize)
+  lineG.select("line")
+    .attr("y1", baseY).attr("y2", baseY)
+    .attr("x2", innerW);
+
+  // month markers WITH events, positioned by the ACTUAL month key (fixes date misalignment)
+  const windowMonths = d3.utcMonths(fromM, toMExcl);
+  const markerData = windowMonths
+    .map((m, i) => {
+      const key = +monthStart(m);
+      const evts = eventsByMonth.get(key) || [];
+      return { m, key, evts, i };
     })
     .filter(d => d.evts.length > 0);
 
@@ -580,23 +588,19 @@ function render(qIndex){
 
   merged.each(function(d){
     const g = d3.select(this);
-    const x = xScale(d.q);
+    const x = xScale(d.m);
 
-    // show only when dot is visible AND not in the last 25% of the window
+    // show once dot enters visible area; hide in last 25% of visible area
     const visible = (x >= 0) && (x <= innerW);
     const tooLate = x > (innerW * HIDE_AFTER_FRACTION);
     const showBox = visible && !tooLate;
 
-    // keep the dot always visible if quarter has events
-    g.style("display", null);
-
-    // baseline marker
+    // dot always on baseline (above/below not needed now)
     g.select("circle.dot")
       .attr("cx", x)
       .attr("cy", baseY);
 
     if (!showBox){
-      // hide stem + box, but keep dot
       g.select("line.stem").attr("display","none");
       g.select("foreignObject.fo").attr("display","none");
       return;
@@ -605,12 +609,20 @@ function render(qIndex){
     g.select("line.stem").attr("display", null);
     g.select("foreignObject.fo").attr("display", null);
 
-    const up = (d.i % 2 === 0);
+    // ALL callouts above the line (per your request)
     const boxH = estimateBoxHeight(d.evts.length);
 
+    // clamp boxX to viewport
     const boxX = Math.max(0, Math.min(innerW - BOX_W, x - (BOX_W/2)));
-    const boxY = up ? (baseY - STEM_LEN - boxH - BOX_PAD_Y) : (baseY + STEM_LEN + BOX_PAD_Y);
-    const stemY2 = up ? (boxY + boxH) : boxY;
+
+    // desired top position above baseline
+    let boxY = baseY - STEM_LEN - boxH - BOX_PAD_Y;
+
+    // clamp so it never cuts off at top
+    boxY = Math.max(0, boxY);
+
+    // stem to bottom edge of box
+    const stemY2 = boxY + boxH;
 
     g.select("line.stem")
       .attr("x1", x).attr("x2", x)
@@ -623,7 +635,7 @@ function render(qIndex){
       .attr("height", boxH);
 
     const state = summarizeBucket(d.evts);
-    const html = buildTooltipHTML(d.q, d.evts);
+    const html = buildTooltipHTML(d.m, d.evts);
 
     const container = fo.select(".fo-inner");
     container.html(html);
@@ -634,8 +646,8 @@ function render(qIndex){
       .classed("tip-mixed", state === "mixed");
   });
 
-  updateCounter(qIndex);
-  scrubber.value = String(qIndex);
+  updateCounter(mIndex);
+  scrubber.value = String(mIndex);
 }
 
 function setIndex(i){
@@ -648,16 +660,16 @@ function stopPlaybackIfNeeded(){
   if (playing) stop();
 }
 
-// wheel: 1 step = 1 quarter
+// wheel: 1 step = 1 month
 chartWrap.addEventListener("wheel", (e) => {
   e.preventDefault();
   stopPlaybackIfNeeded();
   const delta = Math.sign(e.deltaY || e.deltaX);
-  const step = e.shiftKey ? 2 : 1;
+  const step = e.shiftKey ? 6 : 1;
   setIndex((+scrubber.value) + (delta > 0 ? step : -step));
 }, { passive:false });
 
-// drag: quarters
+// drag: months
 let dragging=false, dragStartX=0, dragStartIndex=0;
 chartWrap.addEventListener("pointerdown", (e) => {
   stopPlaybackIfNeeded();
@@ -669,9 +681,9 @@ chartWrap.addEventListener("pointerdown", (e) => {
 chartWrap.addEventListener("pointermove", (e) => {
   if (!dragging) return;
   const dx = e.clientX - dragStartX;
-  const pxPerQuarter = 34;
-  const qDelta = Math.round(dx / pxPerQuarter);
-  setIndex(dragStartIndex + qDelta);
+  const pxPerMonth = 18;
+  const mDelta = Math.round(dx / pxPerMonth);
+  setIndex(dragStartIndex + mDelta);
 });
 chartWrap.addEventListener("pointerup", (e) => {
   dragging=false;
@@ -688,8 +700,7 @@ function stop(){
 
 function play(){
   if (!started){
-    started = true;                 // counters now become live
-    // ensure we start from the current scrubber position
+    started = true; // counters now go live
   }
   playing=true;
   playPauseBtn.textContent="Pause";
@@ -698,7 +709,7 @@ function play(){
   const intervalMs = getPlaybackIntervalMs();
   timer = setInterval(() => {
     let i = +scrubber.value + 1;
-    if (i > quarterCount - WINDOW_QUARTERS) { stop(); return; }
+    if (i > monthCount - WINDOW_MONTHS) { stop(); return; }
     setIndex(i);
   }, intervalMs);
 }
@@ -717,37 +728,36 @@ window.addEventListener("resize", () => {
 });
 
 // date bounds (optional)
-function parseInputDateToQuarterStart(value){
+function parseInputDateToMonthStart(value){
   if (!value) return null;
   const d = parseDate(value);
-  return d ? quarterStart(d) : null;
+  return d ? monthStart(d) : null;
 }
-function rebuildQuartersWithBounds(){
-  if (!dataMinQuarter || !dataMaxQuarter) return;
+function rebuildMonthsWithBounds(){
+  if (!dataMinMonth || !dataMaxMonth) return;
 
-  const start = boundStart || QUARTER.offset(dataMinQuarter, -PRE_ROLL_QUARTERS);
-  const end = boundEnd || dataMaxQuarter;
+  const start = boundStart || MONTH.offset(dataMinMonth, -PRE_ROLL_MONTHS);
+  const end = boundEnd || dataMaxMonth;
 
-  const s = quarterStart(start), e = quarterStart(end);
+  const s = monthStart(start), e = monthStart(end);
   const sMs=+s, eMs=+e;
   const finalStart = (sMs<=eMs) ? s : e;
   const finalEnd = (sMs<=eMs) ? e : s;
 
-  allQuarters = QUARTER.range(finalStart, QUARTER.offset(finalEnd, 1));
-  quarterCount = allQuarters.length;
+  allMonths = d3.utcMonths(finalStart, MONTH.offset(finalEnd, 1));
+  monthCount = allMonths.length;
 
-  scrubber.max = String(Math.max(0, quarterCount-1));
+  scrubber.max = String(Math.max(0, monthCount-1));
   rebuildPrefixes();
 
-  // keep scrubber value in range
-  setIndex(Math.min(+scrubber.value || 0, quarterCount-1));
+  setIndex(Math.min(+scrubber.value || 0, monthCount-1));
 }
 
 applyRangeBtn.addEventListener("click", () => {
   stopPlaybackIfNeeded();
-  boundStart = parseInputDateToQuarterStart(startDateInput.value);
-  boundEnd = parseInputDateToQuarterStart(endDateInput.value);
-  rebuildQuartersWithBounds();
+  boundStart = parseInputDateToMonthStart(startDateInput.value);
+  boundEnd = parseInputDateToMonthStart(endDateInput.value);
+  rebuildMonthsWithBounds();
 });
 
 resetRangeBtn.addEventListener("click", () => {
@@ -755,12 +765,11 @@ resetRangeBtn.addEventListener("click", () => {
   boundStart=null; boundEnd=null;
   startDateInput.value=""; endDateInput.value="";
 
-  // reset counters gating until Play again
   started = false;
   addedCountEl.textContent = "0";
   removedCountEl.textContent = "0";
 
-  rebuildQuartersWithBounds();
+  rebuildMonthsWithBounds();
   setIndex(0);
 });
 
@@ -803,26 +812,24 @@ exportTsvBtn.addEventListener("click", () => {
     }));
 
     const events = rows.map(coerceEvent).filter(Boolean);
-    eventsByQuarter = d3.group(events, d => +d.quarter);
+    eventsByMonth = d3.group(events, d => +d.month);
 
-    const q = events.map(e => e.quarter).filter(Boolean);
-    if (!q.length) throw new Error("No events parsed from data.");
-    dataMinQuarter = quarterStart(d3.min(q));
-    dataMaxQuarter = quarterStart(d3.max(q));
+    const months = events.map(e => e.month).filter(Boolean);
+    if (!months.length) throw new Error("No events parsed from data.");
+    dataMinMonth = monthStart(d3.min(months));
+    dataMaxMonth = monthStart(d3.max(months));
 
-    // start the slider 3 quarters BEFORE the first data
-    const minWithPre = QUARTER.offset(dataMinQuarter, -PRE_ROLL_QUARTERS);
-    allQuarters = QUARTER.range(minWithPre, QUARTER.offset(dataMaxQuarter, 1));
-    quarterCount = allQuarters.length;
+    const minWithPre = MONTH.offset(dataMinMonth, -PRE_ROLL_MONTHS);
+    allMonths = d3.utcMonths(minWithPre, MONTH.offset(dataMaxMonth, 1));
+    monthCount = allMonths.length;
 
-    scrubber.max = String(quarterCount - 1);
+    scrubber.max = String(monthCount - 1);
     scrubber.value = "0";
     scrubber.disabled = false;
 
     initChart();
     rebuildPrefixes();
 
-    // counters start at 0,0 until Play is pressed
     started = false;
     addedCountEl.textContent = "0";
     removedCountEl.textContent = "0";
