@@ -1,3 +1,975 @@
 <figure>
   <iframe src="sp500_changes_timeline_stacked_scrollable.html" width="100%" height="100%"></iframe>
-</figure>
+</figure><!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>S&P 500 Monthly Changes Timeline (1959-2025)</title>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+
+  <style>
+    :root{
+      --text:#111827;
+      --muted:#6b7280;
+
+      --good:#16a34a;
+      --bad:#dc2626;
+      --neutral:#7c3aed;
+
+      --dot:#4f46e5;
+      --line:#e5e7eb;
+
+      --tooltipBg:#f3f4f6;
+      --uiBorder: rgba(0,0,0,0.12);
+    }
+
+    body{
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      margin:0;
+      padding:16px;
+      background:#ffffff;
+      color: rgba(0,0,0,0.88);
+    }
+
+    .title{
+      font-size:18px;
+      font-weight:800;
+      margin:0 0 10px 0;
+    }
+
+    .controls{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      flex-wrap:wrap;
+      margin-bottom:10px;
+    }
+
+    .controls button{
+      padding:8px 12px;
+      border-radius:10px;
+      border:1px solid rgba(79,70,229,0.22);
+      background:linear-gradient(135deg, rgba(79,70,229,0.12), rgba(14,165,233,0.07));
+      color: rgba(0,0,0,0.88);
+      cursor:pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+    .controls button:disabled{ opacity:.5; cursor:not-allowed; }
+
+    .controls label{ font-size:14px; color:var(--muted); }
+
+    .controls select{
+      padding:6px 10px;
+      border-radius:10px;
+      border:1px solid var(--uiBorder);
+      background:#fff;
+      color: rgba(0,0,0,0.88);
+    }
+
+    #windowLabel{
+      color: rgba(0,0,0,0.6);
+      font-size: 12px;
+    }
+
+    .spacer{ flex:1 1 auto; }
+
+    .counter{
+      display:flex;
+      gap:10px;
+      padding:8px 12px;
+      border-radius:12px;
+      background:#fff;
+      border:1px solid var(--uiBorder);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      font-weight:650;
+      letter-spacing: 0.2px;
+    }
+
+    .pill{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--uiBorder);
+      background: rgba(255,255,255,0.85);
+      font-size:13px;
+      color: rgba(0,0,0,0.85);
+      white-space:nowrap;
+    }
+
+    .dotLegend{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      display:inline-block;
+    }
+
+    .filters{
+      display:flex;
+      gap:12px;
+      align-items:end;
+      flex-wrap:wrap;
+      margin:8px 0 12px;
+      color:var(--muted);
+    }
+
+    .filters .field{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+    }
+
+    .filters input[type="date"]{
+      padding:6px 10px;
+      border-radius:10px;
+      border:1px solid var(--uiBorder);
+      background:#fff;
+      color: rgba(0,0,0,0.88);
+    }
+bottom
+    .filters .hint{ font-size:12px; opacity:0.9; }
+
+    input[type="range"]{
+      width:min(760px,100%);
+    }
+
+    .chart-wrap{
+      border-radius:14px;
+      padding:12px;
+      background:#fff;
+      border:1px solid var(--uiBorder);
+      user-select:none;
+      outline: none;
+    }
+    .chart-wrap:focus{
+      outline: 2px solid rgba(79,70,229,0.30);
+      outline-offset: 2px;
+    }
+
+    /* Callout (static tooltip) */
+    .tooltip{
+      pointer-events:auto;
+      background: var(--tooltipBg);
+      color: rgba(0,0,0,0.88);
+      padding:10px 12px;
+      border-radius:10px;
+      width: 360px;
+      max-width: 360px;
+      font-size:12px;
+      line-height:1.35;
+      border: 2px solid #d1d5db;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.18);
+      white-space:normal;
+    }
+    .tooltip.tip-added{ border-color: var(--neutral); }
+    .tooltip.tip-removed{ border-color: var(--neutral); }
+    .tooltip.tip-mixed{ border-color: var(--neutral); }
+
+    .tooltip .summary{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      font-weight: 850;
+      color:#111827;
+    }
+    .tooltip .summary .counts{
+      font-weight:850;
+      letter-spacing:0.15px;
+    }
+    .tooltip .summary .counts .a{ color: var(--good); }
+    .tooltip .summary .counts .r{ color: var(--bad); }
+    .tooltip .toggle{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:26px;
+      height:22px;
+      border-radius:8px;
+      border:1px solid rgba(0,0,0,0.15);
+      background:rgba(255,255,255,0.65);
+      cursor:pointer;
+      user-select:none;
+      font-weight:900;
+      line-height:1;
+    }
+    .tooltip .details{
+      margin-top:8px;
+      border-top:1px solid rgba(0,0,0,0.10);
+      padding-top:8px;
+    }
+    .tooltip .tip-list{
+      margin: 0;
+      padding-left: 16px;
+    }
+    .tooltip .tip-list li{
+      margin: 2px 0;
+      color: rgba(0,0,0,0.88);
+    }
+    .tooltip .badge{
+      display:inline-block;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 999px;
+      margin-right: 6px;
+      border: 1px solid rgba(0,0,0,0.18);
+      background: rgba(255,255,255,0.85);
+      vertical-align: baseline;
+    }
+    .tooltip .badge.added{ border-color: rgba(22,163,74,0.55); }
+    .tooltip .badge.removed{ border-color: rgba(220,38,38,0.55); }
+
+    .sources{
+      margin-top:6px;
+      font-size:8pt;
+      color:var(--muted);
+      line-height:1.3;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="title">S&P 500 Monthly Changes Timeline (1959-2025)</div>
+
+  <div class="controls">
+    <button id="playPause" disabled>Loading…</button>
+
+    <label>Speed:
+      <select id="speed">
+        <option value="8000">0.25×</option>
+        <option value="4000">0.5×</option>
+        <option value="2000" selected>1×</option>
+        <option value="1000">2×</option>
+        <option value="500">4×</option>
+      </select>
+    </label>
+
+    <button id="exportJson" disabled>Export JSON</button>
+    <button id="exportTsv" disabled>Export TSV</button>
+
+    <span id="windowLabel"></span>
+
+    <span class="spacer"></span>
+
+    <div class="counter" id="counter">
+      <span class="pill"><span class="dotLegend" style="background:var(--good)"></span>Total Added: <span id="addedCount">0</span></span>
+      <span class="pill"><span class="dotLegend" style="background:var(--bad)"></span>Total Removed: <span id="removedCount">0</span></span>
+    </div>
+  </div>
+
+  <div class="filters">
+    <div class="field">
+      <label for="startDate">Start date (optional)</label>
+      <input id="startDate" type="date" />
+      <div class="hint">Bounds the scroll/play range.</div>
+    </div>
+
+    <div class="field">
+      <label for="endDate">End date (optional)</label>
+      <input id="endDate" type="date" />
+      <div class="hint">Leave blank for latest.</div>
+    </div>
+
+    <div class="field">
+      <button id="applyRange" disabled>Apply</button>
+    </div>
+    <div class="field">
+      <button id="resetRange" disabled>Reset</button>
+    </div>
+
+    <div class="hint">Scroll with mouse wheel, or click-drag left/right. Shift+scroll = faster.</div>
+  </div>
+
+  <input id="scrubber" type="range" min="0" max="0" step="1" value="0" aria-label="Scrub month" disabled />
+
+  <div class="chart-wrap" id="chartWrap" tabindex="0" aria-label="Timeline chart (scrollable)">
+    <svg id="svg" width="100%" height="680"></svg>
+  </div>
+
+  <div class="sources">
+    Sources:<br>
+    [1] https://en.wikipedia.org/wiki/List_of_S%26P_500_companies#Selected_changes_to_the_list_of_S&P_500_components<br>
+    [2] https://wrds-www.wharton.upenn.edu/classroom/sp500-introduction/over-time/
+  </div>
+
+<script>
+/* =============================================================
+   IMPORTANT: per your requirement, these NEVER change
+   ============================================================= */
+const DATA_URL = "data/sp500-change-events.json";
+
+/* Timeline settings */
+const MONTH = d3.utcMonth;
+const WINDOW_MONTHS = 6;
+const PRE_ROLL_MONTHS = 9;
+const MAX_ITEMS_PER_BOX = 14;
+const HIDE_AFTER_FRACTION = 0.82;
+
+/* Layout */
+const margin = { top: 18, right: 24, bottom: 70, left: 30 };
+const BASELINE_FRAC = 0.58;   // baseline in the middle band
+const AXIS_OFFSET_FROM_BASELINE = 46;
+const YEAR_OFFSET_FROM_AXIS = 34;
+
+/* Callout geometry */
+const BOX_W = 360;
+const STEM_LEN = 86;
+const BOX_PAD_Y = 12;
+
+/* Lane stacking */
+const MAX_LANES = 9;
+const LANE_HEIGHT_COLLAPSED = 58;
+const LANE_HEIGHT_EXPANDED = 140;
+
+const parseDate = d3.utcParse("%Y-%m-%d");
+const fmtMonth = d3.utcFormat("%b");
+const fmtMonthYear = d3.utcFormat("%b %Y");
+const fmtYear = d3.utcFormat("%Y");
+function monthStart(d){ return MONTH.floor(d); }
+
+/* UI refs */
+const svg = d3.select("#svg");
+const chartWrap = document.getElementById("chartWrap");
+const scrubber = document.getElementById("scrubber");
+const windowLabel = document.getElementById("windowLabel");
+const playPauseBtn = document.getElementById("playPause");
+const speedSel = document.getElementById("speed");
+
+const exportJsonBtn = document.getElementById("exportJson");
+const exportTsvBtn = document.getElementById("exportTsv");
+
+const startDateInput = document.getElementById("startDate");
+const endDateInput = document.getElementById("endDate");
+const applyRangeBtn = document.getElementById("applyRange");
+const resetRangeBtn = document.getElementById("resetRange");
+
+const addedCountEl = document.getElementById("addedCount");
+const removedCountEl = document.getElementById("removedCount");
+
+function getSize(){
+  const rect = svg.node().getBoundingClientRect();
+  return { width: rect.width, height: +svg.attr("height") };
+}
+
+/* State */
+let xScale, axisG, lineG, yearG, eventsG;
+let playing = false;
+let timer = null;
+
+let startedCounters = false;
+let showCallouts = false;
+
+let allMonths = [];
+let monthCount = 0;
+let eventsByMonth = new Map();
+let eventsAll = [];
+
+let boundStart = null;
+let boundEnd = null;
+let dataMinMonth = null;
+let dataMaxMonth = null;
+
+/* Expanded state by month key */
+const expandedKeys = new Set();
+
+/* Helpers */
+function escapeHtml(s){
+  return String(s ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+function firstTicker(e){
+  if (!e) return "";
+  if (typeof e.tickers === "string" && e.tickers.trim()){
+    return e.tickers.split(",")[0].trim();
+  }
+  return "";
+}
+
+function countsFor(evts){
+  let add=0, rem=0;
+  for (const e of evts){
+    if (e.action === "added") add++;
+    else if (e.action === "removed") rem++;
+  }
+  return { add, rem };
+}
+
+function summarizeBucket(evts){
+  const { add, rem } = countsFor(evts);
+  if (add && !rem) return "added";
+  if (rem && !add) return "removed";
+  return "mixed";
+}
+
+/* Heights */
+function collapsedHeight(){
+  return 46; // compact summary
+}
+function expandedHeight(n){
+  const shown = Math.min(n, MAX_ITEMS_PER_BOX);
+  const rowH = 18;
+  const headerH = 22;  // includes summary + divider spacing
+  const basePad = 18;
+  const moreH = (n > MAX_ITEMS_PER_BOX) ? rowH : 0;
+  return collapsedHeight() + headerH + shown*rowH + moreH + basePad;
+}
+
+/* Tooltip builder */
+function buildCalloutHTML(key, evts){
+  const expanded = expandedKeys.has(key);
+  const { add, rem } = countsFor(evts);
+
+  const arrow = expanded ? "▴" : "▾";
+  const detailsStyle = expanded ? "" : "display:none;";
+
+  // Details list (only rendered when expanded)
+  const sorted = evts.slice().sort((a,b)=> (+a.relevantDate)-(+b.relevantDate));
+  const shown = sorted.slice(0, MAX_ITEMS_PER_BOX);
+
+  const items = shown.map(e => {
+    const badge = e.action === "added"
+      ? `<span class="badge added">Added</span>`
+      : `<span class="badge removed">Removed</span>`;
+
+    const name = (e.name || "").trim();
+    const t = firstTicker(e);
+    const title = t ? `${name} (${t})` : name;
+
+    return `<li>${badge}${escapeHtml(title)}</li>`;
+
+  const more = (sorted.length > MAX_ITEMS_PER_BOX)
+    ? `<li style="color:rgba(0,0,0,0.55)">… +${sorted.length - MAX_ITEMS_PER_BOX} more</li>`
+    : "";
+
+  return `
+    <div class="tooltip" data-key="${key}">
+      <div class="summary">
+        <div class="counts">
+          Added: <span class="a">${add}</span> &nbsp;|&nbsp; Removed: <span class="r">${rem}</span>
+        </div>
+        <div class="toggle" role="button" aria-label="Toggle details" tabindex="0" data-toggle="${key}">${arrow}</div>
+      </div>
+      <div class="details" style="${detailsStyle}">
+        <ul class="tip-list">${items}${more}</ul>
+      </div>
+    </div>
+  `.trim();
+}
+
+/* Data coercion */
+function coerceEvent(row){
+  const actionRaw = (row.action || "").toString().trim().toLowerCase();
+  const action = (actionRaw === "added" || actionRaw === "removed") ? actionRaw : null;
+
+  const name = (row.company || "").toString().trim();
+
+  const tickersArr = Array.isArray(row.tickers)
+    ? row.tickers.map(t => (t ?? "").toString().trim()).filter(Boolean)
+    : (row.tickers ? String(row.tickers).split(/[,\s]+/).map(s => s.trim()).filter(Boolean) : []);
+  const tickers = tickersArr.join(", ");
+
+  const start = parseDate((row.sp500_start || "").toString().trim());
+  const end   = parseDate((row.sp500_end   || "").toString().trim());
+
+  if (!action || !tickersArr.length || !start || !end) return null;
+
+  const relevantDate = (action === "removed") ? end : start;
+  const m = monthStart(relevantDate);
+
+  return { action, name: name || tickersArr[0], tickers, start, end, relevantDate, month: m };
+}
+
+/* Build months with bounds */
+function rebuildMonthsWithBounds(){
+  if (!dataMinMonth || !dataMaxMonth) return;
+
+  const start = boundStart || MONTH.offset(dataMinMonth, -PRE_ROLL_MONTHS);
+  const end = boundEnd || dataMaxMonth;
+
+  const s = monthStart(start), e = monthStart(end);
+  const sMs=+s, eMs=+e;
+  const finalStart = (sMs<=eMs) ? s : e;
+  const finalEnd = (sMs<=eMs) ? e : s;
+
+  allMonths = d3.utcMonths(finalStart, MONTH.offset(finalEnd, 1));
+  monthCount = allMonths.length;
+
+  scrubber.max = String(Math.max(0, monthCount-1));
+
+  rebuildPrefixes();
+  setIndex(Math.min(+scrubber.value || 0, Math.max(0, monthCount-1)));
+}
+
+/* Prefix counters */
+let prefixAdded = [];
+let prefixRemoved = [];
+
+function rebuildPrefixes(){
+  const addedPer = new Array(monthCount).fill(0);
+  const removedPer = new Array(monthCount).fill(0);
+
+  const indexByKey = new Map(allMonths.map((m, idx) => [+m, idx]));
+
+  for (const [k, evts] of eventsByMonth.entries()){
+    const idx = indexByKey.get(k);
+    if (idx === undefined) continue;
+    for (const e of evts){
+      if (e.action === "added") addedPer[idx] += 1;
+      else if (e.action === "removed") removedPer[idx] += 1;
+    }
+  }
+
+  prefixAdded = new Array(monthCount).fill(0);
+  prefixRemoved = new Array(monthCount).fill(0);
+
+  let a=0, r=0;
+  for (let i=0;i<monthCount;i++){
+    a += addedPer[i];
+    r += removedPer[i];
+    prefixAdded[i] = a;
+    prefixRemoved[i] = r;
+  }
+}
+
+function updateCounter(mIndex){
+  if (!startedCounters){
+    addedCountEl.textContent = "0";
+    removedCountEl.textContent = "0";
+    return;
+  }
+  mIndex = Math.max(0, Math.min(monthCount-1, mIndex));
+  addedCountEl.textContent = String(prefixAdded[mIndex] || 0);
+  removedCountEl.textContent = String(prefixRemoved[mIndex] || 0);
+}
+
+/* Chart init */
+function initChart(){
+  svg.selectAll("*").remove();
+
+  const { width, height } = getSize();
+  const innerW = width - margin.left - margin.right;
+  const innerH = height - margin.top - margin.bottom;
+  const baseY = innerH * BASELINE_FRAC;
+
+  const axisY = baseY + AXIS_OFFSET_FROM_BASELINE;
+  const yearY = axisY + YEAR_OFFSET_FROM_AXIS;
+
+  const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+
+  lineG = g.append("g");
+  lineG.append("line")
+    .attr("x1", 0).attr("x2", innerW)
+    .attr("y1", baseY).attr("y2", baseY)
+    .attr("stroke", "var(--line)")
+    .attr("stroke-width", 2);
+
+  // subtle guide above/below baseline
+  g.append("line")
+    .attr("x1", 0).attr("x2", innerW)
+    .attr("y1", baseY - 120).attr("y2", baseY - 120)
+    .attr("stroke", "rgba(0,0,0,0.04)");
+
+  g.append("line")
+    .attr("x1", 0).attr("x2", innerW)
+    .attr("y1", baseY + 120).attr("y2", baseY + 120)
+    .attr("stroke", "rgba(0,0,0,0.04)");
+
+  eventsG = g.append("g").attr("class","events");
+
+  axisG = g.append("g").attr("transform", `translate(0,${axisY})`);
+  yearG = g.append("g").attr("transform", `translate(0,${yearY})`);
+
+  xScale = d3.scaleUtc().range([0, innerW]);
+}
+
+function clampIndex(i){
+  const maxI = Math.max(0, monthCount - WINDOW_MONTHS);
+  return Math.min(Math.max(0, i), maxI);
+}
+
+function formatWindowLabel(fromM, toM){
+  return `${fmtMonthYear(fromM)} → ${fmtMonthYear(toM)}`;
+}
+
+/* Lane assignment */
+function computeLaneAssignments(markerData, innerW, laneHeight){
+  const laneRight = new Array(MAX_LANES).fill(-Infinity);
+  const assignments = new Map();
+
+  for (const d of markerData){
+    const x = d.x;
+    const left = Math.max(0, Math.min(innerW - BOX_W, x - BOX_W/2));
+    const right = left + BOX_W;
+
+    let lane = -1;
+    for (let l=0; l<MAX_LANES; l++){
+      if (left > laneRight[l] + 12){
+        lane = l;
+        laneRight[l] = right;
+        break;
+      }
+    }
+    assignments.set(d.key, lane);
+  }
+  return assignments;
+}
+
+function render(mIndex){
+  mIndex = clampIndex(mIndex);
+
+  const { width, height } = getSize();
+  const innerW = width - margin.left - margin.right;
+  const innerH = height - margin.top - margin.bottom;
+  const baseY = innerH * BASELINE_FRAC;
+
+  const axisY = baseY + AXIS_OFFSET_FROM_BASELINE;
+  const yearY = axisY + YEAR_OFFSET_FROM_AXIS;
+
+  const fromM = allMonths[mIndex];
+  const toMExcl = MONTH.offset(fromM, WINDOW_MONTHS);
+  const toMIncl = MONTH.offset(toMExcl, -1);
+
+  windowLabel.textContent = `Window: ${formatWindowLabel(fromM, toMIncl)}`;
+
+  xScale.domain([fromM, toMExcl]);
+
+  const ticks = d3.utcMonths(fromM, toMExcl);
+  const axis = d3.axisBottom(xScale)
+    .tickValues(ticks)
+    .tickFormat(d => fmtMonth(d))
+    .tickSizeOuter(0);
+
+  axisG.attr("transform", `translate(0,${axisY})`).call(axis);
+  axisG.selectAll("text")
+    .style("font-size","16px")
+    .style("fill","#374151");
+  axisG.selectAll("path, line")
+    .style("stroke","#d1d5db");
+
+  const yearText = fmtYear(fromM);
+  const ySel = yearG.selectAll("text.yearLabel").data([yearText]);
+  ySel.enter().append("text")
+    .attr("class","yearLabel")
+    .attr("x", innerW/2)
+    .attr("y", -100)
+    .attr("text-anchor","middle")
+    .style("font-size","20pt")
+    .style("font-weight","900")
+    .style("fill","#000")
+    .text(yearText)
+    .merge(ySel)
+    .attr("x", innerW/2)
+    .text(yearText);
+  yearG.attr("transform", `translate(0,${yearY})`);
+
+  lineG.select("line")
+    .attr("x2", innerW)
+    .attr("y1", baseY).attr("y2", baseY);
+
+  const windowMonths = d3.utcMonths(fromM, toMExcl);
+  const markerAll = windowMonths
+    .map(m => {
+      const key = +monthStart(m);
+      const evts = eventsByMonth.get(key) || [];
+      const x = xScale(m);
+      return { m, key, evts, x };
+    })
+    .filter(d => d.evts.length > 0);
+
+  const dotsOnly = markerAll.filter(d => d.x >= 0 && d.x <= innerW);
+
+  const markerCallouts = (!showCallouts) ? [] : markerAll
+    .filter(d => d.x >= 0 && d.x <= (innerW * HIDE_AFTER_FRACTION));
+
+  // lane height depends on whether any callout in view is expanded
+  // (keeps overlap down when mostly collapsed)
+  const anyExpandedInView = markerCallouts.some(d => expandedKeys.has(d.key));
+  const laneHeight = anyExpandedInView ? LANE_HEIGHT_EXPANDED : LANE_HEIGHT_COLLAPSED;
+
+  const laneByKey = computeLaneAssignments(markerCallouts, innerW, laneHeight);
+
+  const nodes = eventsG.selectAll("g.callout").data(dotsOnly, d => d.key);
+  nodes.exit().remove();
+
+  const enter = nodes.enter().append("g").attr("class","callout");
+
+  enter.append("line")
+    .attr("class","stem")
+    .attr("stroke", "rgba(79,70,229,0.55)")
+    .attr("stroke-width", 2);
+
+  enter.append("circle")
+    .attr("class","dot")
+    .attr("r", 6)
+    .attr("fill", "var(--dot)")
+    .attr("stroke", "#ffffff")
+    .attr("stroke-width", 1.5);
+
+  enter.append("foreignObject")
+    .attr("class","fo")
+    .style("overflow","visible")
+    .append("xhtml:div")
+    .attr("class","fo-inner");
+
+  const merged = enter.merge(nodes);
+
+  merged.each(function(d){
+    const g = d3.select(this);
+    const x = d.x;
+
+    g.select("circle.dot")
+      .attr("cx", x)
+      .attr("cy", baseY);
+
+    const lane = laneByKey.get(d.key);
+    if (!showCallouts || lane === undefined || lane < 0){
+      g.select("line.stem").attr("display","none");
+      g.select("foreignObject.fo").attr("display","none");
+      return;
+    }
+
+    g.select("line.stem").attr("display", null);
+    g.select("foreignObject.fo").attr("display", null);
+
+    const state = summarizeBucket(d.evts);
+    const expanded = expandedKeys.has(d.key);
+    const boxH = expanded ? expandedHeight(d.evts.length) : collapsedHeight();
+
+    const boxX = Math.max(0, Math.min(innerW - BOX_W, x - (BOX_W/2)));
+
+    let boxY = baseY - STEM_LEN - boxH - BOX_PAD_Y - lane * laneHeight;
+    boxY = Math.max(0, boxY);
+
+    const stemY2 = boxY + boxH;
+
+    g.select("line.stem")
+      .attr("x1", x).attr("x2", x)
+      .attr("y1", baseY).attr("y2", stemY2);
+
+    const fo = g.select("foreignObject.fo")
+      .attr("x", boxX)
+      .attr("y", boxY)
+      .attr("width", BOX_W)
+      .attr("height", boxH);
+
+    const container = fo.select(".fo-inner");
+    container.html(buildCalloutHTML(d.key, d.evts));
+
+    container.select(".tooltip")
+      .classed("tip-added", state === "added")
+      .classed("tip-removed", state === "removed")
+      .classed("tip-mixed", state === "mixed");
+
+    // Toggle click handler
+    const node = container.node();
+    const toggle = node.querySelector(`[data-toggle="${d.key}"]`);
+    if (toggle){
+      toggle.onclick = (ev) => {
+        ev.preventDefault();
+        ev.stopPropagation();
+        if (expandedKeys.has(d.key)) expandedKeys.delete(d.key);
+        else expandedKeys.add(d.key);
+        // Re-render current view so lane packing + heights adjust
+        render(+scrubber.value || 0);
+      };
+      toggle.onpointerdown = (ev) => { ev.stopPropagation(); };
+    }
+  });
+
+  updateCounter(mIndex);
+  scrubber.value = String(mIndex);
+}
+
+function setIndex(i){
+  i = clampIndex(i);
+  scrubber.value = String(i);
+  render(i);
+}
+
+/* Playback */
+function getPlaybackIntervalMs(){
+  return Math.max(150, +speedSel.value || 2000);
+}
+
+function stop(){
+  playing = false;
+  playPauseBtn.textContent = "Play";
+  if (timer) { clearInterval(timer); timer = null; }
+  render(+scrubber.value || 0);
+}
+
+function play(){
+  showCallouts = true;
+  if (!startedCounters) startedCounters = true;
+
+  playing = true;
+  playPauseBtn.textContent = "Pause";
+  if (timer) clearInterval(timer);
+
+  const intervalMs = getPlaybackIntervalMs();
+  timer = setInterval(() => {
+    let i = (+scrubber.value) + 1;
+    if (i > monthCount - WINDOW_MONTHS) { stop(); return; }
+    setIndex(i);
+  }, intervalMs);
+}
+
+playPauseBtn.addEventListener("click", () => playing ? stop() : play());
+speedSel.addEventListener("change", () => { if (playing) play(); });
+
+function revealCalloutsOnly(){
+  if (!showCallouts){
+    showCallouts = true;
+    render(+scrubber.value || 0);
+  }
+}
+
+scrubber.addEventListener("input", () => {
+  if (playing) stop();
+  revealCalloutsOnly();
+  setIndex(+scrubber.value);
+});
+
+chartWrap.addEventListener("wheel", (e) => {
+  e.preventDefault();
+  if (playing) stop();
+  revealCalloutsOnly();
+  const delta = Math.sign(e.deltaY || e.deltaX);
+  const step = e.shiftKey ? 6 : 1;
+  setIndex((+scrubber.value) + (delta > 0 ? step : -step));
+}, { passive:false });
+
+let dragging=false, dragStartX=0, dragStartIndex=0;
+chartWrap.addEventListener("pointerdown", (e) => {
+  if (playing) stop();
+  revealCalloutsOnly();
+  dragging=true;
+  dragStartX=e.clientX;
+  dragStartIndex=+scrubber.value;
+  chartWrap.setPointerCapture(e.pointerId);
+});
+chartWrap.addEventListener("pointermove", (e) => {
+  if (!dragging) return;
+  const dx = e.clientX - dragStartX;
+  const pxPerMonth = 18;
+  const mDelta = Math.round(dx / pxPerMonth);
+  setIndex(dragStartIndex + mDelta);
+});
+chartWrap.addEventListener("pointerup", (e) => {
+  dragging=false;
+  try { chartWrap.releasePointerCapture(e.pointerId); } catch {}
+});
+
+window.addEventListener("resize", () => {
+  initChart();
+  render(+scrubber.value || 0);
+});
+
+function parseInputDateToMonthStart(value){
+  if (!value) return null;
+  const d = parseDate(value);
+  return d ? monthStart(d) : null;
+}
+
+applyRangeBtn.addEventListener("click", () => {
+  if (playing) stop();
+  revealCalloutsOnly();
+  boundStart = parseInputDateToMonthStart(startDateInput.value);
+  boundEnd = parseInputDateToMonthStart(endDateInput.value);
+  rebuildMonthsWithBounds();
+});
+
+resetRangeBtn.addEventListener("click", () => {
+  if (playing) stop();
+  boundStart = null; boundEnd = null;
+  startDateInput.value = ""; endDateInput.value = "";
+
+  startedCounters = false;
+  showCallouts = false;
+  expandedKeys.clear();
+
+  addedCountEl.textContent = "0";
+  removedCountEl.textContent = "0";
+
+  rebuildMonthsWithBounds();
+  setIndex(0);
+});
+
+function downloadBlob(filename, mime, content){
+  const blob = new Blob([content], { type: mime });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 2500);
+}
+
+function toTSV(rows){
+  const cols=["action","company","tickers","sp500_start","sp500_end","event_date","reason","permno"];
+  const esc=v=>String(v??"").replace(/\t/g," ").replace(/\r?\n/g," ");
+  const header=cols.join("\t");
+  const lines=rows.map(r=>cols.map(c=>esc(r[c])).join("\t"));
+  return [header,...lines].join("\n");
+}
+
+exportJsonBtn.addEventListener("click", () => {
+  downloadBlob("sp500-change-events.export.json","application/json;charset=utf-8", JSON.stringify(eventsAll,null,2));
+});
+exportTsvBtn.addEventListener("click", () => {
+  downloadBlob("sp500-change-events.export.tsv","text/tab-separated-values;charset=utf-8", toTSV(eventsAll));
+});
+
+(async function main(){
+  try{
+    const rows = await d3.json(DATA_URL);
+    eventsAll = Array.isArray(rows) ? rows : [];
+
+    const events = (Array.isArray(rows) ? rows : []).map(coerceEvent).filter(Boolean);
+    eventsByMonth = d3.group(events, d => +d.month);
+
+    const months = events.map(e => e.month).filter(Boolean);
+    if (!months.length) throw new Error("No events parsed from data.");
+
+    dataMinMonth = monthStart(d3.min(months));
+    dataMaxMonth = monthStart(d3.max(months));
+
+    allMonths = d3.utcMonths(MONTH.offset(dataMinMonth, -PRE_ROLL_MONTHS), MONTH.offset(dataMaxMonth, 1));
+    monthCount = allMonths.length;
+
+    scrubber.max = String(Math.max(0, monthCount - 1));
+    scrubber.value = "0";
+    scrubber.disabled = false;
+
+    initChart();
+    rebuildPrefixes();
+
+    render(0);
+
+    playPauseBtn.disabled = false;
+    playPauseBtn.textContent = "Play";
+
+    applyRangeBtn.disabled = false;
+    resetRangeBtn.disabled = false;
+    exportJsonBtn.disabled = false;
+    exportTsvBtn.disabled = false;
+
+  }catch(err){
+    console.error(err);
+    windowLabel.textContent = "Failed to load data.";
+    playPauseBtn.textContent = "Load failed";
+  }
+})();
+</script>
+
+</body>
+</html>
+

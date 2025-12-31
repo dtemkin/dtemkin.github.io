@@ -14,8 +14,10 @@
       --added:#16a34a;
       --removed:#dc2626;
       --axis:#111827;
-      --bracket:#374151;
+      --hl:#111827;
+      --tooltip:#f3f4f6; /* solid gray */
     }
+
     body{
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       margin:0;
@@ -23,18 +25,21 @@
       background:var(--bg);
       color:var(--text);
     }
+
     h1{
       font-size:18px;
-      margin:0 0 10px 0;
+      margin:0 0 8px 0;
       font-weight:900;
       letter-spacing:0.2px;
     }
+
     .sub{
       font-size:12px;
       color:var(--muted);
       margin-bottom:12px;
       line-height:1.35;
     }
+
     .wrap{
       border:1px solid rgba(0,0,0,0.12);
       border-radius:14px;
@@ -42,12 +47,15 @@
       background:#fff;
       box-shadow: 0 6px 18px rgba(0,0,0,0.08);
     }
+
     .scroll-x{
       overflow-x:auto;
       overflow-y:hidden;
       padding-bottom:10px;
     }
+
     svg{ shape-rendering:crispEdges; }
+
     .legend{
       display:flex;
       gap:14px;
@@ -57,6 +65,7 @@
       color:var(--muted);
       flex-wrap:wrap;
     }
+
     .chip{
       display:inline-flex;
       align-items:center;
@@ -66,33 +75,61 @@
       border-radius:999px;
       background:#fff;
     }
-    .dot{
-      width:10px;height:10px;border-radius:3px;display:inline-block;
-    }
+
+    .dot{ width:10px;height:10px;border-radius:3px;display:inline-block; }
+
     .sources{
       margin-top:10px;
       font-size:12px;
       color:var(--muted);
+      line-height:1.35;
     }
+
+    .tooltip{
+      position:fixed;
+      pointer-events:none;
+      display:none;
+      z-index:9999;
+      background:var(--tooltip);
+      border:1px solid rgba(0,0,0,0.18);
+      color:rgba(0,0,0,0.92);
+      padding:10px 12px;
+      border-radius:10px;
+      box-shadow: 0 16px 44px rgba(0,0,0,0.18);
+      font-size:12px;
+      line-height:1.25;
+      max-width:320px;
+      white-space:nowrap;
+    }
+
+    /* blocks */
+    rect.event.added  { fill: var(--added);  opacity: 0.85; }
+    rect.event.removed{ fill: var(--removed);opacity: 0.85; }
+
+    rect.event.dim { opacity: 0.10; }
+    rect.event.hl  { opacity: 1; stroke: var(--hl); stroke-width: 1; }
+
+    .axis text{ fill: var(--muted); font-size: 12px; font-weight: 700; }
+    .label { fill: var(--muted); font-size: 12px; font-weight: 800; }
   </style>
 </head>
 <body>
   <h1>A Timeline of Changes in the S&amp;P 500 (1959–2025)</h1>
   <div class="sub">
-    Each column is a month. Each small block represents one constituent change event.<br/>
-    Additions (green) are stacked upward; removals (red) are stacked downward. Scroll horizontally to navigate the full range.
+    Condensed to yearly columns. Each block is one company event (added/removed).<br/>
+    Hover any block to highlight that year’s stack and see total counts.
   </div>
 
   <div class="wrap">
     <div class="scroll-x" id="scroll">
-      <svg id="svg"></svg>
+      <svg id="svg" aria-label="S&P 500 changes timeline"></svg>
     </div>
 
     <div class="legend">
       <span class="chip"><span class="dot" style="background:var(--added)"></span>Added</span>
       <span class="chip"><span class="dot" style="background:var(--removed)"></span>Removed</span>
-      <span class="chip"><span class="dot" style="background:#111827"></span>Each block = 1 event</span>
-      <span class="chip"><span class="dot" style="background:var(--grid)"></span>Monthly columns</span>
+      <span class="chip"><span class="dot" style="background:#111827"></span>Each block = 1 company event</span>
+      <span class="chip"><span class="dot" style="background:var(--grid)"></span>Hover highlights a year stack</span>
     </div>
   </div>
 
@@ -100,182 +137,216 @@
     Data: <code>data/sp500-change-events.json</code>
   </div>
 
+  <div class="tooltip" id="tooltip"></div>
+
 <script>
+/* fixed, per your requirement */
 const DATA_URL = "data/sp500-change-events.json";
 
-const CELL = 7;
-const GAP  = 2;
-const COL_GAP = 3;
-const TOP_PAD = 42;
-const BOT_PAD = 34;
-const LEFT_PAD = 56;
-const RIGHT_PAD = 24;
-const MID_GAP = 34;
+/* Layout */
+const CELL_H = 7;      // block height
+const CELL_GAP = 2;    // vertical gap
+const COL_GAP = 6;     // gap between years
+const MIN_COL_W = 10;  // minimum year column width (will scale to keep blocks visible)
 
-const COVID_START = new Date(Date.UTC(2020, 2, 1)); // Mar 2020
-const COVID_END   = new Date(Date.UTC(2021, 5, 1)); // Jun 2021
+const M = { top: 22, right: 18, bottom: 44, left: 72 };
+const MID_GAP = 38; // band between added and removed
 
 const parseDate = d3.utcParse("%Y-%m-%d");
 const fmtYear = d3.utcFormat("%Y");
 
-function monthStart(d){ return d3.utcMonth.floor(d); }
+function yearOf(d){ return d.getUTCFullYear(); }
 
 function coerceEvent(row){
-  const a = (row.action || "").toString().trim().toLowerCase();
-  if (a !== "added" && a !== "removed") return null;
+  const action = (row.action || "").toString().trim().toLowerCase();
+  if (action !== "added" && action !== "removed") return null;
+
   const start = parseDate((row.sp500_start || "").toString().trim());
-  const end   = parseDate((row.sp500_end || "").toString().trim());
+  const end   = parseDate((row.sp500_end   || "").toString().trim());
   if (!start || !end) return null;
-  const relevant = (a === "removed") ? end : start;
-  return { action: a, month: monthStart(relevant) };
+
+  const eventDate = (action === "removed") ? end : start;
+  return { action, year: yearOf(eventDate) };
 }
 
-const START = new Date(Date.UTC(1959,0,1));
-const END   = new Date(Date.UTC(2025,11,1));
+function el(id){ return document.getElementById(id); }
+const tooltip = d3.select("#tooltip");
+
+function showTooltipAt(x, y, html){
+  tooltip.style("display","block")
+    .style("left", (x + 14) + "px")
+    .style("top",  (y + 14) + "px")
+    .html(html);
+}
+function hideTooltip(){ tooltip.style("display","none"); }
 
 (async function main(){
   const rows = await d3.json(DATA_URL);
-  const events = (Array.isArray(rows)? rows : []).map(coerceEvent).filter(Boolean);
+  const events = (Array.isArray(rows) ? rows : []).map(coerceEvent).filter(Boolean);
 
-  const months = d3.utcMonths(monthStart(START), d3.utcMonth.offset(monthStart(END), 1));
-  const monthIndex = new Map(months.map((m,i)=>[+m,i]));
+  // Build yearly domain
+  const years = d3.range(1959, 2026); // inclusive 1959..2025
+  const yearSet = new Set(years);
 
-  const addedCounts = new Array(months.length).fill(0);
-  const removedCounts = new Array(months.length).fill(0);
-
+  // Bucket events by (year, action)
+  const byYearAction = new Map(); // key "YYYY|action" -> count
   for (const e of events){
-    const i = monthIndex.get(+e.month);
-    if (i === undefined) continue;
-    if (e.action === "added") addedCounts[i]++;
-    else removedCounts[i]++;
+    if (!yearSet.has(e.year)) continue;
+    const key = `${e.year}|${e.action}`;
+    byYearAction.set(key, (byYearAction.get(key) || 0) + 1);
   }
 
-  const maxAdd = d3.max(addedCounts) || 0;
-  const maxRem = d3.max(removedCounts) || 0;
-  const maxStack = Math.max(maxAdd, maxRem);
+  // Determine max stack height for layout
+  let maxStack = 0;
+  for (const y of years){
+    maxStack = Math.max(
+      maxStack,
+      byYearAction.get(`${y}|added`) || 0,
+      byYearAction.get(`${y}|removed`) || 0
+    );
+  }
 
-  const colW = CELL;
+  const stackH = maxStack * (CELL_H + CELL_GAP);
+  const innerH = stackH + MID_GAP + stackH;
+
+  // Column width scales with number of years; keep readable, allow horizontal scroll
+  const colW = Math.max(MIN_COL_W, 12);
   const colStep = colW + COL_GAP;
-  const innerW = months.length * colStep;
-  const stackH = maxStack * (CELL + GAP);
+  const innerW = years.length * colStep;
 
-  const totalH = TOP_PAD + stackH + MID_GAP + stackH + BOT_PAD;
-  const totalW = LEFT_PAD + innerW + RIGHT_PAD;
+  const W = M.left + innerW + M.right;
+  const H = M.top + innerH + M.bottom;
 
-  const svg = d3.select("#svg").attr("width", totalW).attr("height", totalH);
+  const svg = d3.select("#svg")
+    .attr("width", W)
+    .attr("height", H);
 
-  const midY = TOP_PAD + stackH + (MID_GAP/2);
-  svg.append("line")
-    .attr("x1", LEFT_PAD)
-    .attr("x2", LEFT_PAD + innerW)
-    .attr("y1", midY)
-    .attr("y2", midY)
+  // Groups
+  const g = svg.append("g").attr("transform", `translate(${M.left},${M.top})`);
+
+  // Midline
+  const midY = stackH + (MID_GAP/2);
+  g.append("line")
+    .attr("x1", 0).attr("x2", innerW)
+    .attr("y1", midY).attr("y2", midY)
     .attr("stroke", "var(--grid)")
     .attr("stroke-width", 2);
 
+  // Labels
   svg.append("text")
+    .attr("class","label")
     .attr("x", 12)
-    .attr("y", TOP_PAD + 14)
-    .attr("fill", "var(--muted)")
-    .attr("font-size", 12)
-    .attr("font-weight", 800)
+    .attr("y", M.top + 14)
     .text("Companies Added");
 
   svg.append("text")
+    .attr("class","label")
     .attr("x", 12)
-    .attr("y", midY + 18)
-    .attr("fill", "var(--muted)")
-    .attr("font-size", 12)
-    .attr("font-weight", 800)
+    .attr("y", M.top + stackH + MID_GAP + 16)
     .text("Companies Removed");
 
-  const years = d3.utcYears(new Date(Date.UTC(1959,0,1)), new Date(Date.UTC(2026,0,1)));
-  const tickYears = years.filter(y => (y.getUTCFullYear() % 2) === 0);
-
-  const xForMonth = (m) => LEFT_PAD + (monthIndex.get(+monthStart(m)) * colStep);
-
-  const yearG = svg.append("g");
-  tickYears.forEach(y => {
-    const idx = monthIndex.get(+monthStart(y));
-    if (idx === undefined) return;
-    const x = LEFT_PAD + idx*colStep;
-
-    yearG.append("line")
-      .attr("x1", x)
-      .attr("x2", x)
-      .attr("y1", TOP_PAD)
-      .attr("y2", totalH - BOT_PAD + 6)
-      .attr("stroke", "rgba(0,0,0,0.045)")
-      .attr("stroke-width", 1);
-
-    yearG.append("text")
-      .attr("x", x + 2)
-      .attr("y", midY + 22)
-      .attr("fill", "var(--axis)")
-      .attr("font-size", 12)
-      .attr("font-weight", 800)
-      .text(fmtYear(y));
-  });
-
-  const blocks = svg.append("g").attr("transform", `translate(${LEFT_PAD},0)`);
-
-  for (let i=0; i<months.length; i++){
+  // Light vertical year grid + axis labels (every 5 years for readability)
+  const axisG = g.append("g").attr("class","axis");
+  for (let i=0;i<years.length;i++){
+    const yr = years[i];
     const x = i * colStep;
 
-    const addN = addedCounts[i];
-    for (let j=0; j<addN; j++){
-      const y = (TOP_PAD + stackH) - (j+1)*(CELL+GAP);
-      blocks.append("rect")
-        .attr("x", x)
-        .attr("y", y)
-        .attr("width", CELL)
-        .attr("height", CELL)
-        .attr("fill", "var(--added)");
-    }
+    if (yr % 5 === 0){
+      axisG.append("line")
+        .attr("x1", x).attr("x2", x)
+        .attr("y1", 0).attr("y2", innerH)
+        .attr("stroke", "rgba(0,0,0,0.05)")
+        .attr("stroke-width", 1);
 
-    const remN = removedCounts[i];
-    for (let j=0; j<remN; j++){
-      const y = (TOP_PAD + stackH + MID_GAP) + j*(CELL+GAP);
-      blocks.append("rect")
-        .attr("x", x)
-        .attr("y", y)
-        .attr("width", CELL)
-        .attr("height", CELL)
-        .attr("fill", "var(--removed)");
+      axisG.append("text")
+        .attr("x", x + 1)
+        .attr("y", midY + 24)
+        .text(String(yr));
     }
   }
 
-  const covidStartM = monthStart(COVID_START);
-  const covidEndM = monthStart(COVID_END);
-  const sIdx = monthIndex.get(+covidStartM);
-  const eIdx = monthIndex.get(+covidEndM);
-  if (sIdx !== undefined && eIdx !== undefined && eIdx >= sIdx){
-    const x1 = LEFT_PAD + sIdx * colStep;
-    const x2 = LEFT_PAD + (eIdx * colStep) + CELL;
-    const yB = 18;
-    const yDown = TOP_PAD - 8;
+  // Build rect data: one datum per block (per your requirement)
+  const blocks = [];
+  for (let i=0;i<years.length;i++){
+    const yr = years[i];
+    const addN = byYearAction.get(`${yr}|added`) || 0;
+    const remN = byYearAction.get(`${yr}|removed`) || 0;
 
-    const gB = svg.append("g");
-    gB.append("line").attr("x1", x1).attr("x2", x2).attr("y1", yB).attr("y2", yB)
-      .attr("stroke","var(--bracket)").attr("stroke-width",2);
-    gB.append("line").attr("x1", x1).attr("x2", x1).attr("y1", yB).attr("y2", yDown)
-      .attr("stroke","var(--bracket)").attr("stroke-width",2);
-    gB.append("line").attr("x1", x2).attr("x2", x2).attr("y1", yB).attr("y2", yDown)
-      .attr("stroke","var(--bracket)").attr("stroke-width",2);
-
-    gB.append("text")
-      .attr("x", (x1+x2)/2)
-      .attr("y", yB - 6)
-      .attr("text-anchor","middle")
-      .attr("fill","var(--bracket)")
-      .attr("font-size", 12)
-      .attr("font-weight", 900)
-      .text("COVID-19 (2020–2021)");
+    for (let j=0;j<addN;j++){
+      blocks.push({
+        year: yr, action: "added",
+        x: i*colStep,
+        y: (stackH) - (j+1)*(CELL_H + CELL_GAP),
+        stackCount: addN
+      });
+    }
+    for (let j=0;j<remN;j++){
+      blocks.push({
+        year: yr, action: "removed",
+        x: i*colStep,
+        y: (stackH + MID_GAP) + j*(CELL_H + CELL_GAP),
+        stackCount: remN
+      });
+    }
   }
 
-  const scroll = document.getElementById("scroll");
-  const near = monthIndex.get(+new Date(Date.UTC(2019,0,1))) || 0;
-  scroll.scrollLeft = Math.max(0, LEFT_PAD + near*colStep - 200);
+  // Draw
+  const rects = g.append("g")
+    .selectAll("rect.event")
+    .data(blocks)
+    .join("rect")
+    .attr("class", d => `event ${d.action}`)
+    .attr("x", d => d.x)
+    .attr("y", d => d.y)
+    .attr("width", colW)
+    .attr("height", CELL_H)
+    .attr("rx", 0);
+
+  // Hover interaction: highlight whole stack (same year + same action),
+  // and show tooltip with totals for that year (both) + stack totals.
+  rects
+    .on("mouseenter", function(event, d){
+      rects.classed("dim", true).classed("hl", false);
+
+      rects
+        .filter(r => r.year === d.year && r.action === d.action)
+        .classed("dim", false)
+        .classed("hl", true);
+
+      const addTotal = byYearAction.get(`${d.year}|added`) || 0;
+      const remTotal = byYearAction.get(`${d.year}|removed`) || 0;
+
+      const html = `
+        <div style="font-weight:900;font-size:13px;margin-bottom:6px;">${d.year}</div>
+        <div><span style="display:inline-block;width:10px;height:10px;background:var(--added);border-radius:3px;margin-right:8px;vertical-align:middle;"></span>
+          Added: <b>${addTotal}</b>
+        </div>
+        <div style="margin-top:4px;"><span style="display:inline-block;width:10px;height:10px;background:var(--removed);border-radius:3px;margin-right:8px;vertical-align:middle;"></span>
+          Removed: <b>${remTotal}</b>
+        </div>
+        <div style="margin-top:8px;color:rgba(0,0,0,0.65);font-size:11px;">
+          Highlighting: <b>${d.action}</b> stack (${d.stackCount})
+        </div>
+      `;
+
+      showTooltipAt(event.clientX, event.clientY, html);
+    })
+    .on("mousemove", function(event){
+      // keep tooltip following pointer
+      const current = tooltip.html();
+      showTooltipAt(event.clientX, event.clientY, current);
+    })
+    .on("mouseleave", function(){
+      rects.classed("dim", false).classed("hl", false);
+      hideTooltip();
+    });
+
+  // Start scroll near 2020 so it feels modern on load (optional)
+  const scroll = el("scroll");
+  const idx2020 = years.indexOf(2020);
+  if (idx2020 >= 0){
+    scroll.scrollLeft = Math.max(0, M.left + idx2020*colStep - 220);
+  }
 })();
 </script>
 </body>
