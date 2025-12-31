@@ -3,26 +3,26 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>S&P 500 Changes Timeline (Quarterly)</title>
+  <title>S&P 500 Quarterly Changes Timeline (1959-2025)</title>
   <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 
   <style>
     :root{
       --bg: transparent
-      --text: #1f2937;
-      --muted: #6b7280;
+      --text:#111827;
+      --muted:#6b7280;
 
-      --accent: #4f46e5;     /* indigo */
-      --accent2: #0ea5e9;    /* sky */
+      --accent:#4f46e5;
+      --line:#d1d5db;
 
-      --good: #16a34a;       /* green */
-      --bad: #dc2626;        /* red */
-      --neutral: #7c3aed;    /* violet */
+      --good:#16a34a;
+      --bad:#dc2626;
+      --neutral:#7c3aed;
 
-      --line: #d1d5db;       /* gray-300 */
-      --dot: #4f46e5;        /* all dots same color */
+      --dot:#4f46e5;
 
-      --tooltipBg: #f3f4f6;  /* solid gray tooltip bg */
+      /* tooltip look you already liked */
+      --tooltipBg:#f3f4f6;
     }
 
     body{
@@ -132,7 +132,6 @@
       padding:12px;
       background: transparent;
       border:1px solid rgba(0,0,0,.10);
-      box-shadow:none;
       user-select:none;
       outline: none;
     }
@@ -141,9 +140,8 @@
       outline-offset: 2px;
     }
 
-    /* SOLID, non-transparent tooltip bg */
+    /* === Tooltip box styling (UNCHANGED) === */
     .tooltip{
-      position:fixed;
       pointer-events:none;
       background: var(--tooltipBg);
       color: rgba(0,0,0,0.88);
@@ -152,13 +150,10 @@
       max-width:640px;
       font-size:12px;
       line-height:1.35;
-      display:none;
-      z-index:9999;
       border: 2px solid #d1d5db;
       box-shadow: 0 12px 28px rgba(0,0,0,0.18);
       white-space:normal;
     }
-
     .tooltip.tip-added{ border-color: var(--good); }
     .tooltip.tip-removed{ border-color: var(--bad); }
     .tooltip.tip-mixed{ border-color: var(--neutral); }
@@ -168,17 +163,14 @@
       margin-bottom: 6px;
       color: #111827;
     }
-
     .tooltip .tip-list{
       margin: 0;
       padding-left: 16px;
     }
-
     .tooltip .tip-list li{
       margin: 2px 0;
       color: rgba(0,0,0,0.88);
     }
-
     .tooltip .badge{
       display:inline-block;
       font-size: 10px;
@@ -209,7 +201,6 @@
 
   <label>Speed:
     <select id="speed">
-      <!-- Slower playback -->
       <option value="3500">0.5×</option>
       <option value="2500" selected>1×</option>
       <option value="1600">2×</option>
@@ -256,7 +247,7 @@
 <input id="scrubber" type="range" min="0" max="0" step="1" value="0" aria-label="Scrub quarter" disabled />
 
 <div class="chart-wrap" id="chartWrap" tabindex="0" aria-label="Timeline chart (scrollable)">
-  <svg id="svg" width="100%" height="270"></svg>
+  <svg id="svg" width="100%" height="360"></svg>
 </div>
 
 <div class="sources">
@@ -265,34 +256,30 @@
   [2] https://wrds-www.wharton.upenn.edu/classroom/sp500-introduction/over-time/
 </div>
 
-<div class="tooltip" id="tooltip"></div>
-
 <script>
 /** Data source (your cleaned JSON) */
-const DATA_URL = "data/sp500-change-events.json";
+const DATA_URL = "data/sp500_change_events.json";
 
 /** Quarterly stepping */
 const QUARTER = d3.utcMonth.every(3);
-const WINDOW_QUARTERS = 10; // visible window length (10 quarters = 2.5 years)
+const WINDOW_QUARTERS = 10;         // 10 quarters visible (~2.5y)
+const MAX_ITEMS_PER_BOX = 10;       // prevents giant boxes
+
+/** Layout of static callouts */
+const BOX_W = 340;
+const STEM_LEN = 84;
+const BOX_PAD_Y = 16;
 
 /** Parsing/formatting */
 const parseDate = d3.utcParse("%Y-%m-%d");
+const fmtMonth = d3.utcFormat("%b");
 const fmtMonthYear = d3.utcFormat("%b %Y");
 const fmtYear = d3.utcFormat("%Y");
-
-/** Helpers */
 function quarterStart(d){ return QUARTER.floor(d); }
-function quarterLabel(d){
-  const q = Math.floor(d.getUTCMonth()/3) + 1;
-  return `Q${q}`;
-}
-function quarterLabelWithYear(d){
-  return `${quarterLabel(d)} ${fmtYear(d)}`;
-}
+function monthStart(d){ return d3.utcMonth.floor(d); }
 
 /** UI refs */
 const svg = d3.select("#svg");
-const tooltip = d3.select("#tooltip");
 const chartWrap = document.getElementById("chartWrap");
 const scrubber = document.getElementById("scrubber");
 const windowLabel = document.getElementById("windowLabel");
@@ -315,14 +302,15 @@ function getSize(){
   return { width: rect.width, height: +svg.attr("height") };
 }
 
-const margin = { top: 14, right: 20, bottom: 52, left: 30 };
-let xScale, yScale, axisG, markersG, lineG, yearTextG;
+const margin = { top: 14, right: 20, bottom: 74, left: 30 };
+let xScale, axisG, lineG, yearG, eventsG;
 
 let playing = false;
 let timer = null;
 
 let allQuarters = [];
 let quarterCount = 0;
+
 let eventsByQuarter = new Map();
 let eventsAll = []; // export-friendly objects
 
@@ -334,27 +322,17 @@ let boundEnd = null;
 let dataMinQuarter = null;
 let dataMaxQuarter = null;
 
-// auto-hide timer
-let autoHideTimer = null;
-
-// pinned tooltip state
-let tooltipPinned = false;
-let pinnedQuarterKey = null;
-
 function getPlaybackIntervalMs(){
   return Math.max(250, +speedSel.value || 2500);
 }
 
-/* popup timer = 2/3 of current speed interval */
-function getAutoTooltipMs(){
-  return Math.max(250, Math.floor(getPlaybackIntervalMs() * 2 / 3));
-}
-
-/** Convert row -> event (expects normalized schema) */
+/** Convert row -> event
+ *  For added use start date; for removed use end date.
+ */
 function coerceEvent(row){
   const action = (row.action || "").trim().toLowerCase();
-  const permno = (row.permno ?? "").toString().trim();
   const name = (row.company || "").trim();
+  const permno = (row.permno ?? "").toString().trim();
 
   const tickersArr = Array.isArray(row.tickers)
     ? row.tickers.map(t => (t ?? "").toString().trim()).filter(Boolean)
@@ -365,21 +343,20 @@ function coerceEvent(row){
   const end   = parseDate((row.sp500_end   || "").toString().trim());
   if (!action || !tickersArr.length || !start || !end) return null;
 
-  // Use start for added, end for removed
   const relevantDate = (action === "removed") ? end : start;
+  const q = quarterStart(relevantDate);
 
   return {
-    action,                 // "added" | "removed"
-    id: permno,
+    action,
     name: name || tickersArr[0],
     tickers,
+    id: permno,
     start, end,
-    relevantDate,           // start for added, end for removed
-    relevantQuarter: quarterStart(relevantDate),
+    relevantDate,
+    quarter: q
   };
 }
 
-/** Tooltip helpers */
 function firstTicker(e){
   if (!e) return "";
   if (typeof e.tickers === "string" && e.tickers.trim()){
@@ -387,6 +364,7 @@ function firstTicker(e){
   }
   return "";
 }
+
 function escapeHtml(s){
   return String(s ?? "")
     .replaceAll("&","&amp;")
@@ -395,8 +373,9 @@ function escapeHtml(s){
     .replaceAll('"',"&quot;")
     .replaceAll("'","&#039;");
 }
-function summarizeQuarter(events){
-  let add = 0, rem = 0;
+
+function summarizeBucket(events){
+  let add=0, rem=0;
   for (const e of events){
     if (e.action === "added") add++;
     else if (e.action === "removed") rem++;
@@ -405,105 +384,50 @@ function summarizeQuarter(events){
   if (rem && !add) return "removed";
   return "mixed";
 }
-function buildTooltipHTML(qStartDate, events){
-  const header = `${quarterLabelWithYear(qStartDate)} • ${events.length} event${events.length===1?"":"s"}`;
 
-  const items = events.map(e => {
+function buildTooltipHTML(qStartDate, events){
+  const qNum = Math.floor(qStartDate.getUTCMonth()/3) + 1;
+  const header = `Q${qNum} ${fmtYear(qStartDate)} • ${events.length} event${events.length===1?"":"s"}`;
+
+  const sorted = events.slice().sort((a,b)=> (+a.relevantDate)-(+b.relevantDate));
+  const shown = sorted.slice(0, MAX_ITEMS_PER_BOX);
+
+  const items = shown.map(e => {
     const badge = e.action === "added"
       ? `<span class="badge added">Added</span>`
       : `<span class="badge removed">Removed</span>`;
-
     const name = (e.name || "").trim();
     const t = firstTicker(e);
     const title = t ? `${name} (${t})` : name;
 
-    // month/year: start for added, end for removed (already in relevantDate)
+    // month/year of relevantDate (start for added, end for removed)
     const when = fmtMonthYear(e.relevantDate);
 
     return `<li>${badge}${escapeHtml(title)} — <span style="color:rgba(0,0,0,0.65)">${escapeHtml(when)}</span></li>`;
   }).join("");
 
+  const more = (sorted.length > MAX_ITEMS_PER_BOX)
+    ? `<li style="color:rgba(0,0,0,0.55)">… +${sorted.length - MAX_ITEMS_PER_BOX} more</li>`
+    : "";
+
   return `
-    <div class="tip-header">${escapeHtml(header)}</div>
-    <ul class="tip-list">${items}</ul>
-  `;
+    <div class="tooltip">
+      <div class="tip-header">${escapeHtml(header)}</div>
+      <ul class="tip-list">${items}${more}</ul>
+    </div>
+  `.trim();
 }
 
-function hideTooltip(){ tooltip.style("display","none"); }
-
-function showTooltipAt(screenX, screenY, html){
-  tooltip
-    .style("display","block")
-    .style("left", (screenX + 14) + "px")
-    .style("top", (screenY + 14) + "px")
-    .html(html);
+/** Estimate box height from item count (keeps layout stable) */
+function estimateBoxHeight(eventsLen){
+  const shown = Math.min(eventsLen, MAX_ITEMS_PER_BOX);
+  const headerH = 26;
+  const rowH = 18;
+  const basePad = 18; // internal padding + breathing room
+  const moreH = (eventsLen > MAX_ITEMS_PER_BOX) ? rowH : 0;
+  return headerH + (shown * rowH) + moreH + basePad;
 }
 
-function clearAutoHideTimer(){
-  if (autoHideTimer) { clearTimeout(autoHideTimer); autoHideTimer = null; }
-}
-
-function setTooltipStateClass(state){
-  tooltip
-    .classed("tip-added", state === "added")
-    .classed("tip-removed", state === "removed")
-    .classed("tip-mixed", state === "mixed");
-}
-
-function showTooltipForQuarter(qStartDate, { auto=false } = {}){
-  const key = +quarterStart(qStartDate);
-  const evts = eventsByQuarter.get(key) || [];
-  if (!evts.length) { if (!tooltipPinned) hideTooltip(); return; }
-
-  const state = summarizeQuarter(evts);
-  setTooltipStateClass(state);
-
-  const svgRect = svg.node().getBoundingClientRect();
-  const { height } = getSize();
-  const innerH = height - margin.top - margin.bottom;
-  const x = margin.left + xScale(qStartDate);
-  const y = margin.top + (innerH/2);
-
-  showTooltipAt(svgRect.left + x, svgRect.top + y, buildTooltipHTML(qStartDate, evts));
-
-  clearAutoHideTimer();
-  if (auto && !tooltipPinned){
-    autoHideTimer = setTimeout(() => {
-      if (!tooltipPinned) hideTooltip();
-    }, getAutoTooltipMs());
-  }
-}
-
-/* Auto popup should keep working throughout */
-function maybeAutoTooltip(qStartDate){
-  if (tooltipPinned) return;
-  const key = +quarterStart(qStartDate);
-  const evts = eventsByQuarter.get(key) || [];
-  if (!evts.length) { hideTooltip(); return; }
-  showTooltipForQuarter(qStartDate, { auto:true });
-}
-
-function pinTooltip(qKey){
-  tooltipPinned = true;
-  pinnedQuarterKey = qKey;
-  clearAutoHideTimer();
-}
-
-function unpinTooltip(){
-  tooltipPinned = false;
-  pinnedQuarterKey = null;
-  clearAutoHideTimer();
-  hideTooltip();
-}
-
-window.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && tooltipPinned) unpinTooltip();
-});
-chartWrap.addEventListener("click", () => {
-  if (tooltipPinned) unpinTooltip();
-});
-
-/** Chart init */
 function initChart(){
   svg.selectAll("*").remove();
 
@@ -511,38 +435,21 @@ function initChart(){
   const innerW = width - margin.left - margin.right;
   const innerH = height - margin.top - margin.bottom;
 
-  const defs = svg.append("defs");
-  const grad = defs.append("linearGradient")
-    .attr("id","gradLine")
-    .attr("x1","0%").attr("x2","100%")
-    .attr("y1","0%").attr("y2","0%");
-
-  grad.append("stop").attr("offset","0%").attr("stop-color", "#4f46e5");
-  grad.append("stop").attr("offset","55%").attr("stop-color", "#0ea5e9");
-  grad.append("stop").attr("offset","100%").attr("stop-color", "#16a34a");
-
   const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
 
-  g.append("line")
-    .attr("x1", 0).attr("x2", innerW)
-    .attr("y1", innerH/2).attr("y2", innerH/2)
-    .attr("stroke", "#e5e7eb")
-    .attr("stroke-width", 1);
-
+  // baseline
   lineG = g.append("g");
   lineG.append("line")
     .attr("x1", 0).attr("x2", innerW)
     .attr("y1", innerH/2).attr("y2", innerH/2)
-    .attr("stroke", "url(#gradLine)")
-    .attr("stroke-width", 3)
-    .attr("opacity", 0.95);
+    .attr("stroke", "#e5e7eb")
+    .attr("stroke-width", 2);
 
-  yearTextG = g.append("g");
-  axisG = g.append("g").attr("transform", `translate(0,${innerH/2 + 28})`);
-  markersG = g.append("g");
+  eventsG = g.append("g").attr("class","events");
+  axisG = g.append("g").attr("transform", `translate(0,${innerH/2 + 32})`);
+  yearG = g.append("g").attr("transform", `translate(0,${innerH/2 + 64})`);
 
   xScale = d3.scaleUtc().range([0, innerW]);
-  yScale = d3.scaleLinear().domain([0, 1]).range([innerH/2 - 42, innerH/2 + 42]);
 }
 
 function clampIndex(i){
@@ -550,11 +457,7 @@ function clampIndex(i){
   return Math.min(Math.max(0, i), maxI);
 }
 
-function formatWindowLabel(fromQ, toQ){
-  return `${quarterLabelWithYear(fromQ)} → ${quarterLabelWithYear(toQ)}`;
-}
-
-/** Counter prefixes (cumulative by quarter index) */
+/** Prefix counters */
 let prefixAdded = [];
 let prefixRemoved = [];
 
@@ -576,7 +479,7 @@ function rebuildPrefixes(){
   prefixAdded = new Array(quarterCount).fill(0);
   prefixRemoved = new Array(quarterCount).fill(0);
 
-  let a = 0, r = 0;
+  let a=0, r=0;
   for (let i=0;i<quarterCount;i++){
     a += addedPer[i];
     r += removedPer[i];
@@ -592,135 +495,163 @@ function updateCounter(qIndex){
   removedCountEl.textContent = String(prefixRemoved[qIndex] || 0);
 }
 
-function render(qIndex, { allowAutoTooltip=true } = {}){
+function render(qIndex){
   qIndex = clampIndex(qIndex);
 
   const { width, height } = getSize();
   const innerW = width - margin.left - margin.right;
   const innerH = height - margin.top - margin.bottom;
+  const baseY = innerH/2;
 
   const fromQ = allQuarters[qIndex];
   const toQExcl = QUARTER.offset(fromQ, WINDOW_QUARTERS);
   const toQIncl = QUARTER.offset(toQExcl, -1);
 
-  windowLabel.textContent = `Window: ${formatWindowLabel(fromQ, toQIncl)}`;
+  // label window in months
+  const fromMonth = monthStart(fromQ);
+  const toMonthIncl = d3.utcMonth.offset(monthStart(toQExcl), -1);
+  windowLabel.textContent = `Window: ${fmtMonthYear(fromMonth)} → ${fmtMonthYear(toMonthIncl)}`;
 
   xScale.domain([fromQ, toQExcl]);
 
-  // Axis ticks: quarterly
-  const ticks = QUARTER.range(fromQ, toQExcl);
+  // Axis ticks: MONTHS (2pt larger than before)
+  const monthTicks = d3.utcMonths(fromQ, toQExcl);
   const axis = d3.axisBottom(xScale)
-    .tickValues(ticks)
-    .tickFormat(d => quarterLabel(d))
+    .tickValues(monthTicks)
+    .tickFormat(d => fmtMonth(d))
     .tickSizeOuter(0);
 
   axisG.call(axis);
   axisG.selectAll("text")
-    .style("font-size","14px")
+    .style("font-size","16px")     // months +2pt
     .style("fill","#374151");
   axisG.selectAll("path, line")
     .style("stroke","#d1d5db");
 
-  // Markers: one per quarter with events
-  const windowKeys = ticks.map(d => +quarterStart(d));
-  const markerData = windowKeys
-    .map(k => ({ q: new Date(+k), key: k, events: eventsByQuarter.get(k) || [] }))
-    .filter(d => d.events.length > 0);
-
-  const dots = markersG.selectAll("circle").data(markerData, d => d.key);
-  dots.exit().remove();
-
-  const dotsEnter = dots.enter().append("circle")
-    .attr("r", 7)
-    .attr("stroke", "#ffffff")
-    .attr("stroke-width", 1.5)
-    .attr("cursor","pointer")
-    .on("mousemove", (event, d) => {
-      if (tooltipPinned) return;
-      const state = summarizeQuarter(d.events);
-      setTooltipStateClass(state);
-      showTooltipAt(event.clientX, event.clientY, buildTooltipHTML(d.q, d.events));
-    })
-    .on("mouseleave", () => {
-      if (!tooltipPinned) hideTooltip();
-    })
-    .on("click", (event, d) => {
-      event.stopPropagation();
-      const isSame = tooltipPinned && pinnedQuarterKey === d.key;
-      if (isSame){ unpinTooltip(); return; }
-      pinTooltip(d.key);
-      showTooltipForQuarter(d.q, { auto:false });
-    });
-
-  // dots all same color
-  dotsEnter.merge(dots)
-    .attr("cx", d => xScale(d.q))
-    .attr("cy", (d) => {
-      const t = (Math.abs(d.key) % 5) / 4;
-      return yScale(t);
-    })
-    .attr("fill", "var(--dot)");
-
-  // Progress indicator at window start
-  const progX = xScale(fromQ);
-  const prog = lineG.selectAll("line.progress").data([fromQ]);
-  prog.enter().append("line")
-    .attr("class","progress")
-    .attr("y1", 0).attr("y2", innerH)
-    .attr("stroke", "rgba(0,0,0,0.10)")
-    .attr("stroke-width", 1)
-    .merge(prog)
-    .attr("x1", progX).attr("x2", progX);
-
-  // Year label
-  const year = fmtYear(fromQ);
-  const yYear = (innerH/2 + innerH) / 2;
-  const yearSel = yearTextG.selectAll("text.yearLabel").data([year]);
-  yearSel.enter().append("text")
+  // YEAR: black, bottom, +2pt
+  const yearText = fmtYear(fromQ);
+  const ySel = yearG.selectAll("text.yearLabel").data([yearText]);
+  ySel.enter().append("text")
     .attr("class","yearLabel")
     .attr("x", innerW/2)
-    .attr("y", yYear)
+    .attr("y", 0)
     .attr("text-anchor","middle")
-    .style("font-size","16pt")
-    .style("font-weight","800")
-    .style("fill","rgba(0,0,0,0.25)")
-    .style("letter-spacing","0.8px")
-    .text(year)
-    .merge(yearSel)
+    .style("font-size","18pt")
+    .style("font-weight","900")
+    .style("fill","#000000")
+    .style("letter-spacing","0.6px")
+    .text(yearText)
+    .merge(ySel)
     .attr("x", innerW/2)
-    .attr("y", yYear)
-    .text(year);
+    .text(yearText);
 
-  // Counter update (cumulative through current quarter index)
+  // quarters in window that have events
+  const windowQuarters = QUARTER.range(fromQ, toQExcl);
+  const markerData = windowQuarters
+    .map((q, i) => {
+      const key = +q;
+      const evts = eventsByQuarter.get(key) || [];
+      return { q, key, evts, i };
+    })
+    .filter(d => d.evts.length > 0);
+
+  // STATIC CALLOUTS that MOVE with the timeline
+  const nodes = eventsG.selectAll("g.callout").data(markerData, d => d.key);
+  nodes.exit().remove();
+
+  const enter = nodes.enter().append("g").attr("class","callout");
+
+  // stem
+  enter.append("line")
+    .attr("class","stem")
+    .attr("stroke", "rgba(79,70,229,0.70)")
+    .attr("stroke-width", 2);
+
+  // baseline marker (small dot, all same color)
+  enter.append("circle")
+    .attr("class","dot")
+    .attr("r", 6)
+    .attr("fill", "var(--dot)")
+    .attr("stroke", "#ffffff")
+    .attr("stroke-width", 1.5);
+
+  // foreignObject holds the same tooltip HTML/CSS (no hover; always visible)
+  enter.append("foreignObject")
+    .attr("class","fo")
+    .style("overflow","visible")
+    .append("xhtml:div")
+    .attr("class","fo-inner");
+
+  const merged = enter.merge(nodes);
+
+  merged.each(function(d){
+    const g = d3.select(this);
+    const x = xScale(d.q);
+
+    // alternate up/down like your example
+    const up = (d.i % 2 === 0);
+    const boxH = estimateBoxHeight(d.evts.length);
+
+    // box top-left in SVG coordinates
+    const boxX = Math.max(0, Math.min(innerW - BOX_W, x - (BOX_W/2)));
+    const boxY = up ? (baseY - STEM_LEN - boxH - BOX_PAD_Y) : (baseY + STEM_LEN + BOX_PAD_Y);
+
+    // stem end should meet nearest edge of box
+    const stemY2 = up ? (boxY + boxH) : boxY;
+
+    g.select("line.stem")
+      .attr("x1", x).attr("x2", x)
+      .attr("y1", baseY).attr("y2", stemY2);
+
+    g.select("circle.dot")
+      .attr("cx", x)
+      .attr("cy", baseY);
+
+    // tooltip state class (border color) applied to the inner tooltip div
+    const state = summarizeBucket(d.evts); // added/removed/mixed
+
+    const fo = g.select("foreignObject.fo")
+      .attr("x", boxX)
+      .attr("y", boxY)
+      .attr("width", BOX_W)
+      .attr("height", boxH);
+
+    // inject HTML and apply state class without changing style/shape/content
+    const html = buildTooltipHTML(d.q, d.evts);
+    const container = fo.select(".fo-inner");
+    container.html(html);
+
+    // apply tip-* class to the .tooltip root inside the injected HTML
+    container.select(".tooltip")
+      .classed("tip-added", state === "added")
+      .classed("tip-removed", state === "removed")
+      .classed("tip-mixed", state === "mixed");
+  });
+
   updateCounter(qIndex);
-
-  // Auto tooltip stays active (if quarter has events)
-  if (allowAutoTooltip) maybeAutoTooltip(fromQ);
-
   scrubber.value = String(qIndex);
 }
 
-function setIndex(i, opts={}){
+function setIndex(i){
   i = clampIndex(i);
   scrubber.value = String(i);
-  render(i, opts);
+  render(i);
 }
 
 function stopPlaybackIfNeeded(){
   if (playing) stop();
 }
 
-// Manual scrolling: each step == 1 quarter (3 months)
+// wheel: 1 step = 1 quarter
 chartWrap.addEventListener("wheel", (e) => {
   e.preventDefault();
   stopPlaybackIfNeeded();
   const delta = Math.sign(e.deltaY || e.deltaX);
-  const step = e.shiftKey ? 2 : 1; // Shift = faster (2 quarters)
-  const next = (+scrubber.value) + (delta > 0 ? step : -step);
-  setIndex(next, { allowAutoTooltip:true });
+  const step = e.shiftKey ? 2 : 1;
+  setIndex((+scrubber.value) + (delta > 0 ? step : -step));
 }, { passive:false });
 
-// Drag scrub: horizontal drag moves by quarters
+// drag: quarters
 let dragging=false, dragStartX=0, dragStartIndex=0;
 chartWrap.addEventListener("pointerdown", (e) => {
   stopPlaybackIfNeeded();
@@ -732,21 +663,21 @@ chartWrap.addEventListener("pointerdown", (e) => {
 chartWrap.addEventListener("pointermove", (e) => {
   if (!dragging) return;
   const dx = e.clientX - dragStartX;
-  const pxPerQuarter = 28;
+  const pxPerQuarter = 34;
   const qDelta = Math.round(dx / pxPerQuarter);
-  setIndex(dragStartIndex + qDelta, { allowAutoTooltip:true });
+  setIndex(dragStartIndex + qDelta);
 });
 chartWrap.addEventListener("pointerup", (e) => {
   dragging=false;
   try { chartWrap.releasePointerCapture(e.pointerId); } catch {}
 });
 
-// Playback
+// playback
 function stop(){
   playing=false;
   playPauseBtn.textContent="Play";
   if (timer) { clearInterval(timer); timer=null; }
-  render(+scrubber.value, { allowAutoTooltip:true });
+  render(+scrubber.value);
 }
 
 function play(){
@@ -756,9 +687,9 @@ function play(){
 
   const intervalMs = getPlaybackIntervalMs();
   timer = setInterval(() => {
-    let i = +scrubber.value + 1; // move 1 quarter per tick
+    let i = +scrubber.value + 1;
     if (i > quarterCount - WINDOW_QUARTERS) { stop(); return; }
-    setIndex(i, { allowAutoTooltip:true });
+    setIndex(i);
   }, intervalMs);
 }
 
@@ -767,26 +698,22 @@ speedSel.addEventListener("change", () => { if (playing) play(); });
 
 scrubber.addEventListener("input", () => {
   stopPlaybackIfNeeded();
-  setIndex(+scrubber.value, { allowAutoTooltip:true });
+  setIndex(+scrubber.value);
 });
 
 window.addEventListener("resize", () => {
   initChart();
-  render(+scrubber.value || 0, { allowAutoTooltip:true });
+  render(+scrubber.value || 0);
 });
 
-// Date range bounds
+// date bounds
 function parseInputDateToQuarterStart(value){
   if (!value) return null;
   const d = parseDate(value);
   return d ? quarterStart(d) : null;
 }
-
 function rebuildQuartersWithBounds(){
-  if (!dataMinQuarter || !dataMaxQuarter){
-    windowLabel.textContent = "No data range available.";
-    return;
-  }
+  if (!dataMinQuarter || !dataMaxQuarter) return;
 
   const start = boundStart || dataMinQuarter;
   const end = boundEnd || dataMaxQuarter;
@@ -801,26 +728,23 @@ function rebuildQuartersWithBounds(){
 
   scrubber.max = String(Math.max(0, quarterCount-1));
   rebuildPrefixes();
-  setIndex(+scrubber.value || 0, { allowAutoTooltip:true });
+  setIndex(+scrubber.value || 0);
 }
-
 applyRangeBtn.addEventListener("click", () => {
   stopPlaybackIfNeeded();
   boundStart = parseInputDateToQuarterStart(startDateInput.value);
   boundEnd = parseInputDateToQuarterStart(endDateInput.value);
   rebuildQuartersWithBounds();
 });
-
 resetRangeBtn.addEventListener("click", () => {
   stopPlaybackIfNeeded();
   boundStart=null; boundEnd=null;
   startDateInput.value=""; endDateInput.value="";
-  unpinTooltip();
   rebuildQuartersWithBounds();
-  setIndex(0, { allowAutoTooltip:true });
+  setIndex(0);
 });
 
-// Export
+// export
 function downloadBlob(filename, mime, content){
   const blob = new Blob([content], { type: mime });
   const url = URL.createObjectURL(blob);
@@ -836,7 +760,6 @@ function toTSV(rows){
   const lines=rows.map(r=>cols.map(c=>esc(r[c])).join("\t"));
   return [header,...lines].join("\n");
 }
-
 exportJsonBtn.addEventListener("click", () => {
   downloadBlob("SP500-Changes.export.json","application/json;charset=utf-8", JSON.stringify(eventsAll,null,2));
 });
@@ -844,12 +767,11 @@ exportTsvBtn.addEventListener("click", () => {
   downloadBlob("SP500-Changes.export.tsv","text/tab-separated-values;charset=utf-8", toTSV(eventsAll));
 });
 
-// Main
+// main
 (async function main(){
   try{
     const rows = await d3.json(DATA_URL);
 
-    // export rows (schema friendly)
     eventsAll = rows.map(r => ({
       "Action": r.action ?? "",
       "Permno": (r.permno ?? "").toString(),
@@ -862,17 +784,13 @@ exportTsvBtn.addEventListener("click", () => {
     }));
 
     const events = rows.map(coerceEvent).filter(Boolean);
+    eventsByQuarter = d3.group(events, d => +d.quarter);
 
-    // group by quarter of relevantDate (start for added, end for removed)
-    eventsByQuarter = d3.group(events, d => +d.relevantQuarter);
-
-    // infer min/max quarter from events
-    const q = events.map(e => e.relevantQuarter).filter(Boolean);
+    const q = events.map(e => e.quarter).filter(Boolean);
     if (!q.length) throw new Error("No events parsed from data.");
     dataMinQuarter = quarterStart(d3.min(q));
     dataMaxQuarter = quarterStart(d3.max(q));
 
-    // build quarters range
     allQuarters = QUARTER.range(dataMinQuarter, QUARTER.offset(dataMaxQuarter, 1));
     quarterCount = allQuarters.length;
 
@@ -882,7 +800,7 @@ exportTsvBtn.addEventListener("click", () => {
 
     initChart();
     rebuildPrefixes();
-    render(0, { allowAutoTooltip:true });
+    render(0);
 
     playPauseBtn.disabled = false;
     playPauseBtn.textContent = "Play";
