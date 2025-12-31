@@ -8,12 +8,9 @@
 
   <style>
     :root{
-      --bg: transparent
+      --bg: transparent;
       --text:#111827;
       --muted:#6b7280;
-
-      --accent:#4f46e5;
-      --line:#d1d5db;
 
       --good:#16a34a;
       --bad:#dc2626;
@@ -21,7 +18,6 @@
 
       --dot:#4f46e5;
 
-      /* tooltip look you already liked */
       --tooltipBg:#f3f4f6;
     }
 
@@ -140,7 +136,7 @@
       outline-offset: 2px;
     }
 
-    /* === Tooltip box styling (UNCHANGED) === */
+    /* tooltip look (unchanged) */
     .tooltip{
       pointer-events:none;
       background: var(--tooltipBg);
@@ -216,8 +212,8 @@
   <span class="spacer"></span>
 
   <div class="counter" id="counter">
-    <span class="pill"><span class="dotLegend" style="background:var(--good)"></span>Added: <span id="addedCount">0</span></span>
-    <span class="pill"><span class="dotLegend" style="background:var(--bad)"></span>Removed: <span id="removedCount">0</span></span>
+    <span class="pill"><span class="dotLegend" style="background:var(--good)"></span>Total Added: <span id="addedCount">0</span></span>
+    <span class="pill"><span class="dotLegend" style="background:var(--bad)"></span>Total Removed: <span id="removedCount">0</span></span>
   </div>
 </div>
 
@@ -247,7 +243,7 @@
 <input id="scrubber" type="range" min="0" max="0" step="1" value="0" aria-label="Scrub quarter" disabled />
 
 <div class="chart-wrap" id="chartWrap" tabindex="0" aria-label="Timeline chart (scrollable)">
-  <svg id="svg" width="100%" height="360"></svg>
+  <svg id="svg" width="100%" height="380"></svg>
 </div>
 
 <div class="sources">
@@ -257,15 +253,22 @@
 </div>
 
 <script>
-/** Data source (your cleaned JSON) */
+/** Data source */
 const DATA_URL = "data/sp500-change-events.json";
 
-/** Quarterly stepping */
+/** Timeline stepping */
 const QUARTER = d3.utcMonth.every(3);
-const WINDOW_QUARTERS = 10;         // 10 quarters visible (~2.5y)
-const MAX_ITEMS_PER_BOX = 10;       // prevents giant boxes
+const WINDOW_QUARTERS = 10;              // visible window
+const PRE_ROLL_QUARTERS = 3;             // slider starts 3 quarters before first data
+const MAX_ITEMS_PER_BOX = 10;
 
-/** Layout of static callouts */
+/** Callout show/hide rule:
+ *  - show once dot enters visible area (x in [0, innerW])
+ *  - hide when dot is in the last 25% of the visible area (x > 0.75 * innerW)
+ */
+const HIDE_AFTER_FRACTION = 0.75;
+
+/** Callout layout */
 const BOX_W = 340;
 const STEM_LEN = 84;
 const BOX_PAD_Y = 16;
@@ -302,7 +305,7 @@ function getSize(){
   return { width: rect.width, height: +svg.attr("height") };
 }
 
-const margin = { top: 14, right: 20, bottom: 74, left: 30 };
+const margin = { top: 14, right: 20, bottom: 96, left: 30 };
 let xScale, axisG, lineG, yearG, eventsG;
 
 let playing = false;
@@ -312,9 +315,9 @@ let allQuarters = [];
 let quarterCount = 0;
 
 let eventsByQuarter = new Map();
-let eventsAll = []; // export-friendly objects
+let eventsAll = [];
 
-// bounds
+// bounds (optional)
 let boundStart = null;
 let boundEnd = null;
 
@@ -322,17 +325,19 @@ let boundEnd = null;
 let dataMinQuarter = null;
 let dataMaxQuarter = null;
 
+// IMPORTANT: counters remain 0,0 until user presses Play the first time
+let started = false;
+
 function getPlaybackIntervalMs(){
   return Math.max(250, +speedSel.value || 2500);
 }
 
-/** Convert row -> event
+/** Convert row -> event.
  *  For added use start date; for removed use end date.
  */
 function coerceEvent(row){
   const action = (row.action || "").trim().toLowerCase();
   const name = (row.company || "").trim();
-  const permno = (row.permno ?? "").toString().trim();
 
   const tickersArr = Array.isArray(row.tickers)
     ? row.tickers.map(t => (t ?? "").toString().trim()).filter(Boolean)
@@ -346,15 +351,7 @@ function coerceEvent(row){
   const relevantDate = (action === "removed") ? end : start;
   const q = quarterStart(relevantDate);
 
-  return {
-    action,
-    name: name || tickersArr[0],
-    tickers,
-    id: permno,
-    start, end,
-    relevantDate,
-    quarter: q
-  };
+  return { action, name: name || tickersArr[0], tickers, start, end, relevantDate, quarter: q };
 }
 
 function firstTicker(e){
@@ -399,10 +396,7 @@ function buildTooltipHTML(qStartDate, events){
     const name = (e.name || "").trim();
     const t = firstTicker(e);
     const title = t ? `${name} (${t})` : name;
-
-    // month/year of relevantDate (start for added, end for removed)
     const when = fmtMonthYear(e.relevantDate);
-
     return `<li>${badge}${escapeHtml(title)} — <span style="color:rgba(0,0,0,0.65)">${escapeHtml(when)}</span></li>`;
   }).join("");
 
@@ -418,12 +412,11 @@ function buildTooltipHTML(qStartDate, events){
   `.trim();
 }
 
-/** Estimate box height from item count (keeps layout stable) */
 function estimateBoxHeight(eventsLen){
   const shown = Math.min(eventsLen, MAX_ITEMS_PER_BOX);
   const headerH = 26;
   const rowH = 18;
-  const basePad = 18; // internal padding + breathing room
+  const basePad = 18;
   const moreH = (eventsLen > MAX_ITEMS_PER_BOX) ? rowH : 0;
   return headerH + (shown * rowH) + moreH + basePad;
 }
@@ -446,8 +439,12 @@ function initChart(){
     .attr("stroke-width", 2);
 
   eventsG = g.append("g").attr("class","events");
+
+  // months axis
   axisG = g.append("g").attr("transform", `translate(0,${innerH/2 + 32})`);
-  yearG = g.append("g").attr("transform", `translate(0,${innerH/2 + 64})`);
+
+  // YEAR label moved LOWER so it won't overlap month labels
+  yearG = g.append("g").attr("transform", `translate(0,${innerH/2 + 86})`);
 
   xScale = d3.scaleUtc().range([0, innerW]);
 }
@@ -464,7 +461,6 @@ let prefixRemoved = [];
 function rebuildPrefixes(){
   const addedPer = new Array(quarterCount).fill(0);
   const removedPer = new Array(quarterCount).fill(0);
-
   const indexByKey = new Map(allQuarters.map((q, idx) => [+q, idx]));
 
   for (const [k, evts] of eventsByQuarter.entries()){
@@ -489,7 +485,11 @@ function rebuildPrefixes(){
 }
 
 function updateCounter(qIndex){
-  if (!quarterCount) return;
+  if (!started){
+    addedCountEl.textContent = "0";
+    removedCountEl.textContent = "0";
+    return;
+  }
   qIndex = Math.max(0, Math.min(quarterCount-1, qIndex));
   addedCountEl.textContent = String(prefixAdded[qIndex] || 0);
   removedCountEl.textContent = String(prefixRemoved[qIndex] || 0);
@@ -505,16 +505,14 @@ function render(qIndex){
 
   const fromQ = allQuarters[qIndex];
   const toQExcl = QUARTER.offset(fromQ, WINDOW_QUARTERS);
-  const toQIncl = QUARTER.offset(toQExcl, -1);
 
-  // label window in months
   const fromMonth = monthStart(fromQ);
   const toMonthIncl = d3.utcMonth.offset(monthStart(toQExcl), -1);
   windowLabel.textContent = `Window: ${fmtMonthYear(fromMonth)} → ${fmtMonthYear(toMonthIncl)}`;
 
   xScale.domain([fromQ, toQExcl]);
 
-  // Axis ticks: MONTHS (2pt larger than before)
+  // months axis (+2pt)
   const monthTicks = d3.utcMonths(fromQ, toQExcl);
   const axis = d3.axisBottom(xScale)
     .tickValues(monthTicks)
@@ -523,12 +521,12 @@ function render(qIndex){
 
   axisG.call(axis);
   axisG.selectAll("text")
-    .style("font-size","16px")     // months +2pt
+    .style("font-size","16px")
     .style("fill","#374151");
   axisG.selectAll("path, line")
     .style("stroke","#d1d5db");
 
-  // YEAR: black, bottom, +2pt
+  // year label: black, bottom, but lower so it doesn't cover month labels
   const yearText = fmtYear(fromQ);
   const ySel = yearG.selectAll("text.yearLabel").data([yearText]);
   ySel.enter().append("text")
@@ -555,19 +553,16 @@ function render(qIndex){
     })
     .filter(d => d.evts.length > 0);
 
-  // STATIC CALLOUTS that MOVE with the timeline
   const nodes = eventsG.selectAll("g.callout").data(markerData, d => d.key);
   nodes.exit().remove();
 
   const enter = nodes.enter().append("g").attr("class","callout");
 
-  // stem
   enter.append("line")
     .attr("class","stem")
     .attr("stroke", "rgba(79,70,229,0.70)")
     .attr("stroke-width", 2);
 
-  // baseline marker (small dot, all same color)
   enter.append("circle")
     .attr("class","dot")
     .attr("r", 6)
@@ -575,7 +570,6 @@ function render(qIndex){
     .attr("stroke", "#ffffff")
     .attr("stroke-width", 1.5);
 
-  // foreignObject holds the same tooltip HTML/CSS (no hover; always visible)
   enter.append("foreignObject")
     .attr("class","fo")
     .style("overflow","visible")
@@ -588,27 +582,39 @@ function render(qIndex){
     const g = d3.select(this);
     const x = xScale(d.q);
 
-    // alternate up/down like your example
+    // show only when dot is visible AND not in the last 25% of the window
+    const visible = (x >= 0) && (x <= innerW);
+    const tooLate = x > (innerW * HIDE_AFTER_FRACTION);
+    const showBox = visible && !tooLate;
+
+    // keep the dot always visible if quarter has events
+    g.style("display", null);
+
+    // baseline marker
+    g.select("circle.dot")
+      .attr("cx", x)
+      .attr("cy", baseY);
+
+    if (!showBox){
+      // hide stem + box, but keep dot
+      g.select("line.stem").attr("display","none");
+      g.select("foreignObject.fo").attr("display","none");
+      return;
+    }
+
+    g.select("line.stem").attr("display", null);
+    g.select("foreignObject.fo").attr("display", null);
+
     const up = (d.i % 2 === 0);
     const boxH = estimateBoxHeight(d.evts.length);
 
-    // box top-left in SVG coordinates
     const boxX = Math.max(0, Math.min(innerW - BOX_W, x - (BOX_W/2)));
     const boxY = up ? (baseY - STEM_LEN - boxH - BOX_PAD_Y) : (baseY + STEM_LEN + BOX_PAD_Y);
-
-    // stem end should meet nearest edge of box
     const stemY2 = up ? (boxY + boxH) : boxY;
 
     g.select("line.stem")
       .attr("x1", x).attr("x2", x)
       .attr("y1", baseY).attr("y2", stemY2);
-
-    g.select("circle.dot")
-      .attr("cx", x)
-      .attr("cy", baseY);
-
-    // tooltip state class (border color) applied to the inner tooltip div
-    const state = summarizeBucket(d.evts); // added/removed/mixed
 
     const fo = g.select("foreignObject.fo")
       .attr("x", boxX)
@@ -616,12 +622,12 @@ function render(qIndex){
       .attr("width", BOX_W)
       .attr("height", boxH);
 
-    // inject HTML and apply state class without changing style/shape/content
+    const state = summarizeBucket(d.evts);
     const html = buildTooltipHTML(d.q, d.evts);
+
     const container = fo.select(".fo-inner");
     container.html(html);
 
-    // apply tip-* class to the .tooltip root inside the injected HTML
     container.select(".tooltip")
       .classed("tip-added", state === "added")
       .classed("tip-removed", state === "removed")
@@ -681,6 +687,10 @@ function stop(){
 }
 
 function play(){
+  if (!started){
+    started = true;                 // counters now become live
+    // ensure we start from the current scrubber position
+  }
   playing=true;
   playPauseBtn.textContent="Pause";
   if (timer) clearInterval(timer);
@@ -706,7 +716,7 @@ window.addEventListener("resize", () => {
   render(+scrubber.value || 0);
 });
 
-// date bounds
+// date bounds (optional)
 function parseInputDateToQuarterStart(value){
   if (!value) return null;
   const d = parseDate(value);
@@ -715,7 +725,7 @@ function parseInputDateToQuarterStart(value){
 function rebuildQuartersWithBounds(){
   if (!dataMinQuarter || !dataMaxQuarter) return;
 
-  const start = boundStart || dataMinQuarter;
+  const start = boundStart || QUARTER.offset(dataMinQuarter, -PRE_ROLL_QUARTERS);
   const end = boundEnd || dataMaxQuarter;
 
   const s = quarterStart(start), e = quarterStart(end);
@@ -728,18 +738,28 @@ function rebuildQuartersWithBounds(){
 
   scrubber.max = String(Math.max(0, quarterCount-1));
   rebuildPrefixes();
-  setIndex(+scrubber.value || 0);
+
+  // keep scrubber value in range
+  setIndex(Math.min(+scrubber.value || 0, quarterCount-1));
 }
+
 applyRangeBtn.addEventListener("click", () => {
   stopPlaybackIfNeeded();
   boundStart = parseInputDateToQuarterStart(startDateInput.value);
   boundEnd = parseInputDateToQuarterStart(endDateInput.value);
   rebuildQuartersWithBounds();
 });
+
 resetRangeBtn.addEventListener("click", () => {
   stopPlaybackIfNeeded();
   boundStart=null; boundEnd=null;
   startDateInput.value=""; endDateInput.value="";
+
+  // reset counters gating until Play again
+  started = false;
+  addedCountEl.textContent = "0";
+  removedCountEl.textContent = "0";
+
   rebuildQuartersWithBounds();
   setIndex(0);
 });
@@ -754,7 +774,7 @@ function downloadBlob(filename, mime, content){
   setTimeout(() => URL.revokeObjectURL(url), 2500);
 }
 function toTSV(rows){
-  const cols=["Action","Permno","Company","Tickers","SP500 Start","SP500 End","Event Date","Reason"];
+  const cols=["Action","Company","Tickers","SP500 Start","SP500 End","Event Date","Reason"];
   const esc=v=>String(v??"").replace(/\t/g," ").replace(/\r?\n/g," ");
   const header=cols.join("\t");
   const lines=rows.map(r=>cols.map(c=>esc(r[c])).join("\t"));
@@ -774,7 +794,6 @@ exportTsvBtn.addEventListener("click", () => {
 
     eventsAll = rows.map(r => ({
       "Action": r.action ?? "",
-      "Permno": (r.permno ?? "").toString(),
       "Company": r.company ?? "",
       "Tickers": Array.isArray(r.tickers) ? r.tickers.filter(Boolean).join(", ") : (r.tickers ?? ""),
       "SP500 Start": r.sp500_start ?? "",
@@ -791,7 +810,9 @@ exportTsvBtn.addEventListener("click", () => {
     dataMinQuarter = quarterStart(d3.min(q));
     dataMaxQuarter = quarterStart(d3.max(q));
 
-    allQuarters = QUARTER.range(dataMinQuarter, QUARTER.offset(dataMaxQuarter, 1));
+    // start the slider 3 quarters BEFORE the first data
+    const minWithPre = QUARTER.offset(dataMinQuarter, -PRE_ROLL_QUARTERS);
+    allQuarters = QUARTER.range(minWithPre, QUARTER.offset(dataMaxQuarter, 1));
     quarterCount = allQuarters.length;
 
     scrubber.max = String(quarterCount - 1);
@@ -800,6 +821,12 @@ exportTsvBtn.addEventListener("click", () => {
 
     initChart();
     rebuildPrefixes();
+
+    // counters start at 0,0 until Play is pressed
+    started = false;
+    addedCountEl.textContent = "0";
+    removedCountEl.textContent = "0";
+
     render(0);
 
     playPauseBtn.disabled = false;
