@@ -148,7 +148,7 @@
 
     /* Callout (static tooltip) */
     .tooltip{
-      pointer-events:none;
+      pointer-events:auto;
       background: var(--tooltipBg);
       color: rgba(0,0,0,0.88);
       padding:10px 12px;
@@ -165,10 +165,38 @@
     .tooltip.tip-removed{ border-color: var(--bad); }
     .tooltip.tip-mixed{ border-color: var(--neutral); }
 
-    .tooltip .tip-header{
-      font-weight: 800;
-      margin-bottom: 6px;
-      color: #111827;
+    .tooltip .summary{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      font-weight: 850;
+      color:#111827;
+    }
+    .tooltip .summary .counts{
+      font-weight:850;
+      letter-spacing:0.15px;
+    }
+    .tooltip .summary .counts .a{ color: var(--good); }
+    .tooltip .summary .counts .r{ color: var(--bad); }
+    .tooltip .toggle{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:26px;
+      height:22px;
+      border-radius:8px;
+      border:1px solid rgba(0,0,0,0.15);
+      background:rgba(255,255,255,0.65);
+      cursor:pointer;
+      user-select:none;
+      font-weight:900;
+      line-height:1;
+    }
+    .tooltip .details{
+      margin-top:8px;
+      border-top:1px solid rgba(0,0,0,0.10);
+      padding-top:8px;
     }
     .tooltip .tip-list{
       margin: 0;
@@ -210,11 +238,11 @@
 
     <label>Speed:
       <select id="speed">
-        <!-- slower default -->
-        <option value="6000">0.5×</option>
-        <option value="4200" selected>1×</option>
-        <option value="2800">2×</option>
-        <option value="2000">4×</option>
+        <option value="8000">0.25×</option>
+        <option value="4000">0.5×</option>
+        <option value="2000" selected>1×</option>
+        <option value="1000">2×</option>
+        <option value="500">4×</option>
       </select>
     </label>
 
@@ -257,7 +285,7 @@
   <input id="scrubber" type="range" min="0" max="0" step="1" value="0" aria-label="Scrub month" disabled />
 
   <div class="chart-wrap" id="chartWrap" tabindex="0" aria-label="Timeline chart (scrollable)">
-    <svg id="svg" width="100%" height="900"></svg>
+    <svg id="svg" width="100%" height="860"></svg>
   </div>
 
   <div class="sources">
@@ -274,16 +302,16 @@ const DATA_URL = "data/sp500-change-events.json";
 
 /* Timeline settings */
 const MONTH = d3.utcMonth;
-const WINDOW_MONTHS = 6;      // requested
-const PRE_ROLL_MONTHS = 9;    // slider starts 3 quarters before data
-const MAX_ITEMS_PER_BOX = 10;
-const HIDE_AFTER_FRACTION = 0.75; // hide in last 25%
+const WINDOW_MONTHS = 6;
+const PRE_ROLL_MONTHS = 9;
+const MAX_ITEMS_PER_BOX = 14;
+const HIDE_AFTER_FRACTION = 0.82;
 
 /* Layout */
-const margin = { top: 18, right: 24, bottom: 150, left: 30 };
-const BASELINE_FRAC = 0.70;   // baseline higher to create separation
-const AXIS_GAP = 34;          // baseline -> axis group
-const AXIS_BUFFER = 10;       // buffer around x-axis region
+const margin = { top: 18, right: 24, bottom: 70, left: 30 };
+const BASELINE_FRAC = 0.58;   // baseline in the middle band
+const AXIS_OFFSET_FROM_BASELINE = 46;
+const YEAR_OFFSET_FROM_AXIS = 34;
 
 /* Callout geometry */
 const BOX_W = 360;
@@ -291,8 +319,9 @@ const STEM_LEN = 86;
 const BOX_PAD_Y = 12;
 
 /* Lane stacking */
-const MAX_LANES = 10;
-const LANE_HEIGHT = 130;      // fixed lane height prevents overlap across varying box heights
+const MAX_LANES = 9;
+const LANE_HEIGHT_COLLAPSED = 58;
+const LANE_HEIGHT_EXPANDED = 140;
 
 const parseDate = d3.utcParse("%Y-%m-%d");
 const fmtMonth = d3.utcFormat("%b");
@@ -329,8 +358,8 @@ let xScale, axisG, lineG, yearG, eventsG;
 let playing = false;
 let timer = null;
 
-let startedCounters = false;   // counters stay 0/0 until Play pressed
-let showCallouts = false;      // callouts hidden until user interacts
+let startedCounters = false;
+let showCallouts = false;
 
 let allMonths = [];
 let monthCount = 0;
@@ -341,6 +370,9 @@ let boundStart = null;
 let boundEnd = null;
 let dataMinMonth = null;
 let dataMaxMonth = null;
+
+/* Expanded state by month key */
+const expandedKeys = new Set();
 
 /* Helpers */
 function escapeHtml(s){
@@ -360,32 +392,44 @@ function firstTicker(e){
   return "";
 }
 
-function summarizeBucket(evts){
+function countsFor(evts){
   let add=0, rem=0;
   for (const e of evts){
     if (e.action === "added") add++;
     else if (e.action === "removed") rem++;
   }
+  return { add, rem };
+}
+
+function summarizeBucket(evts){
+  const { add, rem } = countsFor(evts);
   if (add && !rem) return "added";
   if (rem && !add) return "removed";
   return "mixed";
 }
 
-function estimateBoxHeight(n){
+/* Heights */
+function collapsedHeight(){
+  return 46; // compact summary
+}
+function expandedHeight(n){
   const shown = Math.min(n, MAX_ITEMS_PER_BOX);
-  const headerH = 22;
   const rowH = 18;
-  const basePad = 16;
+  const headerH = 22;  // includes summary + divider spacing
+  const basePad = 18;
   const moreH = (n > MAX_ITEMS_PER_BOX) ? rowH : 0;
-  return headerH + shown*rowH + moreH + basePad;
+  return collapsedHeight() + headerH + shown*rowH + moreH + basePad;
 }
 
-/* Tooltip builder:
-   - No bucket month/year in header (prevents x-axis month "bleed" perception)
-   - Only per-event relevant month/year (Added=start, Removed=end) */
-function buildTooltipHTML(_bucketIgnored, evts){
-  const header = `${evts.length} event${evts.length===1?"":"s"}`;
+/* Tooltip builder */
+function buildCalloutHTML(key, evts){
+  const expanded = expandedKeys.has(key);
+  const { add, rem } = countsFor(evts);
 
+  const arrow = expanded ? "▴" : "▾";
+  const detailsStyle = expanded ? "" : "display:none;";
+
+  // Details list (only rendered when expanded)
   const sorted = evts.slice().sort((a,b)=> (+a.relevantDate)-(+b.relevantDate));
   const shown = sorted.slice(0, MAX_ITEMS_PER_BOX);
 
@@ -407,9 +451,16 @@ function buildTooltipHTML(_bucketIgnored, evts){
     : "";
 
   return `
-    <div class="tooltip">
-      <div class="tip-header">${escapeHtml(header)}</div>
-      <ul class="tip-list">${items}${more}</ul>
+    <div class="tooltip" data-key="${key}">
+      <div class="summary">
+        <div class="counts">
+          Added: <span class="a">${add}</span> &nbsp;|&nbsp; Removed: <span class="r">${rem}</span>
+        </div>
+        <div class="toggle" role="button" aria-label="Toggle details" tabindex="0" data-toggle="${key}">${arrow}</div>
+      </div>
+      <div class="details" style="${detailsStyle}">
+        <ul class="tip-list">${items}${more}</ul>
+      </div>
     </div>
   `.trim();
 }
@@ -434,15 +485,7 @@ function coerceEvent(row){
   const relevantDate = (action === "removed") ? end : start;
   const m = monthStart(relevantDate);
 
-  return {
-    action,
-    name: name || tickersArr[0],
-    tickers,
-    start,
-    end,
-    relevantDate,
-    month: m
-  };
+  return { action, name: name || tickersArr[0], tickers, start, end, relevantDate, month: m };
 }
 
 /* Build months with bounds */
@@ -466,7 +509,7 @@ function rebuildMonthsWithBounds(){
   setIndex(Math.min(+scrubber.value || 0, Math.max(0, monthCount-1)));
 }
 
-/* Prefix counters (cumulative through index) */
+/* Prefix counters */
 let prefixAdded = [];
 let prefixRemoved = [];
 
@@ -517,6 +560,9 @@ function initChart(){
   const innerH = height - margin.top - margin.bottom;
   const baseY = innerH * BASELINE_FRAC;
 
+  const axisY = baseY + AXIS_OFFSET_FROM_BASELINE;
+  const yearY = axisY + YEAR_OFFSET_FROM_AXIS;
+
   const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
 
   lineG = g.append("g");
@@ -526,10 +572,21 @@ function initChart(){
     .attr("stroke", "var(--line)")
     .attr("stroke-width", 2);
 
+  // subtle guide above/below baseline
+  g.append("line")
+    .attr("x1", 0).attr("x2", innerW)
+    .attr("y1", baseY - 120).attr("y2", baseY - 120)
+    .attr("stroke", "rgba(0,0,0,0.04)");
+
+  g.append("line")
+    .attr("x1", 0).attr("x2", innerW)
+    .attr("y1", baseY + 120).attr("y2", baseY + 120)
+    .attr("stroke", "rgba(0,0,0,0.04)");
+
   eventsG = g.append("g").attr("class","events");
 
-  axisG = g.append("g").attr("transform", `translate(0,${baseY + AXIS_GAP})`);
-  yearG = g.append("g").attr("transform", `translate(0,${baseY + AXIS_GAP + 62})`);
+  axisG = g.append("g").attr("transform", `translate(0,${axisY})`);
+  yearG = g.append("g").attr("transform", `translate(0,${yearY})`);
 
   xScale = d3.scaleUtc().range([0, innerW]);
 }
@@ -543,8 +600,8 @@ function formatWindowLabel(fromM, toM){
   return `${fmtMonthYear(fromM)} → ${fmtMonthYear(toM)}`;
 }
 
-/* Lane assignment per render window */
-function computeLaneAssignments(markerData, innerW){
+/* Lane assignment */
+function computeLaneAssignments(markerData, innerW, laneHeight){
   const laneRight = new Array(MAX_LANES).fill(-Infinity);
   const assignments = new Map();
 
@@ -555,7 +612,7 @@ function computeLaneAssignments(markerData, innerW){
 
     let lane = -1;
     for (let l=0; l<MAX_LANES; l++){
-      if (left > laneRight[l] + 14){
+      if (left > laneRight[l] + 12){
         lane = l;
         laneRight[l] = right;
         break;
@@ -574,9 +631,8 @@ function render(mIndex){
   const innerH = height - margin.top - margin.bottom;
   const baseY = innerH * BASELINE_FRAC;
 
-  const axisY = baseY + AXIS_GAP; // where axis group sits
-  const axisNoGoTop = axisY - AXIS_BUFFER;
-  const axisNoGoBottom = axisY + 26 + AXIS_BUFFER; // approx label height
+  const axisY = baseY + AXIS_OFFSET_FROM_BASELINE;
+  const yearY = axisY + YEAR_OFFSET_FROM_AXIS;
 
   const fromM = allMonths[mIndex];
   const toMExcl = MONTH.offset(fromM, WINDOW_MONTHS);
@@ -586,7 +642,6 @@ function render(mIndex){
 
   xScale.domain([fromM, toMExcl]);
 
-  // axis (months larger)
   const ticks = d3.utcMonths(fromM, toMExcl);
   const axis = d3.axisBottom(xScale)
     .tickValues(ticks)
@@ -600,7 +655,6 @@ function render(mIndex){
   axisG.selectAll("path, line")
     .style("stroke","#d1d5db");
 
-  // year label below months so it doesn't obscure them
   const yearText = fmtYear(fromM);
   const ySel = yearG.selectAll("text.yearLabel").data([yearText]);
   ySel.enter().append("text")
@@ -615,15 +669,12 @@ function render(mIndex){
     .merge(ySel)
     .attr("x", innerW/2)
     .text(yearText);
+  yearG.attr("transform", `translate(0,${yearY})`);
 
-  yearG.attr("transform", `translate(0,${axisY + 62})`);
-
-  // baseline update
   lineG.select("line")
     .attr("x2", innerW)
     .attr("y1", baseY).attr("y2", baseY);
 
-  // markerData for months within window that have events
   const windowMonths = d3.utcMonths(fromM, toMExcl);
   const markerAll = windowMonths
     .map(m => {
@@ -634,16 +685,18 @@ function render(mIndex){
     })
     .filter(d => d.evts.length > 0);
 
-  // Dots always: within full visible window
   const dotsOnly = markerAll.filter(d => d.x >= 0 && d.x <= innerW);
 
-  // Callouts only: after user interaction, plus "enter visible" and "exit in last 25%"
   const markerCallouts = (!showCallouts) ? [] : markerAll
     .filter(d => d.x >= 0 && d.x <= (innerW * HIDE_AFTER_FRACTION));
 
-  const laneByKey = computeLaneAssignments(markerCallouts, innerW);
+  // lane height depends on whether any callout in view is expanded
+  // (keeps overlap down when mostly collapsed)
+  const anyExpandedInView = markerCallouts.some(d => expandedKeys.has(d.key));
+  const laneHeight = anyExpandedInView ? LANE_HEIGHT_EXPANDED : LANE_HEIGHT_COLLAPSED;
 
-  // Data join on ALL dots (so dots appear even if callouts hidden)
+  const laneByKey = computeLaneAssignments(markerCallouts, innerW, laneHeight);
+
   const nodes = eventsG.selectAll("g.callout").data(dotsOnly, d => d.key);
   nodes.exit().remove();
 
@@ -673,12 +726,10 @@ function render(mIndex){
     const g = d3.select(this);
     const x = d.x;
 
-    // dot always
     g.select("circle.dot")
       .attr("cx", x)
       .attr("cy", baseY);
 
-    // If this month isn't in callout set, hide callout elements
     const lane = laneByKey.get(d.key);
     if (!showCallouts || lane === undefined || lane < 0){
       g.select("line.stem").attr("display","none");
@@ -690,22 +741,12 @@ function render(mIndex){
     g.select("foreignObject.fo").attr("display", null);
 
     const state = summarizeBucket(d.evts);
-    const boxH = estimateBoxHeight(d.evts.length);
+    const expanded = expandedKeys.has(d.key);
+    const boxH = expanded ? expandedHeight(d.evts.length) : collapsedHeight();
 
     const boxX = Math.max(0, Math.min(innerW - BOX_W, x - (BOX_W/2)));
 
-    // all callouts above the baseline, stacked by lane
-    let boxY = baseY - STEM_LEN - boxH - BOX_PAD_Y - lane * LANE_HEIGHT;
-
-    // enforce buffer around x-axis region:
-    // ensure bottom of box is at least 10px ABOVE axis labels region
-    const boxBottom = boxY + boxH;
-    if (boxBottom > axisNoGoTop){
-      const shiftUp = boxBottom - axisNoGoTop;
-      boxY = boxY - shiftUp;
-    }
-
-    // clamp to top
+    let boxY = baseY - STEM_LEN - boxH - BOX_PAD_Y - lane * laneHeight;
     boxY = Math.max(0, boxY);
 
     const stemY2 = boxY + boxH;
@@ -721,12 +762,27 @@ function render(mIndex){
       .attr("height", boxH);
 
     const container = fo.select(".fo-inner");
-    container.html(buildTooltipHTML(d.m, d.evts));
+    container.html(buildCalloutHTML(d.key, d.evts));
 
     container.select(".tooltip")
       .classed("tip-added", state === "added")
       .classed("tip-removed", state === "removed")
       .classed("tip-mixed", state === "mixed");
+
+    // Toggle click handler
+    const node = container.node();
+    const toggle = node.querySelector(`[data-toggle="${d.key}"]`);
+    if (toggle){
+      toggle.onclick = (ev) => {
+        ev.preventDefault();
+        ev.stopPropagation();
+        if (expandedKeys.has(d.key)) expandedKeys.delete(d.key);
+        else expandedKeys.add(d.key);
+        // Re-render current view so lane packing + heights adjust
+        render(+scrubber.value || 0);
+      };
+      toggle.onpointerdown = (ev) => { ev.stopPropagation(); };
+    }
   });
 
   updateCounter(mIndex);
@@ -741,7 +797,7 @@ function setIndex(i){
 
 /* Playback */
 function getPlaybackIntervalMs(){
-  return Math.max(250, +speedSel.value || 4200);
+  return Math.max(150, +speedSel.value || 2000);
 }
 
 function stop(){
@@ -752,9 +808,7 @@ function stop(){
 }
 
 function play(){
-  // Callouts should start appearing once the user hits play
   showCallouts = true;
-
   if (!startedCounters) startedCounters = true;
 
   playing = true;
@@ -772,7 +826,6 @@ function play(){
 playPauseBtn.addEventListener("click", () => playing ? stop() : play());
 speedSel.addEventListener("change", () => { if (playing) play(); });
 
-/* Any manual interaction should show callouts (but NOT start counters) */
 function revealCalloutsOnly(){
   if (!showCallouts){
     showCallouts = true;
@@ -780,14 +833,12 @@ function revealCalloutsOnly(){
   }
 }
 
-/* Scrubber */
 scrubber.addEventListener("input", () => {
   if (playing) stop();
   revealCalloutsOnly();
   setIndex(+scrubber.value);
 });
 
-/* Wheel scroll */
 chartWrap.addEventListener("wheel", (e) => {
   e.preventDefault();
   if (playing) stop();
@@ -797,7 +848,6 @@ chartWrap.addEventListener("wheel", (e) => {
   setIndex((+scrubber.value) + (delta > 0 ? step : -step));
 }, { passive:false });
 
-/* Drag scroll */
 let dragging=false, dragStartX=0, dragStartIndex=0;
 chartWrap.addEventListener("pointerdown", (e) => {
   if (playing) stop();
@@ -819,13 +869,11 @@ chartWrap.addEventListener("pointerup", (e) => {
   try { chartWrap.releasePointerCapture(e.pointerId); } catch {}
 });
 
-/* Resize */
 window.addEventListener("resize", () => {
   initChart();
   render(+scrubber.value || 0);
 });
 
-/* Date range controls */
 function parseInputDateToMonthStart(value){
   if (!value) return null;
   const d = parseDate(value);
@@ -847,6 +895,7 @@ resetRangeBtn.addEventListener("click", () => {
 
   startedCounters = false;
   showCallouts = false;
+  expandedKeys.clear();
 
   addedCountEl.textContent = "0";
   removedCountEl.textContent = "0";
@@ -855,7 +904,6 @@ resetRangeBtn.addEventListener("click", () => {
   setIndex(0);
 });
 
-/* Export */
 function downloadBlob(filename, mime, content){
   const blob = new Blob([content], { type: mime });
   const url = URL.createObjectURL(blob);
@@ -880,11 +928,9 @@ exportTsvBtn.addEventListener("click", () => {
   downloadBlob("sp500-change-events.export.tsv","text/tab-separated-values;charset=utf-8", toTSV(eventsAll));
 });
 
-/* Main */
 (async function main(){
   try{
     const rows = await d3.json(DATA_URL);
-
     eventsAll = Array.isArray(rows) ? rows : [];
 
     const events = (Array.isArray(rows) ? rows : []).map(coerceEvent).filter(Boolean);
@@ -896,7 +942,6 @@ exportTsvBtn.addEventListener("click", () => {
     dataMinMonth = monthStart(d3.min(months));
     dataMaxMonth = monthStart(d3.max(months));
 
-    // Build initial months with preroll
     allMonths = d3.utcMonths(MONTH.offset(dataMinMonth, -PRE_ROLL_MONTHS), MONTH.offset(dataMaxMonth, 1));
     monthCount = allMonths.length;
 
@@ -907,7 +952,6 @@ exportTsvBtn.addEventListener("click", () => {
     initChart();
     rebuildPrefixes();
 
-    // Initial render: dots only, no callouts, counters 0/0
     render(0);
 
     playPauseBtn.disabled = false;
