@@ -126,7 +126,7 @@
       background:#fff;
       color: rgba(0,0,0,0.88);
     }
-
+bottom
     .filters .hint{ font-size:12px; opacity:0.9; }
 
     input[type="range"]{
@@ -285,7 +285,7 @@
   <input id="scrubber" type="range" min="0" max="0" step="1" value="0" aria-label="Scrub month" disabled />
 
   <div class="chart-wrap" id="chartWrap" tabindex="0" aria-label="Timeline chart (scrollable)">
-    <svg id="svg" width="100%" height="860"></svg>
+    <svg id="svg" width="100%" height="680"></svg>
   </div>
 
   <div class="sources">
@@ -660,7 +660,7 @@ function render(mIndex){
   ySel.enter().append("text")
     .attr("class","yearLabel")
     .attr("x", innerW/2)
-    .attr("y", 0)
+    .attr("y", -100)
     .attr("text-anchor","middle")
     .style("font-size","20pt")
     .style("font-weight","900")
