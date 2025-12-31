@@ -198,7 +198,6 @@
       color:var(--muted);
       line-height:1.3;
     }
-    .sources a{ color:var(--muted); text-decoration:underline; }
   </style>
 </head>
 
@@ -211,11 +210,11 @@
 
     <label>Speed:
       <select id="speed">
-        <!-- slower by default -->
+        <!-- slower default -->
         <option value="6000">0.5×</option>
-        <option value="4000" selected>1×</option>
-        <option value="2600">2×</option>
-        <option value="1800">4×</option>
+        <option value="4200" selected>1×</option>
+        <option value="2800">2×</option>
+        <option value="2000">4×</option>
       </select>
     </label>
 
@@ -258,7 +257,7 @@
   <input id="scrubber" type="range" min="0" max="0" step="1" value="0" aria-label="Scrub month" disabled />
 
   <div class="chart-wrap" id="chartWrap" tabindex="0" aria-label="Timeline chart (scrollable)">
-    <svg id="svg" width="100%" height="720"></svg>
+    <svg id="svg" width="100%" height="900"></svg>
   </div>
 
   <div class="sources">
@@ -273,27 +272,27 @@
    ============================================================= */
 const DATA_URL = "data/sp500-change-events.json";
 
-/* =============================================================
-   Timeline settings
-   ============================================================= */
+/* Timeline settings */
 const MONTH = d3.utcMonth;
-const WINDOW_MONTHS = 24;     // visible window width
+const WINDOW_MONTHS = 6;      // requested
 const PRE_ROLL_MONTHS = 9;    // slider starts 3 quarters before data
-const MAX_ITEMS_PER_BOX = 10; // cap for readability
-const HIDE_AFTER_FRACTION = 0.75; // callout hides after last 25%
+const MAX_ITEMS_PER_BOX = 10;
+const HIDE_AFTER_FRACTION = 0.75; // hide in last 25%
 
 /* Layout */
-const margin = { top: 18, right: 24, bottom: 120, left: 30 };
-const BASELINE_FRAC = 0.78;   // baseline low so callouts fit above
+const margin = { top: 18, right: 24, bottom: 150, left: 30 };
+const BASELINE_FRAC = 0.70;   // baseline higher to create separation
+const AXIS_GAP = 34;          // baseline -> axis group
+const AXIS_BUFFER = 10;       // buffer around x-axis region
 
 /* Callout geometry */
 const BOX_W = 360;
-const STEM_LEN = 82;
+const STEM_LEN = 86;
 const BOX_PAD_Y = 12;
 
-/* Lane stacking (to eliminate overlap) */
-const MAX_LANES = 9;
-const LANE_GAP = 14;
+/* Lane stacking */
+const MAX_LANES = 10;
+const LANE_HEIGHT = 130;      // fixed lane height prevents overlap across varying box heights
 
 const parseDate = d3.utcParse("%Y-%m-%d");
 const fmtMonth = d3.utcFormat("%b");
@@ -329,7 +328,9 @@ function getSize(){
 let xScale, axisG, lineG, yearG, eventsG;
 let playing = false;
 let timer = null;
-let started = false; // counters stay 0/0 until Play pressed
+
+let startedCounters = false;   // counters stay 0/0 until Play pressed
+let showCallouts = false;      // callouts hidden until user interacts
 
 let allMonths = [];
 let monthCount = 0;
@@ -380,8 +381,8 @@ function estimateBoxHeight(n){
 }
 
 /* Tooltip builder:
-   - IMPORTANT: NO bucket month/year in header
-   - Only show per-event relevant month/year (Added=start, Removed=end) */
+   - No bucket month/year in header (prevents x-axis month "bleed" perception)
+   - Only per-event relevant month/year (Added=start, Removed=end) */
 function buildTooltipHTML(_bucketIgnored, evts){
   const header = `${evts.length} event${evts.length===1?"":"s"}`;
 
@@ -416,7 +417,7 @@ function buildTooltipHTML(_bucketIgnored, evts){
 /* Data coercion */
 function coerceEvent(row){
   const actionRaw = (row.action || "").toString().trim().toLowerCase();
-  const action = (actionRaw === "added" || actionRaw === "removed") ? actionRaw : actionRaw;
+  const action = (actionRaw === "added" || actionRaw === "removed") ? actionRaw : null;
 
   const name = (row.company || "").toString().trim();
 
@@ -497,7 +498,7 @@ function rebuildPrefixes(){
 }
 
 function updateCounter(mIndex){
-  if (!started){
+  if (!startedCounters){
     addedCountEl.textContent = "0";
     removedCountEl.textContent = "0";
     return;
@@ -527,8 +528,8 @@ function initChart(){
 
   eventsG = g.append("g").attr("class","events");
 
-  axisG = g.append("g").attr("transform", `translate(0,${baseY + 34})`);
-  yearG = g.append("g").attr("transform", `translate(0,${baseY + 98})`);
+  axisG = g.append("g").attr("transform", `translate(0,${baseY + AXIS_GAP})`);
+  yearG = g.append("g").attr("transform", `translate(0,${baseY + AXIS_GAP + 62})`);
 
   xScale = d3.scaleUtc().range([0, innerW]);
 }
@@ -542,27 +543,25 @@ function formatWindowLabel(fromM, toM){
   return `${fmtMonthYear(fromM)} → ${fmtMonthYear(toM)}`;
 }
 
-/* Lane assignment per render window: prevents overlap */
+/* Lane assignment per render window */
 function computeLaneAssignments(markerData, innerW){
-  // Track lane occupancy as last-right-edge x
   const laneRight = new Array(MAX_LANES).fill(-Infinity);
+  const assignments = new Map();
 
-  const assignments = new Map(); // key -> lane
   for (const d of markerData){
     const x = d.x;
-    // boxX clamped in render; approximate collision in x with BOX_W and margin
     const left = Math.max(0, Math.min(innerW - BOX_W, x - BOX_W/2));
     const right = left + BOX_W;
 
     let lane = -1;
     for (let l=0; l<MAX_LANES; l++){
-      if (left > laneRight[l] + 12){
+      if (left > laneRight[l] + 14){
         lane = l;
         laneRight[l] = right;
         break;
       }
     }
-    assignments.set(d.key, lane); // -1 means no lane available => show dot only
+    assignments.set(d.key, lane);
   }
   return assignments;
 }
@@ -575,6 +574,10 @@ function render(mIndex){
   const innerH = height - margin.top - margin.bottom;
   const baseY = innerH * BASELINE_FRAC;
 
+  const axisY = baseY + AXIS_GAP; // where axis group sits
+  const axisNoGoTop = axisY - AXIS_BUFFER;
+  const axisNoGoBottom = axisY + 26 + AXIS_BUFFER; // approx label height
+
   const fromM = allMonths[mIndex];
   const toMExcl = MONTH.offset(fromM, WINDOW_MONTHS);
   const toMIncl = MONTH.offset(toMExcl, -1);
@@ -583,14 +586,14 @@ function render(mIndex){
 
   xScale.domain([fromM, toMExcl]);
 
-  // axis (months bigger by 2pt-ish)
+  // axis (months larger)
   const ticks = d3.utcMonths(fromM, toMExcl);
   const axis = d3.axisBottom(xScale)
     .tickValues(ticks)
     .tickFormat(d => fmtMonth(d))
     .tickSizeOuter(0);
 
-  axisG.attr("transform", `translate(0,${baseY + 34})`).call(axis);
+  axisG.attr("transform", `translate(0,${axisY})`).call(axis);
   axisG.selectAll("text")
     .style("font-size","16px")
     .style("fill","#374151");
@@ -605,7 +608,7 @@ function render(mIndex){
     .attr("x", innerW/2)
     .attr("y", 0)
     .attr("text-anchor","middle")
-    .style("font-size","18pt")
+    .style("font-size","20pt")
     .style("font-weight","900")
     .style("fill","#000")
     .text(yearText)
@@ -613,7 +616,7 @@ function render(mIndex){
     .attr("x", innerW/2)
     .text(yearText);
 
-  yearG.attr("transform", `translate(0,${baseY + 98})`);
+  yearG.attr("transform", `translate(0,${axisY + 62})`);
 
   // baseline update
   lineG.select("line")
@@ -622,21 +625,26 @@ function render(mIndex){
 
   // markerData for months within window that have events
   const windowMonths = d3.utcMonths(fromM, toMExcl);
-  const markerData = windowMonths
+  const markerAll = windowMonths
     .map(m => {
       const key = +monthStart(m);
       const evts = eventsByMonth.get(key) || [];
       const x = xScale(m);
       return { m, key, evts, x };
     })
-    .filter(d => d.evts.length > 0)
-    // show when dot enters visible area and hide in last 25% of window
+    .filter(d => d.evts.length > 0);
+
+  // Dots always: within full visible window
+  const dotsOnly = markerAll.filter(d => d.x >= 0 && d.x <= innerW);
+
+  // Callouts only: after user interaction, plus "enter visible" and "exit in last 25%"
+  const markerCallouts = (!showCallouts) ? [] : markerAll
     .filter(d => d.x >= 0 && d.x <= (innerW * HIDE_AFTER_FRACTION));
 
-  const laneByKey = computeLaneAssignments(markerData, innerW);
+  const laneByKey = computeLaneAssignments(markerCallouts, innerW);
 
-  // Data join
-  const nodes = eventsG.selectAll("g.callout").data(markerData, d => d.key);
+  // Data join on ALL dots (so dots appear even if callouts hidden)
+  const nodes = eventsG.selectAll("g.callout").data(dotsOnly, d => d.key);
   nodes.exit().remove();
 
   const enter = nodes.enter().append("g").attr("class","callout");
@@ -653,7 +661,6 @@ function render(mIndex){
     .attr("stroke", "#ffffff")
     .attr("stroke-width", 1.5);
 
-  // Use foreignObject for HTML callout content (overflow visible)
   enter.append("foreignObject")
     .attr("class","fo")
     .style("overflow","visible")
@@ -666,14 +673,14 @@ function render(mIndex){
     const g = d3.select(this);
     const x = d.x;
 
-    // dot always renders
+    // dot always
     g.select("circle.dot")
       .attr("cx", x)
       .attr("cy", baseY);
 
+    // If this month isn't in callout set, hide callout elements
     const lane = laneByKey.get(d.key);
-    if (lane === undefined || lane < 0){
-      // no lane available; dot only
+    if (!showCallouts || lane === undefined || lane < 0){
       g.select("line.stem").attr("display","none");
       g.select("foreignObject.fo").attr("display","none");
       return;
@@ -685,17 +692,22 @@ function render(mIndex){
     const state = summarizeBucket(d.evts);
     const boxH = estimateBoxHeight(d.evts.length);
 
-    // x clamp
     const boxX = Math.max(0, Math.min(innerW - BOX_W, x - (BOX_W/2)));
 
-    // all callouts above line, stacked by lane
-    // lane 0 is closest to baseline (lowest), lane increases upward
-    let boxY = baseY - STEM_LEN - boxH - BOX_PAD_Y - lane * (boxH + LANE_GAP);
+    // all callouts above the baseline, stacked by lane
+    let boxY = baseY - STEM_LEN - boxH - BOX_PAD_Y - lane * LANE_HEIGHT;
 
-    // If huge month causes boxH large, this may go above top; clamp
+    // enforce buffer around x-axis region:
+    // ensure bottom of box is at least 10px ABOVE axis labels region
+    const boxBottom = boxY + boxH;
+    if (boxBottom > axisNoGoTop){
+      const shiftUp = boxBottom - axisNoGoTop;
+      boxY = boxY - shiftUp;
+    }
+
+    // clamp to top
     boxY = Math.max(0, boxY);
 
-    // stem goes to bottom of box
     const stemY2 = boxY + boxH;
 
     g.select("line.stem")
@@ -729,7 +741,7 @@ function setIndex(i){
 
 /* Playback */
 function getPlaybackIntervalMs(){
-  return Math.max(250, +speedSel.value || 4000);
+  return Math.max(250, +speedSel.value || 4200);
 }
 
 function stop(){
@@ -740,7 +752,11 @@ function stop(){
 }
 
 function play(){
-  if (!started) started = true;
+  // Callouts should start appearing once the user hits play
+  showCallouts = true;
+
+  if (!startedCounters) startedCounters = true;
+
   playing = true;
   playPauseBtn.textContent = "Pause";
   if (timer) clearInterval(timer);
@@ -756,9 +772,18 @@ function play(){
 playPauseBtn.addEventListener("click", () => playing ? stop() : play());
 speedSel.addEventListener("change", () => { if (playing) play(); });
 
+/* Any manual interaction should show callouts (but NOT start counters) */
+function revealCalloutsOnly(){
+  if (!showCallouts){
+    showCallouts = true;
+    render(+scrubber.value || 0);
+  }
+}
+
 /* Scrubber */
 scrubber.addEventListener("input", () => {
   if (playing) stop();
+  revealCalloutsOnly();
   setIndex(+scrubber.value);
 });
 
@@ -766,6 +791,7 @@ scrubber.addEventListener("input", () => {
 chartWrap.addEventListener("wheel", (e) => {
   e.preventDefault();
   if (playing) stop();
+  revealCalloutsOnly();
   const delta = Math.sign(e.deltaY || e.deltaX);
   const step = e.shiftKey ? 6 : 1;
   setIndex((+scrubber.value) + (delta > 0 ? step : -step));
@@ -775,6 +801,7 @@ chartWrap.addEventListener("wheel", (e) => {
 let dragging=false, dragStartX=0, dragStartIndex=0;
 chartWrap.addEventListener("pointerdown", (e) => {
   if (playing) stop();
+  revealCalloutsOnly();
   dragging=true;
   dragStartX=e.clientX;
   dragStartIndex=+scrubber.value;
@@ -807,6 +834,7 @@ function parseInputDateToMonthStart(value){
 
 applyRangeBtn.addEventListener("click", () => {
   if (playing) stop();
+  revealCalloutsOnly();
   boundStart = parseInputDateToMonthStart(startDateInput.value);
   boundEnd = parseInputDateToMonthStart(endDateInput.value);
   rebuildMonthsWithBounds();
@@ -817,7 +845,9 @@ resetRangeBtn.addEventListener("click", () => {
   boundStart = null; boundEnd = null;
   startDateInput.value = ""; endDateInput.value = "";
 
-  started = false;
+  startedCounters = false;
+  showCallouts = false;
+
   addedCountEl.textContent = "0";
   removedCountEl.textContent = "0";
 
@@ -855,7 +885,6 @@ exportTsvBtn.addEventListener("click", () => {
   try{
     const rows = await d3.json(DATA_URL);
 
-    // Keep original rows for export (as-is)
     eventsAll = Array.isArray(rows) ? rows : [];
 
     const events = (Array.isArray(rows) ? rows : []).map(coerceEvent).filter(Boolean);
@@ -877,6 +906,8 @@ exportTsvBtn.addEventListener("click", () => {
 
     initChart();
     rebuildPrefixes();
+
+    // Initial render: dots only, no callouts, counters 0/0
     render(0);
 
     playPauseBtn.disabled = false;
