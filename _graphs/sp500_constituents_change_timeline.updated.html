@@ -442,9 +442,7 @@ function buildCalloutHTML(key, evts){
     const t = firstTicker(e);
     const title = t ? `${name} (${t})` : name;
 
-    const when = fmtMonthYear(e.relevantDate);
-    return `<li>${badge}${escapeHtml(title)} — <span style="color:rgba(0,0,0,0.65)">${escapeHtml(when)}</span></li>`;
-  }).join("");
+    return `<li>${badge}${escapeHtml(title)}</li>`;
 
   const more = (sorted.length > MAX_ITEMS_PER_BOX)
     ? `<li style="color:rgba(0,0,0,0.55)">… +${sorted.length - MAX_ITEMS_PER_BOX} more</li>`
