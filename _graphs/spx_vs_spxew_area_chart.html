@@ -124,12 +124,17 @@ const SPX_URL   = "data/SPX.json";
 const SPXEW_URL = "data/SPXEW.json";
 
 /** Parse */
-const parseDate = d3.utcParse("%Y-%m-%d");
+const parseISO = d3.utcParse("%Y-%m-%d");
+const parseMon = d3.utcParse("%b %-d, %Y"); // e.g. "Apr 1, 2013" (no leading zero)
 
 function coerceRow(r){
-  const d = parseDate((r.date ?? r.Date ?? "").trim());
-  const vRaw = (r.value ?? r.Value ?? r["Adj Close"] ?? r["Adj Close "] ?? r["Close"] ?? r["Close "] ?? "").toString().trim();
+  const raw = (r.date ?? r.Date ?? "").toString().trim();
+  const d = parseISO(raw) || parseMon(raw);
+
+  const vRaw = (r.value ?? r.Value ?? r["Adj Close"] ?? r["Adj Close "] ?? r["Close"] ?? r["Close "] ?? "")
+    .toString().trim();
   const v = +vRaw;
+
   if (!d || !Number.isFinite(v)) return null;
   return { date: d, value: v };
 }
