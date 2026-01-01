@@ -215,7 +215,7 @@ function hideTooltip(){ tooltip.style("display","none"); }
   const innerW = years.length * colStep;
 
   const W = M.left + innerW + M.right;
-  const H = M.top + innerH + M.bottom;
+  const H = (M.top + innerH + M.bottom) * 0.8;
 
   const svg = d3.select("#svg")
     .attr("width", W)
@@ -237,12 +237,14 @@ function hideTooltip(){ tooltip.style("display","none"); }
     .attr("class","label")
     .attr("x", 12)
     .attr("y", M.top + 14)
+    .attr("y", 250)
     .text("Companies Added");
 
   svg.append("text")
     .attr("class","label")
     .attr("x", 12)
     .attr("y", M.top + stackH + MID_GAP + 16)
+    .attr("y", 1000)
     .text("Companies Removed");
 
   // Light vertical year grid + axis labels (every 5 years for readability)
@@ -260,7 +262,7 @@ function hideTooltip(){ tooltip.style("display","none"); }
 
       axisG.append("text")
         .attr("x", x + 1)
-        .attr("y", midY + 24)
+        .attr("y", midY + 16)
         .text(String(yr));
     }
   }
